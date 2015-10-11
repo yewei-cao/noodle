@@ -136,17 +136,21 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+    	Illuminate\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
+         * laracasts
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-    		
-    	Laracasts\Flash\FlashServiceProvider::class,
+    	App\Providers\AccessServiceProvider::class,
+    	App\Providers\FlashServiceProvider::class,
+    	
     	Intervention\Image\ImageServiceProvider::class,
+    	HieuLe\Active\ActiveServiceProvider::class,
 
     ],
 
@@ -162,7 +166,6 @@ return [
     */
 
     'aliases' => [
-
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
         'Auth'      => Illuminate\Support\Facades\Auth::class,
@@ -196,10 +199,12 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-    		
-    	'Flash' =>Laracasts\Flash\Flash::class,
+    	'Form'      => Illuminate\Html\FormFacade::class,
+    	'Html'      => Illumniate\Html\HtmlFacade::class,
+    	
+//     	'Flash' =>Repositories\Flash::class,
     	'Image' => Intervention\Image\Facades\Image::class,
-
+    	'Active'    => HieuLe\Active\Facades\Active::class,
     ],
 
 ];

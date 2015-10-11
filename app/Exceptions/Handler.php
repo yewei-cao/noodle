@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Exceptions;
+<?php  namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -45,6 +43,13 @@ class Handler extends ExceptionHandler
         if ($e instanceof ModelNotFoundException) {
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }
+        
+        //As to preserve the catch all
+        if ($e instanceof GeneralException)
+        {
+        	return redirect()->back()->withInput()->withFlashDanger($e->getMessage());
+        }
+        
 
         return parent::render($request, $e);
     }
