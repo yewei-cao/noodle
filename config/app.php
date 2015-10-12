@@ -157,7 +157,6 @@ return [
     	Intervention\Image\ImageServiceProvider::class,
     	HieuLe\Active\ActiveServiceProvider::class,
 
-
     ],
 
     /*
