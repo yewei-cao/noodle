@@ -8,13 +8,11 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "illuminate/html": "5.0.*",
-<<<<<<< HEAD
         "intervention/image": "2.3"
-=======
          "guzzlehttp/guzzle": "~4.0",
         "intervention/image": "2.3",
         "hieu-le/active": "^2.2"
->>>>>>> feature/admin
+
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

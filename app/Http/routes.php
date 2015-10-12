@@ -78,10 +78,7 @@ Route::get('home',['as'=>'home', function () {
 //this is for the git hub test.
 //for the remote github.
 //this is the second test for github remote.
-<<<<<<< HEAD
-//I do not known how to use this.
-=======
-//I do not known how to use this.
+
 
 
 	Route::get('admin', function () {
@@ -93,4 +90,4 @@ Route::get('home',['as'=>'home', function () {
 	
 	
 	
->>>>>>> feature/admin
+

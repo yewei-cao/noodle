@@ -5,7 +5,6 @@
         @endforeach
     </div>
     
-
 @elseif (Session::get('flash_warning'))
     <div class="alert alert-warning">
         @if(is_array(json_decode(Session::get('flash_warning'),true)))

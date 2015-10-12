@@ -146,17 +146,17 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-<<<<<<< HEAD
+
     		
-    	Laracasts\Flash\FlashServiceProvider::class,
+
     	Intervention\Image\ImageServiceProvider::class,
-=======
+
     	App\Providers\AccessServiceProvider::class,
     	App\Providers\FlashServiceProvider::class,
     	
     	Intervention\Image\ImageServiceProvider::class,
     	HieuLe\Active\ActiveServiceProvider::class,
->>>>>>> feature/admin
+
 
     ],
 
@@ -205,19 +205,19 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-<<<<<<< HEAD
+
     		
-    	'Flash' =>Laracasts\Flash\Flash::class,
+//     	'Flash' =>Laracasts\Flash\Flash::class,
     	'Image' => Intervention\Image\Facades\Image::class,
 
-=======
+
     	'Form'      => Illuminate\Html\FormFacade::class,
     	'Html'      => Illumniate\Html\HtmlFacade::class,
     	
 //     	'Flash' =>Repositories\Flash::class,
     	'Image' => Intervention\Image\Facades\Image::class,
     	'Active'    => HieuLe\Active\Facades\Active::class,
->>>>>>> feature/admin
+
     ],
 
 ];
