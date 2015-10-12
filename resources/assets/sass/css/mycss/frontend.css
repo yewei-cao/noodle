@@ -1,0 +1,23 @@
+/*# sourceMappingURL=app.css.map */
+
+@import "partials/form";
+
+.flash{
+	background:#F6624A;
+	color:white;
+	width:200px;
+	position:absolute;
+	right:20px;
+	bottom:20px;
+	padding:1em;
+	display:none;
+}
+
+img{
+	max-width:100%;
+}
+
+.gallery_image{
+	margin-bottom:1em;
+}
+
