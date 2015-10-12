@@ -79,15 +79,10 @@ Route::get('home',['as'=>'home', function () {
 //for the remote github.
 //this is the second test for github remote.
 
-
-
 	Route::get('admin', function () {
 		return view('backend.admin_master');
 	});
 	
 	Route::get('test', 'TestController@index');
 		
-	
-	
-	
 
