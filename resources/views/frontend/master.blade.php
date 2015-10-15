@@ -5,7 +5,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel</title>
-		
 	<link href="/css/frontend/frontend.css" rel="stylesheet" type= "text/css" />
 	
 	@yield('css.style')
@@ -21,9 +20,7 @@
 </head>
 <body>
 	
-	@include('partials.nav')
-	
-	
+	@include('frontend.includes.nav')
 	
 	<div class= "container">
 	
@@ -31,7 +28,6 @@
 	
 	@yield('content')
 	</div>
-	
 		
 	<div class="flash">
 		Updated!
@@ -43,14 +39,10 @@
 
 </body>
 
-
 <script src="/js/app.js"></script>
 
 <script type="text/javascript">
 $('#flash-overlay-modal').modal();
-
-//$('div.alert').not('.alert-important').delay(3000).slideUp(300);
-
 </script>
 
 </html>

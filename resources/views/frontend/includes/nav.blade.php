@@ -24,6 +24,11 @@
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
 									<ul class="dropdown-menu" role="menu">
+									
+										@can('manage_backend')
+											<li>{!! link_to_route('backend.dashboard', trans('navs.administration')) !!}</li>
+										@endcan
+										
 										<li>{!! link_to('auth/password/change', "Change Password") !!}</li>
 										<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
 									</ul>

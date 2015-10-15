@@ -42,7 +42,7 @@ class PasswordController extends Controller
      * @return \Illuminate\View\View
      */
     public function getChangePassword() {
-    	return view('auth.changepassword');
+    	return view('frontend.auth.changepassword');
     }
     
     /**

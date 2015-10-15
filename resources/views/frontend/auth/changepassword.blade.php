@@ -1,4 +1,4 @@
-@extends('app')
+@extends('frontend.master')
 
 @section('content')
 	<div class="row">
