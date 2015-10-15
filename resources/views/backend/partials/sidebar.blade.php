@@ -7,10 +7,10 @@
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="lte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+              <img src="/lte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p>{{ Auth::user()->name }}</p>
               <!-- Status -->
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -32,12 +32,11 @@
             <li class="header">HEADER</li>
             
             <!-- Optionally, you can add icons to the links -->
-           <li class="{{ Active::pattern('admin') }}"><a href="{!!url('admin')!!}"><span>Admin</span></a></li>
+           <li class="{{ Active::pattern('admin') }}"><a href="{!!url('admin')!!}"><span>{{ trans('menus.dashboard') }}</span></a></li>
 
-                <li class="{{ Active::pattern('test') }}"><a href="{!!url('test')!!}"><span>Test</span></a></li>
+           <li class="{{ Active::pattern('test') }}"><a href="{!!url('admin/test')!!}"><span>Test</span></a></li>
                 
-                <li class="{{ Active::pattern('test') }}"><a href="{!! url('test') !!}"><span>{{ trans('menus.dashboard') }}</span></a></li>
-                
+          
                 
             <li class="treeview">
               <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
