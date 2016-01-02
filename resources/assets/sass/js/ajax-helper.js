@@ -27,8 +27,15 @@
 //	});
 //	
 	
+	/*
+    Generic are you sure dialog
+    */
+//   $('form[name=delete_item]').submit(function(){
+//       return confirm("Are you sure you want to delete this item?");
+//   });
 	
 	
 })();
+
 
 

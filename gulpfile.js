@@ -78,6 +78,14 @@ elixir(function(mix) {
                  'ajax-helper.js',
                  'app.js',
                  ],'public/js/app.js','resources/assets/sass/js');
+    
+    mix.scripts([
+                 'validator.js',
+                 ],'public/js/validate.js','resources/assets/sass/js');
+    
+    mix.scripts([
+                 'ordertime-index.js',
+                 ],'public/js/ordertime.js','resources/assets/sass/js');
 	
 	
 });

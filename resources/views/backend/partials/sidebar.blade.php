@@ -31,11 +31,86 @@
           <ul class="sidebar-menu">
             <li class="header">HEADER</li>
             
-            <!-- Optionally, you can add icons to the links -->
-           <li class="{{ Active::pattern('admin') }}"><a href="{!!url('admin')!!}"><span>{{ trans('menus.dashboard') }}</span></a></li>
-
-           <li class="{{ Active::pattern('test') }}"><a href="{!!url('admin/test')!!}"><span>Test</span></a></li>
-                
+            
+			<li class="active treeview">
+              <a href="{!!url('admin')!!}">
+                <i class="fa fa-dashboard"></i> <span>{{ trans('menus.dashboard') }}</span> </i>
+              </a>
+            </li>
+            
+             <li class="active treeview">
+              <a href="{!!url('admin')!!}">
+                <i class="fa fa-coffee"></i> <span>{{ trans('menus.element') }}</span> 
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              
+              
+               <ul class="treeview-menu" style="display: none; {{ Active::pattern('admin/element*', 'display: block;') }}">
+					
+					<li>
+					<a href="{{ url('/admin/element/type') }}">
+					<i class="fa fa-circle-o"></i>
+						{{ trans('menus.element_manage.material_type') }}
+					</a>
+					</li>
+					
+					<li>
+					<a href="{{ url('/admin/element/material') }}">
+					<i class="fa fa-circle-o"></i>
+						{{ trans('menus.element_manage.material') }}
+					</a>
+					</li>
+					
+					<li>
+					<a href="{{ url('/admin/element/mgroup') }}">
+					<i class="fa fa-circle-o"></i>
+						{{ trans('menus.element_manage.group') }}
+					</a>
+					</li>
+					
+				</ul>	
+				
+			 </li>
+            
+           <li class="active treeview">
+              <a href="{!!url('admin')!!}">
+                <i class="fa fa-coffee"></i> <span>{{ trans('menus.menu') }}</span> 
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              
+	           <ul class="treeview-menu" style="display: none; {{ Active::pattern('admin/menu*', 'display: block;') }}">
+					<li>
+					<a href="{{ url('/admin/menu/type') }}">
+					<i class="fa fa-circle-o"></i>
+						{{ trans('menus.menu_manage.type') }}
+					</a>
+					</li>
+					<li>
+					<a href="{{ url('/admin/menu/catalogue') }}">
+					<i class="fa fa-circle-o"></i>
+						{{ trans('menus.menu_manage.catalogue') }}
+					</a>
+					</li>
+					
+					<li>
+					<a href="{{ url('/admin/menu/dish') }}">
+					<i class="fa fa-circle-o"></i>
+						{{ trans('menus.menu_manage.dish') }}
+					</a>
+					</li>
+					
+					<li>
+					<a href="../../index.html">
+					<i class="fa fa-circle-o"></i>
+						{{ trans('menus.menu_manage.tag') }}
+					</a>
+					</li>
+				</ul>
+              
+            </li>
+            
+            
+            <li class="{{ Active::pattern('test') }}"><a href="{!!url('admin/test')!!}"><span>Test</span></a></li>
           
                 
             <li class="treeview">

@@ -30,7 +30,6 @@
 	</div>
 		
 	<div class="flash">
-		Updated!
 	</div>
 
 <!-- @include('partials.sweetflash') -->

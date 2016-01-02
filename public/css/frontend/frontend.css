@@ -7736,6 +7736,108 @@ body.stop-scrolling {
 
 @import "partials/form";
 
+
+<!-- home page css style -->
+#myservice-container .myservice div {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 10px;
+    border-top: 1px dotted #fff;
+}
+
+#myservice-container .myservice>img {
+    width: 64px;
+    height: 64px;
+    max-width: initial;
+}
+
+#myservice-container .myservice .service-icon {
+    vertical-align: middle;
+    padding: 10px 20px;
+    position: relative;
+}
+    
+#myservice-container .myservice .service-text {
+    width: 100%;
+    padding: 0 20px 0 0;
+}
+
+@media(min-width:768px) {
+#myservice-container {
+    text-align: center;
+    display: block;
+    margin: 20px auto 0;
+    width: 100%;
+}
+#detail-container,#ordertime-container {
+    
+    display: block;
+    margin: 20px auto 0;
+    width: 100%;
+}
+#ordertime-container {
+	text-align: center;
+}
+
+#myservice-container .myservice .service-icon{
+    margin: 0 auto 10px;
+    display: block;
+    float: none;
+    width: auto;
+    padding: 0;
+    border: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#myservice-container .myservice  .service-text {
+    padding-right: 0;
+    padding-top: 10px;
+    display: block;
+}
+
+}
+
+@media(min-width:980px) {
+#myservice-container {
+    width: 90%;
+}
+#detail-container,#ordertime-container {
+    width: 60%;
+}
+}
+
+@media(min-width:1480px) {
+#myservice-container {
+    width: 70%;
+}
+
+#detail-container,#ordertime-container {
+    width: 40%;
+}
+}
+
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+.myservice {
+    display: table;
+    margin: 10px auto;
+    color: #fff;
+    width: 90%;
+}
+
+.red, .payment-method .horizontal-list li a#payment_creditcard {
+    background-color: #e41837!important;
+    transition: all 50ms ease;
+}
+
+
+
+<!-- flash css style -->
+
 .flash{
 	background:#F6624A;
 	color:white;
@@ -7756,4 +7858,169 @@ img{
 }
 
 
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group select, .form-group textarea, .form-group input[type="text"], .form-group input[type="password"], .form-group input[type="datetime"], .form-group input[type="datetime-local"], .form-group input[type="date"], .form-group input[type="month"], .form-group input[type="time"], .form-group input[type="week"], .form-group input[type="number"], .form-group input[type="email"], .form-group input[type="url"], .form-group input[type="search"], .form-group input[type="tel"], .form-group input[type="color"] {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: hsl(0, 0%, 100%);
+    background-image: none;
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: hsl(0, 0%, 100%);
+    border-bottom-color: hsl(0, 0%, 84%);
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: stretch stretch;
+    border-image-slice: 100% 100% 100% 100%;
+    border-image-source: none;
+    border-image-width: 1 1 1 1;
+    border-left-color: hsl(0, 0%, 84%);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: hsl(0, 0%, 84%);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: hsl(0, 0%, 84%);
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-shadow: none !important;
+    color: hsl(0, 0%, 52%);
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.2;
+    padding-bottom: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 5px;
+    transition-duration: 0.1s;
+}
+textarea:hover, input[type="text"]:hover, input[type="password"]:hover, input[type="datetime"]:hover, input[type="datetime-local"]:hover, input[type="date"]:hover, input[type="month"]:hover, input[type="time"]:hover, input[type="week"]:hover, input[type="number"]:hover, input[type="email"]:hover, input[type="url"]:hover, input[type="search"]:hover, input[type="tel"]:hover, input[type="color"]:hover {
+    border-bottom-color: hsl(0, 0%, 71%);
+    border-left-color: hsl(0, 0%, 71%);
+    border-right-color: hsl(0, 0%, 71%);
+    border-top-color: hsl(0, 0%, 71%);
+}
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus {
+    background-color: hsl(0, 0%, 100%);
+    border-bottom-color: hsl(29, 90%, 61%);
+    border-left-color: hsl(29, 90%, 61%);
+    border-right-color: hsl(29, 90%, 61%);
+    border-top-color: hsl(29, 90%, 61%);
+    box-shadow: none;
+    color: hsl(0, 0%, 41%);
+    outline-color: -moz-use-text-color;
+    outline-style: none;
+    outline-width: 0;
+}
+.form-control, select {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: hsl(0, 0%, 100%);
+    border-bottom-color: hsl(0, 0%, 84%);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: stretch stretch;
+    border-image-slice: 100% 100% 100% 100%;
+    border-image-source: none;
+    border-image-width: 1 1 1 1;
+    border-left-color: hsl(0, 0%, 84%);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: hsl(0, 0%, 84%);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: hsl(0, 0%, 84%);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-shadow: none !important;
+    color: hsl(0, 0%, 52%);
+}
+.form-control:focus, select:focus {
+    background-color: hsl(0, 0%, 100%);
+    border-bottom-color: hsl(29, 90%, 61%);
+    border-left-color: hsl(29, 90%, 61%);
+    border-right-color: hsl(29, 90%, 61%);
+    border-top-color: hsl(29, 90%, 61%);
+    color: hsl(0, 0%, 41%);
+    outline-color: -moz-use-text-color;
+    outline-style: none;
+    outline-width: 0;
+}
+textarea.form-control {
+    padding-bottom: 5px;
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-top: 5px;
+}
+.form-actions {
+    background-color: hsl(0, 0%, 96%);
+    border-top-color: hsl(0, 0%, 90%);
+    border-top-style: solid;
+    border-top-width: 1px;
+    display: block;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 19px;
+}
+select.form-control {
+    height: 32px;
+    padding-bottom: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 4px;
+}
+
+<!-- btn css style-->
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+ 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+ 
+.btn-primary {
+    background: #0099cc;
+    color: #ffffff;
+}
+ 
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
+}
+ 
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
+}
 /*# sourceMappingURL=frontend.css.map */

@@ -13,6 +13,13 @@ return [
     |
     */
 
+	'dish' =>'菜式管理',
+	'dish_manage'=>['type'=>'类型',
+			'catalogue'=>'目录',
+			'dish'=>'菜式',
+			'material'=>'菜式',
+			'tag'=>'标签'
+	],
     'active_users' => '激活用户',
     'banned_users' => 'Banned Users',
     'create_permission' => 'Create Permission',

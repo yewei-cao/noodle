@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -22,11 +21,10 @@ require(__DIR__ . "/Routes/Global/Lang.php");
 $router->group(['namespace' => 'Frontend'], function () use ($router)
 {
 	
-	
 	require(__DIR__ . "/Routes/Frontend/Frontend.php");
 	require(__DIR__ . "/Routes/Frontend/Access.php");
+	
 });
-
 
 /**
  * Backend Routes
@@ -48,14 +46,12 @@ $router->group(['namespace' => 'Backend'], function () use ($router)
 		 */
 		$router->group(['middleware' => 'access.role:manager'], function () use ($router)
 		{
-			Route::get('/', function () {
-				return view('backend.admin_master');
-			});
+			Route::get('/', 'DashboardController@index');
 			Route::get('test', 'TestController@index');
-// 			Route::get('dashboard', 'DashboardController@index');
-			
 			require(__DIR__ . "/Routes/Backend/Dashboard.php");
-// 			require(__DIR__ . "/Routes/Backend/Access.php");
+			
+			require(__DIR__ . "/Routes/Backend/Menu.php");
+			require(__DIR__ . "/Routes/Backend/Element.php");
 		});
 	});
 });

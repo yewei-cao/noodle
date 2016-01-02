@@ -84,7 +84,7 @@ class PasswordController extends Controller
     		
     		return $user->save();
     	}
-    	    	
+    	
     	throw new GeneralException("That is not your old password.");
 
     }

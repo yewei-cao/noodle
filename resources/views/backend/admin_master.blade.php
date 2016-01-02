@@ -9,9 +9,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>AdminLTE 2 | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    
-    <!-- Bootstrap 3.3.4 -->
-    <link href="/lte/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- backend css -->
+    <link href="/css/backend/backend.css" rel="stylesheet" type= "text/css" />
     
     <!--  Font and icons -->
     <link href="/lte/extend/font-icons.css" rel="stylesheet" type= "text/css" />
@@ -29,6 +29,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="lte/extend/html5shiv.min.js"></script>
         <script src="lte/extend/respond.min.js"></script>
     <![endif]-->
+    
+      <!-- backend js -->
+    <script src="/js/libs.js" type="text/javascript"></script>
+    
+    <!-- My js for the App -->
+    <script src="/js/app.js" type="text/javascript"></script>
+    
+    <!-- AdminLTE App -->
+    <script src="/lte/dist/js/app.min.js" type="text/javascript"></script>
+    
+    <!-- Extend of Css -->
+    
+    @yield('backend.css')
+    
   </head>
   <!--
   BODY TAG OPTIONS:
@@ -59,6 +73,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       
       <!-- Content Wrapper. Contains page content -->
           <div class="content-wrapper">
+          
+          @include('flash::message')
+          
             <!-- Content Header (Page header) -->
             <section class="content-header">
               @yield('page-header')
@@ -69,33 +86,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Main content -->
             <section class="content">
-              @include('partials.flash')
-              @yield('content')
+             
+             @yield('content')
             </section><!-- /.content -->
           </div><!-- /.content-wrapper -->
       
      @include('backend.partials.footer')
 
-      @include('backend.partials.controlsidebar')
-      
+     @include('backend.partials.controlsidebar')
       
       <!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->
       <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
-
-    <!-- REQUIRED JS SCRIPTS -->
-
-    <!-- jQuery 2.1.4 -->
-    <script src="/lte/plugins/jQuery/jQuery-2.1.4.min.js" type="text/javascript"></script>
-    <!-- Bootstrap 3.3.2 JS -->
-    <script src="/lte/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- AdminLTE App -->
-    <script src="/lte/dist/js/app.min.js" type="text/javascript"></script>
+ 
+  
+	@yield('backend.scripts.footer')
 
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
           Both of these plugins are recommended to enhance the
           user experience. Slimscroll is required when using the
           fixed layout. -->
   </body>
+  
 </html>

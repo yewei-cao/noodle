@@ -13,6 +13,16 @@ return [
     |
     */
 
+	'menu' =>'Menu',
+	'element'=>'Element',
+	'menu_manage'=>['type'=>'Type',
+			'catalogue'=>'Catalogue',
+			'dish'=>'Dish',
+			'material'=>'Material',
+			'tag'=>'Tag'
+	],
+	'element_manage'=>['material_type'=>'Type','material'=>'Material','group'=>'Group'],
+		
     'active_users' => 'Active Users',
     'banned_users' => 'Banned Users',
     'create_permission' => 'Create Permission',
@@ -20,6 +30,7 @@ return [
     'create_role' => 'Create Role',
     'create_user' => 'Create User',
     'dashboard' => 'Dashboard',
+	
     'deactivated_users' => 'Deactivated Users',
     'deleted_users' => 'Deleted Users',
     'edit_permission' => 'Edit Permission',

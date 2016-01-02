@@ -25,12 +25,21 @@ class AuthController extends Controller
 
     /**
      * Create a new authentication controller instance.
-     *
+     *auth.login
      * @return void
      */
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'getLogout']);
+    }
+    
+    public function getLogin()
+    {
+    	if (view()->exists('auth.authenticate')) {
+    		return view('auth.authenticate');
+    	}
+    
+    	return view('frontend.auth.login');
     }
     
     /**

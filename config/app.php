@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Pacific/Auckland',
 
     /*
     |--------------------------------------------------------------------------
@@ -149,7 +149,7 @@ return [
 
     		
 
-    	Intervention\Image\ImageServiceProvider::class,
+//     	Intervention\Image\ImageServiceProvider::class,
 
     	App\Providers\AccessServiceProvider::class,
     	App\Providers\FlashServiceProvider::class,

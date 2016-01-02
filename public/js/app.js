@@ -46,8 +46,19 @@
 //	$('*[data-click-submits-form]').on('change',function(){
 //		$(this).closest('form').submit();
 //	});
-//		
+//	
+	
+	/*
+    Generic are you sure dialog
+    */
+//   $('form[name=delete_item]').submit(function(){
+//       return confirm("Are you sure you want to delete this item?");
+//   });
+	
+	
 })();
+
+
 
 
 (function(){
@@ -55,4 +66,6 @@
 		$('.flash').fadeIn(500).delay(1000).fadeOut(500);
 	});
 })();
+
+
 //# sourceMappingURL=app.js.map
