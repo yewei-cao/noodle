@@ -24,6 +24,7 @@
 						<tr>
 							<th>{{ trans('menu_backend.menu_type.id') }}</th>
 							<th>{{ trans('menu_backend.menu_type.name') }}</th>
+							<th>{{ trans('menu_backend.menu_type.ranking') }}</th>
 							<th>{{ trans('menu_backend.menu_type.description') }}</th>
 							<th>{{ trans('menu_backend.menu_type.created') }}</th>
 							<th>{{ trans('menu_backend.menu_type.lastupdated') }}</th>
@@ -33,6 +34,7 @@
 						<tr>
 							<td>{{ $type->id }}</td>
 							<td>{{ $type->name }}</td>
+							<td>{{ $type->ranking }}</td>
 							<td>{{ $type->description }}</td>
 							<td>{!! $type->created_at->diffForHumans() !!}</td>
 							<td>{!! $type->updated_at->diffForHumans() !!}</td>

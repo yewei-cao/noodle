@@ -29,6 +29,8 @@
 
     this.$element.on('input.bs.validator change.bs.validator focusout.bs.validator', $.proxy(this.validateInput, this))
     this.$element.on('submit.bs.validator', $.proxy(this.onSubmit, this))
+    
+    this.$element.on('check.bs.validator', $.proxy(this.onCheck, this))
 
     this.$element.find('[data-match]').each(function () {
       var $this  = $(this)
@@ -211,6 +213,11 @@
   Validator.prototype.onSubmit = function (e) {
     this.validate()
     if (this.isIncomplete() || this.hasErrors()) e.preventDefault()
+  }
+  
+  Validator.prototype.onCheck = function (e) {
+	    this.validate()
+	    if (this.isIncomplete() || this.hasErrors()) e.preventDefault()
   }
 
   Validator.prototype.toggleSubmit = function () {

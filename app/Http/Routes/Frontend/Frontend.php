@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * Frontend Controllers
  */
@@ -11,24 +9,45 @@ Route::get('/', function () {
 });
 
 
-
-
 $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($router)
 {
 	Route::get('/', ['as' => 'home',function () {
 		return view('frontend.home.index');
 	}]);
 	
+	/*
+	 * Product Menu Page
+	 * 
+	 */
 	
-	$router->group(['prefix' => 'pickup', 'namespace' => 'Pickup','as' => 'home.'], function () use ($router)
+	$router->group(['prefix' => 'menu', 'as'=>'home.menu'],function () use ($router){
+		Route::get('/', 'menuController@index');
+		Route::post('addtoorder','menuController@addtoorder');
+		Route::post('removetoorder','menuController@removetoorder');
+		
+	});
+	
+	
+	$router->group(['prefix' => 'pickup', 'namespace' => 'Pickup'], function () use ($router)
 	{
-		Route::get('/', ['as' => 'pickup',function () {
-			return view('frontend.home.pickup');
-		}]);
+// 		Route::get('/', ['as' => 'pickup',function () {
+// 			return view('frontend.home.pickup');
+// 		}]);
 		
-		Route::post('pickup_details','pickupController@pickup_details');
 		
-		Route::get('details','pickupController@details');
+		Route::get('details','pickupController@details')->name('home.pick.details');
+
+		Route::get('/','pickupController@index')->name('home.pick.info');
+		
+		Route::get('pickup_details','pickupController@pickup_details');
+		
+// 		Route::get('pickup_details', ['as' => 'pickup',function () {
+// 			return 'something';
+// 		}]);
+		
+// 		get('users/banned', 'UserController@banned')->name('admin.access.users.banned');
+		
+		Route::post('saveordertime','pickupController@saveordertime');
 		
 		Route::post('ordertime', ['as' => 'home.pickup.ordertime', 'uses' => 'pickupController@ordertime']);
 	
@@ -38,14 +57,7 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 // 		return view('frontend.home.pickup');
 // 	}]);
 	
-	
-	
-	
-	
-	
 });
-
-
 
 // Route::post('material/search', ['as' => 'admin.menu.material.search', 'uses' => 'MaterialController@search']);
 

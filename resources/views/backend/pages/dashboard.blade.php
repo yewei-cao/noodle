@@ -1,4 +1,5 @@
- @extends('backend.admin_master') @section('content')
+ @extends('backend.admin_master')
+  @section('content')
 
 
 <div class="col-lg-3 col-xs-6">

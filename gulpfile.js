@@ -80,12 +80,20 @@ elixir(function(mix) {
                  ],'public/js/app.js','resources/assets/sass/js');
     
     mix.scripts([
-                 'validator.js',
+                 'validate.js',
                  ],'public/js/validate.js','resources/assets/sass/js');
     
     mix.scripts([
                  'ordertime-index.js',
                  ],'public/js/ordertime.js','resources/assets/sass/js');
+    /* sticky and breakpoint */
+    mix.scripts([ 
+                 'sticky-kit',
+                 ],'public/js/sticky-kit.js','resources/assets/sass/js');
+    
+    mix.scripts([ 
+                 'breakpoints',
+                 ],'public/js/breakpoints.js','resources/assets/sass/js');
 	
 	
 });

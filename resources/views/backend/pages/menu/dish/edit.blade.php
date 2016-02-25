@@ -11,7 +11,6 @@ Edit
  
 @endsection
 
-
  @section('breadcrumbs')
  
   <li><a href="{!!route('backend.dashboard')!!}"><i class="fa fa-dashboard"></i> {{ trans('menus.dashboard') }}</a></li>
@@ -22,7 +21,7 @@ Edit
  
 @section('content')
   
-	{!! Form::model($dish,['method'=>'PATCH','action'=>['Backend\Menu\DishController@update',$dish->id],'class'=>'form-horizontal']) !!}
+	{!! Form::model($dish,['method'=>'PATCH','action'=>['Backend\Menu\DishController@update'],'class'=>'form-horizontal']) !!}
 		
 		@include('backend.pages.menu.dish.form',['submitButtonText'=>'Update Dish'])
 			

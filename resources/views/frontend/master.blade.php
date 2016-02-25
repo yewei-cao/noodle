@@ -24,7 +24,7 @@
 	
 	<div class= "container">
 	
-	 @include('flash::message') 
+	@include('flash::message') 
 	
 	@yield('content')
 	</div>
@@ -34,7 +34,11 @@
 
 <!-- @include('partials.sweetflash') -->
 
+	@include('frontend.includes.footer')
+	
 @yield('scripts.footer')
+
+
 
 </body>
 

@@ -15,12 +15,15 @@ return [
 		'login'=>'Login',
 		'register'=>'Register',
 		
+		'next'=>'Next',
+		'previous'=>'Previous',
+		
 		'home_to_start_order'=>'TO START YOUR ORDER, SELECT AN ORDER TYPE BELOW',
 		'when_to_order'=>'WHEN WOULD YOU LIKE YOUR ORDER?',
 		'or'=>'OR',
 		'order_date'=>'ORDER DATE',
 		'order_time'=>'ORDER TIME',
-		'asap'=>'ASAP',
+		'asap'=>'AS SOON AS POSSIBLE',
 		'currently_close'=>'This store is currently closed. Please select an order time below.',
 		
 		

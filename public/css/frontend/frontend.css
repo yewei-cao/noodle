@@ -7735,7 +7735,11 @@ body.stop-scrolling {
 /*# sourceMappingURL=app.css.map */
 
 @import "partials/form";
+/* container */
 
+.float-left{
+	float:left;
+}
 
 <!-- home page css style -->
 #myservice-container .myservice div {
@@ -7762,61 +7766,67 @@ body.stop-scrolling {
     padding: 0 20px 0 0;
 }
 
-@media(min-width:768px) {
-#myservice-container {
+ol, ul {
+    list-style: none;
+}
+
+
+/* footer*/
+.footer {
     text-align: center;
-    display: block;
-    margin: 20px auto 0;
+    color: gray;
+    z-index: 0;
     width: 100%;
-}
-#detail-container,#ordertime-container {
-    
-    display: block;
-    margin: 20px auto 0;
-    width: 100%;
-}
-#ordertime-container {
-	text-align: center;
+    bottom: 0;
 }
 
-#myservice-container .myservice .service-icon{
-    margin: 0 auto 10px;
-    display: block;
-    float: none;
-    width: auto;
-    padding: 0;
-    border: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
+.footer .footer-container {
+    background: black;
+    background: rgba(0,0,0,0.8);
+    position: relative;
+    z-index: 10;
 }
 
-#myservice-container .myservice  .service-text {
-    padding-right: 0;
-    padding-top: 10px;
-    display: block;
+.footer .footer-container.on-order-layout {
+    padding-bottom: 40px;
 }
 
+.footer .footer-content {
+    padding: 20px 20px 20px 20px;
+    position: relative;
 }
 
-@media(min-width:980px) {
-#myservice-container {
-    width: 90%;
+.footer .footer-content a {
+    font-weight: bold;
+    color: gray;
 }
-#detail-container,#ordertime-container {
-    width: 60%;
-}
-}
-
-@media(min-width:1480px) {
-#myservice-container {
-    width: 70%;
+.footer .footer-content .primary-footer-links .restart-link {
+    text-transform: uppercase;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+    padding-left: 14px;
 }
 
-#detail-container,#ordertime-container {
-    width: 40%;
-}
+.footer .footer-content .primary-footer-links .restart-link:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin-left: 5px;
+    border: 6px solid transparent;
+    border-right-color: #FFF;
+    top: 4px;
+    left: -12px;
 }
 
+.footer .footer-content>ul>li {
+    display: inline-block;
+    zoom: 1;
+    margin: 10px 10px 0 10px;
+}
+
+/* footer end*/
 
 .col-centered{
     float: none;
@@ -8022,5 +8032,608 @@ select.form-control {
 .btn-primary:active, .btn-primary.active {
     background: #007299;
     box-shadow: none;
+}
+.form-control-feedback_select {
+    right: 15px;
+}
+
+/* nextpage */
+.pager li > a{
+color: #333;
+}
+
+.pager .next > button{
+    float: right;
+}
+.pager .next > button {
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+}
+
+.pager li > button:hover, .pager li > button:focus {
+    text-decoration: none;
+    background-color: #eee;
+}
+
+/* as soon as possible */
+.aspntime{
+	width:100%;
+}
+.aspn{
+width:100%;
+background-color:#e41837;
+border:0px;
+}
+
+
+.aspn:hover, button:focus{
+	 text-decoration: none;
+    background-color: #e41837;
+}
+
+/* menu page */ 
+body .main-container {
+    margin: 0;
+    padding: 10px 10px 0 10px;
+    position: relative;
+}
+
+.row {
+    position: relative;
+    width: 100%;
+    margin: 0px;
+}
+
+
+.order-layout {
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.order-layout .order-layout-left {
+    width: 100%;
+    min-height: 100%;
+    position: relative;
+    -webkit-transform: translate3d(0,0,0);
+}
+
+.order-layout .order-layout-left .order-layout-left-inner {
+    width: 100%;
+}
+
+.order-layout .order-layout-right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+    pointer-events: none;
+}
+
+
+.basket-top {
+    background-color: transparent!important;
+    background: url("../../images/Home/basket-top.png") top center repeat-x;
+    height: 10px;
+    width: 100%;
+    position: relative;
+    top: 5px;
+    border-left: 1px solid #c5c5c5;
+    border-right: 1px solid #c5c5c5;
+    -webkit-print-color-adjust: exact;
+}
+.basket-header {
+    background: #dedede;
+    padding: 10px 20px 10px;
+    border-left: 1px solid #c5c5c5;
+    border-right: 1px solid #c5c5c5;
+}
+
+.basket .basket-body {
+    overflow: hidden;
+}
+ .basket-body {
+    background: white;
+    padding: 10px 10px 0 10px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+.basket-body h3{
+	margin:0px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.5em;
+    padding: 0 10px;
+    color: #000;
+    line-height: 1.2em;
+}
+
+.basket .empty-order {
+    margin: 1em 0 3em;
+    padding: 10px;
+    text-align: left;
+    font-weight: normal;
+    font-size: .75em;
+    color: gray;
+}
+
+.basket .basket-body .total-container {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #333;
+    padding: 10px 0;
+    margin: 0 10px;
+    width: auto;
+    border-bottom: 1px dotted #a6a6a6;
+}
+.basket .basket-body .total-container .total-amount {
+    float: right;
+    color: #006991;
+}
+
+.basket .basket-footer {
+    background: white;
+    padding: 0 10px 10px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    color: #333;
+}
+
+.basket .basket-footer .basket-navigation {
+    padding: 10px;
+}
+
+.btn.next, .btn.redbtn {
+    color: white;
+    background-color: #e41837;
+    border-color: #e41837;
+    position: relative;
+    display:block;
+    width:100%;
+}
+
+
+.basket .basket-footer #selected-service-method {
+    border-top: 1px dotted #a6a6a6;
+    padding: 10px;
+    font-size: .75em;
+    line-height: 1.4;
+}
+
+.basket_row {
+    position: relative;
+    width: 100%;
+}
+
+.basket .basket-bottom {
+    background: url("../../images/Home/basket-bottom.png") bottom center repeat-x;
+    height: 10px;
+    width: 100%;
+    position: relative;
+    border-left: 1px solid #c5c5c5;
+    border-right: 1px solid #c5c5c5;
+}
+
+
+.product-container {
+    display: block;
+    float: left;
+    position: relative;
+    width: 100%;
+    padding: 2px;
+    margin-bottom: 5px;
+    height: 420px;
+}
+
+.basket { 
+     -webkit-transition: -webkit-transform 300ms ease;
+     -moz-transition: -moz-transform 300ms ease;
+     -o-transition: -o-transform 300ms ease;
+     transition: transform 300ms ease;
+     display: none;
+     position: fixed;
+     bottom: 0;
+     z-index: 1000;
+     padding-bottom: 62px;
+     overflow-y: auto;
+     max-height: 100%;
+     pointer-events: auto;
+     left: 10px;
+     right: 10px; 
+} 
+
+.btn{
+    color: white;
+    background-color: #595959;
+    border-color: transparent;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-family: 'Oswald';
+    position: relative;
+    padding-left: 9px;
+    padding-right: 9px;
+    white-space: normal;
+}
+
+.container.basket-open .basket-shadow {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #000;
+    background: rgba(0,0,0,0.8);
+    z-index: 19;
+}
+
+.fixed-footer .btn.open-basket:after, .fixed-footer .scroll-to-top a.open-basket:after, .scroll-to-top .fixed-footer a.open-basket:after, .fixed-footer{
+    content: "";
+    position: absolute;
+    display: block;
+    bottom: 100%;
+    left: 50%;
+    border-style: solid;
+    border-width: 6px;
+    border-color: transparent;
+    border-bottom-color: #595959;
+    z-index: 1;
+}
+
+.fixed-footer .btn.open-basket, .fixed-footer .scroll-to-top a.open-basket, .scroll-to-top .fixed-footer a.open-basket, .fixed-footer{
+    position: relative;
+    display: block;
+}
+.fixed-footer .btn span, .fixed-footer .scroll-to-top a span, .scroll-to-top .fixed-footer a span, .fixed-footer {
+    line-height: 20px;
+    display: inline-block;
+    margin-bottom: -5px;
+    position: relative;
+}
+
+.fixed-footer .btn.open-basket.open:after, .fixed-footer .scroll-to-top a.open-basket.open:after, .scroll-to-top .fixed-footer a.open-basket.open:after{
+    top: 100%;
+    border-color: transparent;
+    border-top-color: #595959;
+}
+
+.fixed-footer {
+    position: fixed;
+    z-index: 999;
+    display: block;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.9);
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+}
+
+.row .col-6 {
+    float: left;
+    padding: 0 2px 0 3px;
+    width: 50%;
+}
+
+.row .col-6:first-of-type {
+    padding-left: 0;
+}
+.fixed-footer .btn{
+    padding: .5em;
+    vertical-align: middle;
+    border-radius: 3px;
+    width: 100%;
+    font-size: 1.2em;
+}
+
+.fixed-footer .btn{
+    color: white;
+    background-color: #595959;
+    border-color: transparent;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-family: 'Oswald';
+    position: relative;
+    padding-left: 9px;
+    padding-right: 9px;
+    white-space: normal;
+}
+
+.fixed-footer #add-to-order {
+    margin: -3px 14px 0 0;
+    font-size: 1em;
+    white-space: normal;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.fixed-footer #add-to-order {
+    margin: -3px 14px 0 0;
+    font-size: 1em;
+    white-space: normal;
+    vertical-align: middle;
+    display: inline-block;
+}
+.btn.next:after, .btn-next:after{
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -6px;
+    border: 6px solid transparent;
+    border-left: 6px solid #fff;
+}
+.fixed-footer .btn .number-of-items{
+    background: #000;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    font-size: .7em;
+    top: -2px;
+    text-align: center;
+}
+.fixed-footer .btn .total-text{
+    font-size: 10px;
+    color: #ccc;
+    bottom: 0;
+}
+
+.basket.open{
+display:block;
+}
+
+.mobile-close-button{
+display:none;
+}
+
+.container.basket-open .mobile-close-button {
+    display: block;
+    position: absolute;
+    top: 9px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background: #c5c5c5;
+    font-size: 15px;
+    color: #929292;
+    border-radius: 20px;
+    z-index: 99;
+    line-height: 19px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#myservice-container .myservice div{
+    display: table-cell;
+    margin: 0 10px;
+    vertical-align: middle;
+    padding-left: 10px;
+}
+
+/* Carousel Styling */
+.slidel1{
+background-image:url('../../images/home/satay.jpg');
+height: 300px;
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+}
+
+.slidel2{
+background-image:url('../../images/home/sweet-box.jpg');
+height: 300px;
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+}
+
+.slidel3{
+background-image:url('../../images/home/garlic-prawns.jpg');
+height: 300px;
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+}
+
+.carousel-caption h1{
+font-size: 5.4em;
+font-family: 'Pacifico', cursive;
+padding-bottom: .4em;
+}
+.col-4{
+	width:100%
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.carousel-caption p{
+font-size: 2em;
+}
+
+#myservice-container .myservice .service-icon:after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    border-right: 1px dashed #fff;
+    opacity: .5;
+}
+
+#myservice-container .myservice .service-icon>img {
+    width: 64px;
+    height: 64px;
+    max-width: initial;
+}
+
+/* menu page end */ 
+@media (min-width: 375px){
+
+.product-container {
+    width: 50%;
+    margin-bottom: 1em;
+}
+}
+
+
+@media(min-width:768px) {
+.col-4{
+width:33.33333333%;
+float:left;
+}
+#myservice-container {
+    text-align: center;
+    display: block;
+    margin: 20px auto 0;
+    width: 100%;
+}
+#detail-container,#ordertime-container {
+    display: block;
+    margin: 20px auto 0;
+    width: 100%;
+}
+
+#myservice-container .myservice .service-icon{
+    margin: 0 auto 10px;
+    display: block;
+    float: none;
+    width: auto;
+    padding: 0;
+    border: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#myservice-container .myservice  .service-text {
+    padding-right: 0;
+    padding-top: 10px;
+    display: block;
+}
+
+body .main-container {
+    padding: 0;
+    background: 0;
+    min-height: 100%;
+    min-height: 100vh;
+    max-width: 1024px;
+    margin: 0 auto 0;
+}
+.order-layout {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.order-layout .order-layout-left {
+    padding-right: 262px;
+}
+
+.order-layout .order-layout-left .order-layout-left-inner {
+    padding-right: 20px;
+}
+
+.order-layout .order-layout-right {
+    width: 262px;
+    left: auto;
+    position: absolute;
+}
+
+ .basket {
+     display: block;
+     position: relative;
+     top: initial;
+     bottom: initial;
+     left: auto;
+     right: auto;
+     height: auto;
+     overflow: hidden;
+     clear: none;
+     max-height: none;
+ } 
+.product-container {
+    width: 33.33333%;
+}
+.fixed-footer {
+    display: none;
+}
+
+#myservice-container .myservice div {
+    border-top: 1px dotted #fff;
+    padding: 10px 0;
+    margin: 0;
+    display: block;
+}
+
+#myservice-container .myservice .service-icon:after{
+display:none
+}
+
+#myservice-container .myservice .service-text p{
+    line-height: 20px;
+    min-height: 60px;
+    display: block;
+    font-size: .75em;
+}
+
+}
+
+@media(min-width:992px) {
+#myservice-container {
+    width: 90%;
+}
+#detail-container,#ordertime-container {
+    width: 60%;
+}
+.basket .basket-bottom {
+    display: block;
+}
+.product-container {
+    width: 25%;
+}
+
+}
+
+@media(min-width:1200px) {
+footer .footer-content {
+   max-width: 1024px;
+   margin: 0 auto;
+}
+.order-layout {
+    max-width: 1440px;
+    padding: 0;
+}	
+}
+
+@media(min-width:1480px) {
+#myservice-container {
+    width: 70%;
+}
+
+#detail-container,#ordertime-container {
+    width: 40%;
+}
+
+body .main-container {
+    max-width: 1440px;
+}
+.order-layout {
+    max-width: 100%;
+}
+.product-container {
+    width: 20%;
+}
+
 }
 /*# sourceMappingURL=frontend.css.map */

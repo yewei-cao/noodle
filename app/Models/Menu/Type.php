@@ -8,7 +8,7 @@ use App\Models\Menu\Catalogue;
 
 class Type extends Model
 {
-	protected $fillable = ['name','description']; 
+	protected $fillable = ['name','description','ranking']; 
     
 	public function owner(){
 		return $this->belongsTo(User::class,'user_id');

@@ -9,8 +9,6 @@ use App\Models\Menu\Type;
 
 class TypeController extends Controller
 {
-	
-	
  	/**
      * Display a listing of the resource.
      *
@@ -31,17 +29,14 @@ class TypeController extends Controller
      */
     public function create()
     {
-//     	$tags = Tag::lists('name','id');
-//     	return view('articles.create',compact('tags'));
-    	
     	return view('backend.pages.menu.type.create');
     }
-    
     
     public function store(Request $request){
     	$this->validate($request, [
     			'name' => 'required',
     			'description' => 'required|min:6',
+    			'ranking' => 'required',
     	]);
     	
     	$this->user->types()->create($request->all());
@@ -57,19 +52,18 @@ class TypeController extends Controller
     public function edit($id){
     	
     	$type = Type::findOrFail($id);
-    	
     	return view('backend.pages.menu.type.edit',compact('type'));
     	
     }
-    
 
 	public function update(Request $request,$id){
 		$this->validate($request, [
 				'name' => 'required',
 				'description' => 'required|min:6',
+				'ranking' => 'required',
 		]);
 		
-		Type::findOrFail($id)->update(['name'=> $request->input('name'),'description'=> $request->input('description')]);
+		Type::findOrFail($id)->update(['name'=> $request->input('name'),'description'=> $request->input('description'),'ranking'=> $request->input('ranking')]);
 		
 		return redirect()->route('admin.menu.type.index')->withFlashSuccess(trans("menu_backend.menu_type_update"));
 		

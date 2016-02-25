@@ -22,8 +22,8 @@
 						<tr>
 							<th>{{ trans('menu_backend.menu_catalogue.id') }}</th>
 							<th>{{ trans('menu_backend.menu_type_') }}</th>
-							
 							<th>{{ trans('menu_backend.menu_catalogue.name') }}</th>
+							<th>{{ trans('menu_backend.menu_catalogue.ranking') }}</th>
 							<th>{{ trans('menu_backend.menu_catalogue.description') }}</th>
 							<th>{{ trans('menu_backend.menu_catalogue.created') }}</th>
 							<th>{{ trans('menu_backend.menu_catalogue.lastupdated') }}</th>
@@ -34,6 +34,7 @@
 							<td>{{ $catalogue->id }}</td>
 							<td>{{ $catalogue->type->name }}</td>
 							<td>{{ $catalogue->name }}</td>
+							<td>{{ $catalogue->ranking }}</td>
 							<td>{{ $catalogue->description }}</td>
 							<td>{!! $catalogue->created_at->diffForHumans() !!}</td>
 							<td>{!! $catalogue->updated_at->diffForHumans() !!}</td>

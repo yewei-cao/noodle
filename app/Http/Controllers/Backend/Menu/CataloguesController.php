@@ -44,6 +44,7 @@ class CataloguesController extends Controller
         $this->validate($request, [
     			'name' => 'required',
     			'description' => 'required|min:6',
+        		'ranking' => 'required',
     	]);
     	
     	$this->user->catalogues()->create($request->all());
@@ -90,9 +91,10 @@ class CataloguesController extends Controller
     			'type_id'=>'required',
     			'name' => 'required',
     			'description' => 'required|min:6',
+    			'ranking' => 'required',
     	]);
     	
-    	Catalogue::findOrFail($id)->update(['user_id'=>$this->user->id,'type_id'=>$request->input('type_id'),'name'=> $request->input('name'),'description'=> $request->input('description')]);
+    	Catalogue::findOrFail($id)->update(['user_id'=>$this->user->id,'type_id'=>$request->input('type_id'),'name'=> $request->input('name'),'description'=> $request->input('description'),'ranking'=> $request->input('ranking')]);
     	
     	return redirect()->route('admin.menu.catalogue.index')->withFlashSuccess(trans("menu_backend.menu_type_update"));
     }

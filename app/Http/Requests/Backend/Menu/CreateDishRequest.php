@@ -24,8 +24,9 @@ class CreateDishRequest extends Request
     public function rules()
     {
         return [
-            'catalogue_id'=>'required',
         	'mgroup_id'=>'required',
+        	'number'=>'required|numeric',
+        	'ranking'=>'required|numeric',
         	'name'=>'required|min:3',
         	'price'=>'required|numeric',
         	'description'=>'required|min:3',

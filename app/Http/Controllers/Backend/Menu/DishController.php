@@ -52,10 +52,11 @@ class DishController extends Controller
      */
     public function create()
     {
-    	$catalogue = Catalogue::lists('name','id');
     	$group = Mgroup::lists('name','id');
+    	$cata = Catalogue::get();
+//     	dd($cata);
     	$mas = $this->allmaterials();
-    	return view('backend.pages.menu.dish.create',compact('catalogue','group'))->withMaterials($mas);
+    	return view('backend.pages.menu.dish.create',compact('catalogue','group'))->withMaterials($mas)->withCatalogues($cata);
     }
 
     /**
@@ -66,10 +67,11 @@ class DishController extends Controller
      */
     public function store(CreateDishRequest $request)
     {
-    	
     	$data = $this->add_photo($request);
         $dish = Dishes::create($data);
         $this->attachmaterials($dish,$request->input('materials'));
+        $this->attachcatalogues($dish,$request->input('catalogues'));
+        
         return redirect()->route('admin.menu.dish.index')->withFlashSuccess(trans("menu_backend.menu_dish_createstring"));
         
     }
@@ -97,11 +99,14 @@ class DishController extends Controller
     	$catalogue = $dish->catalogue->lists('name','id');
     	$group = $dish->mgroup->lists('name','id');
     	$mas = $this->allmaterials();
+    	$cata = Catalogue::get();
 //     	$dish_materials = $dish->materials->lists('id')->toArray();
     	
     	return view('backend.pages.menu.dish.edit',compact(['dish','catalogue','group']))
     	->withMaterials($mas)
-    	->withDishMaterials($dish->materials->lists('id')->toArray());
+    	->withDishMaterials($dish->materials->lists('id')->toArray())
+    	->withCatalogues($cata)
+    	->withDishCatalogues($dish->catalogue->lists('id')->toArray());
     }
 
     /**
@@ -123,14 +128,13 @@ class DishController extends Controller
     		\File::delete($dish->photo_path);
     		\File::delete($dish->photo_thumbnail_path);
     	}
-    	
-    	$dish_materials = $dish->materials->lists('id')->toArray();
-    	
     	$dish->update($data);
     	
-    	$dish->detachMaterials($dish_materials);
-    	
+    	$dish->detachMaterials($dish->materials->lists('id')->toArray());
     	$this->attachmaterials($dish,$request->input('materials'));
+    	
+    	$dish->detachCatalogues($dish->catalogue->lists('id')->toArray());
+    	$this->attachcatalogues($dish,$request->input('catalogues'));
     	
     	return redirect()->route('admin.menu.dish.index')->withFlashSuccess(trans("menu_backend.menu_dish_update"));
     	 
@@ -155,8 +159,7 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request)
-    {
+    public function search(Request $request){
     	$name = $request->input('table_search');
     	$dishes = Dishes::where('name', 'LIKE', '%'.$name.'%')->paginate(10);
 //     	
@@ -206,6 +209,15 @@ class DishController extends Controller
     	}
     }
     
+    protected function attachcatalogues($dish,$catalogues){
+    	if(is_array($catalogues))
+    	{
+    		foreach($catalogues as $catalogue){
+    			$dish->attachCatalogue($catalogue);
+    		}
+    	}
+    }
+    
     protected function allmaterials(){
     	$mas = [];
     	 
@@ -215,5 +227,15 @@ class DishController extends Controller
     	}
     	 
     	return $mas;
+    }
+    protected function allcatalogues(){
+    	$cat = [];
+    	
+    	$materials = Catalogue::select('material_type_id')->groupBy('material_type_id')->get();
+    	foreach ($materials as $material){
+    		$cat[$material->material_type_id] =  Material::where('material_type_id',  $material->material_type_id)->valid()->get();
+    	}
+    	
+    	return $cat;
     }
 }

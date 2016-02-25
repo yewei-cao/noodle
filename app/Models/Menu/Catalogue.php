@@ -22,7 +22,7 @@ class Catalogue extends Model
 	 */
 // 	protected $guarded = ['id'];
 	
-	protected $fillable = ['user_id','type_id','name','description'];
+	protected $fillable = ['user_id','type_id','name','description','ranking'];
     
 	public function user(){
 		return $this->belongsTo(User::class,'user_id');
@@ -32,8 +32,8 @@ class Catalogue extends Model
 		return $this->belongsTo(Type::class,'type_id');
 	}
 	
-	public function dish(){
-		return $this->hasMany(Dishes::class);
+	public function dishes(){
+		return $this->belongsToMany(Dishes::class);
 	}
 	
 	public function addCatalogues(User $user,Catalogue $catalogue){

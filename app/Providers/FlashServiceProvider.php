@@ -28,7 +28,6 @@ class FlashServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     	$this->app->bind(
     			'App\Repositories\Flash\SessionStore',
     			'App\Repositories\Flash\LaravelSessionStore'
@@ -39,5 +38,4 @@ class FlashServiceProvider extends ServiceProvider
         });
     }
     
- 	
 }

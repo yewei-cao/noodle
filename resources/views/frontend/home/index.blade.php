@@ -5,40 +5,22 @@
 
 <style>
 
-/* Carousel Styling */
-.slidel1{
-background-image:url('images/ad/satay.jpg');
-height: 300px;
-background-repeat: no-repeat;
-background-position: center;
-background-size: cover;
+
+
+
+
+
+
+
+
+@media (min-width: 768px){
+
+
+
+
 }
 
-.slidel2{
-background-image:url('images/ad/sweet-box.jpg');
-height: 300px;
-background-repeat: no-repeat;
-background-position: center;
-background-size: cover;
-}
 
-.slidel3{
-background-image:url('images/ad/garlic-prawns.jpg');
-height: 300px;
-background-repeat: no-repeat;
-background-position: center;
-background-size: cover;
-}
-
-.carousel-caption h1{
-font-size: 5.4em;
-font-family: 'Pacifico', cursive;
-padding-bottom: .4em;
-}
-
-.carousel-caption p{
-font-size: 2em;
-}
 
 
 </style>
@@ -59,7 +41,7 @@ font-size: 2em;
 	<div class="item active">
 		<div class="slidel1"></div>
 		<div class="carousel-caption">
-			<h1>AD1</h1>
+			<h1>Something1</h1>
 			<p>Thousands of Backgrounds for Free</p>
 			<p><a href="#" class="btn btn-primary btn-sm" >Get them Now</a></p>
 		</div>
@@ -68,7 +50,7 @@ font-size: 2em;
 	<div class="item">
 		<div class="slidel2"></div>
 		<div class="carousel-caption">
-			<h1>ADs2222222</h1>
+			<h1>Something22</h1>
 			<p>Thousands of Backgrounds for Free</p>
 			<p><a href="#" class="btn btn-primary btn-sm" >Get them Now</a></p>
 		</div>
@@ -78,7 +60,7 @@ font-size: 2em;
 	<div class="item">
 		<div class="slidel3"></div>
 		<div class="carousel-caption">
-			<h1>ADs333333333</h1>
+			<h1>Something333</h1>
 			<p>Thousands of Backgrounds for Free</p>
 			<p><a href="#" class="btn btn-primary btn-sm" >Get them Now</a></p>
 		</div>
@@ -109,7 +91,7 @@ font-size: 2em;
 
 <div id="myservice-container">
 
-<div class=" col-md-4">
+<div class="col-4">
 <a id="quick" href="#" class="myservice red" >
 
 <div class="service-icon">
@@ -124,7 +106,7 @@ font-size: 2em;
 
 
 
-<div class="col-md-4">
+<div class="col-4">
 <a id="quick" href="/eStore/en/QuickOrder " class="myservice red" >
 
 <div class="service-icon">
@@ -139,11 +121,11 @@ font-size: 2em;
 </div>
 
 
-<div class=" col-md-4">
-<a id="quick" href="{{ route('home.pickup') }}" class="myservice red" >
+<div class="col-4">
+<a id="quick" href="{{ route('home.pick.info') }}" class="myservice red" >
 
 <div class="service-icon">
-<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==">
+<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="images/home/noodle_pickup.png">
 </div>
 <div class="service-text">
 <h2>{{ trans('front_home.pick_up') }}</h2>

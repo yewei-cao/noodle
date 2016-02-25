@@ -13,25 +13,27 @@ class CreateDishesTable extends Migration
     public function up()
     {
     	
-//     	Schema::create('types', function (Blueprint $table) {
-//     		$table->increments('id');
-//     		$table->integer('user_id')->unsigned();
-//     		$table->string('name');
-//     		$table->text('description');
-//     		$table->timestamps();
-//     		$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-//     	});
+    	Schema::create('types', function (Blueprint $table) {
+    		$table->increments('id');
+    		$table->integer('user_id')->unsigned();
+    		$table->string('name');
+    		$table->integer('ranking')->nullable();
+    		$table->text('description');
+    		$table->timestamps();
+    		$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+    	});
     	    	
-//     	Schema::create('catalogues', function (Blueprint $table) {
-//     		$table->increments('id');
-//     		$table->integer('user_id')->unsigned();
-//     		$table->integer('type_id')->unsigned();
-//     		$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-//     		$table->foreign('type_id')->references('id')->on('type')->onDelete('cascade');
-//     		$table->string('name');
-//     		$table->text('description');
-//     		$table->timestamps();
-//     	});
+    	Schema::create('catalogues', function (Blueprint $table) {
+    		$table->increments('id');
+    		$table->integer('user_id')->unsigned();
+    		$table->integer('type_id')->unsigned();
+    		$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+    		$table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
+    		$table->string('name');
+    		$table->integer('ranking')->nullable();
+    		$table->text('description');
+    		$table->timestamps();
+    	});
     	
     	Schema::create('material_types', function (Blueprint $table) {
     		$table->increments('id');
@@ -46,6 +48,8 @@ class CreateDishesTable extends Migration
     		$table->integer('material_type_id')->unsigned();
     		$table->string('name');
     		$table->text('description');
+    		$table->float('price')->nullable();
+    		$table->string('photo_thumbnail_path')->nullable();
     		$table->boolean('valid');
     		$table->string('photo_name')->nullable();
     		$table->string('photo_path')->nullable();
@@ -68,13 +72,13 @@ class CreateDishesTable extends Migration
     		$table->foreign('material_id')->references('id')->on('materials')->onDelete('cascade');
     		$table->primary(['mgroup_id','material_id']);
     	});
-    	
     			 
         Schema::create('dishes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('catalogue_id')->unsigned();
             $table->string('name');
             $table->integer('mgroup_id')->unsigned();
+            $table->integer('number')->unique();
+            $table->integer('ranking')->nullable();
             $table->float('price');
             $table->text('description');
             $table->float('consumptionpoint');
@@ -83,10 +87,16 @@ class CreateDishesTable extends Migration
             $table->string('photo_thumbnail_path')->nullable();
             $table->boolean('valid');
             $table->timestamps();
-            $table->foreign('catalogue_id')->references('id')->on('catalogues')->onDelete('cascade');
             $table->foreign('mgroup_id')->references('id')->on('mgroups')->onDelete('cascade');
         });
         
+        Schema::create('dishes_catalogues', function (Blueprint $table) {
+        	$table->integer('catalogue_id')->unsigned();
+        	$table->integer('dishes_id')->unsigned();
+        	$table->foreign('dishes_id')->references('id')->on('dishes')->onDelete('cascade');
+        	$table->foreign('catalogue_id')->references('id')->on('catalogues')->onDelete('cascade');
+        	$table->primary(['catalogue_id','dishes_id']);
+        });
         
         Schema::create('dishes_material', function (Blueprint $table) {
         	$table->integer('material_id')->unsigned();
@@ -147,12 +157,13 @@ class CreateDishesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('type');
-        Schema::drop('catalogue');
+        Schema::drop('types');
+        Schema::drop('catalogues');
         Schema::drop('material_types');
         Schema::drop('materials');
         Schema::drop('mgroups');
         Schema::drop('material_mgroup');
+        Schema::drop('dishes_catalogues');
         Schema::drop('dishes_material');
         Schema::drop('dishes');
 //         Schema::drop('dish_photos');

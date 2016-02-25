@@ -56,9 +56,7 @@
 							<td>{{ $material->type->name }}</td>
 							<td>{{ $material->name }}</td>
 							<td>
-								@if($material->price)
-									{{ $material->price }}
-								@endif
+								 {{ number_format($material->price,2) }}
 							</td>
 							<td>
 								@if($material->photo_thumbnail_path)

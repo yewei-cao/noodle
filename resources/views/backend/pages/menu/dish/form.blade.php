@@ -1,12 +1,31 @@
+
 <div class="form-group">
-{!! Form::label('catalogue_id','Catalogue',['class'=>'col-sm-3 control-label no-padding-right']) !!}
+	{!! Form::label('catalogues','Catalogues',['class'=>'col-sm-3 control-label no-padding-right']) !!}
 	
 	<div class="col-sm-9">
-	<div class="col-sm-2 no-padding-left">
-		{!! Form::select('catalogue_id',$catalogue, null,['id'=>'catalogue_list','class'=>'form-control ']) !!}
+			
+			  @if (count($catalogues))
+             	 @foreach ($catalogues as $p)
+                 	<div class="col-lg-3">
+                 		<ul style="margin:0;padding:0;list-style:none;">
+                 			 
+                 			 @if($submitButtonText == "Add Dish")
+                 			 	<li><input type="checkbox" value="{{$p['id']}}" name="catalogues[]"  id="catalogue-{{$p['id']}}" /> <label for="catalogue-{{$p['id']}}">
+                 			 	
+							 @else
+							 	<li><input type="checkbox" value="{{$p['id']}}" name="catalogues[]"  {{in_array($p['id'], $dish_catalogues) ? 'checked' : ""}} id="catalogue-{{$p['id']}}" /> <label for="catalogue-{{$p['id']}}">
+							 @endif
+                                 	<a style="color:black;text-decoration:none;" data-toggle="tooltip" data-html="true" title="<strong>Discription:</strong> {!!  $p['description'] !!}">{!! $p['name'] !!} <small></small></a>
+                          </ul>
+                    </div>             
+             	@endforeach
+                         
+              @else
+                       No any materials
+              @endif
+			
+			
 	</div>
-	</div>
-	
 </div>
 
 
@@ -23,7 +42,7 @@
 	
 <div class="form-group">
 
-{!! Form::label('name','Dish Name',['class'=>'col-sm-3 control-label no-padding-right']) !!}
+{!! Form::label('name', trans('menu_backend.menu_dish.name'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
 	
 	<div class="col-sm-9">
 		{!! Form::text('name', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'Name']) !!}
@@ -35,7 +54,7 @@
 
 	{!! Form::label('valid','Dish Valid',['class'=>'col-sm-3 control-label no-padding-right']) !!}
 	
-	<div class="col-sm-9">	
+	<div class="col-sm-9">
 		<label>
 			{!! Form::checkbox('valid', '1', true,['class'=>'ace ace-switch ace-switch-2']) !!}
 			<span class="lbl"></span>
@@ -44,9 +63,38 @@
 	
 </div>
 
+
 <div class="form-group">
 
-{!! Form::label('price','Dish Price',['class'=>'col-sm-3 control-label no-padding-right']) !!}
+	{!! Form::label('number',trans('menu_backend.menu_dish.number'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+	
+	<div class="col-sm-9">	
+		<label>
+			{!! Form::text('number', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'number']) !!}
+			<span class="lbl"></span>
+		</label>
+	</div>
+	
+</div>
+
+<div class="form-group">
+
+	{!! Form::label('ranking',trans('menu_backend.menu_dish.ranking'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+	
+	<div class="col-sm-9">	
+		<label>
+			{!! Form::text('ranking', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'number']) !!}
+			<span class="lbl"></span>
+		</label>
+	</div>
+	
+</div>
+
+
+
+<div class="form-group">
+
+{!! Form::label('price',trans('menu_backend.menu_dish.price'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
 	
 	<div class="col-sm-9">
 		{!! Form::text('price', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'$$$']) !!}
@@ -155,13 +203,6 @@
 <script src="/js/dropzone.js"></script>
 <script type="text/javascript">
 Dropzone.autoDiscover = false;
-// Dropzone.options.addPhotosForm={
-// 	url: '{{ action('Backend\Menu\DishController@create') }}',
-// 	paramName: 'photo',	
-// 	maxFilesize: 3,
-// 	maxFiles: 1,
-// 	acceptedFiles: '.jpg, .jpeg, .png, .bmp'
-// };
 
 $("#dropz").dropzone({  
     url: '{{ action('Backend\Menu\DishController@uploadphoto') }}',  
@@ -190,7 +231,8 @@ $("#dropz").dropzone({
 });  
 
 
-$(document).ready(function () {
+(function($) {
+	
 	$("#price").blur(function(){
 		var $input = $(this);
       	var value = $input.val();
@@ -201,7 +243,17 @@ $(document).ready(function () {
     	}
     });
 
-});
+	$("#popnumber,#ranknumber").blur(function(){
+		var $input = $(this);
+      	var value = $input.val();
+		var regularexpression = /^\d+$/;
+    	if (!value.match(regularexpression) || value==""){
+    		$(this).val("");
+    		$(this).focus();
+    	}
+	});
+
+}(jQuery));
 
 </script>
 

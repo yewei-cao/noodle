@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Cache\Repository;
 return [
 
     /*
@@ -146,13 +147,13 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
-    		
-
+    	
 //     	Intervention\Image\ImageServiceProvider::class,
 
     	App\Providers\AccessServiceProvider::class,
     	App\Providers\FlashServiceProvider::class,
+    	//shopping cart service provider
+    	App\Repositories\ShoppingCart\ShoppingCartServiceProvider::class,
     	
     	Intervention\Image\ImageServiceProvider::class,
     	HieuLe\Active\ActiveServiceProvider::class,
@@ -210,6 +211,7 @@ return [
 //     	'Flash' =>Repositories\Flash::class,
     	'Image' => Intervention\Image\Facades\Image::class,
     	'Active'    => HieuLe\Active\Facades\Active::class,
+    	'Cart'      => App\Repositories\ShoppingCart\ShoppingCartFacade::class,
 
     ],
 

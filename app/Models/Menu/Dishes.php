@@ -8,11 +8,11 @@ use App\Models\Element\Mgroup;
 
 class Dishes extends Model
 {
-	protected $fillable = ['catalogue_id','mgroup_id','name','price','description','consumptionpoint','photo_name','photo_path','photo_thumbnail_path','valid'];
+	protected $fillable = ['mgroup_id','name','price','number','ranking','description','consumptionpoint','photo_name','photo_path','photo_thumbnail_path','valid'];
 	
 	
 	public function catalogue(){
-		return $this->belongsTo(Catalogue::class,'catalogue_id');
+		return $this->belongsToMany(Catalogue::class);
 	}
 	
 	
@@ -27,7 +27,7 @@ class Dishes extends Model
 	
 	
 	/**
- * Attach one material not associated with a dish 
+ * Attach one material associated with a dish 
  *
  * @param $material
  */
@@ -58,13 +58,56 @@ public function detachMaterial($material) {
 }
 
 /**
- * Detach other materials not associated with a dish 
+ * Detach other materials not associated with a dish
  *
  * @param $permissions
  */
 public function detachMaterials($materials) {
 	foreach ($materials as $perm) {
 		$this->detachMaterial($perm);
+	}
+}
+
+
+/**
+ * Attach one  catalogue  associated with a dish
+ *
+ * @param $material
+ */
+public function attachCatalogue($catalogue) {
+	if( is_object($catalogue))
+		$catalogue = $catalogue->getKey();
+
+	if( is_array($catalogue))
+		$catalogue = $catalogue['id'];
+
+	$this->catalogue()->attach($catalogue);
+}
+
+
+/**
+ * Detach one catalogue not associated with a dish
+ *
+ * @param $material
+ */
+public function detachCatalogue($catalogue) {
+	if( is_object($catalogue))
+		$catalogue = $catalogue->getKey();
+
+	if( is_array($catalogue))
+		$catalogue = $catalogue['id'];
+
+	$this->catalogue()->detach($catalogue);
+}
+
+/**
+ * Detach other materials not associated with a dish
+ *
+ * @param $permissions
+ */
+public function detachCatalogues($catalogues) {
+	foreach ($catalogues as $perm) {
+		$this->detachCatalogue($perm);
 	}
 }
 	

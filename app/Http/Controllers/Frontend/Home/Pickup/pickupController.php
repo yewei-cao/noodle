@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\Home\PickupDetailRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Response;
+use App\Http\Requests\Frontend\Home\PickupTimeRequest;
+use Form;
 
 
 class pickupController extends Controller
@@ -18,11 +20,24 @@ class pickupController extends Controller
 	
 	private $dayoff = Carbon::MONDAY; //maybe a group, so set it up by group
 	
-	
+	public function index(Request $request){
+		
+// 		$request->session()->forget('pickup_deatils');
+		
+		if(!$request->session()->has('pickup_deatils')){
+// 			return view('frontend.home.pickup.index');
+// 			return response(['message'=>'No way'],403);
+			return response()->view('errors.missing', array(), 404);
+			
+		}
+		
+		$pickup = $request->session()->get('pickup_deatils');
+
+		return view('frontend.home.pickup.edit')->withPickup($pickup);
+		
+	}
 	
 	public function ordertime(Request $request){
-		
-		
 		// Getting all post data
 		if($request->ajax()) {
 			$date = $request->input('date');
@@ -30,63 +45,96 @@ class pickupController extends Controller
 			$dt = Carbon::createFromTimestamp($date);
 
 			$minutes = 15;
-				
+			
 			$ordertime = Carbon::create($dt->year, $dt->month, $dt->day, $this->starttime, $minutes);
 			
-			$time[$ordertime->timestamp] = $ordertime->toDateTimeString();
+			$time[0][0] = $ordertime->timestamp;
+			$time[0][1] = $ordertime->toDateTimeString();
 			
 			$loop = ($this->closetime-$this->starttime-1)*4 +(60-$minutes)/15;
 			for($i=1;$i<=$loop;$i++){
 				$time[$i][0] = $ordertime->copy()->addMinutes($i*15)->timestamp;
 				$time[$i][1] = $ordertime->copy()->addMinutes($i*15)->toDateTimeString();
 // 				$time[$ordertime->copy()->addMinutes($i*15)->timestamp] = $ordertime->copy()->addMinutes($i*15)->toDateTimeString();
-					
 			}
 			
 			return $time;
-// 			return json_encode($time);
 // 			return response()->json(['date' => $time]);
 		}
-		
-// 		
+			
 	}
 	
 	/*
-	 * 
+	 * save date and time of pick up detail in session
+	 */
+	
+	public function saveordertime(Request $request){
+		
+		if($request->ajax()){
+			
+			$request->session()->put('ordertime', $request->input('ordertime'));
+			
+			if($request->session()->has('ordertime')){
+				return response()->json([
+						'message'=>'success'
+				]);
+			}else{
+				return response()->json([
+						'error' => false,
+						'message' => 'Valid Order Time'
+				]);
+			}
+			
+			return 'thiss is order time ';
+// 			dd($request->input('ordertime'));
+		}
+		
+// 		$pickup_deatils = $request->session()->get('pickup_deatils');
+// 		return $pickup_deatils;
+	}
+	
+	/*
+	 * save pick up detail in session
 	 * 
 	 */
 	
 	public function pickup_details(PickupDetailRequest $request){
+// 		return "test";
 		$datas = $request->all();
 		
 		$request->session()->put('pickup_deatils', $datas);
 		
 		if($request->session()->has('pickup_deatils')){
-// 			return $datas;
-			return response()->json([
-								'message'=>'success'
-								]);
+			return redirect()->route('home.pick.details');
+			
 		}else{
-			return response()->json([
-					'error' => false,
-					'message' => 'Valid Pincode'
-			]);
+			return redirect()->route('home.pick.info');
 		}
 		
-// 		session()->flash('data',$datas);
 	}
 	
 	/*
 	 * 
 	 * 
 	 */
-	public function details(){
+	public function details(Request $request){
 		
-		$dt = Carbon::now();//add hour for the test
+// 		return  response()->json($request->session()->has('pickup_deatils'));
+		
+		if(!$request->session()->has('pickup_deatils')){
+			return redirect()->route('home.pick.info');
+		}
+		
+		$dt = Carbon::now();//add hour for the test  ->addMinutes(7)
 		
 		$minutes=0;
 		
+		$nowtimestamp = Carbon::now()->timestamp;
+		
+		$time[""]="--- Select Time ---";
+		
 		if($dt->hour <$this->starttime){
+			
 			$minutes = 15;
 			
 			$ordertime = Carbon::create($dt->year, $dt->month, $dt->day, $this->starttime, $minutes);
@@ -109,16 +157,18 @@ class pickupController extends Controller
 			
 			switch ($dt->minute)	{
 				case $dt->minute< 15:
-					$minutes = 15;
-					break;
+					$minutes = 30;				
+					break; 
 				case $dt->minute<30:
-					$minutes = 30;
-					break;
-				case $dt->minute<45:
 					$minutes = 45;
 					break;
-				case $dt->minute<60:
+				case $dt->minute<45:
 					$minutes = 00;
+					$dt->hour++;
+					break;
+				case $dt->minute<60:
+					$minutes = 15;
+					$dt->hour++;
 					break;
 			}
 			
@@ -159,85 +209,9 @@ class pickupController extends Controller
 			}
 		}
 	
-// 		return "___";
 // 		dd( Carbon::createFromTimestamp(1450436210)->toDateTimeString());
-		return view('frontend.home.ordertime',compact('date','time'));
+		return view('frontend.home.ordertime',compact('date','time','nowtimestamp'));
 	}
 	
-	
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

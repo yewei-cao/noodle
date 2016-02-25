@@ -1,9 +1,9 @@
 <?php
 namespace App\Models\Access\User\Traits;
 use App\Models\Access\User\Role;
-use App\Models\Dish\Type;
-use App\Models\Dish\Catalogue;
-use App\Models\Dish\Material;
+use App\Models\Menu\Type;
+use App\Models\Menu\Catalogue;
+use App\Models\Menu\Material;
 
 trait User_trait {
 	

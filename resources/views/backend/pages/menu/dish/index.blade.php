@@ -46,10 +46,10 @@
                   <table class="table table-hover">
 	                    <tbody><tr>
 	                      <th>{{ trans('menu_backend.menu_dish.id') }}</th>
-							<th>{{ trans('menu_backend.menu_dish.catalogue') }}</th>
 							<th>{{ trans('menu_backend.menu_dish.name') }}</th>
+							<th>{{ trans('menu_backend.menu_dish.number') }}</th>
+							<th>{{ trans('menu_backend.menu_dish.ranking') }}</th>
 							<th>{{ trans('menu_backend.menu_dish.price') }}</th>
-							<th>{{ trans('menu_backend.menu_dish.description') }}</th>
 							<th>{{ trans('menu_backend.menu_dish.consum') }}</th>
 							<th>{{ trans('menu_backend.menu_dish.photo') }}</th>
 							<th>{{ trans('menu_backend.menu_dish.created') }}</th>
@@ -59,10 +59,10 @@
 		                  @foreach($dishes as $dish)
 							<tr>
 								<td>{{ $dish->id }}</td>
-								<td>{{ $dish->catalogue->name }}</td>
 								<td>{{ $dish->name }}</td>
-								<td>{{ $dish->price }}</td>
-								<td>{{ $dish->description }}</td>
+								<td>{{ $dish->number }}</td>
+								<td>{{ $dish->ranking }}</td>
+								<td>{{ number_format($dish->price,2) }}</td>
 								<td>{{ $dish->consumptionpoint }}</td>
 								<td>
 								@if($dish->photo_thumbnail_path)
