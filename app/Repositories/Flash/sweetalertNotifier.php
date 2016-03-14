@@ -146,9 +146,16 @@ class sweetalertNotifier
     }
     
     /*
-     * create a overlay flash message.
+     * create a success overlay flash message.
      */
     public function s_overlay($message,$title,$type='success'){
+    	return $this->create($message, $title, $type,'flash_notification_overlay');
+    }
+    
+    /*
+     * create a info overlay flash message.
+     */
+    public function n_overlay($message,$title,$type='info'){
     	return $this->create($message, $title, $type,'flash_notification_overlay');
     }
     

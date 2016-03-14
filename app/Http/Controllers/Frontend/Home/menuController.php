@@ -21,8 +21,8 @@ class menuController extends Controller
 //     	$request->session()->flush();
     	
     	if((!$request->session()->has('pickup_deatils'))||(!$request->session()->has('ordertime'))){
-    		
-    		return redirect()->route('home.pick.info');
+    		sweetalert_message()->n_overlay(trans("menus.session.expire"),'Session Expire');
+    		return redirect()->route('home');
     	}
 
 //     	dd($request->session()->get('ordertime'));

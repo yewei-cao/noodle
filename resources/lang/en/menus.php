@@ -23,6 +23,8 @@ return [
 	],
 	'element_manage'=>['material_type'=>'Type','material'=>'Material','group'=>'Group'],
 		
+	'session'=>['expire'=>'Your session has expired. Please re-start your order.'],
+		
     'active_users' => 'Active Users',
     'banned_users' => 'Banned Users',
     'create_permission' => 'Create Permission',
