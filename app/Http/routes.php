@@ -47,7 +47,6 @@ $router->group(['namespace' => 'Backend'], function () use ($router)
 		$router->group(['middleware' => 'access.role:manager'], function () use ($router)
 		{
 			Route::get('/', 'DashboardController@index');
-			Route::get('test', 'TestController@index');
 			require(__DIR__ . "/Routes/Backend/Dashboard.php");
 			
 			require(__DIR__ . "/Routes/Backend/Menu.php");

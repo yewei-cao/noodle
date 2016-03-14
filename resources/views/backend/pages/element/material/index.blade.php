@@ -18,7 +18,7 @@
 		<div class="box">
 		
 		<div class="box-header">
-				<h3 class="box-title">{{ trans('menu_backend.element_material_list') }}</h3>
+				<h3 class="box-title">{{ trans('menu_backend.menu_material_list') }}</h3>
 				<div class="box-tools">
 					<div class="input-group" style="width: 200px;">
 					

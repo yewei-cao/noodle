@@ -21,11 +21,10 @@ Edit
  
 @section('content')
   
-	{!! Form::model($dish,['method'=>'PATCH','action'=>['Backend\Menu\DishController@update'],'class'=>'form-horizontal']) !!}
+	{!! Form::model($dish,['method'=>'PATCH','action'=>['Backend\Menu\DishController@update',$dish->id],'class'=>'form-horizontal']) !!}
 		
 		@include('backend.pages.menu.dish.form',['submitButtonText'=>'Update Dish'])
 			
 	{!! Form::close() !!}
-
   
 @endsection

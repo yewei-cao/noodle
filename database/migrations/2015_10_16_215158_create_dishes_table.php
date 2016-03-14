@@ -90,7 +90,7 @@ class CreateDishesTable extends Migration
             $table->foreign('mgroup_id')->references('id')->on('mgroups')->onDelete('cascade');
         });
         
-        Schema::create('dishes_catalogues', function (Blueprint $table) {
+        Schema::create('catalogue_dishes', function (Blueprint $table) {
         	$table->integer('catalogue_id')->unsigned();
         	$table->integer('dishes_id')->unsigned();
         	$table->foreign('dishes_id')->references('id')->on('dishes')->onDelete('cascade');
@@ -163,7 +163,7 @@ class CreateDishesTable extends Migration
         Schema::drop('materials');
         Schema::drop('mgroups');
         Schema::drop('material_mgroup');
-        Schema::drop('dishes_catalogues');
+        Schema::drop('catalogue_dishes');
         Schema::drop('dishes_material');
         Schema::drop('dishes');
 //         Schema::drop('dish_photos');

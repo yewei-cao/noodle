@@ -25,9 +25,9 @@ class pickupController extends Controller
 // 		$request->session()->forget('pickup_deatils');
 		
 		if(!$request->session()->has('pickup_deatils')){
-// 			return view('frontend.home.pickup.index');
+			return view('frontend.home.pickup.index');
 // 			return response(['message'=>'No way'],403);
-			return response()->view('errors.missing', array(), 404);
+// 			return response()->view('errors.missing', array(), 404);
 			
 		}
 		

@@ -1,27 +1,8 @@
 @extends('frontend.master')
 
-
 @section('css.style')
 
 <style>
-
-
-
-
-
-
-
-
-
-@media (min-width: 768px){
-
-
-
-
-}
-
-
-
 
 </style>
 
