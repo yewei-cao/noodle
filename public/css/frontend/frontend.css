@@ -7741,6 +7741,10 @@ body.stop-scrolling {
 	float:left;
 }
 
+.minheiht{
+	min-height:588px;
+}
+
 <!-- home page css style -->
 #myservice-container .myservice div {
     display: table-cell;
@@ -8195,7 +8199,6 @@ body .main-container {
     background-color: #e41837;
     border-color: #e41837;
     position: relative;
-    display:block;
     width:100%;
 }
 
@@ -8478,6 +8481,92 @@ font-size: 2em;
     max-width: initial;
 }
 
+/* payment */
+.header {
+    line-height: 28px;
+    margin-bottom: 16px;
+    margin-top: 18px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #CCC;
+}
+.blue {
+    color: #478fca!important;
+}
+.lighter {
+    font-weight: lighter;
+}
+h3.smaller {
+    font-size: 21px;
+}
+.header.blue {
+    border-bottom-color: #d5e3ef;
+}
+
+.horizon-list{
+	margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+}
+
+.horizon-list li {
+    display: block;
+    margin: .5em 0;
+}
+.horizon-list li a {
+    display: block;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.btn-yellow{
+	color:#963!important;text-shadow:0 -1px 0 rgba(255,255,255,0.4)!important
+}
+.btn-yellow,.btn-yellow:focus{
+background-color:#fee188!important;border-color:#fee188
+}
+.btn-yellow:hover,.open .btn-yellow.dropdown-toggle{
+background-color:#f7d05b!important;border-color:#fee188}
+.btn-yellow.no-border:hover{
+border-color:#f7d05b}
+.btn-yellow.no-hover:hover{
+background-color:#fee188!important}
+.btn-yellow.active{
+background-color:#fbd972!important;border-color:#f9cf4f
+}
+.btn-yellow.no-border.active{
+background-color:#fad463!important;border-color:#fad463
+}
+.btn-yellow.disabled,.btn-yellow[disabled],fieldset[disabled] .btn-yellow,.btn-yellow.disabled:hover,.btn-yellow[disabled]:hover,fieldset[disabled] .btn-yellow:hover,.btn-yellow.disabled:focus,.btn-yellow[disabled]:focus,fieldset[disabled] .btn-yellow:focus,.btn-yellow.disabled:active,.btn-yellow[disabled]:active,fieldset[disabled] .btn-yellow:active,.btn-yellow.disabled.active,.btn-yellow[disabled].active,fieldset[disabled] .btn-yellow.active{
+background-color:#fee188!important;border-color:#fee188
+}
+
+.payment_confirm{
+	font-size: 14px;
+    line-height: 120%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.payment_confirm .disclaimer{
+	color: #fff;
+    font-size: .8em;
+    padding: 1em;
+}
+.payment_confirm .disclaimer .payment_method_container{
+	background: black;
+    background: rgba(0,0,0,0.5);
+    margin: -1em -1em 2em -1em;
+    padding: 1em;
+}
+.payment_confirm .payment_content .order-details{
+	     margin-bottom: 2em;
+}
+
+.red_text{
+	vertical-align: middle;
+    color: #c40000;
+}
+
 /* menu page end */ 
 @media (min-width: 375px){
 
@@ -8489,6 +8578,10 @@ font-size: 2em;
 
 
 @media(min-width:768px) {
+
+.minheiht{
+	min-height:640px;
+}
 .col-4{
 width:33.33333333%;
 float:left;
@@ -8526,7 +8619,6 @@ body .main-container {
     padding: 0;
     background: 0;
     min-height: 100%;
-    min-height: 100vh;
     max-width: 1024px;
     margin: 0 auto 0;
 }
@@ -8586,10 +8678,24 @@ display:none
     display: block;
     font-size: .75em;
 }
+.payment_confirm{
+	font-size: 16px;
+}
+.payment_confirm .disclaimer{
+	font-size: .9em;
+    float: right;
+    width: 60%;
+}
 
+.payment_confirm .payment_content .order-details{
+	width: 40%;
+    padding-left: 1em;
+    margin-bottom: 2em;
+}
 }
 
 @media(min-width:992px) {
+
 #myservice-container {
     width: 90%;
 }
@@ -8602,6 +8708,10 @@ display:none
 .product-container {
     width: 25%;
 }
+.horizon-list {
+    width: 75%;
+    margin: 0 auto;
+}
 
 }
 
@@ -8613,7 +8723,14 @@ footer .footer-content {
 .order-layout {
     max-width: 1440px;
     padding: 0;
-}	
+}
+.horizon-list {
+    width: 65%;
+}
+.payment_confirm{
+	width: 579px;
+}
+
 }
 
 @media(min-width:1480px) {
@@ -8633,6 +8750,9 @@ body .main-container {
 }
 .product-container {
     width: 20%;
+}
+.horizon-list {
+    width: 50%;
 }
 
 }

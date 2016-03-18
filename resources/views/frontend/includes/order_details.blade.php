@@ -58,7 +58,7 @@
    			
    			<div class="basket-footer">
             	<div class="basket_row basket-navigation">
-                 <a id="basket-next" class="btn next medium btn-lg" href="/eStore/en/ProductMenu?menuCode=Menu.Side">Next</a>
+                 <a id="basket-next" class="btn next medium btn-lg" href="{{ route('home.payment.paymentmethod') }}">Next</a>
             	</div>
 
 

@@ -85,12 +85,9 @@ class pickupController extends Controller
 				]);
 			}
 			
-			return 'thiss is order time ';
 // 			dd($request->input('ordertime'));
 		}
 		
-// 		$pickup_deatils = $request->session()->get('pickup_deatils');
-// 		return $pickup_deatils;
 	}
 	
 	/*
@@ -105,10 +102,10 @@ class pickupController extends Controller
 		$request->session()->put('pickup_deatils', $datas);
 		
 		if($request->session()->has('pickup_deatils')){
-			return redirect()->route('home.pick.details');
+			return redirect()->route('home.pickup.details');
 			
 		}else{
-			return redirect()->route('home.pick.info');
+			return redirect()->route('home.pickup.info');
 		}
 		
 	}
@@ -122,7 +119,7 @@ class pickupController extends Controller
 // 		return  response()->json($request->session()->has('pickup_deatils'));
 		
 		if(!$request->session()->has('pickup_deatils')){
-			return redirect()->route('home.pick.info');
+			return redirect()->route('home.pickup.info');
 		}
 		
 		$dt = Carbon::now();//add hour for the test  ->addMinutes(7)

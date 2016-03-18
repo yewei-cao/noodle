@@ -103,7 +103,7 @@
 
 
 <div class="col-4">
-<a id="quick" href="{{ route('home.pick.info') }}" class="myservice red" >
+<a id="quick" href="{{ route('home.pickup.info') }}" class="myservice red" >
 
 <div class="service-icon">
 <img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="images/home/noodle_pickup.png">

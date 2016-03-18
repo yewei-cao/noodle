@@ -20,6 +20,7 @@ class menuController extends Controller
     {
 //     	$request->session()->flush();
     	
+    	/* if session expired, then route to home page. */
     	if((!$request->session()->has('pickup_deatils'))||(!$request->session()->has('ordertime'))){
     		sweetalert_message()->n_overlay(trans("menus.session.expire"),'Session Expire');
     		return redirect()->route('home');
