@@ -65,15 +65,14 @@ class pickupController extends Controller
 	}
 	
 	/*
-	 * save date and time of pick up detail in session
+	 * save as soon as possible time tin session
 	 */
 	
-	public function saveordertime(Request $request){
+	public function save_asap(Request $request){
 		
 		if($request->ajax()){
-			
 			$request->session()->put('ordertime', $request->input('ordertime'));
-			
+				
 			if($request->session()->has('ordertime')){
 				return response()->json([
 						'message'=>'success'
@@ -84,13 +83,27 @@ class pickupController extends Controller
 						'message' => 'Valid Order Time'
 				]);
 			}
-			
-			return 'thiss is order time ';
-// 			dd($request->input('ordertime'));
 		}
+	
+	}
+	
+	/*
+	 * save date and time of pick up detail in session
+	 */
+	
+	public function saveordertime(Request $request){
 		
-// 		$pickup_deatils = $request->session()->get('pickup_deatils');
-// 		return $pickup_deatils;
+		if(!$request->input('ordertime')){
+			sweetalert_message()->n_overlay('Please choose a valid time','Invalid Time');
+			return redirect()->route('home.pick.details');
+		}else{
+			$request->session()->put('ordertime', $request->input('ordertime'));
+			if($request->session()->has('ordertime')){
+				return redirect()->route('home.menu.index');
+			}
+		}
+			
+			
 	}
 	
 	/*
