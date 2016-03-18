@@ -20,8 +20,8 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 	 * 
 	 */
 	
-	$router->group(['prefix' => 'menu', 'as'=>'home.menu'],function () use ($router){
-		Route::get('/', 'menuController@index');
+	$router->group(['prefix' => 'menu', 'as'=>'home.menu.'],function () use ($router){
+		Route::get('/', 'menuController@index')->name('index');
 		Route::post('addtoorder','menuController@addtoorder');
 		Route::post('removetoorder','menuController@removetoorder');
 		
@@ -47,10 +47,12 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 		
 // 		get('users/banned', 'UserController@banned')->name('admin.access.users.banned');
 		
-		Route::post('saveordertime','pickupController@saveordertime');
+		Route::get('saveordertime','pickupController@saveordertime');
 		
 		Route::post('ordertime', ['as' => 'home.pickup.ordertime', 'uses' => 'pickupController@ordertime']);
 	
+		Route::post('save_asap','pickupController@save_asap');
+		
 	});
 // 	Route::get('pickup',['as'=>'Pickup', function () {
 	

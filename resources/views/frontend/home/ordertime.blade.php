@@ -16,7 +16,7 @@
 
 <div id="ordertime-container">
 
-{!! Form::open(['method'=>'GET','action'=>'Frontend\Home\Pickup\pickupController@details','id'=>'myform','data-toggle'=>'validator'])!!}
+{!! Form::open(['method'=>'GET','action'=>'Frontend\Home\Pickup\pickupController@saveordertime','id'=>'myform','data-toggle'=>'validator'])!!}
 	
 	
 <div class="starter text-center">
@@ -55,8 +55,9 @@
   <ul class="pager wizard">
   	<li class="previous"><a href="{{ url('home/pickup') }}">{{ trans('front_home.previous') }}</a></li>
   	<li class="next">
-	<a id="nextpage" href="{{ url('home/menu') }}" >{{ trans('front_home.next') }}</a>
-  	<!-- {{ url('home/menu') }} -->
+<!-- 	<a id="nextpage" href="{{ url('home/menu') }}" >{{ trans('front_home.next') }}</a> -->
+	
+	<button type="submit" >{{ trans('front_home.next') }}</button>
   	</li>
   </ul>
    
@@ -81,9 +82,10 @@
     var request = $.ajax({
     	headers: {'X-CSRF-Token': "{{ csrf_token() }}"},
         type: 'POST',
-        url: '/home/pickup/saveordertime',
+        url: '/home/pickup/ordertime',
         data: {'date':date}
     });
+    
     request.done(function(data){
         $("#ordertime").empty();
         
@@ -104,7 +106,7 @@
 $('#asap').click(function(){
 	$.ajax({
 		  headers: {'X-CSRF-Token': "{{ csrf_token() }}"},
-	      url: '/home/pickup/saveordertime',
+	      url: '/home/pickup/save_asap',
 	      type: 'POST',
 	      data: {'ordertime':$('input[name=nowtimestamp]').val()
 	    },
@@ -119,32 +121,6 @@ $('#asap').click(function(){
 // 	window.location.href="{{ url('home/productmenu') }}";
 });
 
-$('#nextpage').on('click',function(e){
-	$('#myform').trigger('check');
-})
-
-$('#myform').validator().on('check', function (e) {
-		  if (e.isDefaultPrevented()) {
-			  window.event.returnValue=false;
-		    // handle the invalid form...
-		  } else {
-		    // everything looks good!
-			   window.event.returnValue=true;
-			   $.ajax({
-					  headers: {'X-CSRF-Token': "{{ csrf_token() }}"},
-				      url: '/home/pickup/saveordertime',
-				      type: 'POST',
-				      data: {'orderdate':$('select[name=orderdate]').val(),'ordertime':$('select[name=ordertime]').val()
-				    },
-				      success: function(result) {
-				    	  window.location.href="{{ url('home/menu') }}";
-					  },
-					  error: function(result) {
-					      alert("Data not found");
-					  }
-					  });
-		  }
-})
 
 }(jQuery));
 
