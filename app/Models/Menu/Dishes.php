@@ -20,6 +20,10 @@ class Dishes extends Model
 		return $this->belongsTo(Mgroup::class,'mgroup_id');
 	}
 	
+	public function order(){
+		return $this->belongsToMany(Dishes::class) ->withPivot('amount','total');
+	}
+	
 	
 	public function materials(){
 		return $this->belongsToMany(Material::class);

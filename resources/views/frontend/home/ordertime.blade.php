@@ -108,7 +108,7 @@ $('#asap').click(function(){
 		  headers: {'X-CSRF-Token': "{{ csrf_token() }}"},
 	      url: '/home/pickup/save_asap',
 	      type: 'POST',
-	      data: {'ordertime':$('input[name=nowtimestamp]').val()
+	      data: {'ordertime':'ASAP'
 	    },
 	      success: function(result) {
 	    	  window.location.href="{{ url('home/menu') }}";

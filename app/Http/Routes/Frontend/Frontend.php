@@ -24,20 +24,15 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 		Route::get('/', 'menuController@index')->name('index');
 		Route::post('addtoorder','menuController@addtoorder');
 		Route::post('removetoorder','menuController@removetoorder');
-		
 	});
 	
 	
 	$router->group(['prefix' => 'pickup', 'namespace' => 'Pickup'], function () use ($router)
 	{
-// 		Route::get('/', ['as' => 'pickup',function () {
-// 			return view('frontend.home.pickup');
-// 		}]);
 		
-		
-		Route::get('details','pickupController@details')->name('home.pick.details');
+		Route::get('details','pickupController@details')->name('home.pickup.details');
 
-		Route::get('/','pickupController@index')->name('home.pick.info');
+		Route::get('/','pickupController@index')->name('home.pickup.info');
 		
 		Route::get('pickup_details','pickupController@pickup_details');
 		
@@ -48,12 +43,27 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 // 		get('users/banned', 'UserController@banned')->name('admin.access.users.banned');
 		
 		Route::get('saveordertime','pickupController@saveordertime');
+
 		
 		Route::post('ordertime', ['as' => 'home.pickup.ordertime', 'uses' => 'pickupController@ordertime']);
 	
 		Route::post('save_asap','pickupController@save_asap');
 		
 	});
+	
+	
+	$router->group(['prefix' => 'payment', 'as'=>'home.payment'],function () use ($router){
+
+		Route::get('paymentmethod','paymentcontroller@paymentmethod')->name('.paymentmethod');
+		
+		Route::get('cash','paymentcontroller@cash')->name('.cash');
+
+		Route::get('credit','paymentcontroller@credit')->name('.credit');
+		
+		Route::get('confirm','paymentcontroller@confirm')->name('.confirm');
+		
+	});
+	
 // 	Route::get('pickup',['as'=>'Pickup', function () {
 	
 // 		return view('frontend.home.pickup');

@@ -92,7 +92,6 @@ class pickupController extends Controller
 	 */
 	
 	public function saveordertime(Request $request){
-		
 		if(!$request->input('ordertime')){
 			sweetalert_message()->n_overlay('Please choose a valid time','Invalid Time');
 			return redirect()->route('home.pick.details');
@@ -103,7 +102,7 @@ class pickupController extends Controller
 			}
 		}
 			
-			
+
 	}
 	
 	/*
@@ -118,10 +117,10 @@ class pickupController extends Controller
 		$request->session()->put('pickup_deatils', $datas);
 		
 		if($request->session()->has('pickup_deatils')){
-			return redirect()->route('home.pick.details');
+			return redirect()->route('home.pickup.details');
 			
 		}else{
-			return redirect()->route('home.pick.info');
+			return redirect()->route('home.pickup.info');
 		}
 		
 	}
@@ -135,7 +134,7 @@ class pickupController extends Controller
 // 		return  response()->json($request->session()->has('pickup_deatils'));
 		
 		if(!$request->session()->has('pickup_deatils')){
-			return redirect()->route('home.pick.info');
+			return redirect()->route('home.pickup.info');
 		}
 		
 		$dt = Carbon::now();//add hour for the test  ->addMinutes(7)

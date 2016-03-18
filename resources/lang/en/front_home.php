@@ -39,6 +39,18 @@ return [
 		'type_list'=>'Type List',
 		'type'=>['id'=>'ID','name'=>'Name','description'=>'Description','created'=>'Created','lastupdated'=>'Last Updated'],
 		
-
-
+		'payment_text'=>'Choose Payment method',
+		'paymentmethod'=>['cash'=>'CASH','credit'=>'CREDIT CARD'],
+		
+		'selecttime'=>'SELECTED TIME',
+		'storedetail'=>'STORE DETAILS',
+		
+		
+		'cash_title'=>'PLEASE CONFIRM YOUR CASH PAYMENT SELECTION',
+		'credit_title'=>'PLEASE ENTER YOUR CREDIT CARD DETAILS',
+		
+		'place_order'=>'PLACE ORDER'
+		
+		
+		
 ];
