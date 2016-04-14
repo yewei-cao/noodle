@@ -1,170 +1,7 @@
 @extends('frontend.master')
 
 @section('css.style')
-<style type="text/css">
-body .container{
-width:100%;
-padding:0px;
-}
 
-.product-container .product{
-	text-align: center;
-}
-
-.product-container .product .caption{
-	height:184px;
-}
-
-.product-container .product .name-container{
-    float: left;
-    width: 100%;
-    height: 38px;
-    text-transform: uppercase;
-    font-weight: bold;
-    position: relative;
-}
-
-.product-container .product .name-container span {
-    position: relative;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    display: block;
-    line-height: 1;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    width: 100%;
-}
-
-.product-container .product .pricing-row .price{
-vertical-align: middle;
-    font-size: 30px;
-    color: #c40000;
-}
-
-.product-container .product .pricing-row .dollar{
-    vertical-align: middle;
-    color: #c40000;
-    font-size: 18px;
-}
-.product-container .product .description-row{
-height:104px
-}
-.product-container .product .description-row span.description{
-	display: block;
-    min-width: 100%;
-    margin-bottom: .4em;
-    padding: 5px;
-    vertical-align: middle;
-    overflow: hidden;
-}
-
-.product-container .product .form-container .add-to-basket {
-    width: 100%;
-}
-
-.product-container .product .form-container{
-    width: 100%;
-    float: none;
-    margin-top: 0;
-}
-
-
-@media (min-width: 375px){
-
-.product-container .product .form-container .add-to-basket {
-    padding: 5px;
-}
-}
-
-
-.basket .basket-body>.body-content>.basket_order {
-    margin: 0 10px 5px;
-}
-.basket-appearance .basket-body .product {
-    font: normal normal normal 12px/14px "droid_sans",sans-serif;
-    font-size: .75em;
-    display: block;
-    padding: 7px 0 10px 0;
-    border-bottom: 1px dotted #a6a6a6;
-}
-
-
-.row .col-9 {
-    float: left;
-    padding: 0 2px 0 3px;
-    width: 75%;
-}
-
-.row .col-3 {
-    float: left;
-    padding: 0 2px 0 3px;
-    width: 25%;
-}
-
-.basket-body .product {
-    font: normal normal normal 12px/14px "droid_sans",sans-serif;
-    font-size: .75em;
-    display: block;
-    padding: 7px 0 10px 0;
-    border-bottom: 1px dotted #a6a6a6;
-}
-
- .basket-body .product .row .description {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font: normal normal normal 12px/14px "droid_sans",sans-serif;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 1.2em;
-    letter-spacing: .05em;
-    line-height: 1.3;
-    color: #000;
-}
-
-.basket-body .product .row .description a {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
-    color: #000;
-}
-
-.basket .basket-body .product .row .price {
-    float: right;
-    font-weight: bold;
-}
-
-.basket .basket-body .add-product{
-    padding: 1px 6px;
-    margin-right: 6px;
-    color: #fff;
-    background-color: #333;
-    border-color: #333;
-    border-radius: 1px;
-    font: normal normal normal 12px/14px "droid_sans",sans-serif;
-    font-size: .75em;
-    font-size: 11px;
-}
-.basket .basket-body .remove-product{
-    padding: 1px 6px;
-    margin-right: 6px;
-    color: #fff;
-    background-color: #006991;
-    border-color: #006991;
-    border-radius: 1px;
-    font: normal normal normal 12px/14px "droid_sans",sans-serif;
-    font-size: .75em;
-    font-size: 11px;
-}
-
-
-
-
-</style>
 @endsection
 
 @section('jscript')
@@ -289,7 +126,7 @@ height:104px
 		                + result[i]['qty'] +' x '+ result[i]['name']
 		                +'          </span>'
 		                +'      </div>'
-		                +'       <div class="col-3"><span class="price at-product-price">'+ result[i]['price'] +'</span></div>'
+		                +'       <div class="col-3"><span class="price at-product-price">$'+ result[i]['price'] +'</span></div>'
 		                +' </div>'
 		                +'   <div class="row actions">'
 		                +'       <button class="btn add-product add-to-order" item-code="'+ result[i]['id'] +'">Add one</button>'
@@ -301,7 +138,6 @@ height:104px
 		 }
 		  $('.total-amount').text('$'+result['total']);
 		  $('.number-of-items').text(totalqty);
-		  $('.total').text('$'+result['total']);
 		  $(".basket_order").html(html);
 	}
 

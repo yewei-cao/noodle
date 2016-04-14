@@ -54,7 +54,6 @@ class DishController extends Controller
     {
     	$group = Mgroup::lists('name','id');
     	$cata = Catalogue::get();
-//     	dd($cata);
     	$mas = $this->allmaterials();
     	return view('backend.pages.menu.dish.create',compact('catalogue','group'))->withMaterials($mas)->withCatalogues($cata);
     }

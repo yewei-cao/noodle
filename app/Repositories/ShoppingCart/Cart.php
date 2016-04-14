@@ -55,6 +55,11 @@ class Cart
      * @var string
      */
     protected $model;
+    
+    /*
+     * 
+     */
+    protected $message;
 
     /**
      * Constructor.
@@ -457,7 +462,37 @@ class Cart
     	$details = $this->all()->toArray();
     	$details['total'] =$this->totalPrice();
     	return $details;
-    } 
+    }
+    
+    
+    public function inputMessage($message){
+    	$this->saveMessage($message);
+    }
+    
+    public function hasMessage(){
+    	if(!$this->session->has('message')){
+    		return false;
+    	}
+    	return true;
+    }
+    
+    
+    /*
+     * 
+     */
+    protected function saveMessage($message){
+    	
+    	$this->session->put('message', $message);
+//     	$this->message = $message;
+    }
+    
+    /*
+     * Get the carts message.
+     * @return string
+     */
+    public function getMessage(){
+    	return $this->session->get('message');
+    }
 
     /**
      * Get the carts content.

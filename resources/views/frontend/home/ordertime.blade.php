@@ -16,15 +16,13 @@
 
 <div id="ordertime-container">
 
-{!! Form::open(['method'=>'GET','action'=>'Frontend\Home\Pickup\pickupController@saveordertime','id'=>'myform','data-toggle'=>'validator'])!!}
-	
-	
+{!! Form::open(['method'=>'GET','action'=>'Frontend\Home\Pickup\pickupController@saveordertime','id'=>'myform','data-toggle'=>'validator'])!!}	
+
 <div class="starter text-center">
 <h4>{{ trans('front_home.when_to_order') }}</h4>
 <p>{{ trans('front_home.currently_close') }}</p>
 
-
-<button class="btn-primary btn-lg aspn" id="asap" type="button">
+<button class="redbtn next btn-lg aspn" id="asap" type="button">
 {{ trans('front_home.asap') }}
 </button>
 
@@ -57,7 +55,7 @@
   	<li class="next">
 <!-- 	<a id="nextpage" href="{{ url('home/menu') }}" >{{ trans('front_home.next') }}</a> -->
 	
-	<button type="submit" >{{ trans('front_home.next') }}</button>
+	<button class="redbtn next" type="submit" >{{ trans('front_home.next') }}</button>
   	</li>
   </ul>
    

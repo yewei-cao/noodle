@@ -29,12 +29,18 @@ class menuController extends Controller
 //     	dd($request->session()->get('ordertime'));
 //     	$dish = Dishes::where('number','9')->first();
 //     	dd($dish->name);
+
+    	$order_route=[
+    			'prev'=>'',
+    			'next'=>route('home.payment.paymentmethod')
+    	];
     	
     	$catalogues = Catalogue::orderBy('ranking', 'asc')->get();
     	$cart = Cart::all();
     	$totalprice = Cart::total();
     	$totalnumber = Cart::count();
-    	return view('frontend.home.menu_content',compact('catalogues','cart','totalprice','totalnumber'));
+    	return view('frontend.home.menu_content',compact('catalogues','cart','totalprice','totalnumber'))
+    	->withOrderroute($order_route);
     }
     
     

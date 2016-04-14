@@ -18,7 +18,7 @@
 			</li>
 			
 			<li>
-			<a class="btn-primary btn-lg aspn" href="{{ route('home.payment.credit') }}" id="asap" type="button">
+			<a class="redbtn btn-lg aspn" href="{{ route('home.payment.credit') }}" id="asap" type="button">
 			{{ trans('front_home.paymentmethod.credit') }}
 			</a>
 			</li>
@@ -27,12 +27,8 @@
 			
 		</div>
 		
-			
-		
-	</div><!-- col-md-9 -->
-	
+	</div>
 	
 </div>
         
-
 @endsection
