@@ -17,7 +17,6 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 	
 	/*
 	 * Product Menu Page
-	 * 
 	 */
 	
 	$router->group(['prefix' => 'menu', 'as'=>'home.menu.'],function () use ($router){
@@ -60,14 +59,14 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 
 		Route::get('credit','paymentcontroller@credit')->name('.credit');
 		
-		Route::get('confirm','paymentcontroller@confirm')->name('.confirm');
+		Route::post('placeorder','paymentcontroller@placeorder')->name('.placeorder');
+		
+// 		Route::get('ordercreated',function () {
+// 			return view("frontend.home.payment.ordercreated");
+// 		});
+			
 		
 	});
-	
-// 	Route::get('pickup',['as'=>'Pickup', function () {
-	
-// 		return view('frontend.home.pickup');
-// 	}]);
 	
 });
 

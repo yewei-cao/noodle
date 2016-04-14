@@ -20,7 +20,6 @@
 
 @section('content')
 
-
 <div id="detail-container">
 
 {!! Form::open(['method'=>'GET','action'=>'Frontend\Home\Pickup\pickupController@details','id'=>'myform','data-toggle'=>'validator'])!!}
@@ -31,7 +30,6 @@
 	{!! Form::text('name', null,['class'=>'form-control','placeholder'=>'Name','data-error'=>'Please enter your name','required']) !!}
 	<div class="help-block with-errors"></div>
 </div>
-	
 
 <div class="form-group has-feedback">
 	{!! Form::label('phone','Phone',['class'=>'control-label']) !!}
@@ -56,10 +54,10 @@
 <div class="form-group">
 <!-- Previous/Next buttons -->
   <ul class="pager wizard">
-  	<li class="previous"><a href="/">Previous</a></li>
+  	<li class="previous"><a href="/">{{ trans("front_home.previous") }}</a></li>
   	<li class="next">
   	<!--  <button type="submit" class="btn-link">Next</button>  -->
-	<a id="nextpage" href="pickup/details">Next</a>
+	<a class="redbtn next" id="nextpage" href="pickup/details">{{ trans("front_home.next") }}</a>
   	
   	</li>
   </ul>

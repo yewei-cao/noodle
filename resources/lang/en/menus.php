@@ -24,6 +24,7 @@ return [
 	'element_manage'=>['material_type'=>'Type','material'=>'Material','group'=>'Group'],
 		
 	'session'=>['expire'=>'Your session has expired. Please re-start your order.'],
+	'empty_order'=>'There are no products in your order. Please update your order before continuing to payment.',
 		
     'active_users' => 'Active Users',
     'banned_users' => 'Banned Users',

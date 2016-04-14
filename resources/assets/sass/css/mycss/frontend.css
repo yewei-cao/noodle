@@ -6,9 +6,27 @@
 .float-left{
 	float:left;
 }
+.float-right{
+	float:right;
+}
+
+.border_bottom{
+	padding: 16px 7px;
+    border-bottom: 1px solid #e3e3e3;
+}
 
 .minheiht{
 	min-height:588px;
+}
+.red_span {
+    color: #dd5a43!important;
+}
+
+.invoice {
+    position: relative;
+    background: #fff;
+    border: 1px solid #f4f4f4;
+    
 }
 
 <!-- home page css style -->
@@ -39,6 +57,78 @@
 ol, ul {
     list-style: none;
 }
+
+<!-- menu page -->
+
+body .container{
+width:100%;
+padding:0px;
+}
+
+.product-container .product{
+	text-align: center;
+}
+
+.product-container .product .caption{
+	height:184px;
+}
+
+.product-container .product .name-container{
+    float: left;
+    width: 100%;
+    height: 38px;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: relative;
+}
+
+.product-container .product .name-container span {
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    display: block;
+    line-height: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+}
+
+.product-container .product .pricing-row .price{
+vertical-align: middle;
+    font-size: 30px;
+    color: #c40000;
+}
+
+.product-container .product .pricing-row .dollar{
+    vertical-align: middle;
+    color: #c40000;
+    font-size: 18px;
+}
+.product-container .product .description-row{
+height:104px
+}
+.product-container .product .description-row span.description{
+	display: block;
+    min-width: 100%;
+    margin-bottom: .4em;
+    padding: 5px;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.product-container .product .form-container .add-to-basket {
+    width: 100%;
+}
+
+.product-container .product .form-container{
+    width: 100%;
+    float: none;
+    margin-top: 0;
+}
+
+
 
 
 /* footer*/
@@ -318,14 +408,7 @@ color: #333;
 .pager .next > button {
     display: inline-block;
     padding: 5px 14px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-}
-
-.pager li > button:hover, .pager li > button:focus {
-    text-decoration: none;
-    background-color: #eee;
+    border: 1px solid #e41837;
 }
 
 /* as soon as possible */
@@ -336,6 +419,7 @@ color: #333;
 width:100%;
 background-color:#e41837;
 border:0px;
+border-radius: 15px;
 }
 
 
@@ -433,8 +517,7 @@ body .main-container {
     color: gray;
 }
 
-.basket .basket-body .total-container {
-    text-transform: uppercase;
+.basket .basket-body .total-container, .basket-footer .message-container{
     font-weight: bold;
     font-size: 1.3em;
     color: #333;
@@ -442,6 +525,9 @@ body .main-container {
     margin: 0 10px;
     width: auto;
     border-bottom: 1px dotted #a6a6a6;
+}
+.message-container .message{
+	font-size: 0.7em;
 }
 .basket .basket-body .total-container .total-amount {
     float: right;
@@ -460,14 +546,43 @@ body .main-container {
     padding: 10px;
 }
 
-.btn.next, .btn.redbtn {
+.redbtn {
     color: white;
     background-color: #e41837;
     border-color: #e41837;
     position: relative;
-    width:100%;
+    border-radius: 15px;
+}
+.redbtn:hover,.next .redbtn:hover, .btn-next:hover{
+	background-color: #b6132c;
+    border-color: #ad122a;
+    color: white;
+}
+.btn.prev{
+	color: white;
+    background-color: #595959;
+    border-color: #595959;
+    padding-left: 18px;
+    position: relative;
+    padding-left: 18px;
 }
 
+.btn.prev:hover{
+	color: white;
+    background-color: #3f3f3f;
+    border-color: #3a3a3a;
+}
+.btn.prev:after{
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -6px;
+    border: 6px solid transparent;
+    border-right: 6px solid #fff;
+}
 
 .basket .basket-footer #selected-service-method {
     border-top: 1px dotted #a6a6a6;
@@ -475,11 +590,19 @@ body .main-container {
     font-size: .75em;
     line-height: 1.4;
 }
+.basket_row:after {
+    clear: both;
+}
 
+.basket_row:after {
+    content: " ";
+    display: table;
+}
 .basket_row {
     position: relative;
     width: 100%;
 }
+
 
 .basket .basket-bottom {
     background: url("../../images/Home/basket-bottom.png") bottom center repeat-x;
@@ -516,19 +639,96 @@ body .main-container {
      pointer-events: auto;
      left: 10px;
      right: 10px; 
-} 
+}
+
+.basket .basket-body>.body-content>.basket_order {
+    margin: 0 10px 5px;
+}
+.basket-appearance .basket-body .product {
+    font: normal normal normal 12px/14px "droid_sans",sans-serif;
+    font-size: .75em;
+    display: block;
+    padding: 7px 0 10px 0;
+    border-bottom: 1px dotted #a6a6a6;
+}
+
+
+.row .col-9 {
+    float: left;
+    padding: 0 2px 0 3px;
+    width: 75%;
+}
+
+.row .col-3 {
+    float: left;
+    padding: 0 2px 0 3px;
+    width: 25%;
+}
+
+.basket-body .product {
+    font: normal normal normal 12px/14px "droid_sans",sans-serif;
+    font-size: .75em;
+    display: block;
+    padding: 7px 0 10px 0;
+    border-bottom: 1px dotted #a6a6a6;
+}
+
+ .basket-body .product .row .description {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font: normal normal normal 12px/14px "droid_sans",sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 1.2em;
+    letter-spacing: .05em;
+    line-height: 1.3;
+    color: #000;
+}
+
+.basket-body .product .row .description a {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    color: #000;
+}
+
+.basket .basket-body .product .row .price {
+    float: right;
+    font-weight: bold;
+}
+
+.basket .basket-body .add-product{
+    padding: 1px 6px;
+    margin-right: 6px;
+    color: #fff;
+    background-color: #333;
+    border-color: #333;
+    border-radius: 1px;
+    font: normal normal normal 12px/14px "droid_sans",sans-serif;
+    font-size: .75em;
+    font-size: 11px;
+}
+.basket .basket-body .remove-product{
+    padding: 1px 6px;
+    margin-right: 6px;
+    color: #fff;
+    background-color: #006991;
+    border-color: #006991;
+    border-radius: 1px;
+    font: normal normal normal 12px/14px "droid_sans",sans-serif;
+    font-size: .75em;
+    font-size: 11px;
+}
 
 .btn{
     color: white;
-    background-color: #595959;
-    border-color: transparent;
     border-radius: 3px;
     text-transform: uppercase;
     font-family: 'Oswald';
     position: relative;
-    padding-left: 9px;
-    padding-right: 9px;
-    white-space: normal;
 }
 
 .container.basket-open .basket-shadow {
@@ -840,6 +1040,10 @@ background-color:#fee188!important;border-color:#fee188
     width: 50%;
     margin-bottom: 1em;
 }
+
+.product-container .product .form-container .add-to-basket {
+    padding: 5px;
+}
 }
 
 
@@ -957,6 +1161,10 @@ display:none
 	width: 40%;
     padding-left: 1em;
     margin-bottom: 2em;
+}
+.invoice{
+    padding: 20px;
+    margin: 10px 25px;
 }
 }
 

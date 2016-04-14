@@ -38,7 +38,7 @@
 	  	<!--  <button type="submit" class="btn-link">Next</button>   -->
 		<!-- 	<a id="nextpage" href="{{ url('home/pickup/details') }}">{{ trans('front_home.next') }}</a> -->
 		
-		<button type="submit" >{{ trans('front_home.next') }}</button>
+		<button class="redbtn next" type="submit" >{{ trans('front_home.next') }}</button>
 		
 	  	</li>
 	</ul>

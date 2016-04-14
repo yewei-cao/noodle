@@ -36,5 +36,10 @@ class Kernel extends HttpKernel
     	 */
     	'access.role'=> \App\Http\Middleware\RoleMiddleware::class,
     		
+    	/*
+    	 * check the session has user details
+    	 */
+    	'pickupdetail'=>\App\Http\Middleware\Shopping\pickupdetailSession::class,
+    		
     ];
 }

@@ -17,7 +17,9 @@ return [
 		
 		'next'=>'Next',
 		'previous'=>'Previous',
+		'back'=>'Back',
 		
+		'empty_order'=>'Your order is currently empty.',
 		'home_to_start_order'=>'TO START YOUR ORDER, SELECT AN ORDER TYPE BELOW',
 		'when_to_order'=>'WHEN WOULD YOU LIKE YOUR ORDER?',
 		'or'=>'OR',

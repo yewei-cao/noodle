@@ -15,6 +15,8 @@ class CreateOrdersTable extends Migration
     	
         Schema::create('orders', function (Blueprint $table) {
         	$table->increments('id');
+        	$table->integer('ordernumber')->unsigned()->unique();;
+        	
         	$table->decimal('total', 10, 2);
         	$table->float('totaldue')->nullable();
         	$table->boolean('status');
@@ -22,7 +24,6 @@ class CreateOrdersTable extends Migration
         	$table->string('name');
         	$table->string('email');
         	$table->string('phonenumber');
-        	
         	
         	$table->boolean('paymentflag');
         	$table->integer('staff_id')->nullable();
@@ -36,7 +37,7 @@ class CreateOrdersTable extends Migration
         	$table->timestamps();
         });
         
-        Schema::create('order_dishes', function (Blueprint $table) {
+        Schema::create('dishes_orders', function (Blueprint $table) {
         	$table->integer('orders_id')->unsigned();
         	$table->integer('dishes_id')->unsigned();
         	$table->integer('amount');
@@ -57,7 +58,7 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('order_dishes');
+        Schema::drop('dishes_orders');
         Schema::drop('orders');
         
         

@@ -47,13 +47,20 @@
 			
 			</div>
 			
-			
 			<div class="row">
-                 <a class="btn next medium btn-lg " href="http://noodle.app/home/payment/paymentmethod">
-                	{{ trans('front_home.place_order') }}
-                 </a>
+				{!! Form::open(['method'=>'POST','action'=>'Frontend\Home\paymentcontroller@placeorder'])!!}
+	                
+	                {!! Form::label('message','Message:') !!}
+	                
+	                
+	                {!! Form::textarea('message', null,['size' => '30x5','class'=>'form-control']) !!} 
+	                
+	                <hr>
+	                
+	                <button type="submit" class="redbtn next btn-lg aspn">{{ trans('front_home.place_order') }}</button>
+	                 
+	            {!! Form::close() !!}
             </div>
-			
 			
 		</div>
 	
