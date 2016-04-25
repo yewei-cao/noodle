@@ -51,10 +51,6 @@ class menuController extends Controller
     	
     	$dish = Dishes::where('number',$request->input('id'))->first();
     	
-//     	dd($dish);
-    	
-//     	Cart::minusone('c42f6beec9c93fd6afea6eb0684aa99a');
-    	
     	Cart::addone($dish->number, $dish->name, $dish->price);
 //     	return $request->input('id');
 //     	return Cart::all()."Total:".Cart::total();

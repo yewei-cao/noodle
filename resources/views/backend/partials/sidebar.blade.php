@@ -40,7 +40,7 @@
             
              <li class="active treeview">
               <a href="{!!url('admin')!!}">
-                <i class="fa fa-coffee"></i> <span>{{ trans('menus.element') }}</span> 
+                <i class="fa fa-th"></i> <span>{{ trans('menus.element') }}</span> 
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               
@@ -57,6 +57,13 @@
 					<li>
 					<a href="{{ url('/admin/element/material') }}">
 					<i class="fa fa-circle-o"></i>
+						{{ trans('menus.element_manage.material') }}
+					</a>
+					</li>
+					
+					<li>
+					<a href="{{ url('/admin/element/material') }}">
+					<i class="fa fa-table"></i>
 						{{ trans('menus.element_manage.material') }}
 					</a>
 					</li>
@@ -108,6 +115,27 @@
 				</ul>
               
             </li>
+            
+              
+           <li class="active treeview">
+              <a href="{!!url('admin')!!}">
+                <i class="fa fa-table"></i> <span>{{ trans('menus.order') }}</span> 
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              
+	           <ul class="treeview-menu" style="display: none; {{ Active::pattern('admin/menu*', 'display: block;') }}">
+					<li>
+					<a href="{{ route('admin.order.index') }}">
+					<i class="fa fa-circle-o"></i>
+						{{ trans('menus.order_manage.order_list') }}
+					</a>
+					</li>
+				</ul>
+              
+            </li>
+            
+            
+            
             
             
             <li class="{{ Active::pattern('test') }}"><a href="{!!url('admin/test')!!}"><span>Test</span></a></li>

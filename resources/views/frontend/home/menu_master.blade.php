@@ -96,7 +96,7 @@
 			  headers: {'X-CSRF-Token': "{{ csrf_token() }}"},
 		      url: '/home/menu/removetoorder',
 		      type: 'POST',
-		      data: {'id':code},
+		      data: {'orderid':code},
 		      success: function(result) {
 				  add_basket(result);
             },

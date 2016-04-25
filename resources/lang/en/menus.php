@@ -14,7 +14,9 @@ return [
     */
 
 	'menu' =>'Menu',
+	
 	'element'=>'Element',
+	'order'=>'Order',
 	'menu_manage'=>['type'=>'Type',
 			'catalogue'=>'Catalogue',
 			'dish'=>'Dish',
@@ -22,6 +24,10 @@ return [
 			'tag'=>'Tag'
 	],
 	'element_manage'=>['material_type'=>'Type','material'=>'Material','group'=>'Group'],
+		
+	'order_manage'=>['order_list'=>'Order List'],
+		
+	'action'=>'Action',
 		
 	'session'=>['expire'=>'Your session has expired. Please re-start your order.'],
 	'empty_order'=>'There are no products in your order. Please update your order before continuing to payment.',

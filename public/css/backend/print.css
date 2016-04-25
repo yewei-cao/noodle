@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+
+@media screen,print
+{
+  #pos_printer {
+            background:#0F0; width:480px;
+            
+        }
+}

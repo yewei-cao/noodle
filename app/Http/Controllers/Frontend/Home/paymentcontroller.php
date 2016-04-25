@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Cart;
 use Carbon\Carbon;
 use App\Models\Order\orders;
+use App\Events\OrderReceipt;
+use App\Events\DashboardOrder;
 
 class paymentcontroller extends Controller
 {
@@ -162,6 +164,10 @@ class paymentcontroller extends Controller
 					)
 					);
 		}
+		
+		
+		event(new OrderReceipt($order));
+		event(new DashboardOrder());
 		
 		/* clear shopping cart		 */
 		Cart::clean();

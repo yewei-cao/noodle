@@ -49,6 +49,7 @@ $router->group(['namespace' => 'Backend'], function () use ($router)
 			Route::get('/', 'DashboardController@index');
 			require(__DIR__ . "/Routes/Backend/Dashboard.php");
 			
+			require(__DIR__ . "/Routes/Backend/Order.php");
 			require(__DIR__ . "/Routes/Backend/Menu.php");
 			require(__DIR__ . "/Routes/Backend/Element.php");
 		});

@@ -64,7 +64,6 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 // 		Route::get('ordercreated',function () {
 // 			return view("frontend.home.payment.ordercreated");
 // 		});
-			
 		
 	});
 	

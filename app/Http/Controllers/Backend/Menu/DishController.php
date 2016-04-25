@@ -151,7 +151,7 @@ class DishController extends Controller
      	Dishes::destroy($id);
      	return redirect()->route('admin.menu.dish.index')->withFlashSuccess(trans("menu_backend.menu_dish_deleting"));
      }
-    
+
     /**
      * Search the specified dish from storage.
      *

@@ -33,6 +33,5 @@ return [
 		'mgroup_createstring' => 'Your Group has been created',
 		'mgroup_deleting' => 'Your Group has been deleted',
 		'mgroup_update' => 'Your Group has been updated',
-
 		
 ];
