@@ -1,7 +1,7 @@
 ## Noodle Shop which Base on Laravel 5.1
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Latest Stable Version](https://packagist.org/packages/yewei-cao/noodle)](https://packagist.org/packages/yewei-cao/noodle)
+[![Latest Stable Version](https://packagist.org/packages/laravel/framework)](https://packagist.org/packages/yewei-cao/noodle)
 [![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
