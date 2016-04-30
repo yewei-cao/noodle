@@ -1,6 +1,6 @@
 @if ($errors->any())
     <div class="content_message">
-    <div class="alert_message alert-danger" role="alert">
+    <div class="alert alert-danger" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         @foreach ($errors->all() as $error)
             {!! $error !!}<br/>
@@ -10,7 +10,7 @@
     
 @elseif (Session::get('flash_warning'))
 <div class="content_message">
-    <div class="alert_message alert-warning">
+    <div class="alert alert-warning">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         @if(is_array(json_decode(Session::get('flash_warning'),true)))
             {!! implode('', Session::get('flash_warning')->all(':message<br/>')) !!}
@@ -22,7 +22,7 @@
 
 @elseif (Session::get('flash_danger'))
 <div class="content_message">
-    <div class="alert_message alert-danger" role="alert">
+    <div class="alert alert-danger" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         @if(is_array(json_decode(Session::get('flash_danger'),true)))
             {!! implode('', Session::get('flash_danger')->all(':message<br/>')) !!}
