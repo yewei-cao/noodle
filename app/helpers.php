@@ -17,11 +17,16 @@ if ( ! function_exists('sweetalert_message')) {
     	
     	if(func_num_args()==0){
     		return $notifier;
+<<<<<<< HEAD
     	}
+=======
+    	}  	
+>>>>>>> fb249198e8af973b9182767ce4a4d02a6f479aa8
     
     	return $notifier;
     }
 
+<<<<<<< HEAD
 }
 
 
@@ -33,4 +38,6 @@ if (! function_exists('access')) {
 	{
 		return app('access');
 	}
+=======
+>>>>>>> fb249198e8af973b9182767ce4a4d02a6f479aa8
 }

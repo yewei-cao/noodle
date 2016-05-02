@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+<<<<<<< HEAD
 use App\Services\Access\Access;
+=======
+>>>>>>> fb249198e8af973b9182767ce4a4d02a6f479aa8
 
 class AccessServiceProvider extends ServiceProvider
 {
@@ -26,7 +29,10 @@ class AccessServiceProvider extends ServiceProvider
     {
         //
         $this->registerBindings();
+<<<<<<< HEAD
         $this->registerAccess();
+=======
+>>>>>>> fb249198e8af973b9182767ce4a4d02a6f479aa8
     }
     
     
@@ -37,6 +43,7 @@ class AccessServiceProvider extends ServiceProvider
 //     			\App\Repositories\Frontend\Auth\EloquentAuthenticationRepository::class
 //     	);
     }
+<<<<<<< HEAD
     
     
     /**
@@ -50,4 +57,6 @@ class AccessServiceProvider extends ServiceProvider
     		return new Access($app);
     	});
     }
+=======
+>>>>>>> fb249198e8af973b9182767ce4a4d02a6f479aa8
 }

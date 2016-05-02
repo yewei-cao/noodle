@@ -14,9 +14,14 @@ trait User_trait {
 		return $this->belongsToMany(Role::class);
 	}
 	
+<<<<<<< HEAD
 	public function assignRole(Role $role){
 // 		return $this->roles()->save(Role::whereName($role)->firstOrFail());
 		return $this->roles()->save($role);
+=======
+	public function assignRole($role){
+		return $this->roles()->save(Role::whereName($role)->firstOrFail());
+>>>>>>> fb249198e8af973b9182767ce4a4d02a6f479aa8
 	}
 	
 	public function hasRole($role){// $role is a string here
@@ -26,6 +31,7 @@ trait User_trait {
 		return !! $role->intersect($this->roles)->count();
 	}
 	
+<<<<<<< HEAD
 	
 	public function hasPermission($nameOrId){
 
@@ -99,6 +105,8 @@ trait User_trait {
 		return false;
 	}
 	
+=======
+>>>>>>> fb249198e8af973b9182767ce4a4d02a6f479aa8
 		
 // 	public function catalogues(){
 // 		return $this->hasMany(Type::class,'type_id',Catalogue::class,'id');

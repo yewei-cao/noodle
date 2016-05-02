@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
@@ -5,6 +6,11 @@
 [![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
 [![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+=======
+## Noodle Shop which Base on Laravel 5.1
+
+[![Latest Stable Version](https://poser.pugx.org/yewei-cao/noodle/v/stable)](https://packagist.org/packages/yewei-cao/noodle) [![Total Downloads](https://poser.pugx.org/yewei-cao/noodle/downloads)](https://packagist.org/packages/yewei-cao/noodle) [![Latest Unstable Version](https://poser.pugx.org/yewei-cao/noodle/v/unstable)](https://packagist.org/packages/yewei-cao/noodle) [![License](https://poser.pugx.org/yewei-cao/noodle/license)](https://packagist.org/packages/yewei-cao/noodle)
+>>>>>>> fb249198e8af973b9182767ce4a4d02a6f479aa8
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
 
