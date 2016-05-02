@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-## Laravel PHP Framework
-
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
-=======
 ## Noodle Shop which Base on Laravel 5.1
 
 [![Latest Stable Version](https://poser.pugx.org/yewei-cao/noodle/v/stable)](https://packagist.org/packages/yewei-cao/noodle) [![Total Downloads](https://poser.pugx.org/yewei-cao/noodle/downloads)](https://packagist.org/packages/yewei-cao/noodle) [![Latest Unstable Version](https://poser.pugx.org/yewei-cao/noodle/v/unstable)](https://packagist.org/packages/yewei-cao/noodle) [![License](https://poser.pugx.org/yewei-cao/noodle/license)](https://packagist.org/packages/yewei-cao/noodle)
