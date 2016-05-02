@@ -2,14 +2,10 @@
 
 use Illuminate\Database\Seeder;
 
-<<<<<<< HEAD
 use Carbon\Carbon;
 use App\Models\Access\User\User;
 use App\Models\Access\User\Permission;
 use App\Models\Access\User\Role;
-=======
-use App\Models\Access\User\User;
->>>>>>> fb249198e8af973b9182767ce4a4d02a6f479aa8
 
 class UsersTableSeeder extends Seeder
 {
@@ -20,20 +16,15 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+    
 //     	DB::table('users')->delete();
     	
-<<<<<<< HEAD
     	$user = User::create(array(
     			'email' => 'yeweicao@gmail.com',
-=======
-    	User::create(array(
-    			'email' => 'sam.yeweicao@gmail.com',
->>>>>>> fb249198e8af973b9182767ce4a4d02a6f479aa8
     			'password' => Hash::make('laravel'),
     			'name' => 'Administrator',
     	));
     	
-<<<<<<< HEAD
 //     	$user = new User();
 //     	$user->email = "yeweicao@gmail.com";
 //     	$user->password = Hash::make('laravel');
@@ -62,8 +53,6 @@ class UsersTableSeeder extends Seeder
     	$role->givePermissionTo($permission);
     	
     	$user->assignRole($role);
-=======
->>>>>>> fb249198e8af973b9182767ce4a4d02a6f479aa8
     	
     }
 }

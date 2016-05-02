@@ -27,24 +27,16 @@ class AuthServiceProvider extends ServiceProvider
     {
         parent::registerPolicies($gate);
 
-<<<<<<< HEAD
 //         foreach ($this->getPermissions() as $permission){
 //         	$gate->define($permission->name, function($user)use($permission){
 //         		return $user->hasRole($permission->roles);
 //         	});
 //         }
-=======
-        foreach ($this->getPermissions() as $permission){
-        	$gate->define($permission->name, function($user)use($permission){
-        		return $user->hasRole($permission->roles);
-        	});
-        }
->>>>>>> fb249198e8af973b9182767ce4a4d02a6f479aa8
         
         
     }
     
-    protected function getPermissions(){
-    	return Permission::with('roles')->get();
-    }
+//     protected function getPermissions(){
+//     	return Permission::with('roles')->get();
+//     }
 }
