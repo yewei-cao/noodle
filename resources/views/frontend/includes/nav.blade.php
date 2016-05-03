@@ -31,15 +31,10 @@
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
 									<ul class="dropdown-menu" role="menu">
 									
-<<<<<<< HEAD
  										@if (access()->user()->allow('manage_backend'))
-=======
- 										@if (access()->user()->hasPermission('manage_backend'))
->>>>>>> 0574fc0b7c4a7985feef69002337a2279b94a236
 											<li>{!! link_to_route('backend.dashboard', trans('navs.administration')) !!}</li>
 										@endif
 
-										
 										<li>{!! link_to('auth/password/change', "Change Password") !!}</li>
 										<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
 									</ul>
