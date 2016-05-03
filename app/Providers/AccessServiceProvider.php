@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\Access\Access;
 
 class AccessServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,7 @@ class AccessServiceProvider extends ServiceProvider
     {
         //
         $this->registerBindings();
+        $this->registerAccess();
     }
     
     
@@ -34,5 +36,18 @@ class AccessServiceProvider extends ServiceProvider
 //     			\App\Repositories\Flash\AuthenticationContract::class,
 //     			\App\Repositories\Frontend\Auth\EloquentAuthenticationRepository::class
 //     	);
+    }
+    
+    
+    /**
+     * Register the application bindings.
+     *
+     * @return void
+     */
+    private function registerAccess()
+    {
+    	$this->app->bind('access', function ($app) {
+    		return new Access($app);
+    	});
     }
 }

@@ -123,7 +123,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               
-	           <ul class="treeview-menu" style="display: none; {{ Active::pattern('admin/menu*', 'display: block;') }}">
+	           <ul class="treeview-menu" style="display: none; {{ Active::pattern('admin/order*', 'display: block;') }}">
+
 					<li>
 					<a href="{{ route('admin.order.index') }}">
 					<i class="fa fa-circle-o"></i>

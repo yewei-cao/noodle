@@ -17,9 +17,20 @@ if ( ! function_exists('sweetalert_message')) {
     	
     	if(func_num_args()==0){
     		return $notifier;
-    	}  	
-    
+    	}
+
     	return $notifier;
     }
 
+}
+
+
+if (! function_exists('access')) {
+	/**
+	 * Access (lol) the Access:: facade as a simple function
+	 */
+	function access()
+	{
+		return app('access');
+	}
 }

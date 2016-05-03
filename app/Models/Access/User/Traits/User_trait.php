@@ -26,6 +26,37 @@ trait User_trait {
 		return !! $role->intersect($this->roles)->count();
 	}
 	
+	
+	/**
+	 * Check if user has a permission by its name or id.
+	 *
+	 * @param  string $nameOrId Permission name or id.
+	 * @return bool
+	 */
+	public function allow($nameOrId)
+	{
+		foreach ($this->roles as $role) {
+			
+			// Validate against the Permission table
+			foreach ($role->permissions as $perm) {
+	
+				//First check to see if it's an ID
+				if (is_numeric($nameOrId)) {
+					if ($perm->id == $nameOrId) {
+						return true;
+					}
+				}
+	
+				//Otherwise check by name
+				if ($perm->name == $nameOrId) {
+					return true;
+				}
+			}
+		}
+
+	
+		return false;
+	}
 		
 // 	public function catalogues(){
 // 		return $this->hasMany(Type::class,'type_id',Catalogue::class,'id');
