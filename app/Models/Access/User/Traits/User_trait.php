@@ -14,8 +14,9 @@ trait User_trait {
 		return $this->belongsToMany(Role::class);
 	}
 	
-	public function assignRole($role){
-		return $this->roles()->save(Role::whereName($role)->firstOrFail());
+	public function assignRole(Role $role){
+// 		return $this->roles()->save(Role::whereName($role)->firstOrFail());
+		return $this->roles()->save($role);
 	}
 	
 	public function hasRole($role){// $role is a string here
