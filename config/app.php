@@ -157,6 +157,7 @@ return [
     	
     	Intervention\Image\ImageServiceProvider::class,
     	HieuLe\Active\ActiveServiceProvider::class,
+    	Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -212,6 +213,7 @@ return [
     	'Image' => Intervention\Image\Facades\Image::class,
     	'Active'    => HieuLe\Active\Facades\Active::class,
     	'Cart'      => App\Repositories\ShoppingCart\ShoppingCartFacade::class,
+    	'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 

@@ -21,11 +21,18 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 	
 	$router->group(['prefix' => 'menu', 'as'=>'home.menu.'],function () use ($router){
 		Route::get('/', 'menuController@index')->name('index');
+		
+		Route::get('appmenu', 'menuController@appmenu')->name('appmenu');
+		
+		Route::get('/mobilecsrf', function(){
+			return csrf_token();
+		});
+		
 		Route::post('addtoorder','menuController@addtoorder');
 		Route::post('removetoorder','menuController@removetoorder');
 	});
 	
-	
+		
 	$router->group(['prefix' => 'pickup', 'namespace' => 'Pickup'], function () use ($router)
 	{
 		

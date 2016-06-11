@@ -43,6 +43,13 @@ class menuController extends Controller
     	->withOrderroute($order_route);
     }
     
+    public function appmenu(){
+    	$catalogues = Catalogue::orderBy('ranking', 'asc')->get();
+    	return response()->json([
+						'catalogues'=>$catalogues
+				]);
+    }
+    
     
     public function addtoorder(Request $request){
     	$this->validate($request, [
