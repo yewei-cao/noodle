@@ -32,6 +32,12 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 		Route::post('removetoorder','menuController@removetoorder');
 	});
 	
+	
+	$router->group(['prefix' => 'delivery', 'namespace' => 'Delivery'], function () use ($router)
+	{
+		Route::get('/','deliveryController@index')->name('home.delivery.info');
+	});		
+	
 		
 	$router->group(['prefix' => 'pickup', 'namespace' => 'Pickup'], function () use ($router)
 	{
@@ -66,7 +72,11 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 
 		Route::get('credit','paymentcontroller@credit')->name('.credit');
 		
+		Route::get('poli','paymentcontroller@poli')->name('.poli');
+		
 		Route::post('placeorder','paymentcontroller@placeorder')->name('.placeorder');
+		
+		Route::post('credittaken','paymentcontroller@credittaken')->name('.credittaken');
 		
 // 		Route::get('ordercreated',function () {
 // 			return view("frontend.home.payment.ordercreated");

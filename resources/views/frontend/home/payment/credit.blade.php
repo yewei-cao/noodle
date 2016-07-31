@@ -7,7 +7,7 @@
 	<div id="product_menu_container" class="order-layout-left-inner">
 
 		<div class="payment_confirm" >
-			<h3 class="header lighter smaller text-center">{{ trans('front_home.cash_title') }}</h3>
+			<h3 class="header lighter smaller text-center">{{ trans('front_home.credit_title') }}</h3>
 			
 			
 			<div class="payment_content">
@@ -16,9 +16,24 @@
 				<div class="payment_method_container">
 				
 					<div class="confirm-message cash" id="confirm-message">
-					
+						<p >Amount:<span class="red_text">${{ $totalprice }}</span></p>
+						
+						{!! Form::open(['method'=>'POST','action'=>'Frontend\Home\paymentcontroller@credittaken'])!!}
+						  <script
+						    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+						    data-key="{{ env('STRIPE_PUBLIC')}}"
+						    data-amount="{{ $totalprice*100 }}"
+						    data-name="Payment"
+						    data-description="Credit Card"
+						    data-image="/img/documentation/checkout/marketplace.png"
+						    data-locale="auto"
+						    data-currency="NZD">
+						  </script>
+						{!! Form::close() !!}
     				</div>
 				
+					<h4><a href="{{ route('home.payment.cash') }}">Pay by Cash</a>
+					</h4>
 				</div>
 			
 			</div>

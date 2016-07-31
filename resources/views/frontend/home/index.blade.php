@@ -88,10 +88,10 @@
 
 
 <div class="col-4">
-<a id="quick" href="/eStore/en/QuickOrder " class="myservice red" >
+<a id="quick" href="{{ route('home.delivery.info') }}" class="myservice red" >
 
 <div class="service-icon">
-<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==">
+<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="images/home/delivery_food.png">
 </div>
 <div class="service-text">
 <h2>{{ trans('front_home.delivery') }}</h2>

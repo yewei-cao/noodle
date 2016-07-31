@@ -53,12 +53,12 @@ elixir(function(mix) {
                'skins/skin-blue.min.css',
                ],'public/css/admin-master.css','resources/assets/sass/css/admin-lte/dist/css');
             
-            //font and icons css file
-    mix.styles([
-                'font-awesome.min.css',
-                'ionicons.min.css',
-                ],'public/lte/extend/font-icons.css','resources/assets/sass/css/admin-lte/font-icon');
-            
+   //font and icons css file
+//    mix.styles([
+//                'font-awesome.min.css',
+//                'ionicons.min.css',
+//                ],'public/lte/extend/font-icons.css','resources/assets/sass/css/admin-lte/font-icon');
+//            
             
     /*
      * Javascript

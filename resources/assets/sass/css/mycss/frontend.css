@@ -983,6 +983,7 @@ h3.smaller {
     display: block;
     border-radius: 3px;
     text-align: center;
+    text-decoration: none;
 }
 
 .btn-yellow{

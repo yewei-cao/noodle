@@ -87,6 +87,36 @@ class paymentcontroller extends Controller
 		
 	}
 	
+	/**
+	 *
+	 * @param Request $request
+	 */
+	public function credittaken(Request $request){
+		$datas = $request->all();
+// 		dd($datas);
+		
+		\Stripe\Stripe::setApiKey(env('STRIPE_KEY'));
+		
+		// Get the credit card details submitted by the form
+		$token = $_POST['stripeToken'];
+		
+		// Create the charge on Stripe's servers - this will charge the user's card
+		try {
+			$charge = \Stripe\Charge::create(array(
+					"amount" => $this->totalprice*100, // amount in cents, again
+					"currency" => "NZD",
+					"source" => $datas['stripeToken'],
+					"description" => "Credit Card"
+			));
+		} catch(\Stripe\Error\Card $e) {
+			// The card has been declined
+		}
+	}
+	
+	public function poli(){
+		return "poli";
+	}
+	
 	/*
 	 * 
 	 */
@@ -164,7 +194,6 @@ class paymentcontroller extends Controller
 					)
 					);
 		}
-		
 		
 		event(new OrderReceipt($order));
 		event(new DashboardOrder());
