@@ -32,6 +32,7 @@ class CreateOrdersTable extends Migration
         	$table->dateTime('paymenttime');
         	$table->dateTime('shiptime');
         	$table->string('shipmethod')->nullable();
+        	$table->char('useraddress_id', 50);
         	$table->text('comment')->nullable();
         	$table->text('message')->nullable();
         	$table->timestamps();
