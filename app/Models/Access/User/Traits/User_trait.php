@@ -3,7 +3,8 @@ namespace App\Models\Access\User\Traits;
 use App\Models\Access\User\Role;
 use App\Models\Menu\Type;
 use App\Models\Menu\Catalogue;
-use App\Models\Menu\Material;
+use App\Models\Material\Material;
+use App\Models\Order\Orders;
 
 trait User_trait {
 	
@@ -76,6 +77,37 @@ trait User_trait {
 	
 	public function catalogues(){
 		return $this->hasMany(Catalogue::class);
+	}
+	
+	public function orders(){
+		return $this->belongsToMany(Orders::class);
+	}
+	
+	public function hasorder($orderid){
+		foreach ($this->orders as $order) {
+// 			if (is_numeric($orderid)) {
+				if ($order->id == $orderid) {
+					return true;
+// 				}
+			}
+		}
+	}
+	
+	public function descorders(){
+// 		return $this->orders()->();
+		return $this->orders()->orderBy('orders_id', 'DESC')
+		->where('created_at','>=', \Carbon\Carbon::today()->subDays(7) )->get();
+// 		->whereBetween('created_at',[\Carbon\Carbon::today()->subDays(7), \Carbon\Carbon::today()] )->get();
+// 		return $this->orders->orderBy('orders_id', 'DESC');
+	}
+	
+	public function lastorders(){
+		return $this->orders()->orderBy('orders_id', 'DESC')
+		->where('created_at','<=', \Carbon\Carbon::today()->subDays(7) )->get();
+	}
+	
+	public function attachorder($order){
+		$this->orders()->attach($order);
 	}
 	
 	/**

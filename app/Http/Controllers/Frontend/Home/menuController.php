@@ -11,6 +11,14 @@ use Cart;
 
 class menuController extends Controller
 {
+
+	/*
+	 * use ordertype middleware
+	 */
+	public function __construct(){
+		$this->middleware('ordertypeMiddleware');
+	}
+	
     /**
      * Display the menu, includes all catalogues.
      *
@@ -21,10 +29,10 @@ class menuController extends Controller
 //     	$request->session()->flush();
     	
     	/* if session expired, then route to home page. */
-    	if((!$request->session()->has('pickup_deatils'))||(!$request->session()->has('ordertime'))){
-    		sweetalert_message()->n_overlay(trans("menus.session.expire"),'Session Expire');
-    		return redirect()->route('home');
-    	}
+//     	if((!$request->session()->has('ordertype'))||(!$request->session()->has('ordertime'))){
+//     		sweetalert_message()->n_overlay(trans("menus.session.expire"),'Session Expire');
+//     		return redirect()->route('home');
+//     	}
 
 //     	dd($request->session()->get('ordertime'));
 //     	$dish = Dishes::where('number','9')->first();

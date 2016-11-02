@@ -3,6 +3,7 @@
 namespace App\Http\Middleware\Shopping;
 
 use Closure;
+use Cart;
 
 class CartMiddleware
 {
@@ -15,6 +16,12 @@ class CartMiddleware
      */
     public function handle($request, Closure $next)
     {
+    	/* if cart is empty, route to menu page */
+    	if(!Cart::count()){
+    		sweetalert_message()->n_overlay(trans("menus.empty_order"),'Invalid Order');
+    		return redirect()->route('home.menu.index');
+    	}
+    	
         return $next($request);
     }
 }

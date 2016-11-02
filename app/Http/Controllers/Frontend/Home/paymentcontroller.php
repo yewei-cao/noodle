@@ -9,7 +9,10 @@ use Cart;
 use Carbon\Carbon;
 use App\Models\Order\orders;
 use App\Events\OrderReceipt;
+use App\Events\OrderPrinter;
 use App\Events\DashboardOrder;
+use App\Models\Order\Address;
+use Illuminate\Support\Facades\Auth;
 
 class paymentcontroller extends Controller
 {
@@ -21,14 +24,17 @@ class paymentcontroller extends Controller
 	 * use auth middleware
 	 */
 	public function __construct(){
-		$this->middleware('pickupdetail');
+		$this->middleware('ordertypeMiddleware');
+		$this->middleware('cartMiddleware');
+		$this->user = Auth::user();
 		$this->cart= Cart::all();
 		$this->totalprice = Cart::total();
 		$this->totalnumber = Cart::count();
 	}
 
-	/*
+	/**
 	 * 
+	 * @param Request $request
 	 */
 	public function paymentmethod(Request $request){
 		
@@ -57,6 +63,7 @@ class paymentcontroller extends Controller
 // 		return Cart::getMessage();
 		
 		$time = $this->get_time($request->session()->get('ordertime'));
+		//cash payment method, paymentmethod:1 
 		$request->session()->put('paymentmethod', 1);
 		
 		if($request->session()->has('paymentmethod')){
@@ -73,16 +80,18 @@ class paymentcontroller extends Controller
 			->withOrderroute($order_route);
 		}else{
 			
-			$order_route=[
-					'prev'=>route('home.menu.index'),
-					'next'=>''
-			];
+			return redirect()->route('home.payment.paymentmethod');
 			
-			return view('frontend.home.payment.paymentmethod')
-			->withCart($this->cart)
-			->withTotalprice($this->totalprice)
-			->withTotalnumber($this->totalnumber)
-			->withOrderroute($order_route);
+// 			$order_route=[
+// 					'prev'=>route('home.menu.index'),
+// 					'next'=>''
+// 			];
+			
+// 			return view('frontend.home.payment.paymentmethod')
+// 			->withCart($this->cart)
+// 			->withTotalprice($this->totalprice)
+// 			->withTotalnumber($this->totalnumber)
+// 			->withOrderroute($order_route);
 		}
 		
 	}
@@ -114,6 +123,15 @@ class paymentcontroller extends Controller
 	}
 	
 	public function poli(){
+		
+// 		if(!Auth::guest()){
+// 			dd($this->user);
+// 			// 			$this->user->attachorder($order);
+// 		}
+		
+		return $this->user;
+		
+		
 		return "poli";
 	}
 	
@@ -173,14 +191,16 @@ class paymentcontroller extends Controller
 				'total'=>$this->totalprice,
 				'totaldue'=>$this->totalprice,
 				'status'=>'1',
-				'name'=>$request->session()->get('pickup_deatils')['name'],
-				'email'=>$request->session()->get('pickup_deatils')['email'],
-				'phonenumber'=>$request->session()->get('pickup_deatils')['phone'],
+				'ordertype'=>$request->session()->get('ordertype'),
+				'name'=>$request->session()->get('user_details')['name'],
+				'email'=>$request->session()->get('user_details')['email'],
+				'phonenumber'=>$request->session()->get('user_details')['phone'],
 				'paymentflag'=>$paymentflat,
 				'staff_id'=>1,
 				'paymentmethod_id'=>$request->session()->get('paymentmethod'),
 				'paymenttime'=>Carbon::now(),
 				'shiptime'=>$shiptime,
+				'useraddress_id'=>$request->ip(),
 				'shipmethod'=>'take away',
 				'message'=>$request->input('message'),
 		];
@@ -194,13 +214,41 @@ class paymentcontroller extends Controller
 					)
 					);
 		}
+		if($request->session()->get('ordertype')=='delivery'){
+			$address = new Address([	
+						'address'=>$request->session()->get('user_details')['address'],
+						'suburb'=>$request->session()->get('user_details')['suburb'],
+						'city'=>$request->session()->get('user_details')['city']
+					]);
+			
+			
+// 			$address->address = $request->session()->get('user_details')['address'];
+// 			$address->suburb = $request->session()->get('user_details')['suburb'];
+// 			$address->city = $request->session()->get('user_details')['city'];
+			
+// 			$user_address = ['address'=>$request->session()->get('user_details')['address'],
+// 						'suburb'=>$request->session()->get('user_details')['suburb'],
+// 						'city'=>$request->session()->get('user_details')['city']
+// 			];
+			
+// 			$address = Address::create($user_address);
+			$order->address()->save($address);
+		}
+		
+		if(!Auth::guest()){
+// 			dd($this->user);
+			$this->user->attachorder($order);
+		}
 		
 		event(new OrderReceipt($order));
+		event(new OrderPrinter($order));
 		event(new DashboardOrder());
 		
 		/* clear shopping cart		 */
 		Cart::clean();
 
+		sweetalert_message()->top_message(trans("front_home.order_cancel"));
+		
 		return view('frontend.home.payment.ordercreated')
 		->withOrder($order);
 		

@@ -22,6 +22,7 @@ return [
 				'payment'=>'Payment',
 				'total'=>'Total',
 				'paymentmethod'=>'Payment Method',
+				'type'=>'Type',
 				'message'=>'Message',
 				'shipmethod'=>'Shipping method',
 				'created'=>'Created',

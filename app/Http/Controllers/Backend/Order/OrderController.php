@@ -42,6 +42,16 @@ class OrderController extends Controller
         ->withTab($tab);
     }
     
+    public function test()
+    {
+    	$orders = Orders::latest()->paginate($this->paginate);
+    	
+    	$tab='all';
+    	 
+    	return view('backend.pages.order.index')
+    	->withOrders($orders)
+    	->withTab($tab);
+    }
     
     /*
      * 
@@ -91,11 +101,26 @@ class OrderController extends Controller
      */
     
     public function orderprinter(){
-    	$orders = Orders::where('status','<','2')->paginate(2);
+    	$orders = Orders::where('status','<','2')->get();
+//     	return $orders;
     	foreach ($orders as $order){
     		event(new OrderPrinter($order));
     	}
     	
+    }
+    
+    /**
+     * 
+     * @return boolean
+     */
+    public function printmark(Request $request){
+    	
+    	$this->validate($request, [
+    			'orderid' => 'required|numeric',
+    	]);
+    	$order = Orders::where('id',$request->input('orderid'))->first();
+    	
+    	return true;
     }
     
     /**
@@ -222,7 +247,14 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+//     	$orders = Orders::where('status','<','2');
+    	$order= Orders::where('ordernumber', $id)->firstOrFail();
+//         return $order;
+
+//     	return $order->address()->count();
+        
+        return view('backend.pages.order.showorder')
+        ->withOrder($order);
     }
 
     /**
@@ -254,12 +286,14 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
-    	event(new DashboardOrder());
+//     	event(new DashboardOrder());
     	
 //     	event(new OrderReceipt());
-    	return "DESTORY";
+    	Orders::destroy($id);
+    	return redirect()->route('admin.menu.order.index')->withFlashSuccess(trans("menu_backend.menu_dish_deleting"));
+//     	return "DESTORY";
     }
     
     

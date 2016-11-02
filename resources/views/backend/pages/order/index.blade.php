@@ -28,6 +28,11 @@
 
 <div class="row">
 	<div class="col-xs-12">
+		<div class="hide">
+			<div id="pos_printer">
+				
+			</div>
+		</div>
 		<div class="box">
 			
 			<div class="box-header form-inline">
@@ -88,8 +93,9 @@
 							<th>{{ trans('backend_order.order.status') }}</th>
 							<th>{{ trans('backend_order.order.payment') }}</th>
 							<th>{{ trans('backend_order.order.paymentmethod') }}</th>
-							<th>{{ trans('backend_order.order.shipmethod') }}</th>
+							
 							<th>{{ trans('backend_order.order.total') }}</th>
+							<th>{{ trans('backend_order.order.type') }}</th>
 							<th>{{ trans('backend_order.order.phone') }}</th>
 							<th>{{ trans('backend_order.order.email') }}</th>
 							<th>{{ trans('backend_order.order.message') }}</th>
@@ -104,13 +110,13 @@
 								<label><input name="chkItem" type="checkbox" class="ace" value="{{ $order->id }}"><span class="lbl"></span></label>
 							</td>
 							<td>{{ $order->id }}</td>
-							<td>{{ $order->ordernumber }}</td>
+							<td><a href="/admin/order/show/{{ $order->ordernumber }}">{{ $order->ordernumber }}</a></td>
 							<td>{{ $order->name }}</td>
 							<td>{!! $order->status() !!}</td>
 							<td>{{ $order->payment() }}</td>
 							<td>{{ $order->paymentmethod() }}</td>
 							<td>{{ $order->total }}</td>
-							<td>{{ $order->shipmethod }}</td>
+							<td>{{ $order->ordertype }}</td>
 							<td>{{ $order->phonenumber }}</td>
 							<td>{{ $order->email }}</td>
 							<td>{{ $order->message }}</td>
@@ -142,6 +148,25 @@
 									<td>{{ $dish->pivot->total }}</td>
 								</tr>
 							@endforeach
+							
+							@if($order->address()->count())
+										<tr>
+										<td></td>
+										<td></td>
+										
+										<td><span class="label label-sm label-primary">Address:</span></td>
+										<td>
+										{{ $order->address->address }} 
+										</td>
+										<td>
+										{{ $order->address->suburb }} 
+										</td>
+										<td>
+										{{ $order->address->city }}
+										</td>
+										</tr>
+										
+							@endif
 						
 						@endforeach
 						
@@ -174,6 +199,7 @@
 
 @section('backend.scripts.footer')
 <script src="/js/socket/socket.io.min.js"></script>
+<script src="/js/printer/jquery.print.js"></script>
 <script src="/js/printer/jquery-migrate-1.1.0.js"></script>
 <script src="/js/printer/jquery.jqprint-0.3.js"></script>
 <script src="/js/ace/ace-extra.min.js"></script>
@@ -188,10 +214,10 @@
 
 	var socket=io('http://192.168.10.10:3000');
 
-	socket.on('order_receipt-channel:App\\Events\\OrderReceipt',function(data){
-		alert("Get New Orders, Please reflash you page");
+// 	socket.on('order_receipt-channel:App\\Events\\OrderReceipt',function(data){
+// 		alert("Get New Orders, Please reflash you page");
 		
-	});
+// 	});
 
 	$("#allclick").click(function(){
 		$("input[name='chkItem']").each(function(){
@@ -214,7 +240,8 @@
 				  	if(result.message=="success"){
 				  		window.location.reload();
 				  }else{
-						swal({   title: "Error!",
+						swal({
+							title: "Error!",
 							text: result.message,
 							type: "error",
 							confirmButtonText: "OK"
@@ -241,7 +268,8 @@
 					  	if(result.message=="success"){
 					  		window.location.reload();
 					  }else{
-						  swal({   title: "Error!",
+						  swal({   
+							  	title: "Error!",
 								text: result.message,
 								type: "error",
 								confirmButtonText: "OK"
@@ -250,7 +278,8 @@
 					  
 			          },
 			          error: function(result) {
-			        	  swal({   title: "Error!",
+			        	  swal({   
+				        	  	title: "Error!",
 								text: "Cooked update fail, PLease do that again",
 								type: "error",
 								confirmButtonText: "OK"
@@ -290,8 +319,6 @@
 		          }
 			});
 			
-        //alert(this.value);
-//	        $('#cook').append(this.value + "  ");
         });
            
 	});
@@ -303,17 +330,73 @@
 			$.ajax({
 				  headers: {'X-CSRF-Token': "{{ csrf_token() }}"},
 			      url: '{{ route('admin.order.orderprinter') }}',
-			      type: 'POST'
+			      type: 'POST',
+			      success: function(result) {
+				      var suss = result;
+			      },
+			      error: function(result){
+			    	  swal({   
+				    	  	title: "Error!",
+							text: "Auto print fails",
+							type: "error",
+							confirmButtonText: "OK"
+							});
+			      }
 			      });
 			
-			socket.on('order_printer-channel:App\\Events\\OrderPrinter',function(data){
-				alert("ok");
-				
-				$('#pos_printer').jqprint();
-				
-			});
 		}
 	});
+
+	socket.on('order_printer-channel:App\\Events\\OrderPrinter',function(data){
+
+		if($('#printer').is(':checked')){
+			
+		$('#pos_printer').append('<div class="order"><h2>'+ data.order.id +'</h2><p>'+ data.order.name +'</p><p>'+ data.order.paymenttime +'</p> '
+				+ ' </div>');
+
+// 		var print = $("#pos_printer").print();
+// 		var print = $('#pos_printer').jqprint().toggle();
+
+		try {
+			$("#pos_printer").print();
+		}
+		catch(err) {
+		    //document.getElementById("demo").innerHTML = err.message;
+		    alert(err.message);
+		}
+
+		var pass = true;
+		if(pass)
+		{
+			$.ajax({
+				  headers: {'X-CSRF-Token': "{{ csrf_token() }}"},
+				  url: '{{ route('admin.order.print') }}',
+			      type: 'POST',
+			      data: {'orderid': data.order.id},
+				  success: function(result) {
+					   if(result.message=="success"){
+						   $("#status-"+data.order.id).removeClass("label-warning");
+						   $("#status-"+data.order.id).addClass("label-info");
+						   $("#status-"+data.order.id).text("printed");
+					   }
+				  },
+				  error: function(result){
+					  var results = result;
+				  }
+			});
+		}
+
+// 		if($('#pos_printer').jqprint()){
+// 			alert(true);
+// 		}else{
+// 			alert(false);
+// 		}
+			
+		$('#pos_printer').empty();
+
+		}
+	});
+	
 	
 }(jQuery));			
 </script>

@@ -4,8 +4,9 @@ $router->group(['prefix' => 'order','as'=>'admin.order.', 'namespace' => 'Order'
 {
 	
 	Route::get('/','OrderController@index')->name('index');
+	Route::get('test','OrderController@test')->name('test');
 	
-	
+	Route::get('show/{id}', 'OrderController@show')->name('show');
 	
 	Route::get('create','OrderController@create')->name('create');
 	
@@ -19,9 +20,11 @@ $router->group(['prefix' => 'order','as'=>'admin.order.', 'namespace' => 'Order'
 	
 	Route::get('destroy','OrderController@destroy')->name('destroy');
 	
-	Route::post('search','OrderController@search')->name('search');;
+	Route::post('search','OrderController@search')->name('search');
 	
 	Route::post('orderprinter','OrderController@orderprinter')->name('orderprinter');
+	
+	Route::post('printmark','OrderController@printmark')->name('printmark');
 	
 	Route::get('/{tab}','OrderController@tab');
 	

@@ -14,10 +14,9 @@ class AddExtentionToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
         	$table->string('mobilephone');
-        	$table->string('telephone');
+        	$table->string('phone');
         	$table->integer('comsumptionAmount');
         });
-        
         
         Schema::create('assumption_record', function (Blueprint $table) {
         	$table->increments('id');

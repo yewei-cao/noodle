@@ -7,6 +7,7 @@ $router->group(['namespace' => 'Auth'], function () use ($router)
 	
 	
 	/**
+	 * sendResetLinkEmail
 	 * These routes require the user to be logged in
 	 */
 	$router->group(['middleware' => 'auth'], function ()

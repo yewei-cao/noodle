@@ -38,6 +38,16 @@ class PasswordController extends Controller
     
     
     /**
+     * Display the form to request a password reset link.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getEmail()
+    {
+    	return view('frontend.auth.password');
+    }
+    
+    /**
      * Display page for change user password.
      * @return \Illuminate\View\View
      */

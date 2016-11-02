@@ -18,6 +18,9 @@ return [
 		'next'=>'Next',
 		'previous'=>'Previous',
 		'back'=>'Back',
+		'signup'=>'Sign Up',
+		'cancel'=>'Cancel',
+		'register'=>'Register',
 		
 		'empty_order'=>'Your order is currently empty.',
 		'home_to_start_order'=>'TO START YOUR ORDER, SELECT AN ORDER TYPE BELOW',
@@ -27,7 +30,8 @@ return [
 		'order_time'=>'ORDER TIME',
 		'asap'=>'AS SOON AS POSSIBLE',
 		'currently_close'=>'This store is currently closed. Please select an order time below.',
-		
+		'address_confirm_title'=>'Your address is ',
+		'address_confirm'=>'Please click on the address below to continue with your order. You can also go back to change your contact or address details.',
 		
 		'quick_order'=>'Quick Order',
 		'quick_order_ext'=>'Quickly reorder one of your recent orders',
@@ -51,8 +55,11 @@ return [
 		'cash_title'=>'PLEASE CONFIRM YOUR CASH PAYMENT SELECTION',
 		'credit_title'=>'PLEASE ENTER YOUR CREDIT CARD DETAILS',
 		
-		'place_order'=>'PLACE ORDER'
+		'place_order'=>'PLACE ORDER',
 		
-		
-		
+		'qorder_text1'=>'Sorry! We can\'t find any previous orders.',
+		'qorder_text2'=>'Place a new order and we will remember it for Quick Ordering next time.',
+		'qorder_text3'=>'For even faster ordering, save your favourite order.',
+		'qorder_intro'=>'Place an order to get set up for Quick Order next time',
+		'order_cancel'=>'If you want to cancel order, please call 8442388'
 ];

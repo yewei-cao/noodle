@@ -8,6 +8,9 @@ Route::get('/', function () {
 	return view('frontend.home.index');
 });
 
+Route::get('print', function () {
+	return view('frontend.home.print');
+});
 
 $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($router)
 {
@@ -21,44 +24,60 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 	
 	$router->group(['prefix' => 'menu', 'as'=>'home.menu.'],function () use ($router){
 		Route::get('/', 'menuController@index')->name('index');
-		
 		Route::get('appmenu', 'menuController@appmenu')->name('appmenu');
-		
 		Route::get('/mobilecsrf', function(){
 			return csrf_token();
 		});
-		
 		Route::post('addtoorder','menuController@addtoorder');
 		Route::post('removetoorder','menuController@removetoorder');
 	});
+	
+		
+		$router->group(['prefix' => 'quickorder', 'namespace' => 'Quickorder','middleware' => 'auth'], function () use ($router)
+		{
+			Route::get('/','quickorderController@index')->name('home.quickorder');
+			Route::get('create','quickorderController@create')->name('home.quickorder.create');
+			
+			Route::post('test','quickorderController@tests');
+			
+			Route::get('cloneorder','quickorderController@cloneorder')->name('home.quickorder.cloneorder');
+// 			Route::post('placeorder','paymentcontroller@placeorder')->name('.placeorder');
+			
+	// 		Route::get('delivery_details','deliveryController@delivery_details');
+	// 		Route::get('confirm','deliveryController@confirm')->name('home.delivery.confirm');
+	// 		Route::get('address','deliveryController@address_confirm')->name('home.delivery.address');
+	// 		Route::get('saveordertime','deliveryController@saveordertime');
+		});
 	
 	
 	$router->group(['prefix' => 'delivery', 'namespace' => 'Delivery'], function () use ($router)
 	{
 		Route::get('/','deliveryController@index')->name('home.delivery.info');
-	});		
-	
+		Route::get('delivery_details','deliveryController@delivery_details');
+		Route::get('confirm','deliveryController@confirm')->name('home.delivery.confirm');
+		Route::get('address','deliveryController@address_confirm')->name('home.delivery.address');
+		Route::get('saveordertime','deliveryController@saveordertime');
+	});
+
+	$router->group(['prefix' => 'ordertime', 'namespace' => 'Ordertime'], function () use ($router)
+	{
+		Route::get('/','ordertimeController@details')->name('home.ordertime');
+		Route::get('save','ordertimeController@save')->name('home.ordertime.save');
+		Route::post('gettime', ['as' => 'home.ordertime.gettime', 'uses' => 'ordertimeController@gettime']);
+		Route::post('save_asap','ordertimeController@save_asap');
+	});
 		
 	$router->group(['prefix' => 'pickup', 'namespace' => 'Pickup'], function () use ($router)
 	{
-		
 		Route::get('details','pickupController@details')->name('home.pickup.details');
-
 		Route::get('/','pickupController@index')->name('home.pickup.info');
-		
 		Route::get('pickup_details','pickupController@pickup_details');
-		
 // 		Route::get('pickup_details', ['as' => 'pickup',function () {
 // 			return 'something';
 // 		}]);
-		
 // 		get('users/banned', 'UserController@banned')->name('admin.access.users.banned');
-		
 		Route::get('saveordertime','pickupController@saveordertime');
-
-		
 		Route::post('ordertime', ['as' => 'home.pickup.ordertime', 'uses' => 'pickupController@ordertime']);
-	
 		Route::post('save_asap','pickupController@save_asap');
 		
 	});

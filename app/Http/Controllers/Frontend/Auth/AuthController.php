@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Frontend\Auth;
 
-use App\Models\Access\User\User;
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use App\Models\Access\User\Users;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -49,6 +53,29 @@ class AuthController extends Controller
     {
     	return view('frontend.auth.register');
     }
+    
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postRegister(Request $request)
+    {
+    	$validator = $this->validator($request->all());
+    
+    	if ($validator->fails()) {
+    		$this->throwValidationException(
+    				$request, $validator
+    		);
+    	}
+    	
+//     	dd($request->all());
+    
+    	Auth::login($this->create($request->all()));
+//     	return redirect($this->redirectPath());
+    	return redirect()->route('home.quickorder')->with('regist', true);;
+    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -61,6 +88,7 @@ class AuthController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
+        	'phone' => ['required','regex:/^(?!64)\d{9,11}/'],
             'password' => 'required|confirmed|min:6',
         ]);
     }
@@ -73,9 +101,10 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Users::create([
             'name' => $data['name'],
             'email' => $data['email'],
+        	'phone'=>$data['phone'],
             'password' => bcrypt($data['password']),
         ]);
     }

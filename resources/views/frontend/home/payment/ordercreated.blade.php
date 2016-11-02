@@ -78,6 +78,14 @@
 
 									<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>Email: {{ $order->email }}</li>
 
+									@if($order->address()->count())
+										<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>Address: {{ $order->address->address }}</li>
+										
+										<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>Suburb: {{ $order->address->suburb }}</li>
+										
+										<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>City: {{ $order->address->city }}</li>
+										
+									@endif
 									<li class="divider"></li>
 
 <!-- 									<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Contact Info</li> -->
@@ -147,7 +155,6 @@
 					
 					<div class="row">
 					<h3 class="lighter smaller"><a href="{{ url('/home') }}">Home Page</a></h3>
-					<h3 class="lighter smaller"><a href="{{ url('/home') }}">Order List</a></h3>
 					</div>
 					
 					

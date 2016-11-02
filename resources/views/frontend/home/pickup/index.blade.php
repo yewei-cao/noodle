@@ -1,4 +1,4 @@
-@extends('frontend.master')
+@extends('frontend.primary')
 
 @section('css.style')
 
@@ -10,7 +10,6 @@
 @endsection
 
 @section('content')
-
 
 <div id="detail-container">
 

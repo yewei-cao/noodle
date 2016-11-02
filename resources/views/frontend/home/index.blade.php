@@ -73,10 +73,10 @@
 <div id="myservice-container">
 
 <div class="col-4">
-<a id="quick" href="#" class="myservice red" >
+<a id="quick" href="{{ route('home.quickorder') }}" class="myservice red" >
 
 <div class="service-icon">
-<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==">
+<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="images/home/home_quickorder.png">
 </div>
 <div class="service-text">
 <h2>{{ trans('front_home.quick_order') }}</h2>

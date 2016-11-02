@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
         	$table->decimal('total', 10, 2);
         	$table->float('totaldue')->nullable();
         	$table->boolean('status');
+        	$table->string('ordertype');
         	
         	$table->string('name');
         	$table->string('email');
@@ -31,7 +32,6 @@ class CreateOrdersTable extends Migration
         	$table->dateTime('paymenttime');
         	$table->dateTime('shiptime');
         	$table->string('shipmethod')->nullable();
-        	$table->integer('useraddress_id')->nullable();
         	$table->text('comment')->nullable();
         	$table->text('message')->nullable();
         	$table->timestamps();

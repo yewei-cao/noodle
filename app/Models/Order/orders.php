@@ -4,34 +4,47 @@ namespace App\Models\Order;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Menu\Dishes;
+use App\Models\Access\User\Users;
 
 class Orders extends Model
 {
-    protected $fillable = ['ordernumber','total','totaldue','status','name','email','phonenumber','paymentflag','staff_id','paymentmethod_id','paymenttime','shiptime','shipmethod','useraddress_id','comment','message'];
+    protected $fillable = ['ordernumber','total','totaldue','status','ordertype','name','email','phonenumber','paymentflag','staff_id','paymentmethod_id','paymenttime','shiptime','shipmethod','useraddress_id','comment','message'];
 	
     public function dishes(){
     	return $this->belongsToMany(Dishes::class)->withPivot('amount','total'); 
     }
     
+    public function address(){
+    	return $this->hasOne(Address::class,'orders_id');
+    }
+    
+    public function attachaddress($address){
+    	$this->address()->attach($address);
+    }
+    
+    public function users(){
+    	 return $this->belongsToMany(Users::class);
+    }
+    
     public function status(){
     	switch ($this->status){
     		case $this->status ==1:
-    			return '<span class="label label-sm label-warning">created<span>';
+    			return '<span id="status-'. $this->id.'" class="label label-sm label-warning">created<span>';
     			break;
     		case $this->status ==2:
-    			return '<span class="label label-sm label-info arrowed arrowed-righ">printed<span>';
+    			return '<span id="status-'. $this->id.'" class="label label-sm label-info ">printed<span>';
     			break;
     		case $this->status ==3:
-    			return '<span class="label label-sm label-inverse arrowed-in">cooked<span>';
+    			return '<span id="status-'. $this->id.'" class="label label-sm label-inverse">cooked<span>';
     			break;
     		case $this->status ==4:
-    			return '<span class="label label-sm label-success">finished<span>';
+    			return '<span id="status-'. $this->id.'" class="label label-sm label-success">finished<span>';
     			break;
     		case $this->status >=5:
-    			return '<span class="">Cancel<span>';
+    			return '<span id="status-'. $this->id.'" class="">Cancel<span>';
     			break;
     		default:
-    			return '<span class="">Cancel<span>';
+    			return '<span id="status-'. $this->id.'" class="">Cancel<span>';
     			break;
     	}
     }

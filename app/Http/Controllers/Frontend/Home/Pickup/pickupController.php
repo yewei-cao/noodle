@@ -22,13 +22,13 @@ class pickupController extends Controller
 	
 	public function index(Request $request){
 		
-// 		$request->session()->forget('pickup_deatils');
+// 		$request->session()->forget('user_details');
 		
-		if(!$request->session()->has('pickup_deatils')){
+		if(!$request->session()->has('user_details')){
 			return view('frontend.home.pickup.index');
 		}
 		
-		$pickup = $request->session()->get('pickup_deatils');
+		$pickup = $request->session()->get('user_details');
 
 		return view('frontend.home.pickup.edit')->withPickup($pickup);
 		
@@ -98,7 +98,6 @@ class pickupController extends Controller
 				return redirect()->route('home.menu.index');
 			}
 		}
-			
 
 	}
 	
@@ -111,14 +110,18 @@ class pickupController extends Controller
 // 		return "test";
 		$datas = $request->all();
 		
-		$request->session()->put('pickup_deatils', $datas);
+		$request->session()->put('user_details', $datas);
 		
-		if($request->session()->has('pickup_deatils')){
-			return redirect()->route('home.pickup.details');
+		if($request->session()->has('user_details')){
+			$request->session()->put('ordertype', 'pickup');
 			
-		}else{
+			if($request->session()->has('ordertype')){
+				return redirect()->route('home.ordertime');
+			}
 			return redirect()->route('home.pickup.info');
+			
 		}
+		return redirect()->route('home.pickup.info');
 		
 	}
 	
@@ -128,9 +131,9 @@ class pickupController extends Controller
 	 */
 	public function details(Request $request){
 		
-// 		return  response()->json($request->session()->has('pickup_deatils'));
+// 		return  response()->json($request->session()->has('user_details'));
 		
-		if(!$request->session()->has('pickup_deatils')){
+		if(!$request->session()->has('user_details')){
 			return redirect()->route('home.pickup.info');
 		}
 		

@@ -14,7 +14,7 @@ use Laravel\Cashier\Contracts\Billable as BillableContract;
 
 use App\Models\Access\User\Traits\User_trait;
 
-class User extends Model implements AuthenticatableContract,
+class Users extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract,
                                     BillableContract
@@ -33,7 +33,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email','phone','mobilephone','password'];
     
     protected $dates = ['trial_ends_at', 'subscription_ends_at'];
 

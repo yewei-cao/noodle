@@ -1,4 +1,4 @@
-@extends('frontend.master')
+@extends('frontend.primary')
 
 @section('css.style')
 <style type="text/css">
@@ -19,8 +19,8 @@
 {!! Form::open(['method'=>'GET','action'=>'Frontend\Home\Pickup\pickupController@saveordertime','id'=>'myform','data-toggle'=>'validator'])!!}	
 
 <div class="starter text-center">
-<h4>{{ trans('front_home.when_to_order') }}</h4>
-<p>{{ trans('front_home.currently_close') }}</p>
+<h2>{{ trans('front_home.when_to_order') }}</h2>
+<h4>{{ trans('front_home.currently_close') }}</h4>
 
 <button class="redbtn next btn-lg aspn" id="asap" type="button">
 {{ trans('front_home.asap') }}
@@ -51,7 +51,7 @@
 <div class="form-group">
 <!-- Previous/Next buttons -->
   <ul class="pager wizard">
-  	<li class="previous"><a href="{{ url('home/pickup') }}">{{ trans('front_home.previous') }}</a></li>
+  	<li class="previous"><a href="{{ URL::previous() }}">{{ trans('front_home.previous') }}</a></li>
   	<li class="next">
 <!-- 	<a id="nextpage" href="{{ url('home/menu') }}" >{{ trans('front_home.next') }}</a> -->
 	
@@ -104,7 +104,7 @@
 $('#asap').click(function(){
 	$.ajax({
 		  headers: {'X-CSRF-Token': "{{ csrf_token() }}"},
-	      url: '/home/pickup/save_asap',
+	      url: '/home/ordertime/save_asap',
 	      type: 'POST',
 	      data: {'ordertime':'ASAP'
 	    },

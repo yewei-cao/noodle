@@ -172,5 +172,11 @@ class sweetalertNotifier
 
         return $this;
     }
+    
+    public function top_message($message){
+    	$this->session->flash('flash_warning', $message);
+    	
+    	return $this;
+    }
 
 }

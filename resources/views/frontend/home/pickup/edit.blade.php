@@ -1,4 +1,4 @@
-@extends('frontend.master')
+@extends('frontend.primary')
 
 @section('content')
 

@@ -39,7 +39,8 @@ class Kernel extends HttpKernel
     	/*
     	 * check the session has user details
     	 */
-    	'pickupdetail'=>\App\Http\Middleware\Shopping\pickupdetailSession::class,
+    	'ordertypeMiddleware'=>\App\Http\Middleware\Shopping\OrderTypeSession::class,
+    	'cartMiddleware'=>\App\Http\Middleware\Shopping\CartMiddleware::class,
     		
     ];
 }

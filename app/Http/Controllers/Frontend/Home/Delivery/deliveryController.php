@@ -11,83 +11,62 @@ class deliveryController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     *delivery_details
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        if(!$request->session()->has('pickup_deatils')){
-			return view('frontend.home.pickup.index');
+        if(!$request->session()->has('user_details')){
+			return view('frontend.home.delivery.index');
 		}
 		
-		$pickup = $request->session()->get('pickup_deatils');
+		$delivery = $request->session()->get('user_details');
 
-		return view('frontend.home.pickup.edit')->withPickup($pickup);
+		return view('frontend.home.delivery.edit')->withdelivery($delivery);
     }
-
-    /**
-     * Show the form for creating a new resource.
+    
+    /*
+     * save pick up detail in session
      *
-     * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    
+    public function delivery_details(Request $request){
+    	$datas = $request->all();
+    
+    	$request->session()->put('user_details', $datas);
+    
+    	if($request->session()->has('user_details')){
+    		return redirect()->route('home.delivery.confirm');
+    	}else{
+    		return redirect()->route('home.delivery.info');
+    	}
+    
+    }
+    
+    public function confirm(Request $request){
+    	if(!$request->session()->has('user_details')){
+    		return redirect()->route('home.delivery.info');
+    	}
+    	$user_details = $request->session()->get('user_details');
+    	$address =  $user_details['address'].' '.$user_details['suburb'].' '.$user_details['city'];
+    	return view('frontend.home.delivery.confirm')->withAddress($address);
+    }
+    
+    public function address_confirm(Request $request){
+    	if($request->session()->has('user_details')){
+    		
+    		$request->session()->put('ordertype', 'delivery');
+    		
+    		if($request->session()->has('ordertype')){
+    			return redirect()->route('home.ordertime');
+    		}
+    		return redirect()->route('home.delivery.confirm');
+    	}
+    	return redirect()->route('home.delivery.info');
+    }
+    
+    public function saveordertime(Request $request){
+    	return 'saveordertime';
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
