@@ -104,7 +104,7 @@ class paymentcontroller extends Controller
 		$datas = $request->all();
 // 		dd($datas);
 		
-		\Stripe\Stripe::setApiKey(env('STRIPE_KEY'));
+// 		\Stripe\Stripe::setApiKey(env('STRIPE_KEY'));
 		
 		// Get the credit card details submitted by the form
 		$token = $_POST['stripeToken'];
