@@ -12,7 +12,7 @@
 /**
  * Switch between the included languages
  */
-require(__DIR__ . "/Routes/Global/Lang.php");
+require(__DIR__ . "/Routes/Global/lang.php");
 
 /**
  * Frontend Routes
