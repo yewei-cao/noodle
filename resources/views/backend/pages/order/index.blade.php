@@ -213,7 +213,6 @@
 
 // 	socket.on('order_receipt-channel:App\\Events\\OrderReceipt',function(data){
 // 		alert("Get New Orders, Please reflash you page");
-		
 // 	});
 
 	$("#allclick").click(function(){
