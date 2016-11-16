@@ -205,14 +205,11 @@
 <script src="/js/ace/ace-extra.min.js"></script>
 <script type="text/javascript">
 (function($) {
-// 	$("#paginate").change(function(){
-// 		$(this).parents('form').submit();
-// 	});
 
 	$('.{{ $tab }}').removeClass('btn-default');
 	$('.{{ $tab }}').addClass('btn-primary');
 
-	var socket=io('http://192.168.10.10:3000');
+	var socket = io.connect('{{$_SERVER['SERVER_ADDR']}}:3000');
 
 // 	socket.on('order_receipt-channel:App\\Events\\OrderReceipt',function(data){
 // 		alert("Get New Orders, Please reflash you page");

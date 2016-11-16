@@ -74,7 +74,7 @@
 <script type="text/javascript">
 (function($) {
 
-	var socket=io('http://192.168.10.10:3000');
+	var socket=io('{{$_SERVER['SERVER_ADDR']}}:3000');
 
 // 	socket.on('dash_order-channel:App\\Events\\DashOrder',function(data){
 // 		$("#created").text(data.created);

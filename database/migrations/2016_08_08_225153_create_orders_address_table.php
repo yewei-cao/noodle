@@ -19,7 +19,7 @@ class CreateOrdersAddressTable extends Migration
             $table->string('suburb');
             $table->string('city');
             $table->timestamps();
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->foreign('orders_id')->references('id')->on('orders')->onDelete('cascade');
         });
         
           }
