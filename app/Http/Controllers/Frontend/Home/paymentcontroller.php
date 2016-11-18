@@ -13,6 +13,7 @@ use App\Events\OrderPrinter;
 use App\Events\DashboardOrder;
 use App\Models\Order\Address;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class paymentcontroller extends Controller
 {
@@ -248,6 +249,11 @@ class paymentcontroller extends Controller
 		Cart::clean();
 
 		sweetalert_message()->top_message(trans("front_home.order_cancel"));
+		
+		Mail::queue('emails.order.receipt',compact('order'),function ($message)use($order){
+			$message->from(env('MAIL_USERNAME'))->to($order->email)
+			->subject('Noodle Canteen Receipt');
+		});
 		
 		return view('frontend.home.payment.ordercreated')
 		->withOrder($order);
