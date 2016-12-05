@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -74,6 +75,15 @@ class AuthController extends Controller
     
     	Auth::login($this->create($request->all()));
 //     	return redirect($this->redirectPath());
+
+    	$user = Auth::user();
+//     	dd($user);
+
+    	Mail::queue('emails.welcome',compact('user'),function ($message)use($user){
+    		$message->from(env('MAIL_FROM'))->to($user->email)
+    		->subject('Welcome to join us');
+    	});
+    	
     	return redirect()->route('home.quickorder')->with('regist', true);;
     }
 

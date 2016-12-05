@@ -346,8 +346,17 @@
 	socket.on('order_printer-channel:App\\Events\\OrderPrinter',function(data){
 
 		if($('#printer').is(':checked')){
+			var dishes = "";
 			
-		$('#pos_printer').append('<div class="order"><h2>'+ data.order.id +'</h2><p>'+ data.order.name +'</p><p>'+ data.order.paymenttime +'</p> '
+			for(var i=0;i<data.dishes.length;i++){
+				dishes +='<p>' + data.dishes[i].pivot.amount +'* '+ data.dishes[i].name +'</p>';
+				}
+			
+		$('#pos_printer').append('<div class="order"><h2>'
+				+ data.order.id +'</h2><p>'
+				+ data.order.name +'</p><p>'
+				+ data.order.paymenttime +'</p>'
+				+ dishes
 				+ ' </div>');
 
 // 		var print = $("#pos_printer").print();

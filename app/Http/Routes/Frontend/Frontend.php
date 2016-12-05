@@ -2,22 +2,42 @@
 /**
  * Frontend Controllers
  */
-// get('/', 'FrontendController@index')->name('home');
-
-Route::get('/', function () {
-	return view('frontend.home.index');
+$router->group(['namespace' => 'Home'], function () use ($router)
+{
+	Route::get('/','HomeController@index')->name('index');
 });
 
-Route::get('print', function () {
-	return view('frontend.home.print');
+Route::get('email', function () {
+	$beautymail = app()->make(Snowfire\Beautymail\Beautymail::class);
+    $beautymail->send('emails.welcome', [], function($message)
+    {
+        $message
+            ->from('yeweicao@gmail.com')
+            ->to('yeweicao@gmail.com', 'John Smith')
+            ->subject('Welcome!');
+    });
+});
+
+Route::get('mail', function () {
+// 	$order['mail']="891670626@qq.com";
+// 	Mail::queue('emails.order.test',compact('order'),function ($message)use($order){
+// 			$message->from("yeweicao@gmail.com")->to($order['mail'])
+// 			->subject('Noodle Canteen Receipt');
+// 	});
+	
+	$user= Users::findOrFail(22);
+	
+		Mail::queue('emails.welcome',compact('user'),function ($message)use($user){
+    		$message->from(env('MAIL_FROM'))->to("yeweicao@gmail.com")
+    		->subject('Welcome to join us');
+    	});
+// 	dd($user);
 });
 
 $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($router)
 {
-	Route::get('/', ['as' => 'home',function () {
-		return view('frontend.home.index');
-	}]);
 	
+	Route::get('/','HomeController@index')->name('home');
 	/*
 	 * Product Menu Page
 	 */
@@ -32,23 +52,13 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 		Route::post('removetoorder','menuController@removetoorder');
 	});
 	
-		
-		$router->group(['prefix' => 'quickorder', 'namespace' => 'Quickorder','middleware' => 'auth'], function () use ($router)
-		{
-			Route::get('/','quickorderController@index')->name('home.quickorder');
-			Route::get('create','quickorderController@create')->name('home.quickorder.create');
-			
-			Route::post('test','quickorderController@tests');
-			
-			Route::get('cloneorder','quickorderController@cloneorder')->name('home.quickorder.cloneorder');
-// 			Route::post('placeorder','paymentcontroller@placeorder')->name('.placeorder');
-			
-	// 		Route::get('delivery_details','deliveryController@delivery_details');
-	// 		Route::get('confirm','deliveryController@confirm')->name('home.delivery.confirm');
-	// 		Route::get('address','deliveryController@address_confirm')->name('home.delivery.address');
-	// 		Route::get('saveordertime','deliveryController@saveordertime');
-		});
-	
+	$router->group(['prefix' => 'quickorder', 'namespace' => 'Quickorder','middleware' => 'auth'], function () use ($router)
+	{
+		Route::get('/','quickorderController@index')->name('home.quickorder');
+		Route::get('create','quickorderController@create')->name('home.quickorder.create');
+		Route::post('test','quickorderController@tests');
+		Route::get('cloneorder','quickorderController@cloneorder')->name('home.quickorder.cloneorder');
+	});
 	
 	$router->group(['prefix' => 'delivery', 'namespace' => 'Delivery'], function () use ($router)
 	{

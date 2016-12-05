@@ -1,14 +1,11 @@
 <?php
-
 return [
-
 	/*
 	|--------------------------------------------------------------------------
-	| Menj Language Lines
+	| menu Language Lines
 	|--------------------------------------------------------------------------
 	|
-	| The following language lines are used in Menu operations throughout the
-	| system.
+	| The following language lines are used in Menu operations throughout the system.
 	|
 	*/
 		'menu_action'=>'Action',
@@ -40,5 +37,11 @@ return [
 		'menu_dish_createstring' => 'Your dish has been created',
 		'menu_dish_update'=>'Your dish has been updated',
 		'menu_dish_deleting'=>'Your dish has been deleted',
-		
+		'manage_edit'=>['title'=>'Title','meta'=>'Meta','starttime'=>'Start Time','closetime'=>'Close Time','dayoff'=>'Day Off'],
+		'manage_update'=>'Your Setting has been updated',
+		'manage_blacklist_list'=>'Blacklist List',
+		'manage_blacklist'=>['ip'=>'IP','reason'=>'Reason','updatetime'=>'Updatetime Time','createtime'=>'Create Time'],
+		'menu_blacklist_createstring' => 'Your Blacklist has been created',
+		'menu_blacklist_update' => 'Your Blacklist has been updated',
+		'menu_blacklist_deleting' => 'Your Blacklist has been deleted',
 ];

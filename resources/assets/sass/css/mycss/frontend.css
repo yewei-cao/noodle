@@ -1,9 +1,22 @@
 /*# sourceMappingURL=app.css.map */
-
+body, html {
+    height: 100%;
+}
 /* @import "partials/form"; */
 /* container */
 
 /*  login */
+
+#wrap {
+    min-height: 100%;
+    height: auto!important;
+    height: 100%;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+#wrap>.container {
+    padding-bottom: 220px;
+}
 .main-login {
     max-width: 320px;
     margin: 0 auto;
@@ -1075,6 +1088,9 @@ background-color:#fee188!important;border-color:#fee188
 
 /* menu page end */ 
 @media (min-width: 375px){
+#wrap {
+	 margin: 0 auto -120px;
+}
 
 .product-container {
     width: 50%;
@@ -1088,6 +1104,9 @@ background-color:#fee188!important;border-color:#fee188
 
 
 @media(min-width:768px) {
+#wrap {
+	 margin: 0 auto -220px;
+}
 
 .minheiht{
 	min-height:640px;

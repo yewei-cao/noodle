@@ -41,6 +41,7 @@ class Kernel extends HttpKernel
     	 */
     	'ordertypeMiddleware'=>\App\Http\Middleware\Shopping\OrderTypeSession::class,
     	'cartMiddleware'=>\App\Http\Middleware\Shopping\CartMiddleware::class,
+    	'IPMiddleware'=>\App\Http\Middleware\Shopping\IPMiddleware::class,
     		
     ];
 }

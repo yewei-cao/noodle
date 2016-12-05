@@ -31,7 +31,7 @@
           <ul class="sidebar-menu">
             <li class="header">HEADER</li>
             
-            
+                       
 			<li class="active treeview">
               <a href="{!!url('admin')!!}">
                 <i class="fa fa-dashboard"></i> <span>{{ trans('menus.dashboard') }}</span> </i>
@@ -39,7 +39,47 @@
             </li>
             
              <li class="active treeview">
-              <a href="{!!url('admin')!!}">
+              <a href="#">
+                <i class="glyphicon glyphicon-cog"></i> <span>{{ trans('menus.managetitle') }}</span> 
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              
+               <ul class="treeview-menu" style="display: none; {{ Active::pattern('admin/manage*', 'display: block;') }}">
+					
+					<li>
+					<a href="{{ route('admin.manage.index') }}">
+					<i class="fa fa-circle-o"></i>
+						{{ trans('menus.manage.shop') }}
+					</a>
+					</li>
+					
+					<li>
+					<a href="{{ route('admin.manage.index') }}">
+					<i class="fa fa-circle-o"></i>
+						{{ trans('menus.manage.email') }}
+					</a>
+					</li>
+					
+					<li>
+					<a href="{{ route('admin.manage.index') }}">
+					<i class="fa fa-circle-o"></i>
+						{{ trans('menus.manage.notice') }}
+					</a>
+					</li>
+					
+					<li>
+					<a href="{{ route('admin.manage.blacklist.index') }}">
+					<i class="fa fa-circle-o"></i>
+						{{ trans('menus.manage.blacklist') }}
+					</a>
+					</li>
+					
+				</ul>	
+				
+			 </li>
+            
+             <li class="active treeview">
+              <a href="#">
                 <i class="fa fa-th"></i> <span>{{ trans('menus.element') }}</span> 
                 <i class="fa fa-angle-left pull-right"></i>
               </a>

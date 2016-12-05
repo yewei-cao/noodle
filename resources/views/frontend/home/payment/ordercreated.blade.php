@@ -2,7 +2,9 @@
 <link href="/css/ace.min.css" rel="stylesheet" type= "text/css" />
 
 <style type="text/css">
-
+#wrap {
+margin:0;
+}
 </style>
 
 @endsection 

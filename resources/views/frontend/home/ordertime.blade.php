@@ -20,6 +20,8 @@
 
 <div class="starter text-center">
 <h2>{{ trans('front_home.when_to_order') }}</h2>
+
+@if($aspn)
 <h4>{{ trans('front_home.currently_close') }}</h4>
 
 <button class="redbtn next btn-lg aspn" id="asap" type="button">
@@ -27,6 +29,8 @@
 </button>
 
 <h2>OR</h2>
+
+@endif
 
 </div>
 
@@ -53,7 +57,6 @@
   <ul class="pager wizard">
   	<li class="previous"><a href="{{ URL::previous() }}">{{ trans('front_home.previous') }}</a></li>
   	<li class="next">
-<!-- 	<a id="nextpage" href="{{ url('home/menu') }}" >{{ trans('front_home.next') }}</a> -->
 	
 	<button class="redbtn next" type="submit" >{{ trans('front_home.next') }}</button>
   	</li>

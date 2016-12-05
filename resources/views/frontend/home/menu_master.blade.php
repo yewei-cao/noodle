@@ -1,7 +1,11 @@
 @extends('frontend.primary')
 
 @section('css.style')
-
+<style type="text/css">
+#wrap {
+margin:0;
+}
+</style>
 @endsection
 
 @section('jscript')

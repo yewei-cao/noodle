@@ -4,7 +4,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Noodle Canteen</title>
+	<title>
+	@yield('title')
+	</title>
+	@yield('meta')
 	<link rel="shortcut icon" href="favicon.ico" >
 	<link href="/css/frontend/frontend.css" rel="stylesheet" type= "text/css" />
 	
@@ -20,17 +23,17 @@
 	
 </head>
 <body>
-	
-	@include('frontend.includes.frontnav')
-	
-	<div class= "container minheiht">
-	
-	@include('flash::message') 
-	
-	@yield('content')
-	</div>
+	<div id="wrap">
+		@include('frontend.includes.frontnav')
 		
-	<div class="flash">
+		<div class= "container minheiht">
+			@include('flash::message') 
+			@yield('content')
+		</div>
+			
+		<div class="flash">
+		</div>
+	
 	</div>
 
 <!-- @include('partials.sweetflash') -->

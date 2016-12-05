@@ -14,9 +14,17 @@ return [
     */
 
 	'menu' =>'Menu',
-	
+	'managetitle'=>'Management',
 	'element'=>'Element',
 	'order'=>'Order',
+	'site_manage'=>['shop'=>'Shop',
+			'email'=>'Email'
+	],
+	'manage'=>['shop'=>'Shop',
+			'email'=>'Email',
+			'notice'=>'Notification',
+			'blacklist'=>'Blacklist'
+	],
 	'menu_manage'=>['type'=>'Type',
 			'catalogue'=>'Catalogue',
 			'dish'=>'Dish',
@@ -31,6 +39,7 @@ return [
 		
 	'session'=>['expire'=>'Your session has expired. Please re-start your order.'],
 	'empty_order'=>'There are no products in your order. Please update your order before continuing to payment.',
+	'invalidip'=>'For some reasons, your ip address is added to the blacklist. If you want to make an order, please contact with the shop staff.',
 		
     'active_users' => 'Active Users',
     'banned_users' => 'Banned Users',

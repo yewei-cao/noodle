@@ -7,17 +7,21 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use App\Models\Shop\Shops;
 
 class ordertimeController extends Controller
 {
-	private $starttime=11;
-	private $closetime=21;
 	
 	private $dayoff = Carbon::MONDAY; //maybe a group, so set it up by group
 	
-	/*
-	 *
-	 *
+	public function __construct(){
+		$this->shop = Shops::first();
+	}
+	
+	/**
+	 * 
+	 * @param Request $request
+	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function details(Request $request){
 // 		$request->session()->forget('ordertype');
@@ -30,23 +34,24 @@ class ordertimeController extends Controller
 		$dt = Carbon::now();//add hour for the test  ->addMinutes(7)
 	
 		$minutes=0;
+		
+		$aspn= false;
 	
 		$nowtimestamp = Carbon::now()->timestamp;
 	
 		$time[""]="--- Select Time ---";
 	
-		if($dt->hour <$this->starttime){
-				
+		if($dt->hour <$this->shop->starttime){
+			
 			$minutes = 15;
 				
-			$ordertime = Carbon::create($dt->year, $dt->month, $dt->day, $this->starttime, $minutes);
+			$ordertime = Carbon::create($dt->year, $dt->month, $dt->day, $this->shop->starttime, $minutes);
 				
 			$time[$ordertime->timestamp] = $ordertime->format('h:i A');
 				
-			$loop = ($this->closetime-$this->starttime-1)*4 +(60-$minutes)/15;
+			$loop = ($this->shop->closetime-$this->shop->starttime-1)*4 +(60-$minutes)/15;
 			for($i=1;$i<=$loop;$i++){
 				$time[$ordertime->copy()->addMinutes($i*15)->timestamp] = $ordertime->copy()->addMinutes($i*15)->format('h:i A');
-					
 			}
 				
 			for($i=0;$i<=10;$i++){
@@ -55,7 +60,9 @@ class ordertimeController extends Controller
 				}
 			}
 				
-		}elseif (($this->starttime <= $dt->hour)&&($dt->hour < $this->closetime)){
+		}elseif (($this->shop->starttime <= $dt->hour)&&($dt->hour < $this->shop->closetime)){
+			
+			$aspn = true;
 				
 			switch ($dt->minute)	{
 				case $dt->minute< 15:
@@ -78,7 +85,7 @@ class ordertimeController extends Controller
 				
 			$time[$ordertime->timestamp] = $ordertime->format('h:i A');
 				
-			$loop = ($this->closetime-$dt->hour-1)*4 +(60-$minutes)/15;
+			$loop = ($this->shop->closetime-$dt->hour-1)*4 +(60-$minutes)/15;
 			for($i=1;$i<=$loop;$i++){
 				$time[$ordertime->copy()->addMinutes($i*15)->timestamp] = $ordertime->copy()->addMinutes($i*15)->format('h:i A');
 					
@@ -94,11 +101,11 @@ class ordertimeController extends Controller
 				
 			$minutes = 15;
 	
-			$ordertime = Carbon::create($dt->year, $dt->month, $dt->day+1, $this->starttime, $minutes);
+			$ordertime = Carbon::create($dt->year, $dt->month, $dt->day+1, $this->shop->starttime, $minutes);
 				
 			$time[$ordertime->timestamp] = $ordertime->format('h:i A');
 				
-			$loop = ($this->closetime-$this->starttime-1)*4 +(60-$minutes)/15;
+			$loop = ($this->shop->closetime-$this->shop->starttime-1)*4 +(60-$minutes)/15;
 			for($i=1;$i<=$loop;$i++){
 				$time[$ordertime->copy()->addMinutes($i*15)->timestamp] = $ordertime->copy()->addMinutes($i*15)->format('h:i A');
 					
@@ -112,7 +119,7 @@ class ordertimeController extends Controller
 		}
 	
 		// 		dd( Carbon::createFromTimestamp(1450436210)->toDateTimeString());
-		return view('frontend.home.ordertime',compact('date','time','nowtimestamp'));
+		return view('frontend.home.ordertime',compact('date','time','nowtimestamp','aspn'));
 	}
 	
 	public function gettime(Request $request){
@@ -124,12 +131,12 @@ class ordertimeController extends Controller
 	
 			$minutes = 15;
 				
-			$ordertime = Carbon::create($dt->year, $dt->month, $dt->day, $this->starttime, $minutes);
+			$ordertime = Carbon::create($dt->year, $dt->month, $dt->day, $this->shop->starttime, $minutes);
 				
 			$time[0][0] = $ordertime->timestamp;
 			$time[0][1] = $ordertime->toDateTimeString();
 				
-			$loop = ($this->closetime-$this->starttime-1)*4 +(60-$minutes)/15;
+			$loop = ($this->shop->closetime-$this->shop->starttime-1)*4 +(60-$minutes)/15;
 			for($i=1;$i<=$loop;$i++){
 				$time[$i][0] = $ordertime->copy()->addMinutes($i*15)->timestamp;
 				$time[$i][1] = $ordertime->copy()->addMinutes($i*15)->toDateTimeString();

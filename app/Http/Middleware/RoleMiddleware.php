@@ -9,8 +9,6 @@ use App\Models\Access\User\User;
 class RoleMiddleware
 {
 	
-
-	
     /**
      * Handle an incoming request.
      *

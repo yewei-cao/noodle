@@ -42,11 +42,6 @@ class TypeController extends Controller
     	$this->user->types()->create($request->all());
     	
     	return redirect()->route('admin.menu.type.index')->withFlashSuccess(trans("menu_backend.menu_type_createstring"));
-//     	sweetalert_message()->overlay(trans("menu_backend.menu_type_createstring"),'Info');
-    	
-//     	return redirect()->back()->withFlashSuccess(trans("menu_backend.menu_type_createstring"));;
-
-//     	return redirect()->route('admin.menu.type.index');
     }
     
     public function edit($id){
@@ -57,6 +52,8 @@ class TypeController extends Controller
     }
 
 	public function update(Request $request,$id){
+		
+		dd($id);
 		$this->validate($request, [
 				'name' => 'required',
 				'description' => 'required|min:6',

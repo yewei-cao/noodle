@@ -8,6 +8,10 @@ use App\Models\Order\Orders;
 
 trait User_trait {
 	
+	
+	public function getemail(){
+		return $this->email;
+	}
 	/*
 	 * Roles
 	 */

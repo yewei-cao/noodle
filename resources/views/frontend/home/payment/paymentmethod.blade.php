@@ -11,23 +11,29 @@
 			<h3 class="header lighter smaller text-center">{{ trans('front_home.payment_text') }}</h3>
 			
 			<ul class="horizon-list">
+			@if($shop->cash)
 			<li>
 			<a class="btn-yellow btn-primary btn-lg aspn" href="{{ route('home.payment.cash') }}"  type="button">
 			{{ trans('front_home.paymentmethod.cash') }}
 			</a>
 			</li>
+			@endif
 			
+			@if($shop->poli)
 			<li>
 			<a class="btn-primary btn-lg" href="{{ route('home.payment.poli') }}"  type="button">
 			{{ trans('front_home.paymentmethod.poli') }}
 			</a>
 			</li>
+			@endif
 			
+			@if($shop->credit)			
 			<li>
 			<a class="redbtn btn-lg aspn" href="{{ route('home.payment.credit') }}" type="button">
 			{{ trans('front_home.paymentmethod.credit') }}
 			</a>
 			</li>
+			@endif
 			
 			</ul>
 			

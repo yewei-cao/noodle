@@ -15,7 +15,6 @@ class Dishes extends Model
 		return $this->belongsToMany(Catalogue::class);
 	}
 	
-	
 	public function mgroup(){
 		return $this->belongsTo(Mgroup::class,'mgroup_id');
 	}

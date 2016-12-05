@@ -8,10 +8,10 @@ use App\Models\Access\User\Users;
 
 class Orders extends Model
 {
-    protected $fillable = ['ordernumber','total','totaldue','status','ordertype','name','email','phonenumber','paymentflag','staff_id','paymentmethod_id','paymenttime','shiptime','shipmethod','useraddress_id','comment','message'];
+    protected $fillable = ['ordernumber','total','totaldue','status','ordertype','name','email','phonenumber','paymentflag','staff_id','paymentmethod_id','paymenttime','shiptime','shipmethod','userip','comment','message'];
 	
     public function dishes(){
-    	return $this->belongsToMany(Dishes::class)->withPivot('amount','total'); 
+    	return $this->belongsToMany(Dishes::class)->withPivot('amount','total');
     }
     
     public function address(){

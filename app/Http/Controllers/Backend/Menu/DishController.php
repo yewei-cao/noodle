@@ -121,6 +121,12 @@ class DishController extends Controller
     	
     	$data = $request->all();
     	
+    	if(empty($request->input('valid'))){
+    		$data['valid']=0;
+    	}else{
+    		$data['valid']=1;
+    	}
+    	
     	if($dish->photo_name != $request->input('photo_name')){
     		$data = $this->add_photo($request);
     		

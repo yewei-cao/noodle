@@ -1,15 +1,20 @@
 @extends('frontend.master')
 
-@section('css.style')
+@section('title')
+	{!! $shop->title !!}
+@endsection
 
+@section('meta')
+	{!! $shop->meta !!}
+@endsection
+
+@section('css.style')
 <style>
 
 </style>
-
 @endsection
 
 @section('content')
-
 
 <div id="theCarousel" class="carousel slide" data-ride="carousel">
 <ol class="carousel-indicators">
@@ -31,7 +36,7 @@
 	<div class="item">
 		<div class="slidel2"></div>
 		<div class="carousel-caption">
-			<h1>Something22</h1>
+			<h1>Something2</h1>
 			<p>Thousands of Backgrounds for Free</p>
 			<p><a href="#" class="btn btn-primary btn-sm" >Get them Now</a></p>
 		</div>
@@ -41,13 +46,11 @@
 	<div class="item">
 		<div class="slidel3"></div>
 		<div class="carousel-caption">
-			<h1>Something333</h1>
+			<h1>Something3</h1>
 			<p>Thousands of Backgrounds for Free</p>
 			<p><a href="#" class="btn btn-primary btn-sm" >Get them Now</a></p>
 		</div>
 	</div>
-
-
 
 
 </div>

@@ -14,6 +14,7 @@ use App\Events\DashboardOrder;
 use App\Models\Order\Address;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Shop\Shops;
 
 class paymentcontroller extends Controller
 {
@@ -27,6 +28,8 @@ class paymentcontroller extends Controller
 	public function __construct(){
 		$this->middleware('ordertypeMiddleware');
 		$this->middleware('cartMiddleware');
+		$this->middleware('IPMiddleware');
+		$this->shop = Shops::first();
 		$this->user = Auth::user();
 		$this->cart= Cart::all();
 		$this->totalprice = Cart::total();
@@ -56,7 +59,8 @@ class paymentcontroller extends Controller
 		->withCart($this->cart)
 		->withTotalprice($this->totalprice)
 		->withTotalnumber($this->totalnumber)
-		->withOrderroute($order_route);
+		->withOrderroute($order_route)
+		->withShop($this->shop);
 	}
 	
 	public function cash(Request $request){
@@ -83,16 +87,6 @@ class paymentcontroller extends Controller
 			
 			return redirect()->route('home.payment.paymentmethod');
 			
-// 			$order_route=[
-// 					'prev'=>route('home.menu.index'),
-// 					'next'=>''
-// 			];
-			
-// 			return view('frontend.home.payment.paymentmethod')
-// 			->withCart($this->cart)
-// 			->withTotalprice($this->totalprice)
-// 			->withTotalnumber($this->totalnumber)
-// 			->withOrderroute($order_route);
 		}
 		
 	}
@@ -201,7 +195,7 @@ class paymentcontroller extends Controller
 				'paymentmethod_id'=>$request->session()->get('paymentmethod'),
 				'paymenttime'=>Carbon::now(),
 				'shiptime'=>$shiptime,
-				'useraddress_id'=>$request->ip(),
+				'userip'=>$request->ip(),
 				'shipmethod'=>'take away',
 				'message'=>$request->input('message'),
 		];
@@ -221,16 +215,6 @@ class paymentcontroller extends Controller
 						'suburb'=>$request->session()->get('user_details')['suburb'],
 						'city'=>$request->session()->get('user_details')['city']
 					]);
-			
-			
-// 			$address->address = $request->session()->get('user_details')['address'];
-// 			$address->suburb = $request->session()->get('user_details')['suburb'];
-// 			$address->city = $request->session()->get('user_details')['city'];
-			
-// 			$user_address = ['address'=>$request->session()->get('user_details')['address'],
-// 						'suburb'=>$request->session()->get('user_details')['suburb'],
-// 						'city'=>$request->session()->get('user_details')['city']
-// 			];
 			
 // 			$address = Address::create($user_address);
 			$order->address()->save($address);
@@ -269,80 +253,4 @@ class paymentcontroller extends Controller
 		return $timestamp;
 	} 
 	
-	
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

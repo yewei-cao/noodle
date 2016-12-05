@@ -9634,11 +9634,28 @@ body.stop-scrolling {
 }
 /*# sourceMappingURL=app.css.map */
 
+body,
+html {
+  height: 100%;
+}
+
 /* @import "partials/form"; */
 
 /* container */
 
 /*  login */
+
+#wrap {
+  min-height: 100%;
+  height: auto!important;
+  height: 100%;
+  margin: 0 auto -60px;
+  padding: 0 0 60px;
+}
+
+#wrap>.container {
+  padding-bottom: 220px;
+}
 
 .main-login {
   max-width: 320px;
@@ -10870,6 +10887,10 @@ fieldset[disabled] .btn-yellow.active {
 /* menu page end */
 
 @media (min-width: 375px) {
+  #wrap {
+    margin: 0 auto -120px;
+  }
+
   .product-container {
     width: 50%;
     margin-bottom: 1em;
@@ -10881,6 +10902,10 @@ fieldset[disabled] .btn-yellow.active {
 }
 
 @media (min-width:768px) {
+  #wrap {
+    margin: 0 auto -220px;
+  }
+
   .minheiht {
     min-height: 640px;
   }

@@ -51,16 +51,13 @@
 </div>
 
 <div class="form-group">
-
 	{!! Form::label('valid','Dish Valid',['class'=>'col-sm-3 control-label no-padding-right']) !!}
-	
 	<div class="col-sm-9">
 		<label>
 			{!! Form::checkbox('valid', '1', true,['class'=>'ace ace-switch ace-switch-2']) !!}
 			<span class="lbl"></span>
 		</label>
 	</div>
-	
 </div>
 
 

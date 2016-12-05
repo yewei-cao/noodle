@@ -5,6 +5,7 @@ namespace App\Models\Menu;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Access\User\User;
 use App\Models\Menu\Type;
+use phpDocumentor\Reflection\Types\This;
 
 class Catalogue extends Model
 {
@@ -36,13 +37,12 @@ class Catalogue extends Model
 		return $this->belongsToMany(Dishes::class);
 	}
 	
+	public function menudishes(){
+		return $this->dishes()->where('valid', 1)->get()->sortBy('number');
+	}
+	
 	public function addCatalogues(User $user,Catalogue $catalogue){
 		$user->catalogues()->save($catalogue);
 	}
-	
-// 	public function user_type(){
-			
-// 		return $this->belongsTo(User::class,'user_id',Type::class,'type_id');
-// 	}
 	
 }

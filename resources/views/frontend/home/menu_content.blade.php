@@ -11,7 +11,7 @@
 				<h2>{{ $catalogue->name }}</h2>
 				<hr/>
 				
-				@foreach($catalogue->dishes->sortBy('number') as $dish)
+				@foreach($catalogue->menudishes() as $dish)
 				
 	            <div class="product-container" >
 	                <div class="product" >
