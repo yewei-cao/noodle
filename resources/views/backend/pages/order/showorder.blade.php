@@ -73,7 +73,9 @@
 									<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>Phone: {{ $order->phonenumber }}</li>
 
 									<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>Email: {{ $order->email }}</li>
-
+									
+									<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>IP: {{ $order->userip }}</li>
+									
 									@if($order->address()->count())
 										<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>Address: {{ $order->address->address }}</li>
 										
