@@ -17,6 +17,44 @@ body, html {
 #wrap>.container {
     padding-bottom: 220px;
 }
+/* nav */
+.navbar-red{
+background-color: #e41837;
+border-color: #e7e7e7;
+}
+.container-redfluid{
+margin-right: auto;
+margin-left: auto;
+}
+.navbar-red a{
+color:white;
+}
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: #f78f1e;
+    border-color: #337ab7;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #f78f1e;
+}
+.navbar-red .navbar-toggle:hover, .navbar-red .navbar-toggle:focus {
+    background-color: #f78f1e;
+}
+.navbar-red .navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+.navbar-redbrand {
+    float: left;
+    height: 50px;
+    font-size: 18px;
+    line-height: 20px;
+}
+.navbar-red .navbar-toggle {
+    border-color: #ddd;
+}
+.navbar-toggle:focus {
+    outline: 0;
+}
 .main-login {
     max-width: 320px;
     margin: 0 auto;
@@ -470,7 +508,11 @@ background-color:#e41837;
 border:0px;
 border-radius: 15px;
 }
-
+.longbutton{
+width:100%;
+border:0px;
+border-radius: 15px;
+}
 
 .aspn:hover, button:focus{
 	 text-decoration: none;
@@ -598,6 +640,13 @@ body .main-container {
 .redbtn {
     color: white;
     background-color: #e41837;
+    border-color: #e41837;
+    position: relative;
+    border-radius: 15px;
+}
+.yellowbtn {
+    color: white;
+    background-color: #f78f1e;
     border-color: #e41837;
     position: relative;
     border-radius: 15px;
@@ -1121,7 +1170,7 @@ float:left;
     margin: 20px auto 0;
     width: 100%;
 }
-#detail-container,#ordertime-container {
+.detail-container,#ordertime-container {
     display: block;
     margin: 20px auto 0;
     width: 100%;
@@ -1232,7 +1281,7 @@ display:none
 #myservice-container {
     width: 90%;
 }
-#detail-container,#ordertime-container {
+.detail-container,#ordertime-container {
     width: 60%;
 }
 .basket .basket-bottom {
@@ -1271,7 +1320,7 @@ footer .footer-content {
     width: 70%;
 }
 
-#detail-container,#ordertime-container {
+.detail-container,#ordertime-container {
     width: 40%;
 }
 

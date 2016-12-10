@@ -94,7 +94,7 @@
 										
 										<tr>
 											<td style="padding: 40px 0 20px; text-align: center;">
-												Thank you for choosing Noodle Dishes. We believe you will be satisfied by our services.
+												Thank you for choosing Noodle Dishes. We hope you enjoy your meals.
 											</td>
 										</tr>
 										

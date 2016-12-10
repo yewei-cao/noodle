@@ -4,7 +4,7 @@
 <div class="footer-content">
 
 	<p class="footercall">
-		<span class="footercallbigger"><a href="tel:021 175 1199">021 175 1199 </a></span>
+		<span class="footercallbigger"><a href="tel:6 844 3588">844 3588</a></span>
 	</p>
 
 	<ul class="primary-footer-links">
@@ -17,12 +17,11 @@
     
     
     <ul>
-          <li><a href="http://dominospizza.co.nz/corporate/privacy-policy" target="_blank">Privacy Policy</a></li>
-          <li><a href="http://dominospizza.co.nz/corporate/terms-conditions" target="_blank">Website and Online Ordering Terms &amp; Conditions</a></li>
+          <li><a href="#" target="_blank">Privacy Policy</a></li>
+          <li><a href="#" target="_blank">Website and Online Ordering Terms &amp; Conditions</a></li>
     </ul>
     
-    
-    <p id="copyright" class="copyright">Copyright © Noodle Canteen Enterprises Ltd 2016.</p>
+    <p id="copyright" class="copyright">{{ trans('front_foot.copyright') }}</p>
 
 </div>
 

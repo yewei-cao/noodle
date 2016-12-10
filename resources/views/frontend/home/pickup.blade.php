@@ -3,23 +3,24 @@
 @section('css.style')
 <style type="text/css">
 
-
 </style>
 
 @endsection
 
 @section('jscript')
-
-
 <script type="text/javascript">
 
 </script>
-
 @endsection
 
 @section('content')
 
+
 <div id="detail-container">
+
+<button class="redbtn next btn-lg aspn" id="asap" type="button">
+{{ trans('front_home.asap') }}
+</button>
 
 {!! Form::open(['method'=>'GET','action'=>'Frontend\Home\Pickup\pickupController@details','id'=>'myform','data-toggle'=>'validator'])!!}
 	

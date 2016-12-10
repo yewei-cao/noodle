@@ -13,6 +13,11 @@
 
 @section('content')
 
+<div class="detail-container">
+	<div class="yellowbtn btn-lg longbutton text-center" >
+		{{ trans('front_home.ordertime') }}
+	</div>
+</div>
 
 <div id="ordertime-container">
 

@@ -1,7 +1,7 @@
 @extends('frontend.master')
 
 @section('content')
-<div id="detail-container">
+<div class="detail-container">
 
 	<form class="form-horizontal" role="form" method="POST" action="/auth/register" data-toggle="validator">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">

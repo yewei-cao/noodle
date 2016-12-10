@@ -33,7 +33,7 @@
 	                        
 	                        	<div class="col-md-12">
 	                        		<div class="add-to-basket">
-	                        			<button class="btn redbtn add-to-order" item-code="{{ $dish->number }}">Buy Now!</button> 
+	                        			<button class="btn redbtn add-to-order" item-code="{{ $dish->number }}">Add to Order</button> 
 	                        		</div>
 	                        	
 	                        	</div>

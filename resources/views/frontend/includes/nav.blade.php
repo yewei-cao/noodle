@@ -1,6 +1,6 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-red">
 		<div class= "container">
-				<div class="container-fluid">
+				<div class="container-redfluid">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 							<span class="sr-only">Toggle Navigation</span>
@@ -8,7 +8,9 @@
 							<span class="icon-bfar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="/">Noodle Canteen@Taradale</a>
+						<a class="navbar-redbrand" href="/">
+							<img alt="Noodle Canteen@Taradale" src="{{url()}}/images/home/home_nav.jpg" >
+						</a>
 					</div>
 		
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

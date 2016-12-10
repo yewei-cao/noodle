@@ -4,15 +4,19 @@
 
 <style>
 
-
 </style>
 
 @endsection
 
 @section('content')
 
+<div class="detail-container">
+	<div class="yellowbtn btn-lg longbutton text-center" >
+		{{ trans('front_home.delivery_text') }}
+	</div>
+</div>
 
-<div id="detail-container">
+<div class="detail-container">
 
 {!! Form::open(['method'=>'GET','action'=>['Frontend\Home\Delivery\deliveryController@delivery_details'],'id'=>'myform','data-toggle'=>'validator'])!!}
 

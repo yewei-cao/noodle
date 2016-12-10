@@ -8,7 +8,7 @@
 
 @section('content')
 
-<div id="detail-container">
+<div class="detail-container">
 
 {!! Form::open(['method'=>'GET','action'=>['Frontend\Home\Delivery\deliveryController@saveordertime'],'id'=>'myform','data-toggle'=>'validator'])!!}
 
