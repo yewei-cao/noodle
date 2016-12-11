@@ -31,16 +31,18 @@
 </div>
 
 <div class="form-group">
-
-	<ul class="pager wizard">
-	  	<li class="previous"><a href="{{ URL::previous() }}">{{ trans('front_home.previous') }}</a></li>
-	  	<li class="next">
-	  	<!--  <button type="submit" class="btn-link">Next</button>   -->
-		<!-- 	<a id="nextpage" href="{{ url('home/pickup/details') }}">{{ trans('front_home.next') }}</a> -->
-		
-		<button class="redbtn next" type="submit" >{{ trans('front_home.next') }}</button>
-		
-	  	</li>
-	</ul>
-   
-  </div>
+	<div class="detail-container ">
+		<button class="redbtn btn-lg longbutton text-center"  type="submit">
+				{{ trans('front_home.next') }}
+		</button>
+	</div>
+	
+	<div class="detail-container ">
+		<div class="previousbtn btn-lg longbutton text-center" >
+			<a href="{{ URL::previous() }}" >
+					{{ trans('front_home.previous') }}
+			</a>
+		</div>
+	</div>
+	
+</div>

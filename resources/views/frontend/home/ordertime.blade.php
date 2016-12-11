@@ -13,10 +13,8 @@
 
 @section('content')
 
-<div class="detail-container">
-	<div class="yellowbtn btn-lg longbutton text-center" >
-		{{ trans('front_home.ordertime') }}
-	</div>
+<div class="detail-container row-bordered text-center"> 
+	<h1 id="page_title">{{ trans('front_home.ordertime') }}</h1>
 </div>
 
 <div id="ordertime-container">
@@ -58,14 +56,20 @@
 
 <!-- Previous/Next buttons -->
 <div class="form-group">
-<!-- Previous/Next buttons -->
-  <ul class="pager wizard">
-  	<li class="previous"><a href="{{ URL::previous() }}">{{ trans('front_home.previous') }}</a></li>
-  	<li class="next">
+
+	<div class="detail-container ">
+		<button class="redbtn btn-lg longbutton text-center"  type="submit">
+				{{ trans('front_home.next') }}
+		</button>
+	</div>
 	
-	<button class="redbtn next" type="submit" >{{ trans('front_home.next') }}</button>
-  	</li>
-  </ul>
+	<div class="detail-container ">
+		<div class="previousbtn btn-lg longbutton text-center" >
+			<a href="{{ URL::previous() }}" >
+					{{ trans('front_home.previous') }}
+			</a>
+		</div>
+	</div>
    
   </div>
   

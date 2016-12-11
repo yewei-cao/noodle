@@ -55,6 +55,12 @@ color:white;
 .navbar-toggle:focus {
     outline: 0;
 }
+.row-bordered:after {
+  content: "";
+  display: block;
+  border-bottom: 1px solid #ccc;
+}
+/* end nav */
 .main-login {
     max-width: 320px;
     margin: 0 auto;
@@ -651,10 +657,26 @@ body .main-container {
     position: relative;
     border-radius: 15px;
 }
-.redbtn:hover,.next .redbtn:hover, .btn-next:hover{
+.previousbtn{
+	display: inline-block;
+    padding: 5px 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+}
+.previousbtn a{
+	display:block;
+	color: #333;
+	text-decoration: none;
+}
+.redbtn:hover,.next .redbtn:hover, .btn-next:hover, .yellowbtn:hover{
 	background-color: #b6132c;
     border-color: #ad122a;
     color: white;
+}
+.previousbtn:hover{
+	text-decoration: none;
+    background-color: #eee;
 }
 .no_dec:hover{
 	text-decoration:none;
@@ -1175,7 +1197,10 @@ float:left;
     margin: 20px auto 0;
     width: 100%;
 }
-
+.form-group > a:hover, .form-group  > a:focus {
+    text-decoration: none;
+    background-color: #eee;
+}
 #myservice-container .myservice .service-icon{
     margin: 0 auto 10px;
     display: block;

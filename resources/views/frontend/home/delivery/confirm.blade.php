@@ -8,6 +8,10 @@
 
 @section('content')
 
+<div class="detail-container row-bordered text-center"> 
+	<h1 id="page_title">{{ trans('front_home.delivery_confirm') }}</h1>
+</div>
+
 <div class="detail-container">
 
 {!! Form::open(['method'=>'GET','action'=>['Frontend\Home\Delivery\deliveryController@saveordertime'],'id'=>'myform','data-toggle'=>'validator'])!!}
@@ -17,17 +21,19 @@
 		<h4>{{ trans('front_home.address_confirm') }}</h4>
 		
 		<a class="no_dec"  href="{{ route('home.delivery.address')}}">
-		<div class=" aspn redbtn btn-lg">
-		{{ $address }}
-		</div>
+			<div class=" aspn redbtn btn-lg">
+			{{ $address }}
+			</div>
 		</a>
 		
 		<div class="form-group">
-		<!-- Previous/Next buttons -->
-		  <ul class="pager wizard">
-		  	<li class="previous"><a href="{{ url('home/delivery') }}">{{ trans('front_home.previous') }}</a></li>
-		  	
-		  </ul>
+			<div class="detail-container ">
+				<div class="previousbtn btn-lg longbutton text-center" >
+					<a href="{{ URL::previous() }}" >
+							{{ trans('front_home.previous') }}
+					</a>
+				</div>
+			</div>
 		</div>
 	
 		{!! Form::close() !!}

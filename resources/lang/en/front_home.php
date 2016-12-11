@@ -27,6 +27,7 @@ return [
 		'when_to_order'=>'WHEN WOULD YOU LIKE YOUR ORDER?',
 		'pickup'=>'Pick Up Details',
 		'delivery_text'=>'Delivery Details',
+		'delivery_confirm'=>'Delivery Confirm',
 		'ordertime'=>'Order Time',
 		'or'=>'OR',
 		'order_date'=>'ORDER DATE',

@@ -8,7 +8,9 @@
 
 @section('content')
 
-<div class="detail-container">
+<div class="detail-container ">
+	<h1 id="page_title">{{ trans('front_home.pickup') }}</h1>
+
 	<div class="yellowbtn btn-lg longbutton text-center" >
 		{{ trans('front_home.pickup') }}
 	</div>

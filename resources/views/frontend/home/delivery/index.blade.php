@@ -10,10 +10,8 @@
 
 @section('content')
 
-<div class="detail-container">
-	<div class="yellowbtn btn-lg longbutton text-center" >
-		{{ trans('front_home.delivery_text') }}
-	</div>
+<div class="detail-container row-bordered text-center"> 
+	<h1 id="page_title">{{ trans('front_home.delivery_text') }}</h1>
 </div>
 
 <div class="detail-container">
