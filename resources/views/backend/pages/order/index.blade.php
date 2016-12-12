@@ -347,16 +347,80 @@
 
 		if($('#printer').is(':checked')){
 			var dishes = "";
+			var paymentmethod="";
+			var payment= "";
 			
 			for(var i=0;i<data.dishes.length;i++){
-				dishes +='<p>' + data.dishes[i].pivot.amount +'* '+ data.dishes[i].name +'</p>';
+				dishes +='<p>' + data.dishes[i].pivot.amount +' X '+ data.dishes[i].number + ' '+ data.dishes[i].name +'</p>';
 				}
+
+			if(data.order.paymentmethod_id == 1){
+				paymentmethod = 'Cash';
+			}else if(data.order.paymentmethod_id == 2){
+				paymentmethod = 'POLI';
+			}else if(data.order.paymentmethod_id >= 3){
+				paymentmethod = 'Credit Card';
+			}
+
+			if(data.order.paymentflag == 1){
+				payment = 'unpaid';
+			}else if(data.order.paymentflag == 2){
+				payment = 'paid';
+			}else if(data.order.paymentflag >= 3){
+				payment = 'refunded';
+			}
 			
-		$('#pos_printer').append('<div class="order"><h2>'
-				+ data.order.id +'</h2><p>'
-				+ data.order.name +'</p><p>'
-				+ data.order.paymenttime +'</p>'
-				+ dishes
+		$('#pos_printer').append(
+				'<div class="order"> '
+				
+				+ ' <div class="order_head"> '
+				+ ' <h2>Your Order Numbers is</h2> '
+				+ ' <h2>' + data.order.id +'</h2> '
+				+ '<p> Welcome to Noodle Canteen Taradale </p>'
+				+ '<p> GST: </p>'
+				+ '<p> Ph: (06) 8459292 </p>'
+				+ '<p> TAX INVOICE </p>'
+				+ '</div>'
+				
+				+ '<div class="order_content"> '
+				+ ' <p>Order Details</p>'
+
+				+ '<table style="width: 100%;" cellpadding="0" cellspacing="0"> '
+				+ '<tr> '
+				+ '<td style="font-weight: 700;" width="80%">Name:</td> '
+				+ '<td style="font-weight: 700;">'+ data.order.name + '</td> '
+				+ '</tr> '
+				
+				+ '<tr> '
+				+ '<td style="font-weight: 700;" width="80%">Order Type:</td> '
+				+ '<td style="font-weight: 700;">'+ data.order.ordertype + '</td> '
+				+ '</tr> '
+
+				+ '<tr> '
+				+ '<td style="font-weight: 700;" width="80%">Order Payment:</td> '
+				+ '<td style="font-weight: 700;">'+ payment + '</td> '
+				+ '</tr> '
+
+				+ '<tr> '
+				+ '<td style="font-weight: 700;" width="80%">Pay by:</td> '
+				+ '<td style="font-weight: 700;">'+ paymentmethod + '</td> '
+				+ '</tr> '
+
+				+ '<tr> '
+				+ '<td style="font-weight: 700;" width="80%">Shipping Time:</td> '
+				+ '<td style="font-weight: 700;">'+ data.order.shiptime + '</td> '
+				+ '</tr> '
+				+ '</table> '
+
+				
+				
+				+ ' <p> Dishes Details:</p>'
+				+ 	dishes
+				+ '</div>'
+
+				+ ' <div class="order_footer"> '
+				+ '<p> Thank you for choosing Noodle Dishes. We believe you will be satisfied by our services. </p>'
+				+ '</div>'
 				+ ' </div>');
 
 // 		var print = $("#pos_printer").print();

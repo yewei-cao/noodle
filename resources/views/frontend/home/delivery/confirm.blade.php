@@ -27,7 +27,7 @@
 		</a>
 		
 		<div class="form-group">
-			<div class="detail-container ">
+			<div class="detail-container pager">
 				<div class="previousbtn btn-lg longbutton text-center" >
 					<a href="{{ URL::previous() }}" >
 							{{ trans('front_home.previous') }}

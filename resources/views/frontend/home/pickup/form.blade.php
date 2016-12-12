@@ -31,13 +31,13 @@
 </div>
 
 <div class="form-group">
-	<div class="detail-container ">
+	<div class="detail-container pager">
 		<button class="redbtn btn-lg longbutton text-center"  type="submit">
 				{{ trans('front_home.next') }}
 		</button>
 	</div>
 	
-	<div class="detail-container ">
+	<div class="detail-container pager">
 		<div class="previousbtn btn-lg longbutton text-center" >
 			<a href="{{ URL::previous() }}" >
 					{{ trans('front_home.previous') }}

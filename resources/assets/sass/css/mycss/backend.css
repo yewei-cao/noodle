@@ -504,10 +504,17 @@ div.dataTables_length select {
 .label-inverse, .badge-inverse {
     background-color: #333!important;
 }
+.order_head , .order_footer{
+	text-align: center;
+}
+.order_head:after, .order_content:after{
+    content: "";
+    display: block;
+    border-bottom: 1px solid #ccc;
+}
 
 @media(min-width:768px) {
-	
-	
+		
 }
 
 
