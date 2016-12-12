@@ -12,19 +12,29 @@
 	<h1 id="page_title">{{ trans('front_home.delivery_confirm') }}</h1>
 </div>
 
-<div class="detail-container">
-
 {!! Form::open(['method'=>'GET','action'=>['Frontend\Home\Delivery\deliveryController@saveordertime'],'id'=>'myform','data-toggle'=>'validator'])!!}
+
+<div class="detail-container">
 
 	<div class="starter text-center">
 		<h2>{{ trans('front_home.address_confirm_title') }} {{ $address }}</h2>
 		<h4>{{ trans('front_home.address_confirm') }}</h4>
 		
-		<a class="no_dec"  href="{{ route('home.delivery.address')}}">
-			<div class=" aspn redbtn btn-lg">
-			{{ $address }}
+		</div>
+		
+		</div>
+		
+		<div class="form-group">
+			<div class="detail-container pager">
+				<div class="aspn redbtn btn-lg" >
+					<a class="no_dec"  href="{{ route('home.delivery.address')}}" >
+							{{ $address }}
+					</a>
+				</div>
 			</div>
-		</a>
+		</div>
+		
+		
 		
 		<div class="form-group">
 			<div class="detail-container pager">
@@ -38,9 +48,8 @@
 	
 		{!! Form::close() !!}
 
-	</div>
+	
 
-</div>
 
 @endsection
 

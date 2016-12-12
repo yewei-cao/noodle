@@ -19,6 +19,7 @@ return [
 				'email'=>'Email',
 				'phone'=>'Phone',
 				'status'=>'Status',
+				'print'=>'print',
 				'payment'=>'Payment',
 				'total'=>'Total',
 				'paymentmethod'=>'Payment Method',

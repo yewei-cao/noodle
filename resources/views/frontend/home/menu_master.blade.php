@@ -91,7 +91,7 @@ margin:0;
               error: function(result) {
                   alert("Data not found");
               }
-		      });
+		 });
 	});
 
 	$(document).on("click", ".remove-to-order" , function() {

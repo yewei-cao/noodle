@@ -91,9 +91,9 @@
 							<th>{{ trans('backend_order.order.ordernumber') }}</th>				
 							<th>{{ trans('backend_order.order.name') }}</th>
 							<th>{{ trans('backend_order.order.status') }}</th>
+							<th>{{ trans('backend_order.order.print') }}</th>
 							<th>{{ trans('backend_order.order.payment') }}</th>
 							<th>{{ trans('backend_order.order.paymentmethod') }}</th>
-							
 							<th>{{ trans('backend_order.order.total') }}</th>
 							<th>{{ trans('backend_order.order.type') }}</th>
 							<th>{{ trans('backend_order.order.phone') }}</th>
@@ -113,6 +113,9 @@
 							<td><a href="/admin/order/show/{{ $order->ordernumber }}">{{ $order->ordernumber }}</a></td>
 							<td>{{ $order->name }}</td>
 							<td>{!! $order->status() !!}</td>
+							
+							<td><button class="btn glyphicon glyphicon-print" value="{{ $order->id }}" type="button"></button></td>
+							
 							<td>{{ $order->payment() }}</td>
 							<td>{{ $order->paymentmethod() }}</td>
 							<td>{{ $order->total }}</td>
@@ -150,21 +153,21 @@
 							@endforeach
 							
 							@if($order->address()->count())
-										<tr>
-										<td></td>
-										<td></td>
-										
-										<td><span class="label label-sm label-primary">Address:</span></td>
-										<td>
-										{{ $order->address->address }} 
-										</td>
-										<td>
-										{{ $order->address->suburb }} 
-										</td>
-										<td>
-										{{ $order->address->city }}
-										</td>
-										</tr>
+								<tr>
+								<td></td>
+								<td></td>
+								
+								<td><span class="label label-sm label-primary">Address:</span></td>
+								<td>
+								{{ $order->address->address }} 
+								</td>
+								<td>
+								{{ $order->address->suburb }} 
+								</td>
+								<td>
+								{{ $order->address->city }}
+								</td>
+								</tr>
 										
 							@endif
 						
@@ -343,96 +346,141 @@
 		}
 	});
 
+	function myprinter(data){
+		var dishes = "";
+		var paymentmethod="";
+		var payment= "";
+		var devery="";
+		
+		for(var i=0;i<data.dishes.length;i++){
+			//dishes +='<p>' + data.dishes[i].pivot.amount +' X '+ data.dishes[i].number + ' '+ data.dishes[i].name +'</p>';
+
+			dishes += '<tr> '
+				+ '<td style="font-weight: 700;" width="80%">' + data.dishes[i].pivot.amount +' X '+ data.dishes[i].number + ' '+ data.dishes[i].name +'</td> '
+				+ '<td style="font-weight: 700;">'+ data.dishes[i].pivot.total + '</td> '
+				+ '</tr> '
+		}
+
+		if(data.order.paymentmethod_id == 1){
+			paymentmethod = 'Cash';
+		}else if(data.order.paymentmethod_id == 2){
+			paymentmethod = 'POLI';
+		}else if(data.order.paymentmethod_id >= 3){
+			paymentmethod = 'Credit Card';
+		}
+
+		if(data.order.paymentflag == 1){
+			payment = 'unpaid';
+		}else if(data.order.paymentflag == 2){
+			payment = 'paid';
+		}else if(data.order.paymentflag >= 3){
+			payment = 'refunded';
+		}
+
+		if(data.order.ordertype =="delivery"){
+			devery = '<div class="order_content"> '
+			+ '<h3>Address：</h3> '
+			+ '<p class="text-right">' + data.address.address +' '+ data.address.suburb +' '+ data.address.city +'</p>'
+			+ '</div>'
+		}
+		
+	$('#pos_printer').append(
+			'<div class="order"> '
+			
+			+ ' <div class="order_head"> '
+			+ ' <h2>Your Order Numbers is</h2> '
+			+ ' <h2>' + data.order.id +'</h2> '
+			+ '<p> Welcome to Noodle Canteen Taradale </p>'
+			+ '<p> GST: </p>'
+			+ '<p> Ph: (06) 8443588 </p>'
+			+ '<p> TAX INVOICE </p>'
+			+ '</div>'
+			
+			+ '<div class="order_content"> '
+			+ ' <p>Order Details</p>'
+
+			+ '<table style="width: 100%;" cellpadding="0" cellspacing="0"> '
+			+ '<tr> '
+			+ '<td style="font-weight: 700;" width="80%">Name:</td> '
+			+ '<td style="font-weight: 700;">'+ data.order.name + '</td> '
+			+ '</tr> '
+			
+			+ '<tr> '
+			+ '<td style="font-weight: 700;" width="80%">Order Type:</td> '
+			+ '<td style="font-weight: 700;">'+ data.order.ordertype + '</td> '
+			+ '</tr> '
+
+			+ '<tr> '
+			+ '<td style="font-weight: 700;" width="80%">Order Payment:</td> '
+			+ '<td style="font-weight: 700;">'+ payment + '</td> '
+			+ '</tr> '
+
+			+ '<tr> '
+			+ '<td style="font-weight: 700;" width="80%">Pay by:</td> '
+			+ '<td style="font-weight: 700;">'+ paymentmethod + '</td> '
+			+ '</tr> '
+
+			+ '<tr> '
+			+ '<td style="font-weight: 700;" width="80%">Shipping Time:</td> '
+			+ '<td style="font-weight: 700;">'+ data.order.shiptime + '</td> '
+			+ '</tr> '
+			+ '</table> '
+
+			+ ' <p> Dishes Details:</p>'
+
+			+ '<table style="width: 100%;" cellpadding="0" cellspacing="0"> '
+			+ '<tr> '
+			+ '<td style="font-weight: 700;" width="80%">Dishes</td> '
+			+ '<td style="font-weight: 700;">Total</td> '
+			+ '</tr> '
+			+ 	dishes
+			
+			+ '</table> '
+			
+			+ '</div>'
+			
+
+			+ '<div class="order_content"> '
+			+ '<table style="width: 100%;" cellpadding="0" cellspacing="0"> '
+			+ '<tr> '
+			+ '<td style="border-top: 2px solid #333; border-bottom: 2px solid #333; font-weight: 700;" width="80%">Total amount :</td> '
+			+ '<td style="border-top: 2px solid #333; border-bottom: 2px solid #333; font-weight: 700;">'+ data.order.total +'</td> '
+			+ '</tr> '
+			+ '</table> '
+			+ '</div>'
+
+			
+
+			+ '<div class="order_content"> '
+			+ '<h3>Message：</h3> '
+			+ '<p class="text-right">' + data.order.message +' </p>'
+			+ '</div>'
+
+			+ devery
+
+			+ ' <div class="order_footer"> '
+			+ '<p> Thank you for choosing Noodle Dishes. We believe you will be satisfied by our services. </p>'
+			+ '</div>'
+			+ ' </div>');
+
+//		var print = $("#pos_printer").print();
+//		var print = $('#pos_printer').jqprint().toggle();
+
+	try {
+		$("#pos_printer").print();
+	}
+	catch(err) {
+	    //document.getElementById("demo").innerHTML = err.message;
+	    alert(err.message);
+	}
+	
+	}
+
 	socket.on('order_printer-channel:App\\Events\\OrderPrinter',function(data){
 
 		if($('#printer').is(':checked')){
-			var dishes = "";
-			var paymentmethod="";
-			var payment= "";
-			
-			for(var i=0;i<data.dishes.length;i++){
-				dishes +='<p>' + data.dishes[i].pivot.amount +' X '+ data.dishes[i].number + ' '+ data.dishes[i].name +'</p>';
-				}
 
-			if(data.order.paymentmethod_id == 1){
-				paymentmethod = 'Cash';
-			}else if(data.order.paymentmethod_id == 2){
-				paymentmethod = 'POLI';
-			}else if(data.order.paymentmethod_id >= 3){
-				paymentmethod = 'Credit Card';
-			}
-
-			if(data.order.paymentflag == 1){
-				payment = 'unpaid';
-			}else if(data.order.paymentflag == 2){
-				payment = 'paid';
-			}else if(data.order.paymentflag >= 3){
-				payment = 'refunded';
-			}
-			
-		$('#pos_printer').append(
-				'<div class="order"> '
-				
-				+ ' <div class="order_head"> '
-				+ ' <h2>Your Order Numbers is</h2> '
-				+ ' <h2>' + data.order.id +'</h2> '
-				+ '<p> Welcome to Noodle Canteen Taradale </p>'
-				+ '<p> GST: </p>'
-				+ '<p> Ph: (06) 8459292 </p>'
-				+ '<p> TAX INVOICE </p>'
-				+ '</div>'
-				
-				+ '<div class="order_content"> '
-				+ ' <p>Order Details</p>'
-
-				+ '<table style="width: 100%;" cellpadding="0" cellspacing="0"> '
-				+ '<tr> '
-				+ '<td style="font-weight: 700;" width="80%">Name:</td> '
-				+ '<td style="font-weight: 700;">'+ data.order.name + '</td> '
-				+ '</tr> '
-				
-				+ '<tr> '
-				+ '<td style="font-weight: 700;" width="80%">Order Type:</td> '
-				+ '<td style="font-weight: 700;">'+ data.order.ordertype + '</td> '
-				+ '</tr> '
-
-				+ '<tr> '
-				+ '<td style="font-weight: 700;" width="80%">Order Payment:</td> '
-				+ '<td style="font-weight: 700;">'+ payment + '</td> '
-				+ '</tr> '
-
-				+ '<tr> '
-				+ '<td style="font-weight: 700;" width="80%">Pay by:</td> '
-				+ '<td style="font-weight: 700;">'+ paymentmethod + '</td> '
-				+ '</tr> '
-
-				+ '<tr> '
-				+ '<td style="font-weight: 700;" width="80%">Shipping Time:</td> '
-				+ '<td style="font-weight: 700;">'+ data.order.shiptime + '</td> '
-				+ '</tr> '
-				+ '</table> '
-
-				
-				
-				+ ' <p> Dishes Details:</p>'
-				+ 	dishes
-				+ '</div>'
-
-				+ ' <div class="order_footer"> '
-				+ '<p> Thank you for choosing Noodle Dishes. We believe you will be satisfied by our services. </p>'
-				+ '</div>'
-				+ ' </div>');
-
-// 		var print = $("#pos_printer").print();
-// 		var print = $('#pos_printer').jqprint().toggle();
-
-		try {
-			$("#pos_printer").print();
-		}
-		catch(err) {
-		    //document.getElementById("demo").innerHTML = err.message;
-		    alert(err.message);
-		}
+			myprinter(data);
 
 		var pass = true;
 		if(pass)
@@ -464,6 +512,25 @@
 		$('#pos_printer').empty();
 
 		}
+	});
+
+	$('.glyphicon-print').click(function(){
+		 var code =$(this).attr("value");
+		 
+		 $.ajax({
+			  headers: {'X-CSRF-Token': "{{ csrf_token() }}"},
+		      url: '/admin/order/printreceipt',
+		      type: 'POST',
+		      data: {'id':code},
+		      success: function(data) {
+				 var result = data;
+				 myprinter(data);
+             },
+             error: function(result) {
+                 alert("Data not found");
+             }
+		 });
+		$('#pos_printer').empty();
 	});
 	
 	

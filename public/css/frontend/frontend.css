@@ -10400,6 +10400,10 @@ body .main-container {
   border-radius: 15px;
 }
 
+.redbtn a {
+  color: white;
+}
+
 .yellowbtn {
   color: white;
   background-color: #f78f1e;

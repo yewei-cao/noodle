@@ -55,12 +55,18 @@ class paymentcontroller extends Controller
 				'next'=>''
 		];
 		
+		$pickupmark =false;
+		if($request->session()->get('ordertype')=='pickup'){
+			$pickupmark = true;
+		}
+		
 		return view('frontend.home.payment.paymentmethod')
 		->withCart($this->cart)
 		->withTotalprice($this->totalprice)
 		->withTotalnumber($this->totalnumber)
 		->withOrderroute($order_route)
-		->withShop($this->shop);
+		->withShop($this->shop)
+		->withPickupmark($pickupmark);
 	}
 	
 	public function cash(Request $request){

@@ -42,17 +42,6 @@ class OrderController extends Controller
         ->withTab($tab);
     }
     
-    public function test()
-    {
-    	$orders = Orders::latest()->paginate($this->paginate);
-    	
-    	$tab='all';
-    	 
-    	return view('backend.pages.order.index')
-    	->withOrders($orders)
-    	->withTab($tab);
-    }
-    
     /*
      * 
      */
@@ -121,6 +110,22 @@ class OrderController extends Controller
     	$order = Orders::where('id',$request->input('orderid'))->first();
     	
     	return true;
+    }
+    
+    public function printreceipt(Request $request){
+    	$this->validate($request, [
+    			'id' => 'required|numeric',
+    	]);
+    	
+    	$order = Orders::where('id',$request->input('id'))->first();
+    	
+    	$result = [];
+    	$result['order'] = $order;
+    	$result['dishes'] = $order->dishes;
+    	if($order->address()->count()){
+    		$result['address'] = $order->address;
+    	}
+    	return $result;
     }
     
     /**

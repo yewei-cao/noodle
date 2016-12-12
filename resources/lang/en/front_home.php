@@ -50,7 +50,7 @@ return [
 		'type'=>['id'=>'ID','name'=>'Name','description'=>'Description','created'=>'Created','lastupdated'=>'Last Updated'],
 		
 		'payment_text'=>'Choose Payment method',
-		'paymentmethod'=>['cash'=>'CASH','credit'=>'CREDIT CARD','poli'=>'POLi'],
+		'paymentmethod'=>['cash'=>'CASH','payinstore'=>'Pay in Store','credit'=>'CREDIT CARD','poli'=>'POLi'],
 		
 		'selecttime'=>'SELECTED TIME',
 		'storedetail'=>'STORE DETAILS',

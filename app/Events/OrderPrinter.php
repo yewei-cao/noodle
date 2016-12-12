@@ -14,6 +14,7 @@ class OrderPrinter extends Event implements ShouldBroadcast
     
     public $order;
     public $dishes;
+    public $address;
 
     /**
      * Create a new event instance.
@@ -24,6 +25,10 @@ class OrderPrinter extends Event implements ShouldBroadcast
     {
         $this->order = $order;
         $this->dishes = $order->dishes;
+        
+        if($order->address()->count()){
+        	$this->address = $order->address;
+        }
     }
 
     /**

@@ -643,12 +643,15 @@ body .main-container {
     padding: 10px;
 }
 
-.redbtn {
+.redbtn{
     color: white;
     background-color: #e41837;
     border-color: #e41837;
     position: relative;
     border-radius: 15px;
+}
+.redbtn a{
+	color: white;
 }
 .yellowbtn {
     color: white;

@@ -33,15 +33,23 @@
 										</tr>
 										
 										<tr>
-											<td style="padding: 5px 0;">Amount Due: {{$order->total}}</td>
+											<td style="padding: 5px 0;">Amount Due: ${{$order->total}}</td>
 										</tr>
 										
 										<tr>
-											<td style="padding: 5px 0;">Due Date: {{$order->created_at}}</td>
+											<td style="padding: 5px 0;">Due Date: {{$order->paymenttime}}</td>
 										</tr>
 										
 										<tr>
-											<td style="padding: 5px 0;">Payment Method: {{$order->ordertype}}</td>
+											<td style="padding: 5px 0;">Order Type: {{$order->ordertype}}</td>
+										</tr>
+										
+										<tr>
+											<td style="padding: 5px 0;">Payment Type: {{$order->payment()}}</td>
+										</tr>
+										
+										<tr>
+											<td style="padding: 5px 0;">Payment Method: {{$order->paymentmethod()}}</td>
 										</tr>
 										
 										
@@ -90,6 +98,20 @@
 												{{ $order->message}}
 											</td>
 										</tr>
+										
+										@if($order->address()->count())
+											<tr>
+												<td>
+													Address
+												</td>
+											</tr>
+											
+											<tr>
+												<td>
+													{{ $order->address->adderss}} &nbsp; &nbsp;{{ $order->address->suburb}}&nbsp; &nbsp;{{ $order->address->city}}
+												</td>
+											</tr>
+										@endif
 										
 										
 										<tr>

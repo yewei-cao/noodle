@@ -12,6 +12,8 @@ $router->group(['prefix' => 'order','as'=>'admin.order.', 'namespace' => 'Order'
 	
 	Route::post('print','OrderController@printorder')->name('print');
 	
+	Route::post('printreceipt','OrderController@printreceipt')->name('printreceipt');
+	
 	Route::post('cook','OrderController@cook')->name('cook');
 	
 	Route::post('finish','OrderController@finish')->name('finish');

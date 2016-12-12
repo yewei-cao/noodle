@@ -12,11 +12,23 @@
 			
 			<ul class="horizon-list">
 			@if($shop->cash)
-			<li>
-			<a class="btn-yellow btn-primary btn-lg aspn" href="{{ route('home.payment.cash') }}"  type="button">
-			{{ trans('front_home.paymentmethod.cash') }}
-			</a>
-			</li>
+			
+				@if(!$pickupmark)
+					<li>
+					<a class="btn-yellow btn-primary btn-lg aspn" href="{{ route('home.payment.cash') }}"  type="button">
+					{{ trans('front_home.paymentmethod.cash') }}
+					</a>
+					</li>
+				@else
+				
+					<li>
+					<a class="btn-yellow btn-primary btn-lg aspn" href="{{ route('home.payment.cash') }}"  type="button">
+						{{ trans('front_home.paymentmethod.payinstore') }}
+					</a>
+					</li>
+				
+				@endif
+			
 			@endif
 			
 			@if($shop->poli)
