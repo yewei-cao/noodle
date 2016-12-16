@@ -7,6 +7,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Models\Order\Orders;
 use App\Models\Menu\Dishes;
+use Carbon\Carbon;
 
 class OrderPrinter extends Event implements ShouldBroadcast
 {
@@ -15,6 +16,7 @@ class OrderPrinter extends Event implements ShouldBroadcast
     public $order;
     public $dishes;
     public $address;
+    public $shiptime;
 
     /**
      * Create a new event instance.
@@ -23,6 +25,8 @@ class OrderPrinter extends Event implements ShouldBroadcast
      */
     public function __construct(Orders $order)
     {
+    	//change shiptime format: Thursday 02:15:16 PM
+    	$this->shiptime = $order->shiptimeformat();
         $this->order = $order;
         $this->dishes = $order->dishes;
         

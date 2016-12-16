@@ -5,6 +5,7 @@ namespace App\Models\Order;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Menu\Dishes;
 use App\Models\Access\User\Users;
+use Carbon\Carbon;
 
 class Orders extends Model
 {
@@ -24,6 +25,10 @@ class Orders extends Model
     
     public function users(){
     	 return $this->belongsToMany(Users::class);
+    }
+    
+    public function shiptimeformat(){
+    	return Carbon::parse($this->shiptime)->format('l h:i:s A');
     }
     
     public function status(){

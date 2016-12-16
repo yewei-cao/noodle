@@ -124,16 +124,43 @@ class paymentcontroller extends Controller
 	}
 	
 	public function poli(){
+		$json_builder = '{
+		  "LinkType":"0",
+		  "Amount":"1.2",
+		  "CurrencyCode":"NZD",
+		  "MerchantData":"CustomerRef12345",
+		  "MerchantReference":"CustomerRef12345",
+		  "ConfirmationEmail":"false",
+		  "AllowCustomerReference":"false",
+		  "ViaEmail":"false",
+		  "RecipientName":"false",
+		  "LinkExpiry":"2020-10-24 16:00:00+11",
+		  "RecipientEmail":"false"
+		}';
 		
-// 		if(!Auth::guest()){
-// 			dd($this->user);
-// 			// 			$this->user->attachorder($order);
-// 		}
+		$auth = base64_encode("SS64006197:lR8^D83sn7M6Z");
+		$header = array();
+		$header[] = 'Content-Type: application/json';
+		$header[] = 'Authorization: Basic '.$auth;
 		
-		return $this->user;
+		$ch = curl_init("https://poliapi.apac.paywithpoli.com/api/POLiLink/Create");
+		//See the cURL documentation for more information: http://curl.haxx.se/docs/sslcerts.html
+		//We recommend using this bundle: https://raw.githubusercontent.com/bagder/ca-bundle/master/ca-bundle.crt
+		curl_setopt( $ch, CURLOPT_CAINFO, "ca-bundle.crt");
+		curl_setopt( $ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, $header);
+		curl_setopt( $ch, CURLOPT_HEADER, 0);
+		curl_setopt( $ch, CURLOPT_POST, 1);
+		curl_setopt( $ch, CURLOPT_POSTFIELDS, $json_builder);
+		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 0);
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
+		$response = curl_exec( $ch );
+		curl_close ($ch);
 		
+		$json = json_decode($response, true);
 		
-		return "poli";
+		print_r($json);
+		
 	}
 	
 	/*

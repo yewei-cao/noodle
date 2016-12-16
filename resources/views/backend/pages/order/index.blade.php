@@ -422,7 +422,7 @@
 
 			+ '<tr> '
 			+ '<td style="font-weight: 700;" width="80%">Shipping Time:</td> '
-			+ '<td style="font-weight: 700;">'+ data.order.shiptime + '</td> '
+			+ '<td style="font-weight: 700;">'+ data.shiptime + '</td> '
 			+ '</tr> '
 			+ '</table> '
 
@@ -438,7 +438,6 @@
 			+ '</table> '
 			
 			+ '</div>'
-			
 
 			+ '<div class="order_content"> '
 			+ '<table style="width: 100%;" cellpadding="0" cellspacing="0"> '
@@ -448,8 +447,6 @@
 			+ '</tr> '
 			+ '</table> '
 			+ '</div>'
-
-			
 
 			+ '<div class="order_content"> '
 			+ '<h3>Message：</h3> '

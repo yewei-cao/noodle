@@ -10,6 +10,7 @@ use App\Models\Order\Orders;
 use App\Events\OrderPrinter;
 use App\Events\DashboardOrder;
 use App\Events\OrderReceipt;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -93,9 +94,9 @@ class OrderController extends Controller
     	$orders = Orders::where('status','<','2')->get();
 //     	return $orders;
     	foreach ($orders as $order){
+//     		$order['shiptime'] = $order;
     		event(new OrderPrinter($order));
     	}
-    	
     }
     
     /**
@@ -120,6 +121,9 @@ class OrderController extends Controller
     	$order = Orders::where('id',$request->input('id'))->first();
     	
     	$result = [];
+    	
+    	//change shiptime format: Thursday 02:15:16 PM
+    	$result['shiptime'] = $order->shiptimeformat();
     	$result['order'] = $order;
     	$result['dishes'] = $order->dishes;
     	if($order->address()->count()){

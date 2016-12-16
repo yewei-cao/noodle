@@ -38,7 +38,7 @@
 			</label>
             
         </div>
-        <button type="submit" class="btn btn redbtn">
+        <button type="submit" class="redbtn btn-lg longbutton text-center">
           Log In
         </button>
       </form>
