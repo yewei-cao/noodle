@@ -26,6 +26,8 @@ class CreateOrdersTable extends Migration
         	$table->string('email');
         	$table->string('phonenumber');
         	
+        	$table->string('token');
+        	
         	$table->boolean('paymentflag');
         	$table->integer('staff_id')->nullable();
         	$table->integer('paymentmethod_id')->nullable();

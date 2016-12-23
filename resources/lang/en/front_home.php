@@ -35,6 +35,8 @@ return [
 		'asap'=>'AS SOON AS POSSIBLE',
 		'currently_close'=>'This store is currently closed. Please select an order time below.',
 		'address_confirm_title'=>'Your address is ',
+		'address_deliveryfee'=>'This delivery will charge you',
+		'address_freedilivery'=>'But you can get a free delivery by order over $30 amount dishes',
 		'address_confirm'=>'Please click on the address below to continue with your order. You can also go back to change your contact or address details.',
 		
 		'quick_order'=>'Quick Order',
@@ -44,7 +46,7 @@ return [
 		'delivery_ext'=>'Have your order delivered directly to you',
 		
 		'pick_up'=>'Pick Up',
-		'pick_up_ext'=>'Pick up your order at a Noodle Canteen',
+		'pick_up_ext'=>'Pick up your order at a Noodle Canteen Taradale',
 
 		'type_list'=>'Type List',
 		'type'=>['id'=>'ID','name'=>'Name','description'=>'Description','created'=>'Created','lastupdated'=>'Last Updated'],

@@ -88,7 +88,6 @@
 </div>
 
 
-
 <div class="form-group">
 
 {!! Form::label('price',trans('menu_backend.menu_dish.price'),['class'=>'col-sm-3 control-label no-padding-right']) !!}

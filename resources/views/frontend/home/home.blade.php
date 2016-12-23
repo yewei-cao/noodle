@@ -1,7 +1,7 @@
 @extends('frontend.master')
 
 @section('title')
-	{!! $shop->title !!}
+	{!! $shop->title.trans('front_title.title') !!}
 @endsection
 
 @section('meta')

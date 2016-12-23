@@ -1,5 +1,9 @@
 @extends('frontend.home.menu_master')
 
+@section('title')
+{{ trans('front_title.paymentmethod').trans('front_title.title') }}
+@endsection
+
 @section('order-layout')
 
 <div class="order-layout-left" style="min-height: 588px;" >

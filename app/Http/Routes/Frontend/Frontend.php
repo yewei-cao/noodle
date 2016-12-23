@@ -93,7 +93,7 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 	});
 	
 	
-	$router->group(['prefix' => 'payment', 'as'=>'home.payment'],function () use ($router){
+	$router->group(['prefix' => 'payment', 'namespace' => 'Payment', 'as'=>'home.payment'],function () use ($router){
 
 		Route::get('paymentmethod','paymentcontroller@paymentmethod')->name('.paymentmethod');
 		
@@ -101,7 +101,11 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 
 		Route::get('credit','paymentcontroller@credit')->name('.credit');
 		
-		Route::get('poli','paymentcontroller@poli')->name('.poli');
+		Route::get('poli','poliController@poli')->name('.poli');
+		
+		Route::get('polisuccess','poliController@polisuccess')->name('.polisuccess');
+		
+		Route::post('polinudge','poliController@polinudge')->name('.polinudge');
 		
 		Route::post('placeorder','paymentcontroller@placeorder')->name('.placeorder');
 		

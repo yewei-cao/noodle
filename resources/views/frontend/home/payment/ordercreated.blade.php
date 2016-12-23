@@ -1,4 +1,9 @@
 @extends('frontend.master') @section('css.style')
+
+@section('title')
+{{ trans('front_title.ordercreated').trans('front_title.title') }}
+@endsection
+
 <link href="/css/ace.min.css" rel="stylesheet" type= "text/css" />
 
 <style type="text/css">

@@ -36,12 +36,17 @@ class ManageController extends Controller
     	
     	$this->validate($request, [
     			'title'=>'required',
+    			'address'=>'required',
+    			'phone'=>'required',
+    			'distancelevel1'=>'required',
+    			'distancelevel2'=>'required',
+    			'freedelivery'=>'required',
+    			'googleapi'=>'required',
     			'meta'=>'required',
     			'starttime' => 'required',
     			'closetime' => 'required',
     			'dayoff' => 'required',
     	]);
-    	
     	
     	if(empty($request->input('cash'))){
     		$data['cash']=0;

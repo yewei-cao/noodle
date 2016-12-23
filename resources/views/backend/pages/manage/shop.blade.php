@@ -29,6 +29,49 @@ Edit
 		</div>
 		
 		<div class="form-group">
+			{!! Form::label('address', trans('menu_backend.manage_edit.address'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				{!! Form::text('address', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'Address']) !!}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			{!! Form::label('phone', trans('menu_backend.manage_edit.phone'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				{!! Form::text('phone', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'Phone']) !!}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			{!! Form::label('distancelevel1',trans('menu_backend.manage_edit.level1'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				{!! Form::text('distancelevel1', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'$$$']) !!}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			{!! Form::label('distancelevel2',trans('menu_backend.manage_edit.level2'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				{!! Form::text('distancelevel2', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'$$$']) !!}
+			</div>
+		</div>
+		
+		
+		<div class="form-group">
+			{!! Form::label('freedelivery',trans('menu_backend.manage_edit.freedelivery'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				{!! Form::text('freedelivery', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'$$$']) !!}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			{!! Form::label('googleapi',trans('menu_backend.manage_edit.googleapi'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				{!! Form::text('googleapi', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'GOOGLE Map API']) !!}
+			</div>
+		</div>
+		
+		<div class="form-group">
 			{!! Form::label('meta', trans('menu_backend.manage_edit.meta'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
 			<div class="col-sm-9">
 				{!! Form::textarea('meta', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'Meta']) !!}

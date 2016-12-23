@@ -15,10 +15,15 @@ class CreateShopTable extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('address');
+            $table->string('phone');
+            $table->float('distancelevel1');
+            $table->float('distancelevel2');
+            $table->float('freedelivery');
             $table->string('meta');
-            $table->dish('cash');
-            $table->dish('credit');
-            $table->dish('poli');
+            $table->string('cash');
+            $table->string('credit');
+            $table->string('poli');
             $table->string('dayoff');
             $table->string('starttime');
             $table->string('closetime');

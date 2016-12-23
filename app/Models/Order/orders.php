@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 class Orders extends Model
 {
-    protected $fillable = ['ordernumber','total','totaldue','status','ordertype','name','email','phonenumber','paymentflag','staff_id','paymentmethod_id','paymenttime','shiptime','shipmethod','userip','comment','message'];
+    protected $fillable = ['ordernumber','total','totaldue','status','ordertype','name','email','phonenumber','token','paymentflag','staff_id','paymentmethod_id','paymenttime','shiptime','shipmethod','userip','comment','message'];
 	
     public function dishes(){
     	return $this->belongsToMany(Dishes::class)->withPivot('amount','total');

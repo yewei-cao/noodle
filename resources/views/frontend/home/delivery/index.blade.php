@@ -1,5 +1,9 @@
 @extends('frontend.primary')
 
+@section('title')
+{{ trans('front_title.deliverydetails').trans('front_title.title') }}
+@endsection
+
 @section('css.style')
 
 <style>

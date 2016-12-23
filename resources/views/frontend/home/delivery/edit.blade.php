@@ -1,5 +1,9 @@
 @extends('frontend.primary')
 
+@section('title')
+{{ trans('front_title.deliverydetails').trans('front_title.title') }}
+@endsection
+
 @section('content')
 
 <div class="detail-container row-bordered text-center"> 

@@ -4,7 +4,7 @@ $router->group(['prefix' => 'order','as'=>'admin.order.', 'namespace' => 'Order'
 {
 	
 	Route::get('/','OrderController@index')->name('index');
-	Route::get('test','OrderController@test')->name('test');
+// 	Route::get('test','OrderController@test')->name('test');
 	
 	Route::get('show/{id}', 'OrderController@show')->name('show');
 	

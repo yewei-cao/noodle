@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Shop\Shops;
 
 class deliveryController extends Controller
 {
+	public function __construct(){
+		$this->shop = Shops::first();
+	}
+	
     /**
      * Display a listing of the resource.
      *delivery_details
@@ -43,13 +48,29 @@ class deliveryController extends Controller
     
     }
     
+    /**
+     * 
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function confirm(Request $request){
     	if(!$request->session()->has('user_details')){
     		return redirect()->route('home.delivery.info');
     	}
+    	
     	$user_details = $request->session()->get('user_details');
     	$address =  $user_details['address'].' '.$user_details['suburb'].' '.$user_details['city'];
-    	return view('frontend.home.delivery.confirm')->withAddress($address);
+    	$deliveryfee = $this->diliveryfee($address);
+    	
+    	if($deliveryfee){
+    		return view('frontend.home.delivery.confirm')
+    		->withAddress($address)
+    		->withDeliveryfee($deliveryfee);
+    	}else{
+    		sweetalert_message()->n_overlay('Your address is over our delivery distance.','Invalid Address');
+    		return redirect()->route('home.delivery.info');
+    	}
+    	
     }
     
     public function address_confirm(Request $request){
@@ -67,6 +88,21 @@ class deliveryController extends Controller
     
     public function saveordertime(Request $request){
     	return 'saveordertime';
+    }
+    
+    public function diliveryfee($address){
+    	$origin= urlencode($this->shop->address);
+    	$destination= urlencode($address);
+    	$url = "https://maps.googleapis.com/maps/api/directions/json?origin=".$origin."&destination=".$destination."&key=".$this->shop->googleapi;
+    	$json = json_decode(file_get_contents($url), true);
+    	//distance less than 5km or 20km
+    	if($json['routes'][0]['legs'][0]['distance']['value']<3000){
+    		return $this->shop->distancelevel1;
+    	}elseif ($json['routes'][0]['legs'][0]['distance']['value']<10000){
+    		return $this->shop->distancelevel2;
+    	}else{
+    		return false;
+    	}
     }
 
 }
