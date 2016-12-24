@@ -155,8 +155,8 @@ class poliController extends Controller
 		$json = json_decode($response, true);
 // 		dd($json);
 		
-		if (array_key_exists("ErrorMessage",$json)){
-			return "The transaction token provided is corrupted.";
+		if ($json['ErrorMessage']!=''){
+			return $json['ErrorMessage'];
 		}
 		if($json['TransactionStatusCode']!='Completed'){
 			return "Transaction not completed.";
