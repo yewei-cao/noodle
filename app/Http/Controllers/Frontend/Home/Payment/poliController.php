@@ -123,8 +123,8 @@ class poliController extends Controller
 				->subject('Noodle Canteen Receipt');
 			});
 			
-				return view('frontend.home.payment.ordercreated')
-				->withOrder($order);
+			return view('frontend.home.payment.ordercreated')
+			->withOrder($order);
 		}
 		
 	}
@@ -133,7 +133,13 @@ class poliController extends Controller
 		$this->validate($request, [
 				'token'=>'required',
 		]);
-		getorder($request->get('token'));
+		$id = getorder($request->get('token'));
+		
+		if( intval( $id ) ){
+			$order = Orders::findOrFail($id);
+			$order->paymenttime = Carbon::now();
+			$order->save();
+		}
 	}
 	
 	public function getorder($token){
@@ -166,10 +172,12 @@ class poliController extends Controller
 			return "Token is not available.";
 		}
 		
-		
 		$order = Orders::where('token', $json['MerchantReferenceData'])->first();
-		$order->paymentflag = 2;
-		$order->save();
+		if($order->paymentflag == 1){
+			$order->paymentflag = 2;
+			$order->paymenttime = Carbon::now();
+			$order->save();
+		}
 		
 		return $order->id;
 	}

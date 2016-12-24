@@ -52,7 +52,7 @@
 			</div>
 			
 			<div class="row">
-				{!! Form::open(['method'=>'POST','action'=>'Frontend\Home\paymentcontroller@placeorder'])!!}
+				{!! Form::open(['method'=>'POST','action'=>'Frontend\Home\Payment\paymentcontroller@placeorder'])!!}
 	                
 	                {!! Form::label('message','Message:') !!}
 	                

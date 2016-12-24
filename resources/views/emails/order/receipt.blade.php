@@ -13,14 +13,13 @@
 																							
 							<tr>
 								<td style=" padding: 0px 40px 0px 40px; width: 80%; color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
-								
 									Dear {{ $order->name}}:
 								</td>
 							</tr>
 							
 							<tr>
 								<td style="padding: 0px 40px 0px 40px; color: #153643; font-family: Arial, sans-serif; font-size: 12px; line-height: 18px;">
-									<b>This is the receipt of your order at {{$order->created_at}}.</b>
+									<b>This is the receipt of your order at {{$order->createtime()}}</b>
 								</td>
 							</tr>
 							
@@ -36,12 +35,18 @@
 											<td style="padding: 5px 0;">Amount Due: ${{$order->total}}</td>
 										</tr>
 										
+										@if($order->paymentflag==2)
 										<tr>
-											<td style="padding: 5px 0;">Due Date: {{$order->paymenttime}}</td>
+											<td style="padding: 5px 0;">Due Time: {{$order->paymenttime()}}</td>
 										</tr>
+										@endif
 										
 										<tr>
 											<td style="padding: 5px 0;">Order Type: {{$order->ordertype}}</td>
+										</tr>
+										
+										<tr>
+											<td style="padding: 5px 0;">Pickup or Delivery Time: {{$order->shiptime()}}</td>
 										</tr>
 										
 										<tr>
@@ -108,7 +113,7 @@
 											
 											<tr>
 												<td>
-													{{ $order->address->adderss}} &nbsp; &nbsp;{{ $order->address->suburb}}&nbsp; &nbsp;{{ $order->address->city}}
+													{{ $order->address->address}} &nbsp; &nbsp;{{ $order->address->suburb}}&nbsp; &nbsp;{{ $order->address->city}}
 												</td>
 											</tr>
 										@endif
@@ -138,9 +143,11 @@
 								</tr>
 								
 								<tr>
-									<td style="text-align: center;">
-										269 Gloucester St, Taradale. Phone number:844 3588
-									</td>
+									<td style="text-align: center;">269 Gloucester St, Taradale.</td>
+								</tr>
+								
+								<tr>
+									<td style="text-align: center;">Phone number:844 3588</td>
 								</tr>
 								
 								<tr>

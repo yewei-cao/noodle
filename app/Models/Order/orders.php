@@ -27,6 +27,18 @@ class Orders extends Model
     	 return $this->belongsToMany(Users::class);
     }
     
+    public function createtime(){
+    	return Carbon::parse($this->created_at)->format('Y-m-d H:i');
+    }
+    
+    public function paymenttime(){
+    	return Carbon::parse($this->paymenttime)->format('Y-m-d H:i');
+    }
+    
+    public function shiptime(){
+    	return Carbon::parse($this->shiptime)->format('Y-m-d H:i');
+    }
+    
     public function shiptimeformat(){
     	return Carbon::parse($this->shiptime)->format('l h:i:s A');
     }
@@ -74,9 +86,12 @@ class Orders extends Model
     			return "Cash";
     			break;
     		case $this->paymentmethod_id ==2 :
+    			return "Poli";
+    			break;
+    		case $this->paymentmethod_id ==3 :
     			return "Creidt Card";
     			break;
-    		case $this->paymentmethod_id >=3 :
+    		case $this->paymentmethod_id >=4 :
     			return "Others";
     			break;
     		default :
