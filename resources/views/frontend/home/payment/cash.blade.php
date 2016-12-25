@@ -35,13 +35,12 @@
 				<h4 class="red_text">{{ trans('front_home.selecttime') }}</h3>
 				<p>{{ $time }}</p>
 				
-				
 				<h4 class="red_text">{{ trans('front_home.storedetail') }}</h3>
 				 <div class="basket_row">
 					<div id="selected-service-method">
 		   				<div>Taradale Store</div>
 		    			<div>06 844 3588</div>
-		   				<div>Shop 8 &amp; 269 Gloucester Street </div>
+		   				<div>269 Gloucester Street </div>
 		   				<div>Taradale</div>
 		    			<div>Napier, NZ</div>    
 					</div>        

@@ -105,6 +105,10 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 		
 		Route::get('polisuccess','poliController@polisuccess')->name('.polisuccess');
 		
+		Route::get('polifail','poliController@polifail')->name('.polifail');
+		
+		Route::get('policancel','poliController@policancel')->name('.policancel');
+		
 		Route::post('polinudge','poliController@polinudge')->name('.polinudge');
 		
 		Route::post('placeorder','paymentcontroller@placeorder')->name('.placeorder');

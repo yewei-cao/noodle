@@ -12,7 +12,7 @@
 
 @section('content')
 
-<div class="detail-container">
+<div class="detail-container row-bordered text-center"> 
 	<h1 id="page_title">{{ trans('front_home.pickup') }}</h1>
 </div>
 

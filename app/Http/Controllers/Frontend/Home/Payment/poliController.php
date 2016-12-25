@@ -98,6 +98,17 @@ class poliController extends Controller
 	}
 	
 	
+	public function polifail(Request $request){
+		sweetalert_message()->n_overlay(' You can place another order','Payment Fail');
+		return redirect()->route('home');
+	}
+	
+	public function policancel(Request $request){
+		sweetalert_message()->n_overlay(' You can place another order','Payment Cancel');
+		return redirect()->route('home');
+	}
+	
+	
 	public function polisuccess(Request $request){
 		$this->validate($request, [
 				'token'=>'required',
@@ -106,7 +117,7 @@ class poliController extends Controller
 		$id = $this->getorder($request->get('token'));
 		
 		if( !intval( $id ) ){
-			sweetalert_message()->n_overlay($id.' You can place an other order','Payment Fail');
+			sweetalert_message()->n_overlay($id.' You can place another order','Payment Fail');
 			return redirect()->route('home');
 		}
 		
@@ -124,7 +135,8 @@ class poliController extends Controller
 			});
 			
 			return view('frontend.home.payment.ordercreated')
-			->withOrder($order);
+			->withOrder($order)
+			->withShop($this->shop);
 		}
 		
 	}
@@ -182,6 +194,7 @@ class poliController extends Controller
 		return $order->id;
 	}
 	
+	
 	/**
 	 *
 	 * @param unknown $order
@@ -194,8 +207,8 @@ class poliController extends Controller
 		  "MerchantReference":"'.$order->ordernumber.'",
 		  "MerchantHomepageURL":"'.route('home').'",
 		  "SuccessURL":"'.route('home.payment.polisuccess').'",
-		  "FailureURL":"https://www.mycompany.com/Failure",
-		  "CancellationURL":"https://www.mycompany.com/Cancelled",
+		  "FailureURL":"'.route('home.payment.polifail').'",
+		  "CancellationURL":"'.route('home.payment.policancel').'",
 		  "NotificationURL":"'.route('home.payment.polinudge').'"
 		}';
 	

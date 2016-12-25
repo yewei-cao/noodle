@@ -124,10 +124,6 @@ class paymentcontroller extends Controller
 	}
 	
 	
-	
-	
-	
-	
 	/*
 	 * 
 	 */
@@ -233,8 +229,8 @@ class paymentcontroller extends Controller
 		});
 		
 		return view('frontend.home.payment.ordercreated')
-		->withOrder($order);
-		
+		->withOrder($order)
+		->withShop($this->shop);
 	}
 	
 	/* get the display time to user */
