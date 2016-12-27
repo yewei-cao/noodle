@@ -143,9 +143,15 @@ class poliController extends Controller
 	
 	public function polinudge(Request $request){
 		$this->validate($request, [
-				'token'=>'required',
+				'Token'=>'required',
 		]);
-		$id = getorder($request->get('token'));
+		$token = $request->input('Token');
+		
+		if(is_null($token)) {
+			$token = $request->get('Token');
+		}
+		
+		$id = getorder($token);
 		
 		if( intval( $id ) ){
 			$order = Orders::findOrFail($id);
