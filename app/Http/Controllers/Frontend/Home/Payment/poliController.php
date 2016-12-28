@@ -151,11 +151,11 @@ class poliController extends Controller
 			$token = $request->get('Token');
 		}
 		
-		$id = getorder($token);
-		
+		$id = $this->getorder($token);
+
 		if( intval( $id ) ){
 			$order = Orders::findOrFail($id);
-			$order->paymenttime = Carbon::now();
+			$order->message = $order->message." token:".$token;
 			$order->save();
 		}
 	}
