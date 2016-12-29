@@ -11,10 +11,16 @@ use App\Events\OrderPrinter;
 use App\Events\DashboardOrder;
 use App\Events\OrderReceipt;
 use Carbon\Carbon;
+use Mapper;
+use App\Models\Shop\Shops;
 
 class OrderController extends Controller
 {
 	protected $paginate = 10;
+	
+	public function __construct(){
+		$this->shop = Shops::firstOrFail();
+	}
     /**
      * Display a listing of the resource.
      *
@@ -261,9 +267,20 @@ class OrderController extends Controller
 //         return $order;
 
 //     	return $order->address()->count();
-        
+
+    	if($order->address()->count()){
+    		$origin= urlencode($this->shop->address);
+    		 
+    		$destination= urlencode($order->address->address." ".$order->address->suburb." ".$order->address->city);
+    		$url = "https://maps.googleapis.com/maps/api/directions/json?origin=".$origin."&destination=".$destination."&key=".$this->shop->googleapi;
+    		$json = json_decode(file_get_contents($url), true);
+    		 
+    		Mapper::map($json['routes'][0]['legs'][0]['end_location']['lat'],$json['routes'][0]['legs'][0]['end_location']['lng'],['zoom' => 16]);
+    	}
+    	
         return view('backend.pages.order.showorder')
-        ->withOrder($order);
+        ->withOrder($order)
+        ->withShop($this->shop);
     }
 
     /**

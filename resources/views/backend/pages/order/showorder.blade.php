@@ -40,7 +40,7 @@
 
 							<div>
 								<ul class="list-unstyled spaced">
-									<li> <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Shop 8 &amp; 269 Gloucester Street Taradale</li>
+									<li> <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>{{$shop->address}}</li>
 
 									<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>Zip Code 4112</li>
 
@@ -51,8 +51,7 @@
 
 									<li class="divider"></li>
 
-									<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Paymant
-										Info</li>
+									<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Paymant	Info</li>
 								</ul>
 							</div>
 						</div>
@@ -73,9 +72,7 @@
 									<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>Phone: {{ $order->phonenumber }}</li>
 
 									<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>Email: {{ $order->email }}</li>
-									
-									<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>IP: {{ $order->userip }}</li>
-									
+
 									@if($order->address()->count())
 										<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>Address: {{ $order->address->address }}</li>
 										
@@ -94,7 +91,19 @@
 					</div>
 					<!-- /.row -->
 
-					<div class="space"></div>
+					
+					<div class="widget-title ">
+						<h2 class="text-center row-bordered">Payment Detail</h2>
+						
+						@if($order->paymentflag==2)
+							<p>Due Time: {{$order->paymenttime()}}</p>
+						@endif
+						<p>Order Type: {{$order->ordertype}}</p>
+						<p>Pickup or Delivery Time: {{$order->shiptime()}}</p>
+						<p>Payment Type: {{$order->payment()}}</p>
+						<p>Payment Method: {{$order->paymentmethod()}}</p>
+					</div>
+					
 
 					<div>
 						<table class="table table-striped table-bordered">
@@ -146,10 +155,11 @@
 					<div class="well">{{ $order->message}}</div>
 					</div>
 					
-					<div class="row border_bottom">
-					<div class="pull-left ">Thank you for choosing Noodle Dishes. We believe you will be satisfied by our services.</div>
+					<div class="row">
+						<div class="googlemap">
+							{!! Mapper::render() !!}
+						</div>
 					</div>
-										
 					
 				</div>
 			</div>
@@ -158,6 +168,8 @@
 </div>
 
 </div>
+
+
 
 @endsection
 

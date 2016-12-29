@@ -159,6 +159,7 @@ return [
     	HieuLe\Active\ActiveServiceProvider::class,
 //     	Barryvdh\Debugbar\ServiceProvider::class,
     	Laravel\Cashier\CashierServiceProvider::class,
+    	Cornford\Googlmapper\MapperServiceProvider::class,
 
     ],
 
@@ -214,6 +215,7 @@ return [
     	'Image' => Intervention\Image\Facades\Image::class,
     	'Active'    => HieuLe\Active\Facades\Active::class,
     	'Cart'      => App\Repositories\ShoppingCart\ShoppingCartFacade::class,
+    	'Mapper'         => Cornford\Googlmapper\Facades\MapperFacade::class,
 //     	'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],

@@ -13,7 +13,7 @@
         "intervention/image": "^2.3",
         "predis/predis": "^1.0",
         "laravel/cashier": "^5.0",
-        "stripe/stripe-php": "^3.17"
+        "cornford/googlmapper": "2.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
