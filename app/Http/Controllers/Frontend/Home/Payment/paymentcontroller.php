@@ -60,13 +60,16 @@ class paymentcontroller extends Controller
 			$pickupmark = true;
 		}
 		
+		$deliveryfee = $this->deliveryfee($request);
+		
 		return view('frontend.home.payment.paymentmethod')
 		->withCart($this->cart)
-		->withTotalprice($this->totalprice)
+		->withTotalprice($this->totalprice+$deliveryfee)
 		->withTotalnumber($this->totalnumber)
 		->withOrderroute($order_route)
 		->withShop($this->shop)
-		->withPickupmark($pickupmark);
+		->withPickupmark($pickupmark)
+		->withDeliveryfee($deliveryfee);
 	}
 	
 	public function cash(Request $request){
@@ -83,12 +86,15 @@ class paymentcontroller extends Controller
 					'next'=>''
 			];
 			
+			$deliveryfee = $this->deliveryfee($request);
+			
 			$ip = $request->ip();
 			return view('frontend.home.payment.cash',compact('time','ip'))
 			->withCart($this->cart)
-			->withTotalprice($this->totalprice)
+			->withTotalprice($this->totalprice+$deliveryfee)
 			->withTotalnumber($this->totalnumber)
-			->withOrderroute($order_route);
+			->withOrderroute($order_route)
+			->withDeliveryfee($deliveryfee);
 		}else{
 			
 			return redirect()->route('home.payment.paymentmethod');
@@ -170,10 +176,15 @@ class paymentcontroller extends Controller
 		}
 		
 		$paymentflat = 1;
+		
+		$deliveryfee= 0;
+		if($request->session()->get('ordertype')=='delivery'){
+			$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
+		}
 		$data = [
 				'ordernumber'=> date('Ymd') .random_int(100000, 999999),
-				'total'=>$this->totalprice,
-				'totaldue'=>$this->totalprice,
+				'total'=>$this->totalprice, 
+				'totaldue'=>$this->totalprice+$deliveryfee,
 				'status'=>'1',
 				'ordertype'=>$request->session()->get('ordertype'),
 				'name'=>$request->session()->get('user_details')['name'],
@@ -202,7 +213,8 @@ class paymentcontroller extends Controller
 			$address = new Address([	
 						'address'=>$request->session()->get('user_details')['address'],
 						'suburb'=>$request->session()->get('user_details')['suburb'],
-						'city'=>$request->session()->get('user_details')['city']
+						'city'=>$request->session()->get('user_details')['city'],
+						'fee'=>$deliveryfee
 					]);
 			
 // 			$address = Address::create($user_address);
@@ -240,6 +252,17 @@ class paymentcontroller extends Controller
 			return $dt->format('h:i A l jS F Y');
 		}
 		return $timestamp;
-	} 
+	}
+	
+	protected function deliveryfee(Request $request){
+    	$deliveryfee = 0;
+    	if($request->session()->get('ordertype')=='pickup'){
+    		return $deliveryfee;
+    	}
+    	if(!empty($request->session()->get('user_details')['deliveryfee'])){
+    		$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
+    	}
+    	return $deliveryfee;
+    }
 	
 }

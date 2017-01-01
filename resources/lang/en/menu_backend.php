@@ -45,6 +45,7 @@ return [
 				'level2'=>'10km Distance charge',
 				'freedelivery'=>'Free Dilivery Amount',
 				'googleapi'=>'Google Map API',
+				'poliapi'=>'POLi API',
 				'phone'=>'Phone',
 				'meta'=>'Meta',
 				'starttime'=>'Start Time',

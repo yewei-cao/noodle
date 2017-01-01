@@ -47,6 +47,13 @@
 			            @endforeach	
 					   
 					   </div> 
+					   
+					    @if(!empty($deliveryfee))
+							<div class="row deliveryfee-container">
+								<span class="deliveryfee">Delivery Fee</span>
+							    <span class="price at-product-price">${{ $deliveryfee }}</span>
+							</div>
+						@endif
 					    
 						<div class="row total-container">
 						    <span class="total">Total</span>

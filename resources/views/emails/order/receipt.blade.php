@@ -57,6 +57,13 @@
 											<td style="padding: 5px 0;">Payment Method: {{$order->paymentmethod()}}</td>
 										</tr>
 										
+										@if($order->address()->count())
+										
+										<tr>
+											<td style="padding: 5px 0; color: #dd5a43; ">Delivery Fee: ${{$order->address->fee}}</td>
+										</tr>
+										@endif
+										
 										
 										<tr>
 											<td style="padding: 5px 0;">
@@ -86,7 +93,7 @@
 												<table style="width: 100%;" cellpadding="0" cellspacing="0">
 													<tr>
 														<td style="border-top: 2px solid #333; border-bottom: 2px solid #333; font-weight: 700;" width="80%">Total amount :</td>
-														<td style="border-top: 2px solid #333; border-bottom: 2px solid #333; font-weight: 700;">${{ $order->total }}</td>
+														<td style="border-top: 2px solid #333; border-bottom: 2px solid #333; font-weight: 700;">${{ $order->totaldue }}</td>
 													</tr>
 												</table>
 											</td>

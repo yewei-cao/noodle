@@ -20,15 +20,29 @@ class CreateShopTable extends Migration
             $table->float('distancelevel1');
             $table->float('distancelevel2');
             $table->float('freedelivery');
+            $table->string('googleapi');
             $table->string('meta');
-            $table->string('cash');
-            $table->string('credit');
-            $table->string('poli');
+            $table->boolean('cash');
+            $table->boolean('credit');
+            $table->boolean('poli');
+            $table->string('poliapi')->nullable();
             $table->string('dayoff');
             $table->string('starttime');
             $table->string('closetime');
             $table->timestamp('created_at')->nullable();
 			$table->timestamp('updated_at')->nullable();
+        });
+        
+        Schema::create('addresses', function (Blueprint $table) {
+        	$table->increments('id');
+        	$table->integer('orders_id')->unsigned();
+        	$table->string('address');
+        	$table->string('suburb');
+        	$table->string('city');
+        	$table->float('fee');
+        	$table->timestamp('created_at')->nullable();
+        	$table->timestamp('updated_at')->nullable();
+        	$table->foreign('orders_id')->references('id')->on('orders')->onDelete('cascade');
         });
         
         Schema::create('blacklists', function (Blueprint $table) {
@@ -49,6 +63,7 @@ class CreateShopTable extends Migration
     public function down()
     {
         	Schema::drop('shops');
+        	Schema::drop('addresses');
         	Schema::drop('blacklists');
     }
 }

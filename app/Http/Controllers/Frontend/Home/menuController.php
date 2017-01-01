@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Menu\Dishes;
 use App\Models\Menu\Catalogue;
 use Cart;
+use App\Models\Shop\Shops;
 
 class menuController extends Controller
 {
@@ -17,6 +18,7 @@ class menuController extends Controller
 	 */
 	public function __construct(){
 		$this->middleware('ordertypeMiddleware');
+		$this->shop = Shops::first();
 	}
 	
     /**
@@ -45,10 +47,14 @@ class menuController extends Controller
     	
     	$catalogues = Catalogue::orderBy('ranking', 'asc')->get();
     	$cart = Cart::all();
-    	$totalprice = Cart::total();
+    	
+    	$deliveryfee = $this->deliveryfee($request);
+    	
+    	$totalprice = Cart::total() + $deliveryfee;
     	$totalnumber = Cart::count();
     	return view('frontend.home.menu_content',compact('catalogues','cart','totalprice','totalnumber'))
-    	->withOrderroute($order_route);
+    	->withOrderroute($order_route)
+    	->withDeliveryfee($deliveryfee);
     }
     
     public function appmenu(){
@@ -70,8 +76,8 @@ class menuController extends Controller
 //     	return $request->input('id');
 //     	return Cart::all()."Total:".Cart::total();
 
-    	$cart = Cart::alldetails();
-    	return $cart;
+    	return $this->shoppingcart($request);
+    	 
     	
     }
     
@@ -82,74 +88,40 @@ class menuController extends Controller
     	
     	Cart::remove($request->input('id'));
     	
-    	$cart = Cart::alldetails();
-    	return $cart;
+    	return $this->shoppingcart($request);
     	
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    
+    
+    protected function shoppingcart(Request $request){
+    	$cart = Cart::alldetails();
+    	if($cart['total'] >= 30)
+    	{
+    		$user_details = $request->session()->get('user_details');
+    		//storing the delivery to a constant session 
+    		$user_details['deliveryfee'] = 0;
+    		$request->session()->put('user_details', $user_details);
+    	}else {
+    		$user_details = $request->session()->get('user_details');
+    		$user_details['deliveryfee'] = $request->session()->get('userdelvieryfee');
+    		$request->session()->put('user_details', $user_details);
+    		
+    		$request->session()->get('userdelvieryfee');
+    	}
+    	$cart['deliveryfee'] = $this->deliveryfee($request);
+    	return $cart;
+    }
+    
+    protected function deliveryfee(Request $request){
+    	$deliveryfee = 0;
+    	if($request->session()->get('ordertype')=='pickup'){
+    		return $deliveryfee;
+    	}
+    	if(!empty($request->session()->get('user_details')['deliveryfee'])){
+    		$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
+    	}
+    	return $deliveryfee;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

@@ -25,9 +25,7 @@ class CreateOrdersTable extends Migration
         	$table->string('name');
         	$table->string('email');
         	$table->string('phonenumber');
-        	
         	$table->string('token');
-        	
         	$table->boolean('paymentflag');
         	$table->integer('staff_id')->nullable();
         	$table->integer('paymentmethod_id')->nullable();
@@ -37,7 +35,9 @@ class CreateOrdersTable extends Migration
         	$table->char('useraddress_id', 50);
         	$table->text('comment')->nullable();
         	$table->text('message')->nullable();
-        	$table->timestamps();
+        	$table->timestamp('created_at')->nullable();
+			$table->timestamp('updated_at')->nullable();
+        	
         });
         
         Schema::create('dishes_orders', function (Blueprint $table) {

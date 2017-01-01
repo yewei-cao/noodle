@@ -62,7 +62,15 @@ class deliveryController extends Controller
     	$address =  $user_details['address'].' '.$user_details['suburb'].' '.$user_details['city'];
     	$deliveryfee = $this->diliveryfee($address);
     	
-    	if($deliveryfee){
+    	$user_details += [
+    			'deliveryfee' => $deliveryfee
+    	];
+    	
+    	$request->session()->put('user_details', $user_details);
+    	$request->session()->put('userdelvieryfee', $deliveryfee);
+    	
+    	if($deliveryfee && $request->session()->has('user_details')){
+    		
     		return view('frontend.home.delivery.confirm')
     		->withAddress($address)
     		->withDeliveryfee($deliveryfee);

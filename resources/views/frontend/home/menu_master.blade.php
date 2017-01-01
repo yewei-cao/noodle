@@ -124,7 +124,7 @@ margin:0;
 		 else{
 			 $(".empty-order").hide();
 			  for(var i in result){
-				  if(i != "total"){
+				  if(i != "total"&& i != 'deliveryfee'){
 				  totalqty+=result[i]['qty'];
 				  html += '<div class=\"basket-product product\"> '
 		                
@@ -144,7 +144,13 @@ margin:0;
 			  }
 			  }
 		 }
-		  $('.total-amount').text('$'+result['total']);
+		 if(result['deliveryfee'] == 0){
+			 $(".deliveryfee-container").hide();
+		 }else{
+			 $(".deliveryfee-container").show();
+		}
+		 var total = result['total'] +result['deliveryfee'];
+		  $('.total-amount').text('$'+total);
 		  $('.number-of-items').text(totalqty);
 		  $(".basket_order").html(html);
 	}

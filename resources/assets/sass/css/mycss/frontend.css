@@ -614,7 +614,7 @@ body .main-container {
     color: gray;
 }
 
-.basket .basket-body .total-container, .basket-footer .message-container{
+.basket .basket-body .total-container,.basket .basket-body .deliveryfee-container, .basket-footer .message-container{
     font-weight: bold;
     font-size: 1.3em;
     color: #333;
@@ -798,8 +798,18 @@ body .main-container {
     padding: 7px 0 10px 0;
     border-bottom: 1px dotted #a6a6a6;
 }
-
- .basket-body .product .row .description {
+ .basket-body .row .deliveryfee {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 1.2em;
+    letter-spacing: .05em;
+    line-height: 1.3;
+    color: #000;
+}
+ .basket-body .row .description {
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -821,7 +831,7 @@ body .main-container {
     color: #000;
 }
 
-.basket .basket-body .product .row .price {
+.basket .basket-body .row .price {
     float: right;
     font-weight: bold;
 }

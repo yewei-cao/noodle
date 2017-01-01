@@ -109,6 +109,13 @@ Edit
 		</div>
 		
 		<div class="form-group">
+			{!! Form::label('poliapi',trans('menu_backend.manage_edit.poliapi'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				{!! Form::text('poliapi', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'POLi API']) !!}
+			</div>
+		</div>
+		
+		<div class="form-group">
 			{!! Form::label('starttime', trans('menu_backend.manage_edit.starttime'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
 			<div class="col-sm-9">
 				{!! Form::text('starttime', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'Start Time']) !!}

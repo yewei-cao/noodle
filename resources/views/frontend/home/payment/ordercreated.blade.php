@@ -113,6 +113,9 @@ margin:0;
 						<p>Pickup or Delivery Time: {{$order->shiptime()}}</p>
 						<p>Payment Type: {{$order->payment()}}</p>
 						<p>Payment Method: {{$order->paymentmethod()}}</p>
+						@if($order->address()->count())
+							<p class="red_span">Delivery Fee: ${{$order->address->fee}}</p>
+						@endif
 					</div>
 					
 
@@ -152,7 +155,7 @@ margin:0;
 					<div class="row">
 						<div class="col-sm-5 pull-right">
 							<h4 class="pull-right">
-								Total amount : <span class="red_span">${{ $order->total }}</span>
+								Total amount : <span class="red_span">${{ $order->totaldue }}</span>
 							</h4>
 						</div>
 					</div>

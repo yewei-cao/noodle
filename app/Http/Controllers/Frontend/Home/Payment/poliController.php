@@ -45,10 +45,16 @@ class poliController extends Controller
 		}
 			
 		$paymentflat = 1;
+		
+		$deliveryfee= 0;
+		if($request->session()->get('ordertype')=='delivery'){
+			$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
+		}
+		
 		$data = [
 				'ordernumber'=> date('Ymd') .random_int(100000, 999999),
 				'total'=>$this->totalprice,
-				'totaldue'=>$this->totalprice,
+				'totaldue'=>$this->totalprice+$deliveryfee,
 				'status'=>'1',
 				'ordertype'=>$request->session()->get('ordertype'),
 				'name'=>$request->session()->get('user_details')['name'],
@@ -78,7 +84,8 @@ class poliController extends Controller
 			$address = new Address([
 					'address'=>$request->session()->get('user_details')['address'],
 					'suburb'=>$request->session()->get('user_details')['suburb'],
-					'city'=>$request->session()->get('user_details')['city']
+					'city'=>$request->session()->get('user_details')['city'],
+					'fee'=>$deliveryfee
 			]);
 				
 			// 			$address = Address::create($user_address);
@@ -207,7 +214,7 @@ class poliController extends Controller
 	 */
 	public function politransaction($order){
 		$data = '{
-		  "Amount":"'.$order->total.'",
+		  "Amount":"'.$order->totaldue.'",
 		  "CurrencyCode":"NZD",
 		  "MerchantData":"'.$order->token.'",
 		  "MerchantReference":"'.$order->ordernumber.'",
