@@ -201,7 +201,7 @@
 
 
 @section('backend.scripts.footer')
-<script src="/js/socket/socket.io.min.js"></script>
+<!-- <script src="/js/socket/socket.io.min.js"></script> -->
 <script src="/js/printer/jquery.print.js"></script>
 <script src="/js/printer/jquery-migrate-1.1.0.js"></script>
 <script src="/js/printer/jquery.jqprint-0.3.js"></script>
@@ -212,7 +212,7 @@
 	$('.{{ $tab }}').removeClass('btn-default');
 	$('.{{ $tab }}').addClass('btn-primary');
 
-	var socket = io.connect('{{$_SERVER['SERVER_ADDR']}}:3000');
+// 	var socket = io.connect('{{$_SERVER['SERVER_ADDR']}}:3000');
 
 // 	socket.on('order_receipt-channel:App\\Events\\OrderReceipt',function(data){
 // 		alert("Get New Orders, Please reflash you page");
@@ -331,7 +331,7 @@
 			      url: '{{ route('admin.order.orderprinter') }}',
 			      type: 'POST',
 			      success: function(result) {
-				      var suss = result;
+				      alert(result.msg);
 			      },
 			      error: function(result){
 			    	  swal({   
@@ -473,43 +473,37 @@
 	
 	}
 
-	socket.on('order_printer-channel:App\\Events\\OrderPrinter',function(data){
+// 	socket.on('order_printer-channel:App\\Events\\OrderPrinter',function(data){
 
-		if($('#printer').is(':checked')){
+// 		if($('#printer').is(':checked')){
 
-			myprinter(data);
+// 			myprinter(data);
 
-		var pass = true;
-		if(pass)
-		{
-			$.ajax({
-				  headers: {'X-CSRF-Token': "{{ csrf_token() }}"},
-				  url: '{{ route('admin.order.print') }}',
-			      type: 'POST',
-			      data: {'orderid': data.order.id},
-				  success: function(result) {
-					   if(result.message=="success"){
-						   $("#status-"+data.order.id).removeClass("label-warning");
-						   $("#status-"+data.order.id).addClass("label-info");
-						   $("#status-"+data.order.id).text("printed");
-					   }
-				  },
-				  error: function(result){
-					  var results = result;
-				  }
-			});
-		}
-
-// 		if($('#pos_printer').jqprint()){
-// 			alert(true);
-// 		}else{
-// 			alert(false);
+// 		var pass = true;
+// 		if(pass)
+// 		{
+// 			$.ajax({
+// 				  headers: {'X-CSRF-Token': "{{ csrf_token() }}"},
+// 				  url: '{{ route('admin.order.print') }}',
+// 			      type: 'POST',
+// 			      data: {'orderid': data.order.id},
+// 				  success: function(result) {
+// 					   if(result.message=="success"){
+// 						   $("#status-"+data.order.id).removeClass("label-warning");
+// 						   $("#status-"+data.order.id).addClass("label-info");
+// 						   $("#status-"+data.order.id).text("printed");
+// 					   }
+// 				  },
+// 				  error: function(result){
+// 					  var results = result;
+// 				  }
+// 			});
 // 		}
-			
-		$('#pos_printer').empty();
 
-		}
-	});
+// 		$('#pos_printer').empty();
+
+// 		}
+// 	});
 
 	$('.glyphicon-print').click(function(){
 		 var code =$(this).attr("value");
@@ -520,10 +514,14 @@
 		      type: 'POST',
 		      data: {'id':code},
 		      success: function(data) {
-				 var result = data;
-				 myprinter(data);
+		    	  if(data.msg =='success'){
+		    		  $("#status-"+code).removeClass("label-warning");
+					   $("#status-"+code).addClass("label-info");
+					   $("#status-"+code).text("printed");
+			    	  alert(data.msg);
+			      }
              },
-             error: function(result) {
+             error: function(data) {
                  alert("Data not found");
              }
 		 });

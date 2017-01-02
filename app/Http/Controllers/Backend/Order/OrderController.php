@@ -13,6 +13,7 @@ use App\Events\OrderReceipt;
 use Carbon\Carbon;
 use Mapper;
 use App\Models\Shop\Shops;
+use App\Repositories\Prints\Printer;
 
 class OrderController extends Controller
 {
@@ -101,7 +102,8 @@ class OrderController extends Controller
 //     	return $orders;
     	foreach ($orders as $order){
 //     		$order['shiptime'] = $order;
-    		event(new OrderPrinter($order));
+//     		event(new OrderPrinter($order));
+    		$this->feieprinter($order);
     	}
     }
     
@@ -126,16 +128,31 @@ class OrderController extends Controller
     	
     	$order = Orders::where('id',$request->input('id'))->first();
     	
+    	//feie printer
     	$result = [];
-    	
-    	//change shiptime format: Thursday 02:15:16 PM
-    	$result['shiptime'] = $order->shiptimeformat();
-    	$result['order'] = $order;
-    	$result['dishes'] = $order->dishes;
-    	if($order->address()->count()){
-    		$result['address'] = $order->address;
+    	if ($this->feieprinter($order)) {
+    		$result['msg']="success";
+    	}else{
+    		$result['msg']="Print fail";
     	}
     	return $result;
+//     	$result = [];
+//     	$result['shiptime'] = $order->shiptimeformat();
+//     	$result['order'] = $order;
+//     	$result['dishes'] = $order->dishes;
+//     	if($order->address()->count()){
+//     		$result['address'] = $order->address;
+//     	}
+//     	return $result;
+    }
+    
+    protected function feieprinter(orders $order){
+    
+    	$printer = new Printer;
+    
+    	return $printer->print_order($order,$this->shop);
+
+//     	return $printer->queryPrinterStatus("716500460");
     }
     
     /**

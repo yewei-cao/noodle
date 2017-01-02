@@ -2,20 +2,26 @@
 /**
  * Frontend Controllers
  */
+use App\Repositories\Prints\Printer;
+
 $router->group(['namespace' => 'Home'], function () use ($router)
 {
 	Route::get('/','HomeController@index')->name('index');
 });
 
 Route::get('email', function () {
-	$beautymail = app()->make(Snowfire\Beautymail\Beautymail::class);
-    $beautymail->send('emails.welcome', [], function($message)
-    {
-        $message
-            ->from('yeweicao@gmail.com')
-            ->to('yeweicao@gmail.com', 'John Smith')
-            ->subject('Welcome!');
-    });
+	$printer = new Printer;
+// 	$pclient = new HttpClient('api.feieyun.cn',80);
+	
+	$result = $printer->queryPrinterStatus();
+	
+	dd($result);
+
+// 	$result = json_decode($printer->queryOrderState('716500460_20170102072216_961074758'), true);
+
+// 	dd($result);
+	
+// 	dd($printer->queryPrinterStatus());
 });
 
 Route::get('mail', function () {

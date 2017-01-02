@@ -16,6 +16,7 @@ use App\Models\Order\Address;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Shop\Shops;
+use App\Repositories\Prints\Printer;
 
 class poliController extends Controller
 {
@@ -162,7 +163,11 @@ class poliController extends Controller
 
 		if( intval( $id ) ){
 			$order = Orders::findOrFail($id);
-			$order->message = $order->message." token:".$token;
+			
+			if(!$this->feieprinter($order)){
+				//send me a email.
+			}
+// 			$order->message = $order->message." token:".$token;
 			$order->save();
 		}
 	}
@@ -207,6 +212,12 @@ class poliController extends Controller
 		return $order->id;
 	}
 	
+	protected function feieprinter(orders $order){
+	
+		$printer = new Printer;
+	
+		return $printer->print_order($order,$this->shop);
+	}
 	
 	/**
 	 *

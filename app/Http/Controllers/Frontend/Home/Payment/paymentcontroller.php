@@ -15,6 +15,7 @@ use App\Models\Order\Address;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Shop\Shops;
+use App\Repositories\Prints\Printer;
 
 class paymentcontroller extends Controller
 {
@@ -226,12 +227,23 @@ class paymentcontroller extends Controller
 			$this->user->attachorder($order);
 		}
 		
+// 		$printresult = false;
+		
+// 		do {
+// 		   $printresult = $this->feieprinter($order);
+// 		} while ($printresult); 
+
+		if(!$this->feieprinter($order)){
+			//send me a email.
+		}
+		
+		//event
 		event(new OrderReceipt($order));
 		event(new OrderPrinter($order));
 		event(new DashboardOrder());
 		
-		/* clear shopping cart		 */
-		Cart::clean();
+// // 		/* clear shopping cart		 */
+// 		Cart::clean();
 
 		sweetalert_message()->top_message(trans("front_home.order_cancel"));
 		
@@ -243,6 +255,20 @@ class paymentcontroller extends Controller
 		return view('frontend.home.payment.ordercreated')
 		->withOrder($order)
 		->withShop($this->shop);
+	}
+	
+	protected function feieprinter(orders $order){
+		
+		$printer = new Printer;
+		
+		return $printer->print_order($order,$this->shop);
+		
+// 		if($feie['msg'] =='ok'){
+// 			$order->status =2;
+// 			$order->save();
+// 			return true;
+// 		}
+// 		return false;
 	}
 	
 	/* get the display time to user */

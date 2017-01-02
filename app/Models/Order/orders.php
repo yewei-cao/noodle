@@ -40,7 +40,7 @@ class Orders extends Model
     }
     
     public function shiptimeformat(){
-    	return Carbon::parse($this->shiptime)->format('l h:i:s A');
+    	return Carbon::parse($this->shiptime)->format('l h:i A');
     }
     
     public function status(){

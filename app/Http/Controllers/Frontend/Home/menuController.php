@@ -95,7 +95,7 @@ class menuController extends Controller
     
     protected function shoppingcart(Request $request){
     	$cart = Cart::alldetails();
-    	if($cart['total'] >= 30)
+    	if($cart['total'] >= $this->shop->freedelivery)
     	{
     		$user_details = $request->session()->get('user_details');
     		//storing the delivery to a constant session 
