@@ -54,6 +54,13 @@
 					</li>
 					
 					<li>
+					<a href="{{ route('admin.manage.printer') }}">
+					<i class="fa fa-circle-o"></i>
+						{{ trans('menus.manage.printer') }}
+					</a>
+					</li>
+					
+					<li>
 					<a href="{{ route('admin.manage.index') }}">
 					<i class="fa fa-circle-o"></i>
 						{{ trans('menus.manage.email') }}
@@ -176,19 +183,17 @@
             </li>
             
             
-            
-            
-            
-            <li class="{{ Active::pattern('test') }}"><a href="{!!url('admin/test')!!}"><span>Test</span></a></li>
-          
+<!--             <li class="{{ Active::pattern('test') }}"><a href="{!!url('admin/test')!!}"><span>Test</span></a></li> -->
                 
-            <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="#">Link in level 2</a></li>
-                <li><a href="#">Link in level 2</a></li>
-              </ul>
-            </li>
+<!--             <li class="treeview"> -->
+<!--               <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a> -->
+<!--               <ul class="treeview-menu"> -->
+<!--                 <li><a href="#">Link in level 2</a></li> -->
+<!--                 <li><a href="#">Link in level 2</a></li> -->
+<!--               </ul> -->
+<!--             </li> -->
+            
+            
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->

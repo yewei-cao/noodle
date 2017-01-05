@@ -54,6 +54,7 @@ return [
 		],
 		'manage_update'=>'Your Setting has been updated',
 		'manage_blacklist_list'=>'Blacklist List',
+		'manage_printer'=>'Printer Type',
 		'manage_blacklist'=>['ip'=>'IP','reason'=>'Reason','updatetime'=>'Updatetime Time','createtime'=>'Create Time'],
 		'menu_blacklist_createstring' => 'Your Blacklist has been created',
 		'menu_blacklist_update' => 'Your Blacklist has been updated',

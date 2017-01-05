@@ -58,7 +58,7 @@ class Printer{
 		}
 		$orderInfo .= '--------------------------------<BR>';
 		
-		$orderInfo .= '<RIGHT>Total amount :$'.$order->totaldue.'</RIGHT> ';
+		$orderInfo .= '<RIGHT>Total amount :$'.$order->totaldue.'</RIGHT><BR>';
 		
 		$orderInfo .= '--------------------------------<BR>';
 		$orderInfo .= 'Message: <BR>';
@@ -76,6 +76,7 @@ class Printer{
 		
 		$result =  json_decode($this->wp_print($orderInfo), true);
 		
+		return $result;
 		if($result['msg'] =='ok'){
 			if ($order->status ==1){
 				$order->status =2;

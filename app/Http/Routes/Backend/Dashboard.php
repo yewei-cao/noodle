@@ -6,6 +6,9 @@ $router->group(['prefix' => 'manage', 'namespace' => 'Manage'], function () use 
 {
 	
 	Route::get('/','ManageController@index')->name('admin.manage.index');
+	
+	Route::get('printer','PrinterController@index')->name('admin.manage.printer');
+	
 	Route::patch('update/{id}','ManageController@update')->name('admin.manage.update');
 	
 // 	Route::get('create','OrderController@create')->name('create');

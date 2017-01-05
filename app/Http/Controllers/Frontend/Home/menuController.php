@@ -9,6 +9,7 @@ use App\Models\Menu\Dishes;
 use App\Models\Menu\Catalogue;
 use Cart;
 use App\Models\Shop\Shops;
+use App\Models\Menu\Type;
 
 class menuController extends Controller
 {
@@ -46,6 +47,11 @@ class menuController extends Controller
     	];
     	
     	$catalogues = Catalogue::orderBy('ranking', 'asc')->get();
+    	
+    	
+//     	dd($catalogues);
+    	
+    	
     	$cart = Cart::all();
     	
     	$deliveryfee = $this->deliveryfee($request);
@@ -57,11 +63,36 @@ class menuController extends Controller
     	->withDeliveryfee($deliveryfee);
     }
     
-    public function appmenu(){
-    	$catalogues = Catalogue::orderBy('ranking', 'asc')->get();
-    	return response()->json([
-						'catalogues'=>$catalogues
-				]);
+    public function types($type,Request $request){
+    	
+    	
+    	$catalogues = Catalogue::where('name', $type)->orderBy('ranking', 'asc')->get();
+    	
+//     	return $catalogues;
+//     	return $type->catalogues;
+//     	$catalogues = $cata->sortBy('ranking');
+    	
+    	$order_route=[
+    			'prev'=>'',
+    			'next'=>route('home.payment.paymentmethod')
+    	];
+    	
+//     	$catalogues = Catalogue::orderBy('ranking', 'asc')->get();
+    	
+    	echo url('user/profile');
+    	
+//     	dd($catalogues);
+    	
+    	
+    	$cart = Cart::all();
+    	
+    	$deliveryfee = $this->deliveryfee($request);
+    	
+    	$totalprice = Cart::total() + $deliveryfee;
+    	$totalnumber = Cart::count();
+    	return view('frontend.home.menu_content',compact('catalogues','cart','totalprice','totalnumber'))
+    	->withOrderroute($order_route)
+    	->withDeliveryfee($deliveryfee);
     }
     
     

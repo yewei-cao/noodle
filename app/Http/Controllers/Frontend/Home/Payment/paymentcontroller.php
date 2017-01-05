@@ -233,8 +233,14 @@ class paymentcontroller extends Controller
 // 		   $printresult = $this->feieprinter($order);
 // 		} while ($printresult); 
 
+// 		dd($this->feieprinter($order));
 		if(!$this->feieprinter($order)){
-			//send me a email.
+			//send me a email. 
+			$num = Orders::where('status','<','2')->count();
+			Mail::queue('emails.order.printfail',compact('num','order'),function ($message)use($order){
+				$message->from(env('MAIL_USERNAME'))->to('yeweicao@gmail.com')
+				->subject('Noodle Canteen Print Errors');
+			});
 		}
 		
 		//event
@@ -263,12 +269,6 @@ class paymentcontroller extends Controller
 		
 		return $printer->print_order($order,$this->shop);
 		
-// 		if($feie['msg'] =='ok'){
-// 			$order->status =2;
-// 			$order->save();
-// 			return true;
-// 		}
-// 		return false;
 	}
 	
 	/* get the display time to user */

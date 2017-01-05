@@ -2,43 +2,12 @@
 /**
  * Frontend Controllers
  */
-use App\Repositories\Prints\Printer;
-
 $router->group(['namespace' => 'Home'], function () use ($router)
 {
 	Route::get('/','HomeController@index')->name('index');
+	Route::get('privacy-policy','HomeController@policy')->name('policy');
 });
 
-Route::get('email', function () {
-	$printer = new Printer;
-// 	$pclient = new HttpClient('api.feieyun.cn',80);
-	
-	$result = $printer->queryPrinterStatus();
-	
-	dd($result);
-
-// 	$result = json_decode($printer->queryOrderState('716500460_20170102072216_961074758'), true);
-
-// 	dd($result);
-	
-// 	dd($printer->queryPrinterStatus());
-});
-
-Route::get('mail', function () {
-// 	$order['mail']="891670626@qq.com";
-// 	Mail::queue('emails.order.test',compact('order'),function ($message)use($order){
-// 			$message->from("yeweicao@gmail.com")->to($order['mail'])
-// 			->subject('Noodle Canteen Receipt');
-// 	});
-	
-	$user= Users::findOrFail(22);
-	
-		Mail::queue('emails.welcome',compact('user'),function ($message)use($user){
-    		$message->from(env('MAIL_FROM'))->to("yeweicao@gmail.com")
-    		->subject('Welcome to join us');
-    	});
-// 	dd($user);
-});
 
 $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($router)
 {
@@ -50,7 +19,7 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 	
 	$router->group(['prefix' => 'menu', 'as'=>'home.menu.'],function () use ($router){
 		Route::get('/', 'menuController@index')->name('index');
-		Route::get('appmenu', 'menuController@appmenu')->name('appmenu');
+		Route::get('/{types}', 'menuController@types')->name('types');
 		Route::get('/mobilecsrf', function(){
 			return csrf_token();
 		});

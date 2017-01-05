@@ -22,6 +22,12 @@ class HomeController extends Controller
     {
         return view('frontend.home.home')->withShop($this->shop);
     }
+    
+    
+    public function policy()
+    {
+    	return view('frontend.home.policy')->withShop($this->shop);
+    }
 
     
 }

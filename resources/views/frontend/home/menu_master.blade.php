@@ -19,6 +19,34 @@ margin:0;
 
 @section('content')
 
+<!--  top bar -->
+<div class="btn-group btn-group-justified" role="group" >
+  <div class="btn-group nav_menu" role="group">
+    <a href="/home/menu/noodles"  class="btn redbtn  active">Noodles</a>
+  </div>
+  <div class="btn-group nav_menu" role="group">
+    <a href="/home/menu/rice" class="btn redbtn  ">Rice</a>
+  </div>
+  <div class="btn-group nav_menu" role="group">
+    <a href="/home/menu/snack&drinks" class="btn redbtn  ">Snack&drinks</a>
+  </div>
+  
+  <div class="btn-group nav_lowmenu" role="group">
+    <a href="{{ route('home.payment.paymentmethod') }}" class="btn redbtn ">Payment</a>
+  </div>
+</div>
+
+<div class="btn-group btn-group-justified top10" role="group" >
+  <div class="btn-group nav_lowmenu" role="group">
+    <a href="/home/menu/soups"  class="btn redbtn  ">Soups</a>
+  </div>
+  <div class="btn-group nav_lowmenu" role="group">
+    <a href="/home/menu/chips" class="btn redbtn ">Chips</a>
+  </div>
+</div>
+<!-- end top bar -->
+
+
 <div class="basket-shadow"></div>
 
 <div class="main-container">

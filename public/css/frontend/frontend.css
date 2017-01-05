@@ -9657,6 +9657,10 @@ html {
   padding-bottom: 220px;
 }
 
+.top10 {
+  margin-top: 7px;
+}
+
 /* nav */
 
 .navbar-red {
@@ -9787,6 +9791,13 @@ html {
 }
 
 <!-- home page css style -->
+
+.nav-justified {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 #myservice-container .myservice div {
   display: table-cell;
   vertical-align: middle;
@@ -9886,6 +9897,42 @@ body .container {
   width: 100%;
   float: none;
   margin-top: 0;
+}
+
+.nav_menu .active:after,
+.nav_lowmenu .active:after {
+  content: " ";
+  top: 100%;
+  left: 50%;
+  margin: 0 0 0 -6px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #b6132c;
+  border-bottom: none;
+}
+
+.nav_menu>a:after,
+.nav_lowmenu>a:after {
+  top: 50%;
+  left: 100%;
+  border-bottom: 6px solid transparent;
+  border-top: 6px solid transparent;
+  margin-top: -6px;
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.nav_menu>a:after {
+  border-left: 6px solid #b6132c;
+  z-index: 2;
+}
+
+.nav_menu .active,
+.nav_lowmenu .active {
+  background: #b6132c;
+  display: table-cell;
 }
 
 /* footer*/
@@ -10630,6 +10677,7 @@ body .main-container {
   text-transform: uppercase;
   font-family: 'Oswald';
   position: relative;
+  border: 0px;
 }
 
 .container.basket-open .basket-shadow {
@@ -10730,7 +10778,7 @@ body .main-container {
   white-space: normal;
 }
 
-.fixed-footer #add-to-order {
+.fixed-footer .add-to-order {
   margin: -3px 14px 0 0;
   font-size: 1em;
   white-space: normal;
@@ -10738,7 +10786,7 @@ body .main-container {
   display: inline-block;
 }
 
-.fixed-footer #add-to-order {
+.fixed-footer .add-to-order {
   margin: -3px 14px 0 0;
   font-size: 1em;
   white-space: normal;
@@ -10810,7 +10858,7 @@ body .main-container {
 /* Carousel Styling */
 
 .slidel1 {
-  background-image: url('../../images/home/satay.jpg');
+  background-image: url('../../images/home/Home_pic.jpg');
   height: 300px;
   background-repeat: no-repeat;
   background-position: center;
@@ -10818,7 +10866,7 @@ body .main-container {
 }
 
 .slidel2 {
-  background-image: url('../../images/home/sweet-box.jpg');
+  background-image: url('../../images/home/Home_pic2.jpg');
   height: 300px;
   background-repeat: no-repeat;
   background-position: center;
@@ -10996,6 +11044,12 @@ fieldset[disabled] .btn-yellow.active {
   color: #c40000;
 }
 
+.gridArticle ul {
+  list-style-position: outside;
+  list-style-type: disc;
+  padding-left: 15px;
+}
+
 /* menu page end */
 
 @media (min-width: 375px) {
@@ -11015,7 +11069,7 @@ fieldset[disabled] .btn-yellow.active {
 
 @media (min-width:768px) {
   #wrap {
-    margin: 0 auto -220px;
+    margin: 0 auto -180px;
   }
 
   .minheiht {

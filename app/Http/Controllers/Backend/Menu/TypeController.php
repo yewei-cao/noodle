@@ -53,7 +53,7 @@ class TypeController extends Controller
 
 	public function update(Request $request,$id){
 		
-		dd($id);
+// 		dd($id);
 		$this->validate($request, [
 				'name' => 'required',
 				'description' => 'required|min:6',

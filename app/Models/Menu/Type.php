@@ -11,7 +11,7 @@ class Type extends Model
 	protected $fillable = ['name','description','ranking']; 
     
 	public function owner(){
-		return $this->belongsTo(User::class,'user_id');
+		return $this->belongsTo(User::class,'users_id');
 	}
 	
 	public function catalogues(){

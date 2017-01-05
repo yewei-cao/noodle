@@ -4,21 +4,20 @@
 <div class="footer-content">
 
 	<p class="footercall">
-		<span class="footercallbigger"><a href="tel:6 844 3588">844 3588</a></span>
+		<span class="footercallbigger">Phone: <a href="tel:6 844 3588">(06)844 3588</a></span>
 	</p>
-
-	<ul class="primary-footer-links">
-
-       <li id="restart-link">
-       <a class="restart-link" href="javascript:if (confirm('Are you sure? This will take you back to the start of online ordering and your current selections will be lost.')) location = '/';">
-       Restart Order</a>
-       </li>
-    </ul>
-    
+	
+	<p class="footercall">
+		<span class="footercallbigger">Email: yeweicao@gmail.com</span>
+	</p>
+	
+	<p class="footercall">
+		<span class="footercallbigger">Address： 269 Gloucester St, Taradale Napier</span>
+	</p>
     
     <ul>
-          <li><a href="#" target="_blank">Privacy Policy</a></li>
-          <li><a href="#" target="_blank">Website and Online Ordering Terms &amp; Conditions</a></li>
+          <li><a href="/privacy-policy" target="_blank">Privacy Policy</a></li>
+         <!--   <li><a href="#" target="_blank">Website and Online Ordering Terms &amp; Conditions</a></li> -->
     </ul>
     
     <p id="copyright" class="copyright">{{ trans('front_foot.copyright') }}</p>

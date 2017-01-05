@@ -3,7 +3,7 @@
 namespace App\Models\Menu;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Access\User\User;
+use App\Models\Access\User\Users;
 use App\Models\Menu\Type;
 use phpDocumentor\Reflection\Types\This;
 
@@ -23,10 +23,10 @@ class Catalogue extends Model
 	 */
 // 	protected $guarded = ['id'];
 	
-	protected $fillable = ['user_id','type_id','name','description','ranking'];
+	protected $fillable = ['type_id','name','description','ranking'];
     
 	public function user(){
-		return $this->belongsTo(User::class,'user_id');
+		return $this->belongsTo(Users::class,'users_id');
 	}
 	
 	public function type(){

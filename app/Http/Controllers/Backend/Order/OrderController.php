@@ -98,7 +98,7 @@ class OrderController extends Controller
      */
     
     public function orderprinter(){
-    	$orders = Orders::where('status','<','2')->get();
+    	$orders = Orders::where('status','<','2')->count();
 //     	return $orders;
     	foreach ($orders as $order){
 //     		$order['shiptime'] = $order;

@@ -20,39 +20,21 @@
 <ol class="carousel-indicators">
 <li data-tagret="#theCarousel" data-slide-to="0" class="active"></li>
 <li data-tagret="#theCarousel" data-slide-to="1" ></li>
-<li data-tagret="#theCarousel" data-slide-to="2" "></li>
 </ol>
 
 <div class="carousel-inner">
 	<div class="item active">
 		<div class="slidel1"></div>
 		<div class="carousel-caption">
-			<h1>Something1</h1>
-			<p>Thousands of Backgrounds for Free</p>
-			<p><a href="#" class="btn btn-primary btn-sm" >Get them Now</a></p>
 		</div>
 	</div>
 	
 	<div class="item">
 		<div class="slidel2"></div>
 		<div class="carousel-caption">
-			<h1>Something2</h1>
-			<p>Thousands of Backgrounds for Free</p>
-			<p><a href="#" class="btn btn-primary btn-sm" >Get them Now</a></p>
 		</div>
 	</div>
 	
-	
-	<div class="item">
-		<div class="slidel3"></div>
-		<div class="carousel-caption">
-			<h1>Something3</h1>
-			<p>Thousands of Backgrounds for Free</p>
-			<p><a href="#" class="btn btn-primary btn-sm" >Get them Now</a></p>
-		</div>
-	</div>
-
-
 </div>
 
 <a class="left carousel-control" href="#theCarousel" data-slide="prev">
@@ -64,7 +46,6 @@
 </a>
 
 </div>
-
 
 
 <div class="starter text-center">
@@ -87,8 +68,6 @@
 </div>
 </a>
 </div>
-
-
 
 <div class="col-4">
 <a id="quick" href="{{ route('home.delivery.info') }}" class="myservice red" >
