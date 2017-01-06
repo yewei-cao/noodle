@@ -35,6 +35,16 @@ class paymentcontroller extends Controller
 		$this->cart= Cart::all();
 		$this->totalprice = Cart::total();
 		$this->totalnumber = Cart::count();
+		$this->active = [
+				'menu'=>'',
+				'noodles'=>'',
+				'rice'=>'',
+				'snack&drinks'=>'',
+				'soups'=>'',
+				'chips'=>'',
+				'payment'=>'active'
+		
+		];
 	}
 
 	/**
@@ -52,7 +62,7 @@ class paymentcontroller extends Controller
 // 		return $request->all();
 
 		$order_route=[
-				'prev'=>route('home.menu.index'),
+				'prev'=>route('home.menu.types',['types'=>'noodles']),
 				'next'=>''
 		];
 		
@@ -70,7 +80,8 @@ class paymentcontroller extends Controller
 		->withOrderroute($order_route)
 		->withShop($this->shop)
 		->withPickupmark($pickupmark)
-		->withDeliveryfee($deliveryfee);
+		->withDeliveryfee($deliveryfee)
+		->withActive($this->active);
 	}
 	
 	public function cash(Request $request){
@@ -95,11 +106,10 @@ class paymentcontroller extends Controller
 			->withTotalprice($this->totalprice+$deliveryfee)
 			->withTotalnumber($this->totalnumber)
 			->withOrderroute($order_route)
-			->withDeliveryfee($deliveryfee);
+			->withDeliveryfee($deliveryfee)
+			->withActive($this->active);
 		}else{
-			
 			return redirect()->route('home.payment.paymentmethod');
-			
 		}
 		
 	}
@@ -202,6 +212,7 @@ class paymentcontroller extends Controller
 		];
 		
 		$order = Orders::create($data);
+// 		dd($this->cart); 
 		foreach ($this->cart as $item) {
 			$order->dishes()->attach($item->id,
 					array(	'amount'=>$item->qty,
@@ -249,7 +260,7 @@ class paymentcontroller extends Controller
 		event(new DashboardOrder());
 		
 // // 		/* clear shopping cart		 */
-// 		Cart::clean();
+		Cart::clean();
 
 		sweetalert_message()->top_message(trans("front_home.order_cancel"));
 		

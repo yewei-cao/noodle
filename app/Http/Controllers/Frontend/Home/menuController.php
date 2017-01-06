@@ -47,7 +47,14 @@ class menuController extends Controller
     	];
     	
     	$catalogues = Catalogue::orderBy('ranking', 'asc')->get();
-    	
+    	$active = [
+    			'menu'=>'active',
+    			'noodles'=>'',
+    			'rice'=>'',
+    			'snack&drinks'=>'',
+    			'soups'=>'',
+    			'chips'=>'',
+    			'payment'=>''];
     	
 //     	dd($catalogues);
     	
@@ -60,7 +67,8 @@ class menuController extends Controller
     	$totalnumber = Cart::count();
     	return view('frontend.home.menu_content',compact('catalogues','cart','totalprice','totalnumber'))
     	->withOrderroute($order_route)
-    	->withDeliveryfee($deliveryfee);
+    	->withDeliveryfee($deliveryfee)
+    	->withActive($active);
     }
     
     public function types($type,Request $request){
@@ -72,14 +80,82 @@ class menuController extends Controller
 //     	return $type->catalogues;
 //     	$catalogues = $cata->sortBy('ranking');
     	
-    	$order_route=[
-    			'prev'=>'',
-    			'next'=>route('home.payment.paymentmethod')
-    	];
+	    switch ($type){
+			case "noodles":
+				$active = [
+				'menu'=>'',
+				'noodles'=>'active',
+				'rice'=>'',
+				'snack&drinks'=>'',
+				'soups'=>'',
+				'chips'=>'',
+				'payment'=>''];
+		    	$order_route=[
+		    			'prev'=>'',
+		    			'next'=>'/home/menu/rice'
+		    	];
+				break;
+			case "rice":
+				$active = [
+				'menu'=>'',
+				'noodles'=>'',
+				'rice'=>'active',
+				'snack&drinks'=>'',
+				'soups'=>'',
+				'chips'=>'',
+				'payment'=>''];
+				$order_route=[
+						'prev'=>'/home/menu/noodles',
+						'next'=>'/home/menu/snack&drinks'
+				];
+				break;
+			case "snack&drinks":
+			 	$active = [
+			 	'menu'=>'',
+				'noodles'=>'',
+				'rice'=>'',
+				'snack&drinks'=>'active',
+				'soups'=>'',
+				'chips'=>'',
+				'payment'=>''];
+			 	$order_route=[
+			 			'prev'=>'/home/menu/rice',
+			 			'next'=>route('home.payment.paymentmethod')
+			 	];
+			  	break;
+		  	case "soups":
+		  		$active = [
+		  		'menu'=>'',
+				'noodles'=>'',
+				'rice'=>'',
+				'snack&drinks'=>'',
+				'soups'=>'active',
+				'chips'=>'',
+				'payment'=>''];
+		  		$order_route=[
+		  				'prev'=>'/home/menu/noodles',
+		  				'next'=>route('home.payment.paymentmethod')
+		  		];
+		  		break;
+	  		case "chips":
+	  			$active = [
+	  			'menu'=>'',
+				'noodles'=>'',
+				'rice'=>'',
+				'snack&drinks'=>'',
+				'soups'=>'',
+				'chips'=>'active',
+				'payment'=>''];
+	  			$order_route=[
+	  					'prev'=>'/home/menu/noodles',
+	  					'next'=>route('home.payment.paymentmethod')
+	  			];
+	  			break;
+		}
     	
 //     	$catalogues = Catalogue::orderBy('ranking', 'asc')->get();
     	
-    	echo url('user/profile');
+//     	echo url('user/profile');
     	
 //     	dd($catalogues);
     	
@@ -92,7 +168,9 @@ class menuController extends Controller
     	$totalnumber = Cart::count();
     	return view('frontend.home.menu_content',compact('catalogues','cart','totalprice','totalnumber'))
     	->withOrderroute($order_route)
-    	->withDeliveryfee($deliveryfee);
+    	->withDeliveryfee($deliveryfee)
+    	->withActive($active);
+    	
     }
     
     
@@ -101,9 +179,9 @@ class menuController extends Controller
     			'id' => 'required|numeric',
     	]);
     	
-    	$dish = Dishes::where('number',$request->input('id'))->first();
+    	$dish = Dishes::where('id',$request->input('id'))->first();
     	
-    	Cart::addone($dish->number, $dish->name, $dish->price);
+    	Cart::addone($dish->id, $dish->name, $dish->price);
 //     	return $request->input('id');
 //     	return Cart::all()."Total:".Cart::total();
 

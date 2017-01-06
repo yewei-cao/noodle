@@ -160,7 +160,8 @@ class ordertimeController extends Controller
 		}else{
 			$request->session()->put('ordertime', $request->input('ordertime'));
 			if($request->session()->has('ordertime')){
-				return redirect()->route('home.menu.index');
+				return redirect('home/menu/noodles');
+// 				return redirect()->route('home.menu.index');
 			}
 		}
 			

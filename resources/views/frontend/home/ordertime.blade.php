@@ -121,7 +121,7 @@ $('#asap').click(function(){
 	      data: {'ordertime':'ASAP'
 	    },
 	      success: function(result) {
-	    	  window.location.href="{{ url('home/menu') }}";
+	    	  window.location.href="{{ url('home/menu/noodles') }}";
 		  },
 		  error: function(result) {
 		      alert("Data not found");
