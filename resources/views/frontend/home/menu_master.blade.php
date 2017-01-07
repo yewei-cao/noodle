@@ -75,8 +75,8 @@ margin:0;
 <div class="fixed-footer hide-for-small-up">
     <div class="row">
         <div class="col-6">
-            <a class="btn next" id="place_order_fixed" href="#">
-                <span id="add-to-order">Place Order</span>
+            <a class="btn next" id="place_order_fixed" href="{{route('home.payment.paymentmethod')}}">
+                <span >Place Order</span>
             </a>
         </div>
         <div class="col-6">

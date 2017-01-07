@@ -72,13 +72,8 @@ class menuController extends Controller
     }
     
     public function types($type,Request $request){
-    	
-    	
+    	    	
     	$catalogues = Catalogue::where('name', $type)->orderBy('ranking', 'asc')->get();
-    	
-//     	return $catalogues;
-//     	return $type->catalogues;
-//     	$catalogues = $cata->sortBy('ranking');
     	
 	    switch ($type){
 			case "noodles":

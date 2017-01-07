@@ -15,9 +15,13 @@
 				
 	            <div class="product-container" >
 	                <div class="product" >
+		                <div class="pheader">
+		                	<div class="content_num">{{ $dish->number }}</div>
+		                 	<div class="name-container"><span>{{ $dish->name }}</span></div>
+	                 	</div>
 	                    <img src="/{{ $dish->photo_thumbnail_path }}" alt="">
 	                    <div class="caption">
-	                        <div class="name-container"><span>{{ $dish->name }}</span></div>
+	                       
 	                        
 	                        <div class="pricing-row">
 	                        <span>From</span>

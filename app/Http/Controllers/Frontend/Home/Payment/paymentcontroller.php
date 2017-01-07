@@ -260,7 +260,7 @@ class paymentcontroller extends Controller
 		event(new DashboardOrder());
 		
 // // 		/* clear shopping cart		 */
-		Cart::clean();
+// 		Cart::clean();
 
 		sweetalert_message()->top_message(trans("front_home.order_cancel"));
 		

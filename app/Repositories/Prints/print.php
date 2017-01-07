@@ -28,9 +28,10 @@ class Printer{
 	}
 	
 	public function print_order(Orders $order,Shops $shop){
-		$orderInfo = '<CB>Your Order Numbers is '.$order->id.'</CB><BR>';
 		$orderInfo .= 'Welcome to Noodle Canteen Taradale<BR>';
-		$orderInfo .= '<C>GST:  </C><BR>';
+		$orderInfo .= '<C>GST: No# 104-299-733</C><BR>';
+		$orderInfo .= '<C>Tax Invoice</C><BR>';
+		$orderInfo = '<CB>Your Order Numbers is '.$order->id.'</CB><BR>';
 		$orderInfo .= '<C>Ph: '.$shop->phone.'</C><BR>';
 		$orderInfo .= '--------------------------------<BR>';
 		$orderInfo .= 'Order Details <BR>';

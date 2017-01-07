@@ -51,7 +51,7 @@ margin:0;
 
 							<div>
 								<ul class="list-unstyled spaced">
-									<li> <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>{{$shop->address}}</li>
+									<li> <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>Address:{{$shop->address}}</li>
 
 									<li><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>Zip Code 4112</li>
 

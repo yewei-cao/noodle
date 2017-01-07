@@ -169,6 +169,9 @@ padding:0px;
 .product-container .product{
 	text-align: center;
 }
+..product-container .product .pheader{
+	width:100%;
+}
 
 .product-container .product .caption{
 	height:184px;
@@ -176,7 +179,7 @@ padding:0px;
 
 .product-container .product .name-container{
     float: left;
-    width: 100%;
+    width: 82%;
     height: 38px;
     text-transform: uppercase;
     font-weight: bold;
@@ -679,41 +682,6 @@ body .main-container {
 .basket .basket-footer .basket-navigation {
     padding: 10px;
 }
-
-.redbtn{
-    color: white;
-    background-color: #e41837;
-    border-color: #e41837;
-    position: relative;
-    border-radius: 15px;
-}
-.redbtn a{
-	color: white;
-}
-.yellowbtn {
-    color: white;
-    background-color: #f78f1e;
-    border-color: #e41837;
-    position: relative;
-    border-radius: 15px;
-}
-.previousbtn{
-	display: inline-block;
-    padding: 5px 14px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-}
-.previousbtn a{
-	display:block;
-	color: #333;
-	text-decoration: none;
-}
-.redbtn:hover,.next .redbtn:hover, .btn-next:hover, .yellowbtn:hover{
-	background-color: #b6132c;
-    border-color: #ad122a;
-    color: white;
-}
 .previousbtn:hover{
 	text-decoration: none;
     background-color: #eee;
@@ -1062,7 +1030,47 @@ display:none;
     vertical-align: middle;
     padding-left: 10px;
 }
-
+.redbtn, .btn.next{
+    color: white;
+    background-color: #e41837;
+    border-color: #e41837;
+    position: relative;
+}
+.redbtn a{
+	color: white;
+}
+.yellowbtn {
+    color: white;
+    background-color: #f78f1e;
+    border-color: #e41837;
+    position: relative;
+    border-radius: 15px;
+}
+.previousbtn{
+	display: inline-block;
+    padding: 5px 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+}
+.previousbtn a{
+	display:block;
+	color: #333;
+	text-decoration: none;
+}
+.redbtn:hover,.next .redbtn:hover, .btn-next:hover, .yellowbtn:hover{
+	background-color: #b6132c;
+    border-color: #ad122a;
+    color: white;
+}
+.content_num {
+    float: left;
+    width: 18%;
+    padding-top: 7px;
+    background: url(/images/home/noodle-box.gif);
+    color: #fff;
+    text-align: center;
+}
 /* Carousel Styling */
 .slidel1{
 background-image:url('../../images/home/Home_pic.jpg');
