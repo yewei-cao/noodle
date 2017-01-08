@@ -609,7 +609,7 @@ body .main-container {
 
 .basket-top {
     background-color: transparent!important;
-    background: url("../../images/Home/basket-top.png") top center repeat-x;
+    background: url("../../images/home/basket-top.png") top center repeat-x;
     height: 10px;
     width: 100%;
     position: relative;
@@ -736,15 +736,13 @@ body .main-container {
 
 
 .basket .basket-bottom {
-    background: url("../../images/Home/basket-bottom.png") bottom center repeat-x;
+    background: url("../../images/home/basket-bottom.png") bottom center repeat-x;
     height: 10px;
     width: 100%;
     position: relative;
     border-left: 1px solid #c5c5c5;
     border-right: 1px solid #c5c5c5;
 }
-
-
 .product-container {
     display: block;
     float: left;
@@ -754,7 +752,6 @@ body .main-container {
     margin-bottom: 5px;
     height: 420px;
 }
-
 .basket { 
      -webkit-transition: -webkit-transform 300ms ease;
      -moz-transition: -moz-transform 300ms ease;
@@ -771,7 +768,6 @@ body .main-container {
      left: 10px;
      right: 10px; 
 }
-
 .basket .basket-body>.body-content>.basket_order {
     margin: 0 10px 5px;
 }
@@ -782,8 +778,6 @@ body .main-container {
     padding: 7px 0 10px 0;
     border-bottom: 1px dotted #a6a6a6;
 }
-
-
 .row .col-9 {
     float: left;
     padding: 0 2px 0 3px;
@@ -795,7 +789,6 @@ body .main-container {
     padding: 0 2px 0 3px;
     width: 25%;
 }
-
 .basket-body .product {
     font: normal normal normal 12px/14px "droid_sans",sans-serif;
     font-size: .75em;
