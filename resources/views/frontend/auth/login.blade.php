@@ -8,18 +8,18 @@
     <div class="main-login">
 
       <h3>Please Log In, or <a href="{{ url('/auth/register') }}">Sign Up</a></h3>
-      <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6">
-          <a href="#" class="btn btn-lg btn-primary btn-block">Facebook</a>
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-6">
-          <a href="#" class="btn btn-lg btn-info btn-block">Google</a>
-        </div>
-      </div>
-      <div class="login-or">
-        <hr class="hr-or">
-        <span class="span-or">or</span>
-      </div>
+<!--       <div class="row"> -->
+<!--         <div class="col-xs-6 col-sm-6 col-md-6"> -->
+<!--           <a href="#" class="btn btn-lg btn-primary btn-block">Facebook</a> -->
+<!--         </div> -->
+<!--         <div class="col-xs-6 col-sm-6 col-md-6"> -->
+<!--           <a href="#" class="btn btn-lg btn-info btn-block">Google</a> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--       <div class="login-or"> -->
+<!--         <hr class="hr-or"> -->
+<!--         <span class="span-or">or</span> -->
+<!--       </div> -->
 
       <form class="form-horizontal" role="form" method="POST" action="/auth/login">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
