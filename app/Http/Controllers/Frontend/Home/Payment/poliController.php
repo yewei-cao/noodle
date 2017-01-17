@@ -80,7 +80,9 @@ class poliController extends Controller
 	// 							'total'=>$item->price*$item->qty
 	// 					)
 	// 					);
-				
+				if(!$item->flavour){
+					$item->flavour='';
+				}
 				$orderitem = new Orderitems([
 						'dishes_id'=>$item->id,
 						'flavour'=>'',
