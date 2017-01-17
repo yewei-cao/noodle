@@ -55,7 +55,7 @@
 				<div class="material-container">
 					<div class="material-message">
 			            <h4 class="current-material-text">Current Dish Materials</h4>
-			            <span  class="remove-material-text" >(Click <span class="remove-ingredient-button"></span> to remove)</span>
+			            <span  class="remove-material-text" >(Click to remove)</span>
 			        </div>
 			        
 			        <div class="current-material-container">
@@ -116,6 +116,7 @@
 		
 		<div class="col-md-12 float-left">
 			<h4>Extra Vegetable in Meal</h4>
+			<span  class="remove-material-text" >(Click to Add)</span>
 			<hr/>
 			
 		  	<div class="current-material-container">
@@ -131,6 +132,7 @@
 		   	</div>
 		   	
 		   	<h4>Extra Meat in Meal</h4>
+		   	<span  class="remove-material-text" >(Click to Add)</span>
 			<hr/>
 			
 		  	<div class="current-material-container">
