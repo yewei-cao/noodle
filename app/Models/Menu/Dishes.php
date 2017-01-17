@@ -5,6 +5,7 @@ namespace App\Models\Menu;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Element\Material;
 use App\Models\Element\Mgroup;
+use App\Models\Order\Orderitems;
 
 class Dishes extends Model
 {
@@ -23,11 +24,13 @@ class Dishes extends Model
 		return $this->belongsToMany(Dishes::class) ->withPivot('amount','total');
 	}
 	
-	
 	public function materials(){
 		return $this->belongsToMany(Material::class);
 	}
 	
+	public function orderitems(){
+		return $this->hasMany(Orderitems::class);
+	}
 	
 	/**
  * Attach one material associated with a dish 

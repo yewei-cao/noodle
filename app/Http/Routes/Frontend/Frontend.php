@@ -19,12 +19,22 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 	
 	$router->group(['prefix' => 'menu', 'as'=>'home.menu.'],function () use ($router){
 		Route::get('/', 'menuController@index')->name('index');
-		Route::get('/{types}', 'menuController@types')->name('types');
+		Route::post('addtoorder','menuController@addtoorder');
+		
 		Route::get('/mobilecsrf', function(){
 			return csrf_token();
 		});
-		Route::post('addtoorder','menuController@addtoorder');
+		
+		Route::get('/{types}', 'menuController@types')->name('types');
+		
+		
 		Route::post('removetoorder','menuController@removetoorder');
+		
+	});
+	
+	$router->group(['prefix' => 'dish', 'as'=>'home.dish.'],function () use ($router){
+		Route::get('/{dish}', 'menuController@dish')->name('index');
+		Route::post('adddish','menuController@adddish')->name('adddish');
 	});
 	
 	$router->group(['prefix' => 'quickorder', 'namespace' => 'Quickorder','middleware' => 'auth'], function () use ($router)

@@ -70,18 +70,40 @@
 												<table style="width: 100%;" cellpadding="0" cellspacing="0">
 													<tr>
 														<td style="padding: 5px 0; border-top: #eee 1px solid;  width="10%"">Nunber</td>
-														<td style="padding: 5px 0; border-top: #eee 1px solid;  width="50%"">Dish Name</td>
-														<td style="padding: 5px 0; border-top: #eee 1px solid;  width="20%"">Amount</td>
+														<td style="padding: 5px 0; border-top: #eee 1px solid;  width="20%"">Dish Name</td>
+														<td style="padding: 5px 0; border-top: #eee 1px solid;  width="30%"">Description</td>
+														<td style="padding: 5px 0; border-top: #eee 1px solid;  width="20%"">Qty</td>
 														<td style="padding: 5px 0; border-top: #eee 1px solid;  width="20%"">Total</td>
-													</tr>		
-													@foreach($order->dishes as $dish)
-														<tr>
-															<td style="padding: 5px 0; border-top: #eee 1px solid;  width="10%"">{{  $dish->number }}</td>
-															<td style="padding: 5px 0; border-top: #eee 1px solid;  width="50%"">{{  $dish->name }}</td>
-															<td style="padding: 5px 0; border-top: #eee 1px solid;  width="20%"">{{  $dish->pivot->amount }}</td>
-															<td style="padding: 5px 0; border-top: #eee 1px solid;  width="20%"">{{  $dish->pivot->total }}</td>
-														</tr>
-													@endforeach
+													</tr>
+													
+													
+													@foreach($order->orderitems as $item)
+													<tr>
+														<td style="padding: 5px 0; border-top: #eee 1px solid;  width="10%"">{{  $item->dishes->number }}</td>
+					
+														<td style="padding: 5px 0; border-top: #eee 1px solid;  width="20%"">{{ $item->dishes->name }}</td>
+														<td style="padding: 5px 0; border-top: #eee 1px solid;  width="30%"">
+															@if($item->flavour)
+																{{$item->flavour}}
+																<br>
+															@endif
+															
+															@foreach($item->takeout as $material)
+																no {{$material->name}}
+																<br>
+															@endforeach
+															
+															@foreach($item->extra as $material)
+																extra {{$material->name}} <span style="color:#dd5a43;">${{$material->price}}</span>
+																<br>
+															@endforeach
+														
+														</td>
+														<td style="padding: 5px 0; border-top: #eee 1px solid;  width="20%"">{{  $item->amount }}</td>
+														<td style="padding: 5px 0; border-top: #eee 1px solid;  width="20%"">{{  $item->total }}</td>
+													</tr>
+													
+													@endforeach	
 													
 													
 												</table>

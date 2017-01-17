@@ -84,6 +84,10 @@ elixir(function(mix) {
                  ],'public/js/validate.js','resources/assets/sass/js');
     
     mix.scripts([
+                 'mymenu.js',
+                 ],'public/js/mymenu.js','resources/assets/sass/js');
+    
+    mix.scripts([
                  'ordertime-index.js',
                  ],'public/js/ordertime.js','resources/assets/sass/js');
     /* sticky and breakpoint */

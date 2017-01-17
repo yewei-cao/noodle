@@ -27,6 +27,10 @@ class Orders extends Model
     	 return $this->belongsToMany(Users::class);
     }
     
+    public function orderitems(){
+    	return $this->hasMany(Orderitems::class);
+    }
+    
     public function createtime(){
     	return Carbon::parse($this->created_at)->format('Y-m-d H:i');
     }

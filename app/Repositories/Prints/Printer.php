@@ -1,13 +1,12 @@
 <?php
 namespace App\Repositories\Prints;
 
-use App\Repositories\Prints\HttpClient;
 use App\Models\Order\Orders;
 use App\Models\Shop\Shops;
 
 class Printer{
 	
-	protected  $user;
+	protected $user;
 	protected $ukey;
 	protected $ip;
 	protected $port;
@@ -28,6 +27,7 @@ class Printer{
 	}
 	
 	public function print_order(Orders $order,Shops $shop){
+		$orderInfo = '';
 		$orderInfo .= 'Welcome to Noodle Canteen Taradale<BR>';
 		$orderInfo .= '<C>GST: No# 104-299-733</C><BR>';
 		$orderInfo .= '<C>Tax Invoice</C><BR>';
@@ -48,8 +48,17 @@ class Printer{
 		$orderInfo .= '--------------------------------<BR>';
 		$orderInfo .= 'Dishes:                    Total<BR>';
 		
-		foreach ($order->dishes as $dish){
-			$orderInfo .= $dish->pivot->amount.'X'.$dish->number.$dish->name.'           '.$dish->pivot->total.'<BR>';
+		foreach($order->orderitems as $item){
+			$orderInfo .= $item->amount.'X'.$item->dishes->number.'           '.$item->total.'<BR>';
+			if($item->flavour){
+				$orderInfo .= " ".$item->flavour.'<BR>';
+			}
+			foreach($item->takeout as $material){
+				$orderInfo .= ' no  '.$material->name.'<BR>';
+			}
+			foreach($item->extra as $material){
+				$orderInfo .= ' extra  '.$material->name.' $'.$material->price.'<BR>';
+			}
 		}
 		
 		if($order->address()->count()){

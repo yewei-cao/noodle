@@ -1,14 +1,9 @@
 <div class="order-layout-right order-details"  >
 	<div class="panel-width basket" id="basket-panel" >
-            
-            
-            	<div class="mobile-close-button">x</div>
-            	<div class="basket-top"></div>
+      <div class="mobile-close-button">x</div>
+         <div class="basket-top"></div>
             	
-            	<div class="basket-header">
-
-    			</div>
-    			
+         <div class="basket-header"></div>
     			<div id="basket" class="basket-body">
        				<h3 id="order-cart-heading">Order Details</h3>
 		       		<div id="basket_rows" class="body-content">
@@ -36,9 +31,46 @@
 			                    </div>
 			                        <div class="col-3"><span class="price at-product-price">{{ $item->price }}</span></div>
 			                </div>
+			                
+			                @if($item->flavour)
+			                	<div class="row">
+				                	 <div class="col-9">
+				                	 	<span class="description">
+				                	 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$item->flavour}}
+				                	 	</span>
+				                	 </div>
+				                
+				                </div>
+			                @endif
+			                
+		                	@if($item->takeout)
+		                		@foreach($item->takeout as $material)
+				                <div class="row">
+				                	 <div class="col-9">
+				                	 	<span class="description">
+				                	 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no  {{ $material['name'] }}
+				                	 	</span>
+				                	 </div>
+				                
+				                </div>
+				                @endforeach	
+			                @endif
+			                
+			                @if($item->extra)
+		                		@foreach($item->extra as $material)
+				                <div class="row">
+				                	 <div class="col-9">
+				                	 	<span class="description">
+				                	 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extra  {{ $material['name'] }}
+				                	 	</span>
+				                	 </div>
+				                
+				                </div>
+				                @endforeach	
+			                @endif
 			
 			                <div class="row actions">
-			                        <button class="btn add-product add-to-order" item-code="{{ $item->id }}" >Add one</button>
+			                        <button class="btn add-product add-to-order" item-code="{{ $item->__raw_id }}" >Add one</button>
 			                		<button class="btn btn remove-product remove-to-order" item-code="{{ $item->__raw_id }}" class="btn remove-product">Remove</button>
 			                </div>
 			                
@@ -88,7 +120,6 @@
    			</div>
 				
 			<div class="basket-bottom"></div>
-			
 				
 	</div>
 </div>

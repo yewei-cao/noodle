@@ -28,7 +28,6 @@
 	</div>
 </div>
 
-
 <div class="form-group">
 {!! Form::label('mgroup_id','Materials Group',['class'=>'col-sm-3 control-label no-padding-right']) !!}
 	

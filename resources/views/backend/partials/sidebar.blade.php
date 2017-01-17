@@ -103,13 +103,6 @@
 					
 					<li>
 					<a href="{{ url('/admin/element/material') }}">
-					<i class="fa fa-circle-o"></i>
-						{{ trans('menus.element_manage.material') }}
-					</a>
-					</li>
-					
-					<li>
-					<a href="{{ url('/admin/element/material') }}">
 					<i class="fa fa-table"></i>
 						{{ trans('menus.element_manage.material') }}
 					</a>

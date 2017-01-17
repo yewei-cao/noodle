@@ -123,17 +123,29 @@
 							<tbody>
 							
 							
-							@foreach($order->dishes as $dish)
+								@foreach($order->orderitems as $item)
 								<tr>
-									<td class="center">{{  $dish->number }}</td>
-
-									<td><a href="#">{{  $dish->name }}</a></td>
-									<td class="hidden-xs">{{  $dish->description }}</td>
-									<td class="hidden-480">{{  $dish->pivot->amount }}</td>
-									<td>{{  $dish->pivot->total }}</td>
+									<td class="center">{{  $item->dishes->number }}</td>
+									<td>{{ $item->dishes->name }}</td>
+									<td class="hidden-xs">
+										@if($item->flavour)
+											{{$item->flavour}}
+											<br>
+										@endif
+										@foreach($item->takeout as $material)
+											no {{$material->name}}
+										@endforeach
+										<br>
+										@foreach($item->extra as $material)
+											extra {{$material->name}} <span class="red_span">${{$material->price}}</span>
+										@endforeach
+									
+									</td>
+									<td class="hidden-480">{{  $item->amount }}</td>
+									<td>{{  $item->total }}</td>
 								</tr>
 								
-								@endforeach	
+							@endforeach	
 								
 							</tbody>
 						</table>

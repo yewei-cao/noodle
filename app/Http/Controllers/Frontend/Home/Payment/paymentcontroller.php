@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Shop\Shops;
 use App\Repositories\Prints\Printer;
+use App\Models\Order\Orderitems;
 
 class paymentcontroller extends Controller
 {
@@ -214,12 +215,53 @@ class paymentcontroller extends Controller
 		$order = Orders::create($data);
 // 		dd($this->cart); 
 		foreach ($this->cart as $item) {
-			$order->dishes()->attach($item->id,
-					array(	'amount'=>$item->qty,
-							'price'=>$item->price,
-							'total'=>$item->price*$item->qty
-					)
+// 			$order->dishes()->attach($item->id,
+// 					array(	'amount'=>$item->qty,
+// 							'price'=>$item->price,
+// 							'total'=>$item->price*$item->qty
+// 					)
+// 					);
+			if(!$item->flavour){
+				$item->flavour='';
+			}
+			$orderitem = new Orderitems([
+					'dishes_id'=>$item->id,
+					'flavour'=>$item->flavour,
+					'amount'=>$item->qty,
+					'price'=>$item->price,
+					'total'=>$item->price*$item->qty
+			]);
+			$order->orderitems()->save($orderitem);
+			
+			
+			
+// 			$order->orderitems()->attach($item->id,
+// 					array(	'amount'=>$item->qty,
+// 							'price'=>$item->price,
+// 							'total'=>$item->price*$item->qty
+// 					)
+// 					);
+
+// 			dd($item->takeout);
+			if($item->takeout){
+				foreach ($item->takeout as $takeout){
+					$orderitem->materials()->attach($takeout['id'],
+							array(	'type'=>'takeout',
+									'price'=>'0',
+							)
 					);
+				}
+			}
+			
+			if($item->extra){
+				foreach ($item->extra as $extra){
+					$orderitem->materials()->attach($extra['id'],
+							array(	'type'=>'extra',
+									'price'=>$extra['price'],
+							)
+					);
+				}
+			}
 		}
 		if($request->session()->get('ordertype')=='delivery'){
 			$address = new Address([	

@@ -4,6 +4,7 @@ namespace App\Models\Element;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Menu\Dishes;
+use App\Models\Order\Orderitems;
 
 class Material extends Model
 {
@@ -27,6 +28,11 @@ class Material extends Model
 	
 	public function dishes(){
 		return $this->belongsToMany(Dishes::class);
+	}
+	
+	public function orderitems(){
+		return $this->belongsToMany(Orderitems::class);
+// 		return $this->belongsToMany(Orderitems::class);
 	}
 	
 }
