@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Redirect;
 
 class menuController extends Controller
 {
-
 	/*
 	 * use ordertype middleware
 	 */
@@ -60,7 +59,6 @@ class menuController extends Controller
     			'payment'=>''];
     	
 //     	dd($catalogues);
-    	
     	
     	$cart = Cart::all();
     	
@@ -144,7 +142,6 @@ class menuController extends Controller
     			$i++;
     		}
     	}
-    	
     	
     	if($request->input('extra')!=''){
     		$extra = substr($request->input('extra'),0,strlen($request->input('extra'))-1);

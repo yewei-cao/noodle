@@ -4,6 +4,10 @@
 {{ trans('front_title.quickorder').trans('front_title.title') }}
 @endsection
 
+@section('meta')
+{!! $shop->meta !!}
+@endsection
+
 @section('css.style')
 <link rel="stylesheet" href="/css/ace.min.css">
 <link rel="stylesheet" href="/css/acefonts/css/font-awesome.min.css">

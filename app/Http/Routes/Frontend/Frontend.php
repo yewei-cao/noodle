@@ -5,14 +5,22 @@
 $router->group(['namespace' => 'Home'], function () use ($router)
 {
 	Route::get('/','HomeController@index')->name('index');
+	Route::get('menu','HomeController@menu')->name('menu');
 	Route::get('privacy-policy','HomeController@policy')->name('policy');
 });
 
+$router->group(['prefix' => 'menu', 'namespace' => 'Home','as'=>'menu.'], function () use ($router)
+{
+	Route::get('/','HomeController@menu')->name('index');
+	Route::get('/{dish}', 'HomeController@dish')->name('dish');
+	
+});
 
 $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($router)
 {
 	
 	Route::get('/','HomeController@index')->name('home');
+	
 	/*
 	 * Product Menu Page
 	 */

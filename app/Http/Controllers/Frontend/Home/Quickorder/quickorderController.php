@@ -12,6 +12,9 @@ use Cart;
 
 class quickorderController extends Controller
 {
+	public function __construct(){
+		$this->shop = Shops::first();
+	}
     /**
      * Display a listing of the resource.
      *

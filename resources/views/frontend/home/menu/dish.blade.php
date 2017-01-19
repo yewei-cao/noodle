@@ -1,7 +1,63 @@
-@extends('frontend.home.menu_master')
-@section('order-layout')
+@extends('frontend.primary')
 
-<div class="order-layout-left" >
+@section('title')
+{{ trans('front_title.menu').trans('front_title.title') }}
+@endsection
+
+@section('meta')
+{!! $shop->meta !!}
+<meta name="_token" content="{{ csrf_token() }}">
+@endsection
+
+@section('css.style')
+<style type="text/css">
+#wrap {
+margin:0;
+}
+</style>
+@endsection
+
+@section('jscript')
+<script src="/js/breakpoints.js"></script>
+<script src="/js/sticky-kit.js"></script>
+@endsection
+
+@section('content')
+<!--  top bar -->
+
+<div class="btn-group btn-group-justified" role="group" >
+	<div class="btn-group nav_lowmenu" role="group">
+    	<a href="{{ route('home.menu.index') }}"  class="btn redbtn  {{$active['menu']}}">Menu</a>
+	</div>
+</div>
+  
+<div class="btn-group btn-group-justified top10" role="group" >
+	<div class="btn-group nav_menu" role="group">
+    	<a href="/home/menu/noodles"  class="btn redbtn  {{$active['noodles']}}">Noodles</a>
+	</div>
+	<div class="btn-group nav_menu" role="group">
+    	<a href="/home/menu/rice" class="btn redbtn  {{$active['rice']}}">Rice</a>
+	</div>
+  <div class="btn-group nav_menu" role="group">
+    <a href="/home/menu/snack&drinks" class="btn redbtn  {{$active['snack&drinks']}}">Snack&drinks</a>
+  </div>
+  
+  <div class="btn-group nav_lowmenu" role="group">
+    <a href="{{ route('home.payment.paymentmethod') }}" class="btn redbtn {{$active['payment']}}">Payment</a>
+  </div>
+</div>
+
+<div class="btn-group btn-group-justified top10" role="group" >
+  <div class="btn-group nav_lowmenu" role="group">
+    <a href="/home/menu/soups"  class="btn redbtn  {{$active['soups']}}">Soups</a>
+  </div>
+  <div class="btn-group nav_lowmenu" role="group">
+    <a href="/home/menu/chips" class="btn redbtn {{$active['chips']}}">Chips</a>
+  </div>
+</div>
+<!-- end top bar -->
+
+<div class="main-container">
 
 	<div id="product_menu_container" class="order-layout-left-inner">
 		<form name="adddish_item" method="POST" action="{{ route('home.dish.adddish') }}">
@@ -76,79 +132,17 @@
 				</div>
 				@endif
 					
-					
 				<div class="input-group quantity">
-					<label id="at-quantity-label" for="at-quantity">QTY</label>
 					
 	                	<div class="form-group">
-							<div class="col-md-12">
-							
-								<div class="input-group">
-							          <span class="input-group-btn">
-							              <button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="num">
-							                <span class="glyphicon glyphicon-minus"></span>
-							              </button>
-							          </span>
-							          <input type="text" name="num" class="form-control input-number" value="1" min="1" max="100">
-							          <span class="input-group-btn">
-							              <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="num">
-							                  <span class="glyphicon glyphicon-plus"></span>
-							              </button>
-							          </span>
-							     </div>
-						      	
-							</div>
-						
 							<div class="col-md-12 top10">
-	                 			<button class="btn redbtn add-to-order longbutton" type="submit" >Add to Order</button>
+								<a class="btn redbtn add-to-order longbutton" href="/home">Place an Order</a>
 	                 		</div>
 	                 	
 	                 	</div>
-	                 	
 				</div>
-				
 			</div>
-            
 		</div>
-		
-		@if($materials)
-		<div class="col-md-12 float-left">
-			<h4>Extra Vegetable in Meal</h4>
-			<span  class="remove-material-text" >(Click to Add)</span>
-			<hr/>
-			
-		  	<div class="current-material-container">
-        		<ul class="current-material" >
-        		@foreach($veges->material as $material)
-	        		<li>
-	        			<div class="material_edit">
-	        				<button type="button" class="btn unchoicebtn material_ad" price="{{ $material->price }}" item-code="{{ $material->id }}">{{ $material->name }} ${{$material->price }}</button>
-	        			</div>
-	        		</li>
-        		@endforeach
-        		</ul>
-		   	</div>
-		   	
-		   	<h4>Extra Meat in Meal</h4>
-		   	<span  class="remove-material-text" >(Click to Add)</span>
-			<hr/>
-			
-		  	<div class="current-material-container">
-        		<ul class="current-material" >
-        		@foreach($meat->material as $material)
-	        		<li>
-	        			<div class="material_edit">
-	        				<button type="button" class="btn unchoicebtn material_ad" price="{{ $material->price }}" item-code="{{ $material->id }}">
-	        				{{ $material->name }}
-	        				${{$material->price }}
-	        				</button>
-	        			</div>
-	        		</li>
-        		@endforeach
-        		</ul>
-		   	</div>
-		</div>
-		@endif
 		
 		{{ csrf_field() }}
 		</form>	

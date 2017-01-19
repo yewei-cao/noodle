@@ -56,8 +56,7 @@
 			
 	@endforeach	
 	
-		</div><!-- col-md-9 -->
-		
-		</div>
+	</div><!-- col-md-9 -->
+</div>
 
 @endsection
