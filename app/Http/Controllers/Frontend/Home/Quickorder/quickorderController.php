@@ -9,11 +9,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order\Orders;
 use Cart;
+use App\Models\Shop\Shops;
 
 class quickorderController extends Controller
 {
 	public function __construct(){
 		$this->shop = Shops::first();
+		$this->user = Auth::user();
 	}
     /**
      * Display a listing of the resource.
@@ -24,9 +26,11 @@ class quickorderController extends Controller
     {
     	sweetalert_message()->top_message(trans("front_home.order_cancel"));
     	
+//     	dd($this->user);
 //     	return $this->user->descorders();
     	return view('frontend.home.quickorder.index')
-    	->withuser($this->user);
+    	->withuser($this->user)
+    	->withShop($this->shop);
 //     	->withFlashSuccess("error");
 //     	->withMessage(trans('front_home.qorder_intro'));
     	
@@ -93,15 +97,8 @@ class quickorderController extends Controller
     		
 //     	}
     	
-    	dd($request);
-    	
 //     	return "clone order";
     }
-    public function test(){
-//     	return "ssss";
-    	return redirect()->route('home');
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -120,59 +117,4 @@ class quickorderController extends Controller
     	}
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

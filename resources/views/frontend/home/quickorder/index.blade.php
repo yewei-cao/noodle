@@ -89,22 +89,22 @@
 										<h5 class="widget-title smaller">
 											<span class="blue">{{ $user->name }}</span>
 											<span class="grey">placed a {{ $order->ordertype }} order</span>
+											
+											
 											@if($order->status==4)
-										
-									
-										<a class="btn" style="cursor:pointer;" onclick="$(this).find('form').submit();">
-									
-										<form name="delete_item" method="GET" action="{{ route('home.quickorder.cloneorder', $order->id) }}">
-										<button class="btn btn-xs btn-info" type="submit" >Clone</button>
-										<input type="hidden" value="{{$order->id}}" name="orderid">
-										</form>
-										
-										</a>
-										
-									
+												<a class="btn" style="cursor:pointer;" onclick="$(this).find('form').submit();">
+												<form name="delete_item" method="GET" action="{{ route('home.quickorder.cloneorder', $order->id) }}">
+												<button class="btn btn-xs btn-info" type="submit" >Clone</button>
+												<input type="hidden" value="{{$order->id}}" name="orderid">
+												</form>
+												</a>
 											@endif
 										</h5>
 
+										
+										<span class="widget-toolbar no-border">Order Status:{{ $order->orderstatus() }}</span>
+										
+										
 										<span class="widget-toolbar no-border">
 											<i class="ace-icon fa fa-clock-o bigger-110"></i>
 											{{ $order->created_at->diffForHumans() }}
@@ -121,13 +121,35 @@
 									<div class="widget-body">
 										<div class="widget-main">
 											<div class="row">
-												@foreach($order->dishes as $dish)
+												@foreach($order->orderitems as $item)
 							                    <div class="col-9">
 							                        <span class="description">
-							                         {{ $dish->pivot->amount }} x {{ $dish->name }}
+							                        	{{ $item->amount }} x {{ $item->dishes->name }}
 							                        </span>
 							                    </div>
-						                        <div class="col-3"><span class="ace_red">${{ $dish->pivot->total }}</span></div>
+						                        <div class="col-3"><span class="ace_red">${{  $item->total }}</span></div>
+						                        
+						                        @if($item->flavour || $item->takeout->count() || $item->extra->count())
+							                        <div class="col-9">
+								                        <span class="description">
+								                           @if($item->flavour)
+																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$item->flavour}}
+															<br>
+															@endif
+															
+															@foreach($item->takeout as $material)
+																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no {{$material->name}}
+															@endforeach
+															<br>
+															
+															@foreach($item->extra as $material)
+																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extra {{$material->name}} <span class="red_span">${{$material->price}}</span>
+															@endforeach
+								                        </span>
+								                    </div>
+								                     <div class="col-3"></div>
+							                     @endif
+							                     
 			                					@endforeach
 			                				</div>
 											<span class="blue">Message:</span>

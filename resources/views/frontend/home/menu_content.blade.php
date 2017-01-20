@@ -17,9 +17,9 @@
 	                <div class="product" >
 		                <div class="pheader">
 		                	<div class="content_num"><span class="content_num_span">{{ $dish->number }}</span></div>
-		                 	<div class="name-container"><span><a href="{{ action('Frontend\Home\menuController@dish',[$dish->number]) }}">{{ $dish->name }}</a></span></div>
+		                 	<div class="name-container"><span><a href="{{ action('Frontend\Home\menuController@dish',[str_slug($dish->name)]) }}">{{ $dish->name }}</a></span></div>
 	                 	</div>
-		                   <a href="{{ action('Frontend\Home\menuController@dish',[$dish->number]) }}">
+		                   <a href="{{ action('Frontend\Home\menuController@dish',[str_slug($dish->name)]) }}">
 								<img src="/{{ $dish->photo_thumbnail_path }}" alt="">
 		                   </a>
 	                    <div class="caption">
@@ -39,7 +39,7 @@
 	                        
 	                        	<div class="col-md-12">
 	                        		<div class="add-to-basket">
-	                        			<a class="btn redbtn" href="{{ action('Frontend\Home\menuController@dish',[$dish->number]) }}">Add to Order</a> 
+	                        			<a class="btn redbtn" href="{{ action('Frontend\Home\menuController@dish',[str_slug($dish->name)]) }}">Add to Order</a> 
 	                        		</div>
 	                        	
 	                        	</div>
@@ -58,5 +58,4 @@
 	
 	</div><!-- col-md-9 -->
 </div>
-
 @endsection

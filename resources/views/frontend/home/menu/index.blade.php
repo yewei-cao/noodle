@@ -27,32 +27,28 @@ margin:0;
 
 <div class="btn-group btn-group-justified" role="group" >
 	<div class="btn-group nav_lowmenu" role="group">
-    	<a href="{{ route('home.menu.index') }}"  class="btn redbtn  {{$active['menu']}}">Menu</a>
+    	<a href="{{ route('menu.index') }}"  class="btn redbtn  {{$active['menu']}}">Menu</a>
 	</div>
 </div>
   
 <div class="btn-group btn-group-justified top10" role="group" >
-	<div class="btn-group nav_menu" role="group">
-    	<a href="/home/menu/noodles"  class="btn redbtn  {{$active['noodles']}}">Noodles</a>
+	<div class="btn-group nav_lowmenu" role="group">
+    	<a href="/menu/noodles"  class="btn redbtn  {{$active['noodles']}}">Noodles</a>
 	</div>
-	<div class="btn-group nav_menu" role="group">
-    	<a href="/home/menu/rice" class="btn redbtn  {{$active['rice']}}">Rice</a>
+	<div class="btn-group nav_lowmenu" role="group">
+    	<a href="/menu/rice" class="btn redbtn  {{$active['rice']}}">Rice</a>
 	</div>
-  <div class="btn-group nav_menu" role="group">
-    <a href="/home/menu/snack&drinks" class="btn redbtn  {{$active['snack&drinks']}}">Snack&drinks</a>
-  </div>
-  
   <div class="btn-group nav_lowmenu" role="group">
-    <a href="{{ route('home.payment.paymentmethod') }}" class="btn redbtn {{$active['payment']}}">Payment</a>
+    <a href="/menu/snack&drinks" class="btn redbtn  {{$active['snack&drinks']}}">Snack&drinks</a>
   </div>
 </div>
 
 <div class="btn-group btn-group-justified top10" role="group" >
   <div class="btn-group nav_lowmenu" role="group">
-    <a href="/home/menu/soups"  class="btn redbtn  {{$active['soups']}}">Soups</a>
+    <a href="/menu/soups"  class="btn redbtn  {{$active['soups']}}">Soups</a>
   </div>
   <div class="btn-group nav_lowmenu" role="group">
-    <a href="/home/menu/chips" class="btn redbtn {{$active['chips']}}">Chips</a>
+    <a href="/menu/chips" class="btn redbtn {{$active['chips']}}">Chips</a>
   </div>
 </div>
 <!-- end top bar -->

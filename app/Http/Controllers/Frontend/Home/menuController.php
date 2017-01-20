@@ -72,9 +72,10 @@ class menuController extends Controller
     	->withActive($active);
     }
     
-    public function dish($dish,Request $request){
+    public function dish($dishname,Request $request){
 //     	$dish = Dishes::findOrFail($dish);
-    	$dish = Dishes::where('number', $dish)->first();
+    	$dishname = str_replace('-', ' ', $dishname);
+    	$dish = Dishes::where('name', $dishname)->firstOrFail();
     	$materials = [];
     	$i = 0;
     	foreach ($dish->mgroup->material as $material){
@@ -112,7 +113,6 @@ class menuController extends Controller
     	->withOrderroute($order_route)
     	->withDeliveryfee($deliveryfee)
     	->withActive($active);
-//     	dd($materials);
     }
     
     public function adddish(Request $request){
@@ -157,7 +157,6 @@ class menuController extends Controller
     		}
     	}
     	
-    	//no just add one 
     	$dish = Dishes::where('number',$request->input('dish_num'))->first();
     	 
     	Cart::add($dish->id, $dish->name,$request->input('num'),$dish->price+$extra_money,$attribute);
@@ -167,7 +166,6 @@ class menuController extends Controller
     	//     	return Cart::all()."Total:".Cart::total();
     	
     	return redirect()->route('home.menu.types', $dish->catalogue->last()->name);
-    	
     }
     
     public function types($type,Request $request){
@@ -326,7 +324,11 @@ class menuController extends Controller
     		return $deliveryfee;
     	}
     	if(!empty($request->session()->get('user_details')['deliveryfee'])){
-    		$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
+    		$cart = Cart::alldetails();
+    		if($cart['total'] < $this->shop->freedelivery){
+    			$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
+    		}
+    		
     	}
     	return $deliveryfee;
     }

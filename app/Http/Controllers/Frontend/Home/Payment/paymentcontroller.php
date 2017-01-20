@@ -191,7 +191,7 @@ class paymentcontroller extends Controller
 		
 		$deliveryfee= 0;
 		if($request->session()->get('ordertype')=='delivery'){
-			$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
+			$deliveryfee = $this->deliveryfee($request);
 		}
 		$data = [
 				'ordernumber'=> date('Ymd') .random_int(100000, 999999),
@@ -333,13 +333,17 @@ class paymentcontroller extends Controller
 		return $timestamp;
 	}
 	
-	protected function deliveryfee(Request $request){
+   protected function deliveryfee(Request $request){
     	$deliveryfee = 0;
     	if($request->session()->get('ordertype')=='pickup'){
     		return $deliveryfee;
     	}
     	if(!empty($request->session()->get('user_details')['deliveryfee'])){
-    		$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
+    		$cart = Cart::alldetails();
+    		if($cart['total'] < $this->shop->freedelivery){
+    			$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
+    		}
+    		
     	}
     	return $deliveryfee;
     }

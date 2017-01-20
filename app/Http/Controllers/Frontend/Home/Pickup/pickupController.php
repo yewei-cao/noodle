@@ -10,21 +10,27 @@ use Carbon\Carbon;
 use Illuminate\Http\Response;
 use App\Http\Requests\Frontend\Home\PickupTimeRequest;
 use Form;
+use App\Models\Shop\Shops;
 
 
 class pickupController extends Controller
 {
+	public function __construct(){
+		$this->shop = Shops::first();
+	}
 	
 	public function index(Request $request){
 // 		$request->session()->forget('user_details');
 		
 		if(!$request->session()->has('user_details')){
-			return view('frontend.home.pickup.index');
+			return view('frontend.home.pickup.index')
+					->withShop($this->shop);
 		}
 		
 		$pickup = $request->session()->get('user_details');
 
-		return view('frontend.home.pickup.edit')->withPickup($pickup);
+		return view('frontend.home.pickup.edit')->withPickup($pickup)
+				->withShop($this->shop);
 		
 	}
 	

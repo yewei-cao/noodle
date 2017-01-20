@@ -1,6 +1,5 @@
  @extends('backend.admin_master') 
  
- 
  @section('backend.css')
  <link href="/css/backend/print.css" rel="stylesheet" type= "text/css" />
  @endsection
@@ -118,7 +117,7 @@
 							
 							<td>{{ $order->payment() }}</td>
 							<td>{{ $order->paymentmethod() }}</td>
-							<td>{{ $order->total }}</td>
+							<td>{{ $order->totaldue }}</td>
 							<td>{{ $order->ordertype }}</td>
 							<td>{{ $order->phonenumber }}</td>
 							<td>{{ $order->email }}</td>
@@ -139,16 +138,33 @@
 							</td>
 							
 						</tr>
-							@foreach($order->dishes as $dish)
+							@foreach($order->orderitems as $item)
 								<tr>
 									<td></td>
 									<td></td>
 									<td>Dish Name:</td>
-									<td>{{ $dish->name }}</td>
+									<td>{{ $item->dishes->name }}</td>
+									<td>Description</td>
+									<td>
+										@if($item->flavour)
+											{{$item->flavour}}
+											<br>
+										@endif
+										
+										@foreach($item->takeout as $material)
+											no {{$material->name}}
+										@endforeach
+										
+										<br>
+										@foreach($item->extra as $material)
+											extra {{$material->name}} <span class="red_span">${{$material->price}}</span>
+										@endforeach
+										
+									</td>
 									<td>Qty</td>
-									<td>{{ $dish->pivot->amount }}</td>
+									<td>{{ $item->amount }}</td>
 									<td>Total</td>
-									<td>{{ $dish->pivot->total }}</td>
+									<td>{{ $item->total }}</td>
 								</tr>
 							@endforeach
 							
@@ -198,7 +214,6 @@
 </div>
 
 @endsection
-
 
 @section('backend.scripts.footer')
 <!-- <script src="/js/socket/socket.io.min.js"></script> -->

@@ -22,12 +22,14 @@ class deliveryController extends Controller
     public function index(Request $request)
     {
         if(!$request->session()->has('user_details')){
-			return view('frontend.home.delivery.index');
+			return view('frontend.home.delivery.index')
+					->withShop($this->shop);
 		}
 		
 		$delivery = $request->session()->get('user_details');
 
-		return view('frontend.home.delivery.edit')->withdelivery($delivery);
+		return view('frontend.home.delivery.edit')->withdelivery($delivery)
+				->withShop($this->shop);
     }
     
     /*

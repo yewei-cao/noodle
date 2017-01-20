@@ -47,6 +47,66 @@ class HomeController extends Controller
     	->withShop($this->shop);
     }
     
+    public function types($type,Request $request){
+    	$catalogues = Catalogue::where('name', $type)->orderBy('ranking', 'asc')->get();
+    	 
+    	switch ($type){
+    		case "noodles":
+    			$active = [
+    			'menu'=>'',
+    			'noodles'=>'active',
+    			'rice'=>'',
+    			'snack&drinks'=>'',
+    			'soups'=>'',
+    			'chips'=>'',
+    			'payment'=>''];
+    			break;
+    		case "rice":
+    			$active = [
+    			'menu'=>'',
+    			'noodles'=>'',
+    			'rice'=>'active',
+    			'snack&drinks'=>'',
+    			'soups'=>'',
+    			'chips'=>'',
+    			'payment'=>''];
+    			break;
+    		case "snack&drinks":
+    			$active = [
+    			'menu'=>'',
+    			'noodles'=>'',
+    			'rice'=>'',
+    			'snack&drinks'=>'active',
+    			'soups'=>'',
+    			'chips'=>'',
+    			'payment'=>''];
+    			break;
+    		case "soups":
+    			$active = [
+    			'menu'=>'',
+    			'noodles'=>'',
+    			'rice'=>'',
+    			'snack&drinks'=>'',
+    			'soups'=>'active',
+    			'chips'=>'',
+    			'payment'=>''];
+    			break;
+    		case "chips":
+    			$active = [
+    			'menu'=>'',
+    			'noodles'=>'',
+    			'rice'=>'',
+    			'snack&drinks'=>'',
+    			'soups'=>'',
+    			'chips'=>'active',
+    			'payment'=>''];
+    			break;
+    	}
+    	return view('frontend.home.menu.index',compact('catalogues'))
+    	->withActive($active)
+    	->withShop($this->shop);
+    }
+    
     public function dish($dishname,Request $request){
     	$dishname = str_replace('-', ' ', $dishname);
     	$dish = Dishes::where('name', $dishname)->firstOrFail();

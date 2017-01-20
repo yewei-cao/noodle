@@ -4,6 +4,10 @@
 {{ trans('front_title.pickupdetails').trans('front_title.title') }}
 @endsection
 
+@section('meta')
+	{!! $shop->meta !!}
+@endsection
+
 @section('content')
 
 <div class="detail-container row-bordered text-center"> 

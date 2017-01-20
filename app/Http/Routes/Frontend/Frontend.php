@@ -12,7 +12,9 @@ $router->group(['namespace' => 'Home'], function () use ($router)
 $router->group(['prefix' => 'menu', 'namespace' => 'Home','as'=>'menu.'], function () use ($router)
 {
 	Route::get('/','HomeController@menu')->name('index');
-	Route::get('/{dish}', 'HomeController@dish')->name('dish');
+	Route::get('/dish/{dish}', 'HomeController@dish')->name('dish');
+	Route::get('/{types}', 'HomeController@types')->name('types');
+	
 	
 });
 
@@ -49,7 +51,6 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 	{
 		Route::get('/','quickorderController@index')->name('home.quickorder');
 		Route::get('create','quickorderController@create')->name('home.quickorder.create');
-		Route::post('test','quickorderController@tests');
 		Route::get('cloneorder','quickorderController@cloneorder')->name('home.quickorder.cloneorder');
 	});
 	

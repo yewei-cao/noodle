@@ -130,7 +130,6 @@ trait User_trait {
 		return $this->hasMany(Material::class);
 	}
 	
-	
 }
 
 

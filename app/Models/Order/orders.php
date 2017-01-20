@@ -70,6 +70,29 @@ class Orders extends Model
     	}
     }
     
+    public function orderstatus(){
+    	switch ($this->status){
+    		case $this->status ==1:
+    			return 'created';
+    			break;
+    		case $this->status ==2:
+    			return 'printed';
+    			break;
+    		case $this->status ==3:
+    			return 'cooked';
+    			break;
+    		case $this->status ==4:
+    			return 'finished';
+    			break;
+    		case $this->status >=5:
+    			return 'Cancel';
+    			break;
+    		default:
+    			return 'Cancel';
+    			break;
+    	}
+    }
+    
     public function payment(){
     	switch ($this->paymentflag){
     		case $this->paymentflag ==1:

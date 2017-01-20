@@ -1,7 +1,6 @@
 /**
  * 
  */
-
 (function($) {
 
 	$.extend({
@@ -157,7 +156,6 @@
 	      alert('Sorry, the maximum value was reached');
 	      $(this).val($(this).data('oldValue'));
 	  }
-	  
 	  
 	});
 	$(".input-number").keydown(function (e) {

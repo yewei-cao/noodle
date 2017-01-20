@@ -49,7 +49,7 @@ class poliController extends Controller
 		
 		$deliveryfee= 0;
 		if($request->session()->get('ordertype')=='delivery'){
-			$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
+			$deliveryfee = $this->deliveryfee($request);
 		}
 		
 		$data = [
@@ -298,6 +298,20 @@ class poliController extends Controller
 	
 		header('Location: '.$json["NavigateURL"]);
 	
+	}
+	
+	protected function deliveryfee(Request $request){
+		$deliveryfee = 0;
+		if($request->session()->get('ordertype')=='pickup'){
+			return $deliveryfee;
+		}
+		if(!empty($request->session()->get('user_details')['deliveryfee'])){
+			$cart = Cart::alldetails();
+			if($cart['total'] < $this->shop->freedelivery){
+				$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
+			}
+		}
+		return $deliveryfee;
 	}
 	
 	
