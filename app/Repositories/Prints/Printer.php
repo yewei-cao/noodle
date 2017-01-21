@@ -86,7 +86,7 @@ class Printer{
 		
 		$result =  json_decode($this->wp_print($orderInfo), true);
 		
-		return $result;
+// 		return $result;
 		if($result['msg'] =='ok'){
 			if ($order->status ==1){
 				$order->status =2;
