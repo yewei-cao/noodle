@@ -67,5 +67,5 @@ return [
 		'qorder_text2'=>'Place a new order and we will remember it for Quick Ordering next time.',
 		'qorder_text3'=>'For even faster ordering, save your favourite order.',
 		'qorder_intro'=>'Place an order to get set up for Quick Order next time',
-		'order_cancel'=>'If you want to cancel order, please call 8442388'
+		'order_cancel'=>'If you want to cancel order, please call (06) 8443588'
 ];
