@@ -13,6 +13,19 @@ body, html {
     margin: 0 auto -60px;
     padding: 0 0 60px;
 }
+#home_wrap{
+	 height: auto;
+	 margin: 0 auto 30px;
+}
+.home_detail{
+	margin-right: 20px;
+    min-height: 280px;
+    padding-bottom: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 24px;
+    border: 1px solid #e41837;
+}
 .top10 { margin-top:7px; }
 .top15 { margin-top:15px; }
 /* nav */
@@ -168,14 +181,22 @@ padding:0px;
 ..product-container .product .pheader{
 	width:100%;
 }
-.name-container a{
+.name-container a, .home_detail a{
 	color: #333;
     text-decoration: none;
 }
 .product-container .product .caption{
 	height:184px;
 }
-
+.opentime{
+	color: #8A8A8A;
+    display: inline-block;
+    text-align: center;
+    width: 82px;
+}
+.day-wrapper {
+	float:right;
+}
 .product-container .product .name-container{
     float: left;
     width: 82%;
@@ -1300,6 +1321,11 @@ background-color:#fee188!important;border-color:#fee188
     list-style-type: disc;
     padding-left: 15px;
 }
+.googlemap{
+	margin:0px;
+	height: 450px;
+	width: 340px;
+}
 
 /* menu page end */ 
 @media (min-width: 375px){
@@ -1322,6 +1348,11 @@ background-color:#fee188!important;border-color:#fee188
 .current-material>li .material_edit .remove-topping{
     padding-right: 10px;
 }
+
+.googlemap{	
+	height: 400px;
+	width: 350px;
+	}
 }
 
 
@@ -1488,6 +1519,14 @@ display:none
     left: 57px;
 }
 
+.googlemap{
+	padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+	height: 450px;
+	width: 540px;
+}
 }
 
 @media(min-width:992px) {
@@ -1508,7 +1547,14 @@ display:none
     width: 75%;
     margin: 0 auto;
 }
-
+.googlemap{
+	padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+	height: 540px;
+	width: 640px;
+}
 }
 
 @media(min-width:1200px) {
@@ -1526,7 +1572,14 @@ footer .footer-content {
 .payment_confirm{
 	width: 579px;
 }
-
+.googlemap{
+	padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+	height: 540px;
+	width: 960px;
+}
 }
 
 @media(min-width:1480px) {
@@ -1550,7 +1603,14 @@ body .main-container {
 .horizon-list {
     width: 50%;
 }
-
+.googlemap{
+	padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+	height: 540px;
+	width: 1080px;
+}
 }
 
 .current-material>li .material_edit .btn-quantity {

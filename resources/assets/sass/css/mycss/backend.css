@@ -517,7 +517,6 @@ div.dataTables_length select {
 	width: 340px;
 }
 
-
 @media(min-width:480px) {
 .googlemap{	
 	height: 420px;
@@ -558,7 +557,7 @@ div.dataTables_length select {
 }
 
 @media(min-width:1480px) {
-	.googlemap{
+.googlemap{
 	padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;

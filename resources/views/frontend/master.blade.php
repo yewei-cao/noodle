@@ -22,7 +22,7 @@
 	
 </head>
 <body>
-	<div id="wrap">
+	<div id="home_wrap">
 		@include('frontend.includes.nav')
 		
 		<div class= "container minheiht">
@@ -46,5 +46,4 @@
 <script type="text/javascript">
 $('#flash-overlay-modal').modal();
 </script>
-
 </html>

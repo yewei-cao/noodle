@@ -16,34 +16,66 @@
 
 @section('content')
 
-<div id="theCarousel" class="carousel slide" data-ride="carousel">
-<ol class="carousel-indicators">
-<li data-tagret="#theCarousel" data-slide-to="0" class="active"></li>
-<li data-tagret="#theCarousel" data-slide-to="1" ></li>
-</ol>
+<div class="col-md-12">
 
-<div class="carousel-inner">
-	<div class="item active">
-		<div class="slidel1"></div>
-		<div class="carousel-caption">
-		</div>
+<div class="col-md-4">
+	<div class="home_detail">
+		<h2 class="text-center">About Us</h2>
+		<hr>
+		<p>Located at 269 Gloucester St, Noodle Canteen – Taradale serves an appetizing mix of Asian Cuisine. Everything is prepared fresh by our Asian chefs and include choice dishes, such as Seafood Mee Goreng, Nasi Goreng, Chicken Fried Rice and many more.</p>
 	</div>
-	
-	<div class="item">
-		<div class="slidel2"></div>
-		<div class="carousel-caption">
-		</div>
-	</div>
-	
 </div>
 
-<a class="left carousel-control" href="#theCarousel" data-slide="prev">
-<span class="glyphicon glyphicon-chevron-left"></span>
-</a>
+<div class="col-md-4">
+	<div class="home_detail">
+		<a href="{{ route('menu.index') }}">
+			<h2 class="text-center">Menu</h2>
+			<hr>
+			<p>You can have your food delivered or avail of our takeaway service from Tuesday to Sundays. An extensive selection of popular noodles will excite your palate. Soups and Fried Rice are also included in the menu.</p>
+		</a>
+	</div>
+</div>
 
-<a class="right carousel-control" href="#theCarousel" data-slide="next">
-<span class="glyphicon glyphicon-chevron-right"></span>
-</a>
+<div class="col-md-4">
+	<div class="home_detail">
+		<h2 class="text-center">Opening Hours</h2>
+		<hr>
+		
+			
+				
+			<span class="day-name">Tuesday</span>
+			<span class="day-wrapper">
+				<span class="opentime">11:00</span> to <span class="opentime">21:00</span>
+			</span>
+		
+			<span class="day-name">Wednesday</span>
+			<span class="day-wrapper">
+				<span class="opentime">11:00</span> to <span class="opentime">21:00</span>
+			</span>
+			
+			<span class="day-name">Thursday</span>
+			<span class="day-wrapper">
+				<span class="opentime">11:00</span> to <span class="opentime">21:00</span>
+			</span>
+		
+			<span class="day-name">Friday</span>
+			<span class="day-wrapper">
+				<span class="opentime">11:00</span> to <span class="opentime">21:00</span>
+			</span>
+			
+			
+			<span class="day-name">Saturday</span>
+			<span class="day-wrapper">
+				<span class="opentime">11:00</span> to <span class="opentime">21:00</span>
+			</span>
+			
+			<span class="day-name">Sunday</span>
+			<span class="day-wrapper">
+				<span class="opentime">11:00</span> to <span class="opentime">21:00</span>
+			</span>
+			
+	</div>
+</div>
 
 </div>
 
@@ -53,22 +85,20 @@
 </div>
 
 
-
 <div id="myservice-container">
 
 <div class="col-4">
-<a id="quick" href="{{ route('menu.index') }}" class="myservice red" >
-
+<a id="quick" href="{{ route('home.quickorder') }}" class="myservice red" >
 <div class="service-icon">
 <img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="images/home/home_quickorder.png">
 </div>
 <div class="service-text">
 
-<h2>Menu</h2>
-<p>Fresh Healthy Cook-Arts</p>
+<!-- <h2>Menu</h2> -->
+<!-- <p>Fresh Healthy Cook-Arts</p> -->
 
-<!-- <h2>{{ trans('front_home.quick_order') }}</h2> -->
-<!-- <p>{{ trans('front_home.quick_order_ext') }}</p> -->
+<h2>{{ trans('front_home.quick_order') }}</h2>
+<p>{{ trans('front_home.quick_order_ext') }}</p>
 </div>
 </a>
 </div>
@@ -103,5 +133,16 @@
 
 
 </div>
+
+<div class="col-md-12">
+<h2>Our Location</h2>
+<hr>
+<p>269 Gloucester St, Noodle Canteen – Taradale Ph: (06) 844 3588</p>
+	<div class="googlemap">
+		{!! Mapper::render() !!}
+	</div>
+
+</div>
+
 
 @endsection

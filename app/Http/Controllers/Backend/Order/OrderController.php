@@ -292,6 +292,7 @@ class OrderController extends Controller
     		$url = "https://maps.googleapis.com/maps/api/directions/json?origin=".$origin."&destination=".$destination."&key=".$this->shop->googleapi;
     		$json = json_decode(file_get_contents($url), true);
     		 
+    		dd($json);
     		Mapper::map($json['routes'][0]['legs'][0]['end_location']['lat'],$json['routes'][0]['legs'][0]['end_location']['lng'],['zoom' => 16]);
     	}
     	

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Shop\Shops;
 use App\Models\Menu\Catalogue;
 use App\Models\Menu\Dishes;
+use Mapper;
 
 class HomeController extends Controller
 {
@@ -21,6 +22,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+    	 
+    	Mapper::map("-39.5357013","176.8484829",['zoom' => 16]);
+    	
         return view('frontend.home.home')->withShop($this->shop);
     }
     
