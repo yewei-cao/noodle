@@ -19,10 +19,10 @@ body, html {
 }
 .home_detail{
 	margin-right: 20px;
-    min-height: 280px;
+    min-height: 325px;
     padding-bottom: 15px;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 0px;
+    padding-right: 0px;
     padding-top: 24px;
     border: 1px solid #e41837;
 }
@@ -188,14 +188,22 @@ padding:0px;
 .product-container .product .caption{
 	height:184px;
 }
+.open_detail{
+	width:100%;
+}
 .opentime{
 	color: #8A8A8A;
     display: inline-block;
     text-align: center;
-    width: 82px;
+    width: 65px;
 }
-.day-wrapper {
-	float:right;
+.day-name{
+	width: 25%;
+	float:left;
+}
+.day-time {
+	width: 75%;
+	float:left;
 }
 .product-container .product .name-container{
     float: left;
@@ -1324,7 +1332,7 @@ background-color:#fee188!important;border-color:#fee188
 .googlemap{
 	margin:0px;
 	height: 450px;
-	width: 340px;
+	width: 100%;
 }
 
 /* menu page end */ 
@@ -1348,11 +1356,14 @@ background-color:#fee188!important;border-color:#fee188
 .current-material>li .material_edit .remove-topping{
     padding-right: 10px;
 }
-
+.home_detail{
+	padding-left: 25px;
+    padding-right: 25px;
+}
 .googlemap{	
 	height: 400px;
-	width: 350px;
-	}
+	width: 100%;
+}
 }
 
 

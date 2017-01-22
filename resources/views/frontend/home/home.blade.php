@@ -41,38 +41,47 @@
 		<h2 class="text-center">Opening Hours</h2>
 		<hr>
 		
-			
-				
+		<div class="open_detail">
 			<span class="day-name">Tuesday</span>
-			<span class="day-wrapper">
+			<span class="day-time">
 				<span class="opentime">11:00</span> to <span class="opentime">21:00</span>
 			</span>
+		</div>
 		
+		<div class="open_detail">
 			<span class="day-name">Wednesday</span>
-			<span class="day-wrapper">
+			<span class="day-time">
 				<span class="opentime">11:00</span> to <span class="opentime">21:00</span>
 			</span>
-			
-			<span class="day-name">Thursday</span>
-			<span class="day-wrapper">
-				<span class="opentime">11:00</span> to <span class="opentime">21:00</span>
-			</span>
+		</div>
 		
+		<div class="open_detail">	
+			<span class="day-name">Thursday</span>
+			<span class="day-time">
+				<span class="opentime">11:00</span> to <span class="opentime">21:00</span>
+			</span>
+		</div>
+		
+		<div class="open_detail">
 			<span class="day-name">Friday</span>
-			<span class="day-wrapper">
+			<span class="day-time">
 				<span class="opentime">11:00</span> to <span class="opentime">21:00</span>
 			</span>
+		</div>	
 			
-			
+		<div class="open_detail">
 			<span class="day-name">Saturday</span>
-			<span class="day-wrapper">
+			<span class="day-time">
 				<span class="opentime">11:00</span> to <span class="opentime">21:00</span>
 			</span>
+		</div>
 			
+		<div class="open_detail">
 			<span class="day-name">Sunday</span>
-			<span class="day-wrapper">
+			<span class="day-time">
 				<span class="opentime">11:00</span> to <span class="opentime">21:00</span>
 			</span>
+		</div>
 			
 	</div>
 </div>
