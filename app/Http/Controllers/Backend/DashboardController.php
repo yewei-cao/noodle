@@ -17,8 +17,6 @@ class DashboardController extends Controller {
 	 */
 	public function index()
 	{
-
-		
 // 		event(new OrderReceipt(Orders::findOrFail(9)));
 		
 		$created = Orders::where('status','=','1')->count();
@@ -35,8 +33,6 @@ class DashboardController extends Controller {
 		->withPrinted(Orders::where('status','=','2')->count())
 		->withCooked(Orders::where('status','=','3')->count())
 		->withFinished(Orders::where('status','=','4')->count());
-		
-		
 		
 	}
 }
