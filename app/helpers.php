@@ -24,6 +24,25 @@ if ( ! function_exists('sweetalert_message')) {
 
 }
 
+if (! function_exists('deliveryfee')) {
+
+    function deliveryfee($request)
+    {
+       $deliveryfee = 0;
+    	if($request->session()->get('ordertype')=='pickup'){
+    		return $deliveryfee;
+    	}
+    	if(!empty($request->session()->get('user_details')['deliveryfee'])){
+//     		$cart = Cart::alldetails();
+//     		if($cart['total'] < $this->shop->freedelivery){
+    			$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
+//     		}
+    		
+    	}
+    	return $deliveryfee;
+    }
+}
+
 
 if (! function_exists('access')) {
 	/**

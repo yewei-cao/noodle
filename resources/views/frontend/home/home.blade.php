@@ -42,6 +42,13 @@
 		<hr>
 		
 		<div class="open_detail">
+			<span class="day-name">Monday</span>
+			<span class="day-time">
+				<span class="opentime">day off</span>
+			</span>
+		</div>
+		
+		<div class="open_detail">
 			<span class="day-name">Tuesday</span>
 			<span class="day-time">
 				<span class="opentime">11:00</span> to <span class="opentime">21:00</span>

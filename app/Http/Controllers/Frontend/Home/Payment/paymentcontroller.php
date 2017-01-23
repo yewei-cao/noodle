@@ -72,7 +72,7 @@ class paymentcontroller extends Controller
 			$pickupmark = true;
 		}
 		
-		$deliveryfee = $this->deliveryfee($request);
+		$deliveryfee = deliveryfee($request);
 		
 		return view('frontend.home.payment.paymentmethod')
 		->withCart($this->cart)
@@ -99,7 +99,7 @@ class paymentcontroller extends Controller
 					'next'=>''
 			];
 			
-			$deliveryfee = $this->deliveryfee($request);
+			$deliveryfee = deliveryfee($request);
 			
 			$ip = $request->ip();
 			return view('frontend.home.payment.cash',compact('time','ip'))
@@ -191,7 +191,7 @@ class paymentcontroller extends Controller
 		
 		$deliveryfee= 0;
 		if($request->session()->get('ordertype')=='delivery'){
-			$deliveryfee = $this->deliveryfee($request);
+			$deliveryfee = deliveryfee($request);
 		}
 		$data = [
 				'ordernumber'=> date('Ymd') .random_int(100000, 999999),
@@ -332,20 +332,5 @@ class paymentcontroller extends Controller
 		}
 		return $timestamp;
 	}
-	
-   protected function deliveryfee(Request $request){
-    	$deliveryfee = 0;
-    	if($request->session()->get('ordertype')=='pickup'){
-    		return $deliveryfee;
-    	}
-    	if(!empty($request->session()->get('user_details')['deliveryfee'])){
-//     		$cart = Cart::alldetails();
-//     		if($cart['total'] < $this->shop->freedelivery){
-    			$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
-//     		}
-    		
-    	}
-    	return $deliveryfee;
-    }
 	
 }
