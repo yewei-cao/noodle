@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Order\Orders;
+use App\Models\Order\orders;
 use App\Events\DashboardOrder;
 use App\Events\OrderReceipt;
 
@@ -19,9 +19,9 @@ class DashboardController extends Controller {
 	{
 // 		event(new OrderReceipt(Orders::findOrFail(9)));
 		
-		$created = Orders::where('status','=','1')->count();
+		$created = orders::where('status','=','1')->count();
 		
-		$printed = Orders::where('status','=','2')->count();
+		$printed = orders::where('status','=','2')->count();
 		
 // 		event(new DashboardOrderEvent(Orders::findOrFail(9)));
 // 		event(new OrderReceipt());
