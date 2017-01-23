@@ -306,10 +306,10 @@ class poliController extends Controller
 			return $deliveryfee;
 		}
 		if(!empty($request->session()->get('user_details')['deliveryfee'])){
-			$cart = Cart::alldetails();
-			if($cart['total'] < $this->shop->freedelivery){
+// 			$cart = Cart::alldetails();
+// 			if($cart['total'] < $this->shop->freedelivery){
 				$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
-			}
+// 			}
 		}
 		return $deliveryfee;
 	}
