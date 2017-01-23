@@ -72,7 +72,7 @@ class poliController extends Controller
 				'message'=>$request->input('message'),
 		];
 	
-		$order = Orders::create($data);
+		$order = orders::create($data);
 		foreach ($this->cart as $item) {
 	// 			$order->dishes()->attach($item->id,
 	// 					array(	'amount'=>$item->qty,
@@ -170,7 +170,7 @@ class poliController extends Controller
 			return redirect()->route('home');
 		}
 		
-		$order = Orders::findOrFail($id);
+		$order = orders::findOrFail($id);
 		if($order->paymentflag ==2){
 			event(new OrderReceipt($order));
 			event(new OrderPrinter($order));
@@ -203,7 +203,7 @@ class poliController extends Controller
 		$id = $this->getorder($token);
 
 		if( intval( $id ) ){
-			$order = Orders::findOrFail($id);
+			$order = orders::findOrFail($id);
 			
 			if(!$this->feieprinter($order)){
 				//send me a email.
@@ -239,11 +239,11 @@ class poliController extends Controller
 			return "Transaction not completed.";
 		}
 		
-		if(!Orders::where('token', $json['MerchantReferenceData'])->count()){
+		if(!orders::where('token', $json['MerchantReferenceData'])->count()){
 			return "Token is not available.";
 		}
 		
-		$order = Orders::where('token', $json['MerchantReferenceData'])->first();
+		$order = orders::where('token', $json['MerchantReferenceData'])->first();
 		if($order->paymentflag == 1){
 			$order->paymentflag = 2;
 			$order->paymenttime = Carbon::now();

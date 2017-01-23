@@ -43,7 +43,7 @@ class quickorderController extends Controller
     	]);
     	
     	if($this->user->hasorder($request->input('orderid'))){
-    		$order = Orders::findOrFail($request->input('orderid'));
+    		$order = orders::findOrFail($request->input('orderid'));
 //     		$request->session()->flush();
     		$request->session()->forget('user_details');
     		$request->session()->forget('ordertype');
@@ -110,7 +110,7 @@ class quickorderController extends Controller
 //     	return redirect()->route('home.quickorder',[$message]);
 //     	return redirect('home/quickorder')->with('regist', true);
 
-    	$order = Orders::findOrFail(133);
+    	$order = orders::findOrFail(133);
     	dd($this->user);
     	if(!Auth::guest()){
     		$this->user->attachorder($order);

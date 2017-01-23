@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Order\Orders;
+use App\Models\Order\orders;
 use App\Events\OrderPrinter;
 use App\Events\DashboardOrder;
 use App\Events\OrderReceipt;
@@ -37,9 +37,9 @@ class OrderController extends Controller
 //     	}
 
     	
-//     	$orders = Orders::where('status','=','2')->paginate($this->paginate);
+//     	$orders = orders::where('status','=','2')->paginate($this->paginate);
     	
-    	$orders = Orders::latest()->paginate($this->paginate);
+    	$orders = orders::latest()->paginate($this->paginate);
 //     	$orders->appends(['sort' => 'name']);
 //     	$orders->setPath('custom/url');
     	
@@ -57,33 +57,33 @@ class OrderController extends Controller
     	
     	switch ($tab)	{
     		case $tab =="unpaid":
-    			$orders = Orders::where('paymentflag','=','1')->latest()->paginate($this->paginate);
+    			$orders = orders::where('paymentflag','=','1')->latest()->paginate($this->paginate);
     			break;
     		case $tab =="paid":
-    			$orders = Orders::where('paymentflag','=','2')->latest()->paginate($this->paginate);
+    			$orders = orders::where('paymentflag','=','2')->latest()->paginate($this->paginate);
     			break;
     			
     		case $tab =="created":
-    			$orders = Orders::where('status','=','1')->latest()->paginate($this->paginate);
+    			$orders = orders::where('status','=','1')->latest()->paginate($this->paginate);
     			break;
     		case $tab =="printed":
-    			$orders = Orders::where('status','=','2')->latest()->paginate($this->paginate);
+    			$orders = orders::where('status','=','2')->latest()->paginate($this->paginate);
     			break;
     		case $tab == "cooked":
-    			$orders = Orders::where('status','=','3')->latest()->paginate($this->paginate);
+    			$orders = orders::where('status','=','3')->latest()->paginate($this->paginate);
     			break;
     		case $tab == "finished":
-    			$orders = Orders::where('status','=','4')->latest()->paginate($this->paginate);
+    			$orders = orders::where('status','=','4')->latest()->paginate($this->paginate);
     			break;
     		case $tab =="cash":
-    			$orders = Orders::where('paymentmethod_id','=','1')->latest()->paginate($this->paginate);
+    			$orders = orders::where('paymentmethod_id','=','1')->latest()->paginate($this->paginate);
     			break;
     		case $tab == "cancel":
-    			$orders = Orders::where('status','>=','5')->latest()->paginate($this->paginate);
+    			$orders = orders::where('status','>=','5')->latest()->paginate($this->paginate);
     			break;
     			
     		default:
-    			$orders = Orders::latest()->paginate($this->paginate); 
+    			$orders = orders::latest()->paginate($this->paginate); 
     			break;
     	}
     	
@@ -98,7 +98,7 @@ class OrderController extends Controller
      */
     
     public function orderprinter(){
-    	$orders = Orders::where('status','<','2')->count();
+    	$orders = orders::where('status','<','2')->count();
 //     	return $orders;
     	foreach ($orders as $order){
 //     		$order['shiptime'] = $order;
@@ -116,7 +116,7 @@ class OrderController extends Controller
     	$this->validate($request, [
     			'orderid' => 'required|numeric',
     	]);
-    	$order = Orders::where('id',$request->input('orderid'))->first();
+    	$order = orders::where('id',$request->input('orderid'))->first();
     	
     	return true;
     }
@@ -126,7 +126,7 @@ class OrderController extends Controller
     			'id' => 'required|numeric',
     	]);
     	
-    	$order = Orders::where('id',$request->input('id'))->first();
+    	$order = orders::where('id',$request->input('id'))->first();
     	
     	//feie printer
     	$result = [];
@@ -165,7 +165,7 @@ class OrderController extends Controller
     	$this->validate($request, [
     			'orderid' => 'required|numeric',
     	]);
-    	$order = Orders::where('id',$request->input('orderid'))->first();
+    	$order = orders::where('id',$request->input('orderid'))->first();
     	
     	if($order->status!=1){
     		return response()->json([
@@ -192,7 +192,7 @@ class OrderController extends Controller
     	$this->validate($request, [
     			'orderid' => 'required|numeric',
     	]);
-    	$order = Orders::where('id',$request->input('orderid'))->first();
+    	$order = orders::where('id',$request->input('orderid'))->first();
     	 
     	if($order->status!=2){
     		if($order->status==1){
@@ -223,7 +223,7 @@ class OrderController extends Controller
     	$this->validate($request, [
     			'orderid' => 'required|numeric',
     	]);
-    	$order = Orders::where('id',$request->input('orderid'))->first();
+    	$order = orders::where('id',$request->input('orderid'))->first();
     
     	if($order->status!=3){
     		if($order->status==1){
@@ -279,8 +279,8 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-//     	$orders = Orders::where('status','<','2');
-    	$order= Orders::where('ordernumber', $id)->firstOrFail();
+//     	$orders = orders::where('status','<','2');
+    	$order= orders::where('ordernumber', $id)->firstOrFail();
 //         return $order;
 
 //     	return $order->address()->count();
@@ -334,7 +334,7 @@ class OrderController extends Controller
 //     	event(new DashboardOrder());
     	
 //     	event(new OrderReceipt());
-    	Orders::destroy($id);
+    	orders::destroy($id);
     	return redirect()->route('admin.menu.order.index')->withFlashSuccess(trans("menu_backend.menu_dish_deleting"));
 //     	return "DESTORY";
     }
@@ -351,7 +351,7 @@ class OrderController extends Controller
     	$tab= "all";
     	
     	$name = $request->input('table_search');
-    	$orders = Orders::where('name', 'LIKE', '%'.$name.'%')->paginate(10);
+    	$orders = orders::where('name', 'LIKE', '%'.$name.'%')->paginate(10);
     	
     	return view('backend.pages.order.index')
     	->withOrders($orders)
