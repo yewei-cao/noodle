@@ -106,7 +106,7 @@ class deliveryController extends Controller
     	$url = "https://maps.googleapis.com/maps/api/directions/json?origin=".$origin."&destination=".$destination."&key=".$this->shop->googleapi;
     	$json = json_decode(file_get_contents($url), true);
     	
-    	return ceil($json['routes'][0]['legs'][0]['distance']['value']/1000);
+    	return ceil($json['routes'][0]['legs'][0]['distance']['value']/1000)*$this->shop->distancelevel1;
     	//distance less than 5km or 20km
 //     	if($json['routes'][0]['legs'][0]['distance']['value']<3000){
 //     		return $this->shop->distancelevel1;
