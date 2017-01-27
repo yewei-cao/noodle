@@ -53,7 +53,11 @@ class HomeController extends Controller
     
     public function types($type,Request $request){
     	$catalogues = Catalogue::where('name', $type)->orderBy('ranking', 'asc')->get();
-    	 
+    	
+    	if(!$catalogues->count()){
+    		return redirect()->route('menu.index');
+    	}
+    		
     	switch ($type){
     		case "noodles":
     			$active = [
@@ -105,6 +109,17 @@ class HomeController extends Controller
     			'chips'=>'active',
     			'payment'=>''];
     			break;
+    		default:
+    			$active = [
+    				'menu'=>'active',
+    				'noodles'=>'',
+    				'rice'=>'',
+    				'snack&drinks'=>'',
+    				'soups'=>'',
+    				'chips'=>'',
+    				'payment'=>''];
+    			break;
+    		
     	}
     	return view('frontend.home.menu.index',compact('catalogues'))
     	->withActive($active)

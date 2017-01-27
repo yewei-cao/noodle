@@ -15,7 +15,6 @@ $router->group(['prefix' => 'menu', 'namespace' => 'Home','as'=>'menu.'], functi
 	Route::get('/dish/{dish}', 'HomeController@dish')->name('dish');
 	Route::get('/{types}', 'HomeController@types')->name('types');
 	
-	
 });
 
 $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($router)
