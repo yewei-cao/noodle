@@ -1,4 +1,9 @@
 @extends('frontend.home.menu_master')
+
+@section('title')
+{{ $dish->name }} - {{ trans('front_title.menu') }}
+@endsection
+
 @section('order-layout')
 
 <div class="order-layout-left" >

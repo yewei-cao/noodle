@@ -1,7 +1,7 @@
 @extends('frontend.primary')
 
 @section('title')
-{{ trans('front_title.menu').trans('front_title.title') }}
+{{ $dish->name }} - {{ trans('front_title.menu') }}
 @endsection
 
 @section('meta')

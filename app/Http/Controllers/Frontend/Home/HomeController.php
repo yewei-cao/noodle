@@ -36,16 +36,16 @@ class HomeController extends Controller
 
     public function menu(){
     	
-    	$dt = Carbon::now();
+//     	$dt = Carbon::now();
     	
-//     	return $dt->addDays(1)->dayOfWeek;
+// //     	return $this->shop->workday();
     	
-    	if (in_array($dt->addDays(2)->dayOfWeek, $this->shop->workday())) {
-    		return "got it";
-    	}
-    	return "not got it";
+//     	return $dt->addDays(0)->dayOfWeek;
     	
-    	
+//     	if (in_array($dt->addDays(1)->dayOfWeek, $this->shop->workday())) {
+//     		return "got it";
+//     	}
+//     	return "not got it";
     	
     	$catalogues = Catalogue::orderBy('ranking', 'asc')->get();
     	$active = [

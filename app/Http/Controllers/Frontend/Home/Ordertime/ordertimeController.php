@@ -113,10 +113,10 @@ class ordertimeController extends Controller
 					
 			}
 	
-			for($i=0;$i<=10;$i++){
+			for($i=1;$i<=10;$i++){
 				if (in_array($dt->copy()->addDays($i)->dayOfWeek , $this->shop->workday())) {
 // 				if($dt->copy()->addDays($i+1)->dayOfWeek != $this->dayoff){
-					$date[$dt->copy()->addDays($i)->timestamp]= $dt->copy()->addDays($i+1)->formatLocalized('%A %d %B %Y');
+					$date[$dt->copy()->addDays($i)->timestamp]= $dt->copy()->addDays($i)->formatLocalized('%A %d %B %Y');
 				}
 			}
 		}

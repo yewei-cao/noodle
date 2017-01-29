@@ -11,14 +11,16 @@ return [
 	| system.
 	|
 	*/
-		'title'=>' - Noodle Taradale\'s Online Ordering',
+// 		'title'=>' - Noodle Taradale\'s Online Ordering',
+		'title'=>' - Noodle Canteen in Taradale',
 		'home'=>'',
-		'pickupdetails'=>'Pick Up Details',
-		'deliverydetails'=>'Delivery Details',
-		'deliveryresult'=>'Delivery Results',
-		'cash'=>'Payment by Cash',
-		'paymentmethod'=>'Payment Method',
-		'ordercreated'=>'Order Receipt',
-		'quickorder'=>'Quick Order',
-		'menu'=>'Menu',
+		'pickupdetails'=>'Noodle Canteen Taradale Pick Up Details',
+		'deliverydetails'=>'Noodle Canteen Taradale Delivery Details',
+		'deliveryresult'=>'Noodle Canteen Taradale Delivery Results',
+		'cash'=>'Noodle Canteen Taradale Payment by Cash',
+		'paymentmethod'=>'Noodle Canteen Taradale Payment Method',
+		'ordercreated'=>'Noodle Canteen Taradale Order Receipt',
+		'quickorder'=>'Noodle Canteen Taradale Quick Order',
+		'ordertime'=>'Ordering time',
+		'menu'=>' Noodle Canteen Menu',
 ];
