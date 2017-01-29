@@ -38,12 +38,14 @@
 <!-- @include('partials.sweetflash') -->
 @include('frontend.includes.footer')
 
-</body>
-
 @yield('scripts.footer')
 <script src="/js/app.js"></script>
 
 <script type="text/javascript">
 $('#flash-overlay-modal').modal();
 </script>
+
+</body>
+
+
 </html>
