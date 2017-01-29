@@ -115,7 +115,7 @@ margin:0;
 			        		@foreach($materials as $material)
 				        		<li>
 				        			<div class="material_edit">
-				        				<button type="button" class="btn choicebtn material_rm" item-code="{{ $material['id'] }}">{{ $material['name'] }}</button>
+				        				<button type="button" class="btn choicebtn material_rm" >{{ $material['name'] }}</button>
 				        				
 <!-- 				        				<a class="remove-topping btn-quantity btn-quantity-0" > -->
 <!--                                 		</a> -->

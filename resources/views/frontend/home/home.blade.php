@@ -107,7 +107,7 @@
 <div id="myservice-container">
 
 <div class="col-4">
-<a id="quick" href="{{ route('home.quickorder') }}" class="myservice red" >
+<a  href="{{ route('home.quickorder') }}" class="myservice red" >
 <div class="service-icon">
 <img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="images/home/home_quickorder.png">
 </div>
@@ -123,7 +123,7 @@
 </div>
 
 <div class="col-4">
-<a id="quick" href="{{ route('home.delivery.info') }}" class="myservice red" >
+<a  href="{{ route('home.delivery.info') }}" class="myservice red" >
 
 <div class="service-icon">
 <img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="images/home/delivery_food.png">
@@ -138,7 +138,7 @@
 
 
 <div class="col-4">
-<a id="quick" href="{{ route('home.pickup.info') }}" class="myservice red" >
+<a  href="{{ route('home.pickup.info') }}" class="myservice red" >
 
 <div class="service-icon">
 <img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="images/home/noodle_pickup.png">

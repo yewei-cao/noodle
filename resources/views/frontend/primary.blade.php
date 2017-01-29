@@ -39,11 +39,9 @@
 
 	@include('frontend.includes.footer')
 	
-@yield('scripts.footer')
-
-
-
 </body>
+
+@yield('scripts.footer')
 
 <script src="/js/app.js"></script>
 

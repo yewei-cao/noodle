@@ -36,11 +36,11 @@
 	</div>
 
 <!-- @include('partials.sweetflash') -->
-	
-@yield('scripts.footer')
+@include('frontend.includes.footer')
+
 </body>
 
-@include('frontend.includes.footer')
+@yield('scripts.footer')
 <script src="/js/app.js"></script>
 
 <script type="text/javascript">
