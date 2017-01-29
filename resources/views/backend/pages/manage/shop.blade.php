@@ -1,6 +1,15 @@
  @extends('backend.admin_master') 
  
- @section('page-header')
+@section('backend.css')
+<link href="{{ asset('weekline/cleanslate.css') }}" rel="stylesheet" type= "text/css" />
+<link href="{{ asset('weekline/jquery.weekLine-dark.css') }}" rel="stylesheet" type= "text/css" />
+@endsection
+
+@section('backend.js')
+<script src="{{ asset('weekline/jquery.weekLine.min.js') }}" type="text/javascript"></script>
+@endsection
+
+@section('page-header')
 <div class="page-header">
 
  <h1>
@@ -132,7 +141,8 @@ Edit
 		<div class="form-group">
 			{!! Form::label('dayoff', trans('menu_backend.manage_edit.dayoff'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
 			<div class="col-sm-9">
-				{!! Form::text('dayoff', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'Day Off']) !!}
+				<span id="weekCal" class="weekDays"></span>
+				{!! Form::hidden('dayoff', null,['class'=>'col-xs-10 col-sm-5','id'=>'selectedDays','placeholder'=>'Day Off']) !!}
 			</div>
 		</div>
 		
@@ -141,8 +151,25 @@ Edit
 				{!! Form::submit('Submit',['class'=>'btn btn-primary']) !!}
 			</div>
 		</div>
-		
 			
 	{!! Form::close() !!}
   
+@endsection
+
+@section('backend.scripts.footer')
+<script type="text/javascript">
+(function($) {
+	 
+	 var weekCal = $("#weekCal").weekLine({
+	        onChange: function () {
+	                $("#selectedDays").val(
+	                        $(this).weekLine('getSelected', 'indexes')
+	                );
+	        }
+	 });
+
+	 weekCal.weekLine("setSelected", '{{ $shop->dayoff}}'); 
+
+}(jQuery));
+</script>
 @endsection

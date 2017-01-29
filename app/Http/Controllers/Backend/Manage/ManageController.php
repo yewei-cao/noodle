@@ -45,7 +45,7 @@ class ManageController extends Controller
     			'meta'=>'required',
     			'starttime' => 'required',
     			'closetime' => 'required',
-    			'dayoff' => 'required',
+//     			'dayoff' => 'required',
     	]);
     	
     	if(empty($request->input('cash'))){

@@ -55,7 +55,8 @@ class ordertimeController extends Controller
 			}
 				
 			for($i=0;$i<=10;$i++){
-				if($dt->copy()->addDays($i)->dayOfWeek != $this->dayoff){
+				if (in_array($dt->copy()->addDays($i)->dayOfWeek , $this->shop->workday())) {
+// 				if($dt->copy()->addDays($i)->dayOfWeek != $this->dayoff){
 					$date[$dt->copy()->addDays($i)->timestamp]= $dt->copy()->addDays($i)->formatLocalized('%A %d %B %Y');
 				}
 			}
@@ -80,7 +81,7 @@ class ordertimeController extends Controller
 					$dt->hour++;
 					break;
 			}
-				
+			
 			$ordertime = Carbon::create($dt->year, $dt->month, $dt->day, $dt->hour, $minutes);
 				
 			$time[$ordertime->timestamp] = $ordertime->format('h:i A');
@@ -92,7 +93,8 @@ class ordertimeController extends Controller
 			}
 				
 			for($i=0;$i<=10;$i++){
-				if($dt->copy()->addDays($i)->dayOfWeek != $this->dayoff){
+				if (in_array($dt->copy()->addDays($i)->dayOfWeek , $this->shop->workday())) {
+// 				if($dt->copy()->addDays($i)->dayOfWeek != $this->dayoff){
 					$date[$dt->copy()->addDays($i)->timestamp]= $dt->copy()->addDays($i)->formatLocalized('%A %d %B %Y');
 				}
 			}
@@ -112,7 +114,8 @@ class ordertimeController extends Controller
 			}
 	
 			for($i=0;$i<=10;$i++){
-				if($dt->copy()->addDays($i+1)->dayOfWeek != $this->dayoff){
+				if (in_array($dt->copy()->addDays($i)->dayOfWeek , $this->shop->workday())) {
+// 				if($dt->copy()->addDays($i+1)->dayOfWeek != $this->dayoff){
 					$date[$dt->copy()->addDays($i)->timestamp]= $dt->copy()->addDays($i+1)->formatLocalized('%A %d %B %Y');
 				}
 			}

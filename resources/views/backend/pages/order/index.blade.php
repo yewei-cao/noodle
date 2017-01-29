@@ -109,7 +109,7 @@
 								<label><input name="chkItem" type="checkbox" class="ace" value="{{ $order->id }}"><span class="lbl"></span></label>
 							</td>
 							<td>{{ $order->id }}</td>
-							<td><a href="/admin/order/show/{{ $order->ordernumber }}">{{ $order->ordernumber }}</a></td>
+							<td><a href="/admin/order/show/{{ $order->ordernumber }}">{{ $order->customernumber() }}</a></td>
 							<td>{{ $order->name }}</td>
 							<td>{!! $order->status() !!}</td>
 							

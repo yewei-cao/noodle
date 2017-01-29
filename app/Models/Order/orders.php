@@ -47,6 +47,11 @@ class Orders extends Model
     	return Carbon::parse($this->shiptime)->format('l h:i A');
     }
     
+    public function customernumber(){
+    	return substr($this->ordernumber, -4);
+    }
+    
+    
     public function status(){
     	switch ($this->status){
     		case $this->status ==1:

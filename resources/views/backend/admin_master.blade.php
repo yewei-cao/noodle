@@ -40,8 +40,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="/lte/dist/js/app.min.js" type="text/javascript"></script>
     
     <!-- Extend of Css -->
-    
     @yield('backend.css')
+     @yield('backend.js')
     
   </head>
   <!--

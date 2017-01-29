@@ -9,6 +9,7 @@ use App\Models\Shop\Shops;
 use App\Models\Menu\Catalogue;
 use App\Models\Menu\Dishes;
 use Mapper;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -34,6 +35,18 @@ class HomeController extends Controller
     }
 
     public function menu(){
+    	
+    	$dt = Carbon::now();
+    	
+//     	return $dt->addDays(1)->dayOfWeek;
+    	
+    	if (in_array($dt->addDays(2)->dayOfWeek, $this->shop->workday())) {
+    		return "got it";
+    	}
+    	return "not got it";
+    	
+    	
+    	
     	$catalogues = Catalogue::orderBy('ranking', 'asc')->get();
     	$active = [
     			'menu'=>'active',
