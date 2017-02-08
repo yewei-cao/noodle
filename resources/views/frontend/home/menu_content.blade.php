@@ -20,7 +20,7 @@
 		                 	<div class="name-container"><span><a href="{{ action('Frontend\Home\menuController@dish',[str_slug($dish->name)]) }}">{{ $dish->name }}</a></span></div>
 	                 	</div>
 		                   <a href="{{ action('Frontend\Home\menuController@dish',[str_slug($dish->name)]) }}">
-								<img src="/{{ $dish->photo_thumbnail_path }}" alt="">
+								<img src="/{{ $dish->photo_thumbnail_path }}" alt="{{ $dish->name }}">
 		                   </a>
 	                    <div class="caption">
 	                       

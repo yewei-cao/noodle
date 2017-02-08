@@ -69,7 +69,7 @@ margin:0;
 	                 	</div>
 	                 	
 		                   <a href="{{ action('Frontend\Home\HomeController@dish',[str_slug($dish->name)]) }}">
-								<img src="/{{ $dish->photo_thumbnail_path }}" alt="">
+								<img alt="{{$dish->name }}" src="/{{ $dish->photo_thumbnail_path }}">
 		                   </a>
 		                   
 	                    <div class="caption">
