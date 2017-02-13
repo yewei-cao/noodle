@@ -4,6 +4,19 @@
 
 <div class="order-layout-left" >
 
+{!! Form::open(['method'=>'POST','action'=>['Frontend\Home\menuController@search'],'class'=>'row'])!!}
+	<div id="custom-search-input">
+    	<div class="input-group col-md-12">
+    		{!! Form::text('search', null,['class'=>'form-control input-lg','placeholder'=>'search for a meal']) !!}
+	        <span class="input-group-btn">
+            	<button class="btn btn-info btn-lg" type="submit" >
+                	<i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </div>
+	</div>
+ {!! Form::close() !!}
+
 	<div id="product_menu_container" class="order-layout-left-inner">
 
 	@foreach($catalogues as $catalogue)

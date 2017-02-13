@@ -13,7 +13,9 @@ $router->group(['prefix' => 'menu', 'namespace' => 'Home','as'=>'menu.'], functi
 {
 	Route::get('/','HomeController@menu')->name('index');
 	Route::get('/dish/{dish}', 'HomeController@dish')->name('dish');
+	Route::post('search','HomeController@search');
 	Route::get('/{types}', 'HomeController@types')->name('types');
+
 	
 });
 
@@ -29,7 +31,7 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 	$router->group(['prefix' => 'menu', 'as'=>'home.menu.'],function () use ($router){
 		Route::get('/', 'menuController@index')->name('index');
 		Route::post('addtoorder','menuController@addtoorder');
-		
+		Route::post('search','menuController@search');
 		Route::get('/mobilecsrf', function(){
 			return csrf_token();
 		});

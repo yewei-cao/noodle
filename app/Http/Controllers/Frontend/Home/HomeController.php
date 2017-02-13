@@ -16,6 +16,40 @@ class HomeController extends Controller
 	public function __construct(){
 		$this->shop = Shops::first();
 	}
+	
+	public function search(Request $request){
+		// Gets the query string from our form submission
+		$this->validate($request, [
+				'search'=>'required'
+		]);
+		$nameornumber = $request->input('search');
+		
+		$active = [
+				'menu'=>'',
+				'noodles'=>'',
+				'rice'=>'',
+				'snack&drinks'=>'',
+				'soups'=>'',
+				'chips'=>'',
+				'payment'=>''];
+		
+		// Returns an array of articles that have the query string located somewhere within
+		// our articles titles. Paginates them so we can break up lots of search results.
+		
+		if(is_numeric($nameornumber) ){
+			$dishes = Dishes::where('number', $nameornumber)->get();
+		}else {
+			$dishes = Dishes::where('name', 'LIKE', '%' . $nameornumber . '%')->orderBy('ranking', 'asc')->get();
+		}
+		
+		
+		return view('frontend.home.menu.search',compact('dishes'))
+		->withActive($active)
+		->withShop($this->shop)
+		->withSearch($nameornumber);
+	}
+	
+	
     /**
      * Display a listing of the resource.
      *

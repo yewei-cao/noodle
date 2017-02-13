@@ -186,8 +186,6 @@
 </div>
 
 
-
-
 <div class="clearfix form-actions">
 	<div class="col-md-offset-3 col-md-9">
 		{!! Form::submit($submitButtonText,['class'=>'btn btn-primary']) !!}

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Frontend\Home;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Menu\Dishes;
 use App\Models\Menu\Catalogue;
@@ -22,6 +21,54 @@ class menuController extends Controller
 	public function __construct(){
 		$this->middleware('ordertypeMiddleware');
 		$this->shop = Shops::first();
+	}
+	
+	public function search(Request $request){
+		
+		
+		// Gets the query string from our form submission
+		$this->validate($request, [
+				'search'=>'required'
+		]);
+		$nameornumber = $request->input('search');
+		
+		$order_route=[
+				'prev'=>'',
+				'next'=>route('home.payment.paymentmethod')
+		];
+		$active = [
+				'menu'=>'',
+				'noodles'=>'',
+				'rice'=>'',
+				'snack&drinks'=>'',
+				'soups'=>'',
+				'chips'=>'',
+				'payment'=>''];
+		
+		$cart = Cart::all();
+		 
+		$deliveryfee = deliveryfee($request);
+		 
+		$totalprice = Cart::total() + $deliveryfee;
+		$totalnumber = Cart::count();
+		
+		// Returns an array of articles that have the query string located somewhere within
+		// our articles titles. Paginates them so we can break up lots of search results.
+		
+		if(is_numeric($nameornumber) ){
+			$dishes = Dishes::where('number', $nameornumber)->get();
+		}else {
+			$dishes = Dishes::where('name', 'LIKE', '%' . $nameornumber . '%')->orderBy('ranking', 'asc')->get();
+		}
+		
+		
+		return view('frontend.home.menu_search',compact('dishes','cart','totalprice','totalnumber'))
+		->withActive($active)
+		->withShop($this->shop)
+		->withOrderroute($order_route)
+		->withDeliveryfee($deliveryfee)
+		->withSearch($nameornumber);
+		
 	}
 	
     /**

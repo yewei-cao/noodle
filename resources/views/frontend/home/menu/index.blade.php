@@ -1,57 +1,19 @@
-@extends('frontend.primary')
+@extends('frontend.home.menu.menu_master')
 
-@section('title')
-{{ trans('front_title.menu').trans('front_title.title') }}
-@endsection
+@section('dish_list')
 
-@section('meta')
-{!! $shop->meta !!}
-<meta name="_token" content="{{ csrf_token() }}">
-@endsection
-
-@section('css.style')
-<style type="text/css">
-#wrap {
-margin:0;
-}
-</style>
-@endsection
-
-@section('jscript')
-<script src="/js/breakpoints.js"></script>
-<script src="/js/sticky-kit.js"></script>
-@endsection
-
-@section('content')
-<!--  top bar -->
-
-<div class="btn-group btn-group-justified" role="group" >
-	<div class="btn-group nav_lowmenu" role="group">
-    	<a href="{{ route('menu.index') }}"  class="btn redbtn  {{$active['menu']}}">Menu</a>
+{!! Form::open(['method'=>'POST','action'=>['Frontend\Home\HomeController@search'],'class'=>'row'])!!}
+	<div id="custom-search-input">
+    	<div class="input-group col-md-12">
+    		{!! Form::text('search', null,['class'=>'form-control input-lg','placeholder'=>'search for a meal']) !!}
+	        <span class="input-group-btn">
+            	<button class="btn btn-info btn-lg" type="submit" >
+                	<i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </div>
 	</div>
-</div>
-  
-<div class="btn-group btn-group-justified top10" role="group" >
-	<div class="btn-group nav_lowmenu" role="group">
-    	<a href="/menu/noodles"  class="btn redbtn  {{$active['noodles']}}">Noodles</a>
-	</div>
-	<div class="btn-group nav_lowmenu" role="group">
-    	<a href="/menu/rice" class="btn redbtn  {{$active['rice']}}">Rice</a>
-	</div>
-  <div class="btn-group nav_lowmenu" role="group">
-    <a href="/menu/snack&drinks" class="btn redbtn  {{$active['snack&drinks']}}">Snack&drinks</a>
-  </div>
-</div>
-
-<div class="btn-group btn-group-justified top10" role="group" >
-  <div class="btn-group nav_lowmenu" role="group">
-    <a href="/menu/soups"  class="btn redbtn  {{$active['soups']}}">Soups</a>
-  </div>
-  <div class="btn-group nav_lowmenu" role="group">
-    <a href="/menu/chips" class="btn redbtn {{$active['chips']}}">Chips</a>
-  </div>
-</div>
-<!-- end top bar -->
+ {!! Form::close() !!}
 
 <div class="main-container">
 	<div class="row order-body">
@@ -94,7 +56,4 @@ margin:0;
 	</div><!-- /.row -->
 </div><!-- /.main-container -->
 
-@endsection
-@section('scripts.footer')
-<script src="/js/mymenu.js"></script>
 @endsection
