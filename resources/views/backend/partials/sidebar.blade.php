@@ -171,6 +171,13 @@
 						{{ trans('menus.order_manage.order_list') }}
 					</a>
 					</li>
+					
+					<li>
+					<a href="{{ route('admin.order.data') }}">
+					<i class="fa fa-circle-o"></i>
+						{{ trans('menus.order_manage.order_data') }}
+					</a>
+					</li>
 				</ul>
               
             </li>

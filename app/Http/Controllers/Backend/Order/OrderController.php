@@ -50,6 +50,76 @@ class OrderController extends Controller
         ->withTab($tab);
     }
     
+    public function data(){
+    	$today = Carbon::today();
+    	$tomorrow = Carbon::tomorrow();
+    	$total = $this->getdata($today, $tomorrow);
+// 		$totaldeal = $orders->increment('totaldue');
+// 		return $total;
+    	return view('backend.pages.order.data')->withTotal($total);
+    }
+    
+    public function datachoice($choice){
+    	 
+    	switch ($choice)	{
+    		case $choice =="today":
+    			$start = Carbon::today();
+    			$end = Carbon::tomorrow();
+    			break;
+    		case $choice =="yesterday":
+    			$dt = Carbon::today();
+    			$start = Carbon::yesterday();
+    			$end = Carbon::today();
+    			break;
+    		case $choice =="week":
+    			$start = Carbon::today()->startOfWeek();
+    			$end = Carbon::today()->endOfWeek();
+    			break;
+    		case $choice =="lastweek":
+    			$star_dt = Carbon::today()->addDays(-7);
+    			$end_dt = Carbon::today()->addDays(-7);
+    			$start = $star_dt->startOfWeek();
+    			$end = $end_dt->endOfWeek();
+    			break;
+    	}
+    	
+    	$total = $this->getdata($start, $end);
+    	
+//     	return $start;
+    	return view('backend.pages.order.data')->withTotal($total);
+    }
+    
+    
+    public function getdata($start, $end){
+    	$orders =  orders::where('status',4)
+    	->where('shiptime','>=',$start)
+    	->where('shiptime','<=',$end)->get();
+    	 
+    	//         return $orders->count();
+    	$total = [];
+    	$total['orders'] = $orders->count();
+    	$total['deal'] = 0;
+    	$total['meals'] = 0;
+    	$total['delivery'] = 0;
+    	$total['deliveryfee'] = 0;
+    	$total['pickup'] = 0;
+    	foreach ($orders as $order){
+    		$total['deal'] += $order->totaldue;
+    			
+    		foreach ($order->orderitems as $item){
+    			$total['meals'] += $item->amount;
+    		}
+    		if($order->ordertype =="delivery"){
+    			$total['delivery']++;
+    			$total['deliveryfee']+=$order->address->fee;
+    		}
+    		if($order->ordertype =="pickup"){
+    			$total['pickup']++;
+    		}
+    	}
+    	return $total;
+    }
+    
     /*
      * 
      */

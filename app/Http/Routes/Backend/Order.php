@@ -4,7 +4,11 @@ $router->group(['prefix' => 'order','as'=>'admin.order.', 'namespace' => 'Order'
 {
 	
 	Route::get('/','OrderController@index')->name('index');
+	
+	Route::get('data','OrderController@data')->name('data');
 // 	Route::get('test','OrderController@test')->name('test');
+
+	Route::get('data/{choice}','OrderController@datachoice');
 	
 	Route::get('show/{id}', 'OrderController@show')->name('show');
 	

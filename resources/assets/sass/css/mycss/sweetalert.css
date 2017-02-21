@@ -725,6 +725,11 @@ body.stop-scrolling {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+
+/* Internet Explorer 9 has some special quirks that are fixed here */
+/* The icons are not animated. */
+/* This file is automatically merged into sweet-alert.min.js through Gulp */
+/* Error icon */
 .sweet-alert .sa-icon.sa-error .sa-line.sa-left {
   -ms-transform: rotate(45deg) \9; }
 
@@ -740,6 +745,12 @@ body.stop-scrolling {
 
 .sweet-alert .sa-icon.sa-success .sa-line.sa-long {
   -ms-transform: rotate(-45deg) \9; }
+
+/*!
+ * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
+ * Copyright 2015 Daniel Cardoso <@DanielCardoso>
+ * Licensed under MIT
+ */
 .la-ball-fall,
 .la-ball-fall > div {
   position: relative;

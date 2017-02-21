@@ -34,7 +34,7 @@ return [
 	],
 	'element_manage'=>['material_type'=>'Type','material'=>'Material','group'=>'Group'],
 		
-	'order_manage'=>['order_list'=>'Order List'],
+	'order_manage'=>['order_list'=>'Order List','order_data'=>'Order Data'],
 		
 	'action'=>'Action',
 		
