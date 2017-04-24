@@ -47,7 +47,7 @@ class menuController extends Controller
 		
 		$cart = Cart::all();
 		 
-		$deliveryfee = deliveryfee($request);
+		$deliveryfee = deliveryfee($request,$this->shop->freedelivery);
 		 
 		$totalprice = Cart::total() + $deliveryfee;
 		$totalnumber = Cart::count();
@@ -109,7 +109,7 @@ class menuController extends Controller
     	
     	$cart = Cart::all();
     	
-    	$deliveryfee = deliveryfee($request);
+    	$deliveryfee = deliveryfee($request,$this->shop->freedelivery);
     	
     	$totalprice = Cart::total() + $deliveryfee;
     	$totalnumber = Cart::count();
@@ -152,7 +152,7 @@ class menuController extends Controller
     			'chips'=>'',
     			'payment'=>''];
     	$cart = Cart::all();
-    	$deliveryfee = deliveryfee($request);
+    	$deliveryfee = deliveryfee($request,$this->shop->freedelivery);
     	$totalprice = Cart::total() + $deliveryfee;
     	$totalnumber = Cart::count();
     	
@@ -300,7 +300,7 @@ class menuController extends Controller
     	
     	$cart = Cart::all();
     	
-    	$deliveryfee = deliveryfee($request);
+    	$deliveryfee = deliveryfee($request,$this->shop->freedelivery);
     	
     	$totalprice = Cart::total() + $deliveryfee;
     	$totalnumber = Cart::count();
@@ -321,16 +321,14 @@ class menuController extends Controller
     	Cart::update($request->input('id'),$item->qty+1); // Will update the quantity
     	
 //     	dd(Cart::all());
-    	
 //     	$dish = Dishes::where('id',$request->input('id'))->first();
-    	
 //     	Cart::addone($dish->id, $dish->name, $dish->price);
 //     	return $request->input('id');
 //     	return Cart::all()."Total:".Cart::total();
 
-    	return redirect()->back();
+//     	return redirect()->back();
 //     	return redirect()->route('home.menu.types', 'noodles');
-//     	return $this->shoppingcart($request);
+    	return $this->shoppingcart($request);
     	
     }
     
@@ -340,11 +338,9 @@ class menuController extends Controller
     	]);
     	
     	Cart::remove($request->input('id'));
-    	return redirect()->back();
-//     	return $this->shoppingcart($request);
-    	
+//     	return redirect()->back();
+    	return $this->shoppingcart($request);
     }
-    
     
     protected function shoppingcart(Request $request){
     	$cart = Cart::alldetails();
@@ -361,7 +357,7 @@ class menuController extends Controller
     		
     		$request->session()->get('userdelvieryfee');
     	}
-    	$cart['deliveryfee'] = deliveryfee($request);
+    	$cart['deliveryfee'] = deliveryfee($request,$this->shop->freedelivery);
     	return $cart;
     }
     

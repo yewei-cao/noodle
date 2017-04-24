@@ -57,7 +57,6 @@ margin:0;
 </div>
 <!-- end top bar -->
 
-
 <div class="basket-shadow"></div>
 
 <div class="main-container">
@@ -75,7 +74,6 @@ margin:0;
 
 </div><!-- /.main-container -->
 
-
 <div class="fixed-footer hide-for-small-up">
     <div class="row">
         <div class="col-6">
@@ -92,7 +90,6 @@ margin:0;
         </div>
     </div>
 </div>
-
 
 @endsection
 

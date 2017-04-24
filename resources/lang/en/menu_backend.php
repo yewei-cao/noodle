@@ -37,6 +37,7 @@ return [
 		'menu_dish_createstring' => 'Your dish has been created',
 		'menu_dish_update'=>'Your dish has been updated',
 		'menu_dish_deleting'=>'Your dish has been deleted',
+		'menu_order_deleting'=>'Your order has been deleted',
 		'manage_edit'=>[
 				'title'=>'Title',
 				'address'=>'Address',

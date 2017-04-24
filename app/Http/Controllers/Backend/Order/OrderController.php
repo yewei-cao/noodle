@@ -394,7 +394,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified order from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -404,8 +404,9 @@ class OrderController extends Controller
 //     	event(new DashboardOrder());
     	
 //     	event(new OrderReceipt());
+// return $id;
     	orders::destroy($id);
-    	return redirect()->route('admin.menu.order.index')->withFlashSuccess(trans("menu_backend.menu_dish_deleting"));
+    	return redirect()->route('admin.order.index')->withFlashSuccess(trans("menu_backend.menu_order_deleting"));
 //     	return "DESTORY";
     }
     

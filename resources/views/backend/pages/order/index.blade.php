@@ -126,7 +126,6 @@
 							<td>{!! $order->paymenttime !!}</td>
 							<td>
 								<a class="btn btn-xs btn-primary" href="{{ route('admin.order.edit', $order->id) }}"><i class="fa fa-pencil" title="" data-placement="top" data-toggle="tooltip" data-original-title="Edit"></i></a>
-								
 								<a class="btn btn-xs btn-danger" data-method="delete" style="cursor:pointer;" onclick="$(this).find('form').submit();">
 								
 								<i class="fa fa-trash" title="" data-placement="top" data-toggle="tooltip" data-original-title="Delete"></i>
@@ -134,8 +133,12 @@
 									<input type="hidden" value="delete" name="_method">
 									{{ csrf_field() }}
 									</form>
-								</a>
+									
 							</td>
+							
+							
+							
+							
 							
 						</tr>
 							@foreach($order->orderitems as $item)

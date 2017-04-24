@@ -48,7 +48,7 @@
 				                <div class="row">
 				                	 <div class="col-9">
 				                	 	<span class="description">
-				                	 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no  {{ $material['name'] }}
+				                	 	&nbsp;&nbsp;&nbsp;&nbsp;no  {{ $material['name'] }}
 				                	 	</span>
 				                	 </div>
 				                
@@ -61,7 +61,8 @@
 				                <div class="row">
 				                	 <div class="col-9">
 				                	 	<span class="description">
-				                	 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extra  {{ $material['name'] }}
+				                	 	&nbsp;&nbsp;&nbsp;&nbsp;extra  {{ $material['name'] }} ${{$material['price']}}
+				                	 	
 				                	 	</span>
 				                	 </div>
 				                
@@ -70,8 +71,8 @@
 			                @endif
 			
 			                <div class="row actions">
-			                        <button class="btn add-product add-to-order" item-code="{{ $item->__raw_id }}" >Add one</button>
-			                		<button class="btn btn remove-product remove-to-order" item-code="{{ $item->__raw_id }}" class="btn remove-product">Remove</button>
+			                        <button class="btn add-product add-to-basket" type="button" item-code="{{ $item->__raw_id }}" >Add one</button>
+			                		<button class="btn btn remove-product remove-to-basket" type="button" item-code="{{ $item->__raw_id }}" class="btn remove-product">Remove</button>
 			                </div>
 			                
 			            	</div>
@@ -80,11 +81,12 @@
 					   
 					   </div> 
 					   
-					    @if(!empty($deliveryfee))
-							<div class="row deliveryfee-container">
-								<span class="deliveryfee">Delivery Fee</span>
-							    <span class="price at-product-price">${{ $deliveryfee }}</span>
-							</div>
+					   
+						@if(!is_null($deliveryfee))
+								<div class="row deliveryfee-container">
+									<span class="deliveryfee">Delivery Fee</span>
+								    <span class="price at-product-price">${{ $deliveryfee }}</span>
+								</div>
 						@endif
 					    
 						<div class="row total-container">

@@ -51,6 +51,7 @@ class paymentcontroller extends Controller
 	/**
 	 * 
 	 * @param Request $request
+	 * @return unknown
 	 */
 	public function paymentmethod(Request $request){
 		
@@ -72,7 +73,7 @@ class paymentcontroller extends Controller
 			$pickupmark = true;
 		}
 		
-		$deliveryfee = deliveryfee($request);
+		$deliveryfee = deliveryfee($request,$this->shop->freedelivery);
 		
 		return view('frontend.home.payment.paymentmethod')
 		->withCart($this->cart)
@@ -99,7 +100,7 @@ class paymentcontroller extends Controller
 					'next'=>''
 			];
 			
-			$deliveryfee = deliveryfee($request);
+			$deliveryfee = deliveryfee($request,$this->shop->freedelivery);
 			
 			$ip = $request->ip();
 			return view('frontend.home.payment.cash',compact('time','ip'))
@@ -191,7 +192,7 @@ class paymentcontroller extends Controller
 		
 		$deliveryfee= 0;
 		if($request->session()->get('ordertype')=='delivery'){
-			$deliveryfee = deliveryfee($request);
+			$deliveryfee = deliveryfee($request,$this->shop->freedelivery);
 		}
 		$data = [
 				'ordernumber'=> date('Ymd') .random_int(100000, 999999),

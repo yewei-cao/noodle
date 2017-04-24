@@ -49,7 +49,7 @@ class poliController extends Controller
 		
 		$deliveryfee= 0;
 		if($request->session()->get('ordertype')=='delivery'){
-			$deliveryfee = deliveryfee($request);
+			$deliveryfee = deliveryfee($request,$this->shop->freedelivery);
 		}
 		
 		$data = [

@@ -51,7 +51,7 @@
 	                        <div class="form-container input-group">
 	                        
 	                        	<div class="col-md-12">
-	                        		<div class="add-to-basket">
+	                        		<div class="add-to-order">
 	                        			<a class="btn redbtn" href="{{ action('Frontend\Home\menuController@dish',[str_slug($dish->name)]) }}">Add to Order</a> 
 	                        		</div>
 	                        	

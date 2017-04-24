@@ -1,8 +1,9 @@
 /**
- * 
+ * mymenu js
  */
-(function($) {
 
+(function($) {
+	
 	$.extend({
 	    StandardPost:function(url,args){
 	        var form = $("<form method='post'><input type='hidden' name='_token' value='"+$('meta[name="_token"]').attr('content')+"'></form>"),
@@ -39,28 +40,38 @@
 		$( ".container" ).toggleClass( "basket-open");
 	});
 
-	$(document).on("click", ".add-to-order" , function() {
+	$(document).on("click", ".add-to-basket" , function() {
 		var code = $(this).attr("item-code");
-
-		$.StandardPost('/home/menu/addtoorder',{id:code});
+		$.ajax({
+			  headers: {  'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+		      url: '/home/menu/addtoorder',
+		      type: 'POST',
+		      data: {'id':code},
+		      success: function(result) {
+				  add_basket(result);
+            },
+            error: function(result) {
+                alert("Data not found");
+            }
+		 });
 		
 	});
 
-	$(document).on("click", ".remove-to-order" , function() {
+	$(document).on("click", ".remove-to-basket" , function() {
 		var code = $(this).attr("item-code");
-		$.StandardPost('/home/menu/removetoorder',{id:code});
-// 		$.ajax({
-// 			  headers: {'X-CSRF-Token': "{{ csrf_token() }}"},
-// 		      url: '/home/menu/removetoorder',
-// 		      type: 'POST',
-// 		      data: {'id':code},
-// 		      success: function(result) {
-// 				  add_basket(result);
-//             },
-//             error: function(result) {
-//                 alert("Data not found");
-//             }
-// 		      });
+//		$.post('/home/menu/removetoorder',{id:code});
+ 		$.ajax({
+ 			headers: {  'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+ 		      url: '/home/menu/removetoorder',
+ 		      type: 'POST',
+ 		      data: {'id':code},
+ 		      success: function(result) {
+ 				  add_basket(result);
+             },
+             error: function(result) {
+                 alert("Data not found");
+             }
+ 		      });
 	});
 	
 	$(document).on("click", ".material_rm" , function() {
@@ -175,6 +186,7 @@
 	  });
 
 	add_basket=function(result){
+		
 		 var html= "";
 		 var totalqty=0;
 
@@ -192,23 +204,62 @@
 		                +'    <div class=\"col-9\">'
 		                +'      <span class=\"description\">'
 		                + result[i]['qty'] +' x '+ result[i]['name']
-		                +'          </span>'
-		                +'      </div>'
+		                +'      </span>'
+		                +'    </div>'
 		                +'       <div class="col-3"><span class="price at-product-price">$'+ result[i]['price'] +'</span></div>'
-		                +' </div>'
-		                +'   <div class="row actions">'
-		                +'       <button class="btn add-product add-to-order" item-code="'+ result[i]['id'] +'">Add one</button>'
-		                +'           <button class="btn remove-product remove-to-order" item-code="'+ result[i]['__raw_id'] +'">Remove</button>'
+		                +' </div>';
+		                
+				 if(!$.isEmptyObject(result[i]['flavour'])){
+						 html +=' <div class=\"row\">'
+			                +'    <div class=\"col-9\">'
+			                +'      <span class=\"description\">'
+			                +'&nbsp;&nbsp;&nbsp;&nbsp;'+result[i]['flavour']
+			                +'      </span>'
+			                +'    </div>'
+			                +' </div>';
+				 }
+				 
+				 if(!$.isEmptyObject(result[i]['takeout'])){
+					 for(var j in result[i]['takeout']){
+						 
+						 html +=' <div class=\"row\">'
+			                +'    <div class=\"col-9\">'
+			                +'      <span class=\"description\">'
+			                +'&nbsp;&nbsp;&nbsp;&nbsp;no '+result[i]['takeout'][j]['name']
+			                +'      </span>'
+			                +'    </div>'
+			                +' </div>';
+					 }
+				 }
+				 
+				 if(!$.isEmptyObject(result[i]['extra'])){
+					 for(var k in result[i]['extra']){
+						 
+						 html +=' <div class=\"row\">'
+			                +'    <div class=\"col-9\">'
+			                +'      <span class=\"description\">'
+			                +'&nbsp;&nbsp;&nbsp;&nbsp;extra '+result[i]['extra'][k]['name']+' $'+result[i]['extra'][k]['price']
+			                +'      </span>'
+			                +'    </div>'
+			                +' </div>';
+					 }
+				 }
+		                
+				  html +='   <div class="row actions">'
+		                +'       <button class="btn add-product add-to-basket" item-code="'+ result[i]['__raw_id'] +'">Add one</button>'
+		                +'           <button class="btn remove-product remove-to-basket" item-code="'+ result[i]['__raw_id'] +'">Remove</button>'
 		                +'  </div> '
 		                +' </div>';
 			  }
 			  }
 		 }
-		 if(result['deliveryfee'] == 0){
-			 $(".deliveryfee-container").hide();
-		 }else{
-			 $(".deliveryfee-container").show();
-		}
+		 
+		 $('.at-product-price').text('$'+ result['deliveryfee']);
+//		 if(result['deliveryfee'] == 0){
+//			 $(".deliveryfee-container").hide();
+//		 }else{
+//			 $(".deliveryfee-container").show();
+//		}
 		 var total = result['total'] +result['deliveryfee'];
 		  $('.total-amount').text('$'+total);
 		  $('.number-of-items').text(totalqty);

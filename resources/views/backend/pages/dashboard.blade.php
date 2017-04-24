@@ -75,33 +75,12 @@
 (function($) {
 
 	var socket=io('{{$_SERVER['SERVER_ADDR']}}:3000');
-
-// 	socket.on('dash_order-channel:App\\Events\\DashOrder',function(data){
-// 		$("#created").text(data.created);
-// 		$("#printed").text(data.printed);
-// 		$("#cooked").text(data.cooked);
-// 		$("#finished").text(data.finished);
-// 	});
-// 	socket.on('order_receipt-channel:App\\Events\\OrderReceipt',function(data){
-
-
 	socket.on('dashboard_order-channel:App\\Events\\DashboardOrder',function(data){
 		$("#created").text(data.created);
 		$("#printed").text(data.printed);
 		$("#cooked").text(data.cooked);
 		$("#finished").text(data.finished);
 	});
-
-
-
-// 	socket.on('order_receipt-channel:App\\Events\\OrderReceipt',function(data){
-// 		$("#created").text(data.created);
-// 		$("#printed").text(data.printed);
-// 		$("#cooked").text(data.cooked);
-// 		$("#finished").text(data.finished);
-		
-		
-// 	});
 
 }(jQuery));			
 </script>

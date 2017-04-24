@@ -26,17 +26,17 @@ if ( ! function_exists('sweetalert_message')) {
 
 if (! function_exists('deliveryfee')) {
 
-    function deliveryfee($request)
+    function deliveryfee($request,$freedelivery)
     {
        $deliveryfee = 0;
     	if($request->session()->get('ordertype')=='pickup'){
     		return $deliveryfee;
     	}
     	if(!empty($request->session()->get('user_details')['deliveryfee'])){
-//     		$cart = Cart::alldetails();
-//     		if($cart['total'] < $this->shop->freedelivery){
+    		$cart = Cart::alldetails();
+    		if($cart['total'] < $freedelivery){
     			$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
-//     		}
+    		}
     		
     	}
     	return $deliveryfee;

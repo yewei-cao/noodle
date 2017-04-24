@@ -22,9 +22,13 @@ $router->group(['prefix' => 'order','as'=>'admin.order.', 'namespace' => 'Order'
 	
 	Route::post('finish','OrderController@finish')->name('finish');
 	
-	Route::get('edit','OrderController@edit')->name('edit');
+	Route::post('edit','OrderController@edit')->name('edit');
 	
-	Route::get('destroy','OrderController@destroy')->name('destroy');
+	Route::delete('destroy/{id}','OrderController@destroy')->name('destroy');
+	
+// 	Route::get('destroy', function () {
+// 		return "destroy";
+// 	});
 	
 	Route::post('search','OrderController@search')->name('search');
 	
