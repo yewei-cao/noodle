@@ -25,7 +25,6 @@ class menuController extends Controller
 	
 	public function search(Request $request){
 		
-		
 		// Gets the query string from our form submission
 		$this->validate($request, [
 				'search'=>'required'
@@ -47,7 +46,7 @@ class menuController extends Controller
 		
 		$cart = Cart::all();
 		 
-		$deliveryfee = deliveryfee($request,$this->shop->freedelivery);
+		$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
 		 
 		$totalprice = Cart::total() + $deliveryfee;
 		$totalnumber = Cart::count();
@@ -109,7 +108,7 @@ class menuController extends Controller
     	
     	$cart = Cart::all();
     	
-    	$deliveryfee = deliveryfee($request,$this->shop->freedelivery);
+    	$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
     	
     	$totalprice = Cart::total() + $deliveryfee;
     	$totalnumber = Cart::count();
@@ -152,7 +151,7 @@ class menuController extends Controller
     			'chips'=>'',
     			'payment'=>''];
     	$cart = Cart::all();
-    	$deliveryfee = deliveryfee($request,$this->shop->freedelivery);
+    	$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
     	$totalprice = Cart::total() + $deliveryfee;
     	$totalnumber = Cart::count();
     	
@@ -300,7 +299,7 @@ class menuController extends Controller
     	
     	$cart = Cart::all();
     	
-    	$deliveryfee = deliveryfee($request,$this->shop->freedelivery);
+    	$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
     	
     	$totalprice = Cart::total() + $deliveryfee;
     	$totalnumber = Cart::count();
@@ -328,6 +327,7 @@ class menuController extends Controller
 
 //     	return redirect()->back();
 //     	return redirect()->route('home.menu.types', 'noodles');
+// 		return $request->session()->get('user_details');
     	return $this->shoppingcart($request);
     	
     }
@@ -344,22 +344,20 @@ class menuController extends Controller
     
     protected function shoppingcart(Request $request){
     	$cart = Cart::alldetails();
-    	if($cart['total'] >= $this->shop->freedelivery)
+    	$user_details = $request->session()->get('user_details');
+//     	return $user_details;
+    	if(($cart['total'] >= $this->shop->freedelivery) && ($user_details['deliveryfee']<=$this->shop->maxfree))
     	{
-    		$user_details = $request->session()->get('user_details');
     		//storing the delivery to a constant session 
     		$user_details['deliveryfee'] = 0;
     		$request->session()->put('user_details', $user_details);
     	}else {
-    		$user_details = $request->session()->get('user_details');
     		$user_details['deliveryfee'] = $request->session()->get('userdelvieryfee');
     		$request->session()->put('user_details', $user_details);
-    		
     		$request->session()->get('userdelvieryfee');
     	}
-    	$cart['deliveryfee'] = deliveryfee($request,$this->shop->freedelivery);
+    	$cart['deliveryfee'] = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
     	return $cart;
     }
-    
     
 }

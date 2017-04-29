@@ -17,8 +17,8 @@ class CreateShopTable extends Migration
             $table->string('title');
             $table->string('address');
             $table->string('phone');
-            $table->float('distancelevel1');
-            $table->float('distancelevel2');
+            $table->float('distancefee');
+            $table->float('maxfree');
             $table->float('freedelivery');
             $table->string('googleapi');
             $table->string('meta');

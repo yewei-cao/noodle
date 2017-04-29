@@ -8,6 +8,18 @@
     </div>
     </div>
     
+@elseif (Session::get('top_success'))
+<div class="content_message">
+    <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        @if(is_array(json_decode(Session::get('top_success'),true)))
+            {!! implode('', Session::get('top_success')->all(':message<br/>')) !!}
+        @else
+            {!! Session::get('top_success') !!}
+        @endif
+    </div>
+</div>
+    
 @elseif (Session::get('flash_warning'))
 <div class="content_message">
     <div class="alert alert-warning">
@@ -18,7 +30,7 @@
             {!! Session::get('flash_warning') !!}
         @endif
     </div>
-    </div>
+</div>
 
 @elseif (Session::get('flash_danger'))
 <div class="content_message">

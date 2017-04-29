@@ -73,7 +73,7 @@ class paymentcontroller extends Controller
 			$pickupmark = true;
 		}
 		
-		$deliveryfee = deliveryfee($request,$this->shop->freedelivery);
+		$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
 		
 		return view('frontend.home.payment.paymentmethod')
 		->withCart($this->cart)
@@ -85,6 +85,7 @@ class paymentcontroller extends Controller
 		->withDeliveryfee($deliveryfee)
 		->withActive($this->active);
 	}
+	
 	
 	public function cash(Request $request){
 // 		Cart::inputMessage("hello word");
@@ -100,7 +101,7 @@ class paymentcontroller extends Controller
 					'next'=>''
 			];
 			
-			$deliveryfee = deliveryfee($request,$this->shop->freedelivery);
+			$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
 			
 			$ip = $request->ip();
 			return view('frontend.home.payment.cash',compact('time','ip'))
@@ -178,7 +179,7 @@ class paymentcontroller extends Controller
 	}
 	
 	/*
-	 * create a order to user
+	 * create an order to user
 	 */
 	public function placeorder(Request $request){
 		
@@ -192,7 +193,7 @@ class paymentcontroller extends Controller
 		
 		$deliveryfee= 0;
 		if($request->session()->get('ordertype')=='delivery'){
-			$deliveryfee = deliveryfee($request,$this->shop->freedelivery);
+			$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
 		}
 		$data = [
 				'ordernumber'=> date('Ymd') .random_int(100000, 999999),
@@ -283,16 +284,12 @@ class paymentcontroller extends Controller
 		
 // 		$printresult = false;
 		
-// 		do {
-// 		   $printresult = $this->feieprinter($order);
-// 		} while ($printresult); 
-
 // 		dd($this->feieprinter($order));
 		if(!$this->feieprinter($order)){
 			//send me a email. 
 			$num = orders::where('status','<','2')->count();
 			Mail::queue('emails.order.printfail',compact('num','order'),function ($message)use($order){
-				$message->from(env('MAIL_USERNAME'))->to('yeweicao@gmail.com')
+				$message->from(env('MAIL_USERNAME'))->to($order->email)
 				->subject('Noodle Canteen Print Errors');
 			});
 		}
@@ -302,9 +299,9 @@ class paymentcontroller extends Controller
 		event(new OrderPrinter($order));
 		event(new DashboardOrder());
 		
-// // 		/* clear shopping cart		 */
+ 		/* clear shopping cart */
 		Cart::clean();
-
+		
 		sweetalert_message()->top_message(trans("front_home.order_cancel"));
 		
 		Mail::queue('emails.order.receipt',compact('order'),function ($message)use($order){
@@ -313,8 +310,8 @@ class paymentcontroller extends Controller
 		});
 		
 		return view('frontend.home.payment.ordercreated')
-		->withOrder($order)
-		->withShop($this->shop);
+			->withOrder($order)
+			->withShop($this->shop);
 	}
 	
 	protected function feieprinter(orders $order){

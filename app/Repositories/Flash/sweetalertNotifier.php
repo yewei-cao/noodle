@@ -158,8 +158,6 @@ class sweetalertNotifier
     public function n_overlay($message,$title,$type='info'){
     	return $this->create($message, $title, $type,'flash_notification_overlay');
     }
-    
-    
 
     /**
      * Add an "important" flash to the session.
@@ -176,6 +174,12 @@ class sweetalertNotifier
     public function top_message($message){
     	$this->session->flash('flash_warning', $message);
     	
+    	return $this;
+    }
+    
+    public function top_success($message){
+    	$this->session->flash('top_success', $message);
+    	 
     	return $this;
     }
 

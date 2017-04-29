@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Global Flash functions.
  */
@@ -24,20 +23,24 @@ if ( ! function_exists('sweetalert_message')) {
 
 }
 
+/**
+ * 
+ */
 if (! function_exists('deliveryfee')) {
 
-    function deliveryfee($request,$freedelivery)
+    function deliveryfee($request,$freedelivery,$maxfree)
     {
+//     	return $request->session()->get('user_details')['deliveryfee'];
        $deliveryfee = 0;
     	if($request->session()->get('ordertype')=='pickup'){
     		return $deliveryfee;
     	}
+    	
     	if(!empty($request->session()->get('user_details')['deliveryfee'])){
     		$cart = Cart::alldetails();
-    		if($cart['total'] < $freedelivery){
+    		if(($cart['total'] < $freedelivery)|| ($request->session()->get('user_details')['deliveryfee']>$maxfree)){
     			$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
     		}
-    		
     	}
     	return $deliveryfee;
     }

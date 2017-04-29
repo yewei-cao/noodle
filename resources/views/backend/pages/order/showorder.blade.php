@@ -156,7 +156,7 @@
 					<div class="row">
 						<div class="col-sm-5 pull-right">
 							<h4 class="pull-right">
-								Total amount : <span class="red_span">${{ $order->total }}</span>
+								Total amount : <span class="red_span">${{ $order->totaldue }}</span>
 							</h4>
 						</div>
 					</div>

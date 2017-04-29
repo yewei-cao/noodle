@@ -52,16 +52,16 @@ Edit
 		</div>
 		
 		<div class="form-group">
-			{!! Form::label('distancelevel1',trans('menu_backend.manage_edit.level1'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			{!! Form::label('distancefee',trans('menu_backend.manage_edit.level1'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
 			<div class="col-sm-9">
-				{!! Form::text('distancelevel1', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'$$$']) !!}
+				{!! Form::text('distancefee', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'$$$']) !!}
 			</div>
 		</div>
 		
 		<div class="form-group">
-			{!! Form::label('distancelevel2',trans('menu_backend.manage_edit.level2'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			{!! Form::label('maxfree',trans('menu_backend.manage_edit.level2'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
 			<div class="col-sm-9">
-				{!! Form::text('distancelevel2', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'$$$']) !!}
+				{!! Form::text('maxfree', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'$$$']) !!}
 			</div>
 		</div>
 		

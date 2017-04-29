@@ -36,6 +36,7 @@ class Printer{
 		$orderInfo .= '--------------------------------<BR>';
 		$orderInfo .= 'Order Details <BR>';
 		$orderInfo .= 'Name:               '.$order->name.'<BR>';
+		$orderInfo .= 'Phone number: '.$order->phonenumber.'<BR>';
 		
 		if($order->paymentflag==2){
 			$orderInfo .= 'Due Time:  '.$order->paymenttime().'<BR>';

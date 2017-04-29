@@ -9,7 +9,7 @@ use App\Models\Shop\Shops;
 use App\Models\Menu\Catalogue;
 use App\Models\Menu\Dishes;
 use Mapper;
-use Carbon\Carbon;
+// use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -57,7 +57,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-    	 
+    	$link = '<a href="'.route("home.delivery.info").'">Click here</a>';
+    	sweetalert_message()->top_success(trans("front_home.order_freedelivery").$link);
+    	
     	Mapper::map("-39.5357013","176.8484829",['zoom' => 16]);
     	
         return view('frontend.home.home')->withShop($this->shop);

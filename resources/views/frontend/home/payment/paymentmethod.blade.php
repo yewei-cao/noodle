@@ -37,7 +37,7 @@
 			
 			@if($shop->poli)
 			<li>
-			<a class="btn-primary btn-lg" href="{{ route('home.payment.poli') }}"  type="button">
+			<a class="btn-primary btn-lg" href="{{ route('home.payment.policonfirm') }}"  type="button">
 			{{ trans('front_home.paymentmethod.poli') }}
 			</a>
 			</li>

@@ -91,11 +91,13 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 
 		Route::get('paymentmethod','paymentcontroller@paymentmethod')->name('.paymentmethod');
 		
+		Route::get('policonfirm','poliController@policonfirm')->name('.policonfirm');
+		
 		Route::get('cash','paymentcontroller@cash')->name('.cash');
 
 		Route::get('credit','paymentcontroller@credit')->name('.credit');
 		
-		Route::get('poli','poliController@poli')->name('.poli');
+		Route::post('poli','poliController@poli')->name('.poli');
 		
 		Route::get('polisuccess','poliController@polisuccess')->name('.polisuccess');
 		

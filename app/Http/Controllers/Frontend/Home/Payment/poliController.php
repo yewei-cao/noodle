@@ -29,8 +29,49 @@ class poliController extends Controller
 		$this->cart= Cart::all();
 		$this->totalprice = Cart::total();
 		$this->totalnumber = Cart::count();
+		$this->active = [
+				'menu'=>'',
+				'noodles'=>'',
+				'rice'=>'',
+				'snack&drinks'=>'',
+				'soups'=>'',
+				'chips'=>'',
+				'payment'=>'active'
+		
+		];
 	}
    
+
+	public function policonfirm(Request $request){
+		//Cart::inputMessage("hello word");
+		//return Cart::getMessage();
+		
+		$time = $this->get_time($request->session()->get('ordertime'));
+		//cash payment method, paymentmethod:1
+		// 		$request->session()->put('paymentmethod', 1);
+		
+// 		if($request->session()->has('paymentmethod')){
+			$order_route=[
+					'prev'=>route('home.payment.paymentmethod'),
+					'next'=>''
+			];
+			
+			$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
+			
+			$ip = $request->ip();
+			return view('frontend.home.payment.policonfirm',compact('time','ip'))
+					->withCart($this->cart)
+					->withTotalprice($this->totalprice+$deliveryfee)
+					->withTotalnumber($this->totalnumber)
+					->withOrderroute($order_route)
+					->withDeliveryfee($deliveryfee)
+					->withActive($this->active);
+// 		}else{
+// 			return redirect()->route('home.payment.paymentmethod');
+// 		}
+	
+	}
+	
 	/**
 	 *
 	 * @param Request $request
@@ -49,7 +90,7 @@ class poliController extends Controller
 		
 		$deliveryfee= 0;
 		if($request->session()->get('ordertype')=='delivery'){
-			$deliveryfee = deliveryfee($request,$this->shop->freedelivery);
+			$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
 		}
 		
 		$data = [
@@ -298,6 +339,15 @@ class poliController extends Controller
 	
 		header('Location: '.$json["NavigateURL"]);
 	
+	}
+	
+	/* get the display time to user */
+	protected function get_time($timestamp){
+		if($timestamp!="ASAP"){
+			$dt = Carbon::createFromTimestamp($timestamp);
+			return $dt->format('h:i A l jS F Y');
+		}
+		return $timestamp;
 	}
 	
 }

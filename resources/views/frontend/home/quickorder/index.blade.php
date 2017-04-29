@@ -237,13 +237,13 @@
 									<div class="widget-body">
 										<div class="widget-main">
 											<div class="row">
-												@foreach($order->dishes as $dish)
+												@foreach($order->orderitems as $item)
 							                    <div class="col-9">
 							                        <span class="description">
-							                         {{ $dish->pivot->amount }} x {{ $dish->name }}
+							                         {{ $item->amount }} x {{ $item->dishes->name }}
 							                        </span>
 							                    </div>
-						                        <div class="col-3"><span class="ace_red">${{ $dish->pivot->total }}</span></div>
+						                        <div class="col-3"><span class="ace_red">${{ $item->total }}</span></div>
 			                					@endforeach
 			                				</div>
 											<span class="blue">Message:</span>
