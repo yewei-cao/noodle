@@ -66,6 +66,18 @@ class ManageController extends Controller
     		$data['poli']=1;
     	}
     	
+    	if(empty($request->input('coupon'))){
+    		$data['coupon']=0;
+    	}else{
+    		$data['coupon']=1;
+    	}
+    	
+    	if(empty($request->input('email_coupon'))){
+    		$data['email_coupon']=0;
+    	}else{
+    		$data['email_coupon']=1;
+    	}
+    	
     	Shops::findOrFail($id)->update($data);
     	
     	return redirect()->route('admin.manage.index')

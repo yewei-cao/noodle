@@ -12,6 +12,7 @@ use App\Models\Menu\Type;
 use App\Models\Element\Material;
 use App\Models\Element\Material_type;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Shop\Coupons;
 
 class menuController extends Controller
 {
@@ -24,7 +25,6 @@ class menuController extends Controller
 	}
 	
 	public function search(Request $request){
-		
 		// Gets the query string from our form submission
 		$this->validate($request, [
 				'search'=>'required'
@@ -109,6 +109,8 @@ class menuController extends Controller
     	$cart = Cart::all();
     	
     	$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
+    	
+    	$coupon = $this->getcoupon();
     	
     	$totalprice = Cart::total() + $deliveryfee;
     	$totalnumber = Cart::count();
@@ -207,10 +209,6 @@ class menuController extends Controller
     	 
     	Cart::add($dish->id, $dish->name,$request->input('num'),$dish->price+$extra_money,$attribute);
     	
-//     	dd(Cart::all());
-    	//     	return $request->input('id');
-    	//     	return Cart::all()."Total:".Cart::total();
-    	
     	return redirect()->route('home.menu.types', $dish->catalogue->last()->name);
     }
     
@@ -291,12 +289,6 @@ class menuController extends Controller
 	  			break;
 		}
     	
-//     	$catalogues = Catalogue::orderBy('ranking', 'asc')->get();
-    	
-//     	echo url('user/profile');
-    	
-//     	dd($catalogues);
-    	
     	$cart = Cart::all();
     	
     	$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
@@ -310,6 +302,82 @@ class menuController extends Controller
     	
     }
     
+    public function usevoucher(Request $request){
+    	$this->validate($request, [
+    			'code' => 'required',
+    	]);
+    	
+    	$coupon = Coupons::where('code',$request->input('code'))->first();
+    	
+    	if(!$coupon){
+    		return response()->json([
+    				'type'=>false,
+    				'title'=>"Error",
+    				'message'=>'The voucher ' .$request->input('code') .' is not accepted'
+    		]);
+    	}
+    	 
+    	if($coupon->used){
+    		return response()->json([
+    				'type'=>false,
+    				'title'=>"Error",
+    				'message'=>'Your Voucher ' .$request->input('code') .' has been used.'
+    		]);
+    	}
+    	
+    	// 		$request->session()->forget('ordertype');
+    	$request->session()->put('coupon', $coupon);
+    	if($request->session()->has('coupon')){
+    		return response()->json([
+    				'type'=>true,
+    				'message'=>'Success',
+    				'coupon'=> $request->session()->get('coupon')
+    		]);
+    		// 				return redirect()->route('home.menu.index');
+    	}
+    	
+    }
+    
+    /**
+     * 
+     * @param Request $request
+     */
+    public function voucherapply(Request $request){
+    	$this->validate($request, [
+    			'code' => 'required',
+    	]);
+    	
+    	$coupon = Coupons::where('code',$request->input('code'))->first();
+    	
+    	if(!$coupon){
+    		return response()->json([
+    				'type'=>false,
+    				'title'=>"Error",
+    				'message'=>'The voucher ' .$request->input('code') .' is not accepted'
+    		]);
+    	}
+    	
+    	if($coupon->used){
+    		return response()->json([
+    				'type'=>false,
+    				'title'=>"Error",
+    				'message'=>'Your Voucher ' .$request->input('code') .' has been used.'
+    		]);
+    	}
+    	
+    	return response()->json([
+    			'type'=>true,
+    			'title'=>"Your voucher is worth $".$coupon->value,
+    			'message'=>'Submit to use the voucher.',
+    			'price'=>$coupon->value
+    	]);
+    }
+    
+    /**
+     * 
+     * @param Request $request
+     * @return unknown
+     */
     public function addtoorder(Request $request){
     	$this->validate($request, [
     			'id' => 'required',
@@ -359,5 +427,18 @@ class menuController extends Controller
     	$cart['deliveryfee'] = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
     	return $cart;
     }
+    
+    /**
+     * 
+     * @return unknown
+     */
+    protected function getcoupon(){
+    	if($request->session()->has('coupon')){
+    		return $request->session()->get('coupon');
+    		// 				return redirect()->route('home.menu.index');
+    	}
+    	return false;
+    }
+    
     
 }

@@ -38,7 +38,7 @@
 	<div class="small-box bg-aqua">
 		<div class="inner">
 			<h3 id="cooked">{{ $cooked }}</h3>
-			<p>Printed Orders</p>
+			<p>Cooked Orders</p>
 		</div>
 		<div class="icon">
 			<i class="ion ion-bag"></i>
@@ -53,7 +53,7 @@
 	<div class="small-box bg-aqua">
 		<div class="inner">
 			<h3 id="finished">{{ $finished }}</h3>
-			<p>Printed Orders</p>
+			<p>Finished Orders</p>
 		</div>
 		<div class="icon">
 			<i class="ion ion-bag"></i>

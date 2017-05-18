@@ -16,12 +16,10 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
         	$table->increments('id');
         	$table->integer('ordernumber')->unsigned()->unique();
-        	
         	$table->decimal('total', 10, 2);
         	$table->float('totaldue')->nullable();
         	$table->boolean('status');
         	$table->string('ordertype');
-        	
         	$table->string('name');
         	$table->string('email');
         	$table->string('phonenumber');

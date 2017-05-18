@@ -54,6 +54,13 @@
 					</li>
 					
 					<li>
+					<a href="{{ route('admin.manage.coupon.index') }}">
+					<i class="fa fa-circle-o"></i>
+						{{ trans('menus.manage.coupon') }}
+					</a>
+					</li>
+					
+					<li>
 					<a href="{{ route('admin.manage.printer') }}">
 					<i class="fa fa-circle-o"></i>
 						{{ trans('menus.manage.printer') }}

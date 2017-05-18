@@ -3,7 +3,31 @@
       <div class="mobile-close-button">x</div>
          <div class="basket-top"></div>
             	
-         <div class="basket-header"></div>
+         <div class="basket-header">
+         	
+         
+         
+	            <div class="basket-input">
+	                <div class="row">
+	                    <div class="col-11">
+	                        <label for="voucher_code">Enter voucher code here</label>
+	                    </div>
+	                </div>
+	
+	                <div class="row">
+	                    <div class="col-8">
+	                        <input id="voucher_code" class="form-control" type="text" spellcheck="false" placeholder="Voucher code">
+	                    </div>
+	                    <div class="col-4">
+	                        <button id="apply_voucher" class="btn btn-primary" >Apply</button>
+	                        <span id="loading-indicator" class="loaded">
+	                            <img class="image-loading" src="/images/home/ajax-loader.gif" alt="Please wait while loading">
+	                        </span>
+	                    </div>
+	                </div>
+	            </div>
+         </div>
+         
     			<div id="basket" class="basket-body">
        				<h3 id="order-cart-heading">Order Details</h3>
 		       		<div id="basket_rows" class="body-content">
@@ -71,8 +95,8 @@
 			                @endif
 			
 			                <div class="row actions">
-			                        <button class="btn add-product add-to-basket" type="button" item-code="{{ $item->__raw_id }}" >Add one</button>
-			                		<button class="btn btn remove-product remove-to-basket" type="button" item-code="{{ $item->__raw_id }}" class="btn remove-product">Remove</button>
+		                        <button class="btn add-product add-to-basket" type="button" item-code="{{ $item->__raw_id }}" >Add one</button>
+		                		<button class="btn btn remove-product remove-to-basket" type="button" item-code="{{ $item->__raw_id }}" class="btn remove-product">Remove</button>
 			                </div>
 			                
 			            	</div>
@@ -80,7 +104,6 @@
 			            @endforeach	
 					   
 					   </div> 
-					   
 					   
 						@if(!is_null($deliveryfee))
 								<div class="row deliveryfee-container">

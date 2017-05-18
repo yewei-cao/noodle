@@ -1,7 +1,6 @@
 /**
  * mymenu js
  */
-
 (function($) {
 	
 	$.extend({
@@ -39,7 +38,81 @@
 // 		$( ".basket" ).toggleClass( "open");
 		$( ".container" ).toggleClass( "basket-open");
 	});
-
+	
+	$(document).on("click", "#apply_voucher" , function() {
+		
+		$("#apply_voucher").addClass('hide');
+		$("#loading-indicator").removeClass('loaded');
+		var code = $("#voucher_code").val();
+//		$.post('/home/menu/removetoorder',{id:code});
+ 		$.ajax({
+ 			headers: {  'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+ 		      url: '/home/menu/voucherapply',
+ 		      type: 'POST',
+ 		      data: {'code':code},
+ 		      success: function(result) {
+ 		    	$("#apply_voucher").removeClass('hide');
+ 				$("#loading-indicator").addClass('loaded');
+// 				alert(result);
+ 				if(!result.type){
+ 					swal({   title: result.title,   
+ 						text: result.message,
+ 						type: "error",
+ 						confirmButtonText: 'Close'
+ 						});
+ 				}else{
+ 					swal({
+						title: result.title,
+						text: result.message,
+						type: "success",
+						showCancelButton: true,
+						closeOnConfirm: false,
+						showLoaderOnConfirm: true,
+ 						},
+ 						function(){
+ 							
+ 							$.ajax({
+ 								  headers: {  'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+ 								  url: '/home/menu/usevoucher',
+ 							      type: 'POST',
+ 							      data: {'code':code},
+ 							      success: function(respon) {
+ 							    	 if(!result.type){
+ 					 					swal({   title: result.title,   
+ 					 						text: result.message,
+ 					 						type: "error",
+ 					 						confirmButtonText: 'Close'
+ 					 						});
+ 							    	 }else{
+ 							    		 //run css somethings here
+ 							    		 
+ 							    	 }
+ 					            },
+ 					            error: function(respon) {
+ 					                alert("Data not found");
+ 					            }
+ 							 });
+ 							
+ 						  setTimeout(function(){
+ 							  
+ 							 swal({   title: "Success",   
+ 		 						text: "Voucher worth $"+ result.price +" is used" ,
+ 		 						type: "success",
+ 		 						confirmButtonText: 'Okay',
+ 		 						});
+ 						  }, 0);
+ 					});
+ 					
+ 				}
+ 				
+ 				
+             },
+             error: function(result) {
+                 alert("Data not found");
+             }
+ 		      });
+	});
+	
 	$(document).on("click", ".add-to-basket" , function() {
 		var code = $(this).attr("item-code");
 		$.ajax({
@@ -110,7 +183,6 @@
 		}
 			
 	});
-	
 	
 	//plugin bootstrap minus and plus
 	//http://jsfiddle.net/laelitenetwork/puJ6G/

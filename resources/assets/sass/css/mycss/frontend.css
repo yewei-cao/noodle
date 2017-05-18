@@ -654,6 +654,34 @@ body .main-container {
     border-right: 1px solid #c5c5c5;
 }
 
+.basket .basket-header #loading-indicator.loaded {
+    display: none;
+}
+.basket-input {
+    position: relative;
+    border-collapse: separate;
+}
+#apply_voucher{
+	width:100%;
+}
+
+.row .col-8:first-of-type {
+    padding-left: 0;
+}
+.row .col-8 {
+    float: left;
+    padding: 0 2px 0 3px;
+    width: 66.66667%;
+}
+.basket .basket-header #loading-indicator {
+    display: block;
+    background: #333;
+    width: 100%;
+    padding: 6px 12px;
+    text-align: center;
+    border-radius: 2px;
+}
+
 .basket .basket-body {
     overflow: hidden;
 }
@@ -1216,11 +1244,9 @@ font-family: 'Pacifico', cursive;
 padding-bottom: .4em;
 }
 .col-4{
-	width:100%
+	width:100%;
     position: relative;
     min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
 }
 .carousel-caption p{
 font-size: 2em;

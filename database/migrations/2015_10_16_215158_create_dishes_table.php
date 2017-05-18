@@ -42,7 +42,6 @@ class CreateDishesTable extends Migration
     		$table->timestamps();
     	});
     	
-
     	Schema::create('materials', function (Blueprint $table) {
     		$table->increments('id');
     		$table->integer('material_type_id')->unsigned();
@@ -56,7 +55,6 @@ class CreateDishesTable extends Migration
     		$table->foreign('material_type_id')->references('id')->on('material_types')->onDelete('cascade');
     		$table->timestamps();
     	});
-    	
     	
     	Schema::create('mgroups', function (Blueprint $table) {
     		$table->increments('id');
@@ -116,14 +114,12 @@ class CreateDishesTable extends Migration
 //         	$table->foreign('dish_id')->references('id')->on('dishes')->onDelete('cascade');
 //         });
         
-        
         Schema::create('tags', function (Blueprint $table) {
         	$table->increments('id');
         	$table->string('name');
         	$table->text('description');
         	$table->timestamps();
         });
-        
         
         Schema::create('tag_dish', function (Blueprint $table) {
         	$table->integer('tag_id')->unsigned();
@@ -135,8 +131,6 @@ class CreateDishesTable extends Migration
         	$table->primary(['user_id','dish_id','tag_id']);
         	$table->dateTime('created_at');
         });
-        
-        
         
 //         Schema::create('material_dish', function (Blueprint $table) {
 //         	$table->integer('material_id')->unsigned();

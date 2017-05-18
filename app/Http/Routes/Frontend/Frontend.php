@@ -15,19 +15,14 @@ $router->group(['prefix' => 'menu', 'namespace' => 'Home','as'=>'menu.'], functi
 	Route::get('/dish/{dish}', 'HomeController@dish')->name('dish');
 	Route::post('search','HomeController@search');
 	Route::get('/{types}', 'HomeController@types')->name('types');
-
-	
 });
 
 $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($router)
 {
-	
 	Route::get('/','HomeController@index')->name('home');
-	
 	/*
 	 * Product Menu Page
 	 */
-	
 	$router->group(['prefix' => 'menu', 'as'=>'home.menu.'],function () use ($router){
 		Route::get('/', 'menuController@index')->name('index');
 		Route::post('addtoorder','menuController@addtoorder');
@@ -35,12 +30,10 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 		Route::get('/mobilecsrf', function(){
 			return csrf_token();
 		});
-		
 		Route::get('/{types}', 'menuController@types')->name('types');
-		
-		
+		Route::post('voucherapply','menuController@voucherapply');
+		Route::post('usevoucher','menuController@usevoucher');
 		Route::post('removetoorder','menuController@removetoorder');
-		
 	});
 	
 	$router->group(['prefix' => 'dish', 'as'=>'home.dish.'],function () use ($router){
@@ -84,33 +77,20 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 		Route::get('saveordertime','pickupController@saveordertime');
 		Route::post('ordertime', ['as' => 'home.pickup.ordertime', 'uses' => 'pickupController@ordertime']);
 		Route::post('save_asap','pickupController@save_asap');
-		
 	});
 	
 	$router->group(['prefix' => 'payment', 'namespace' => 'Payment', 'as'=>'home.payment'],function () use ($router){
-
 		Route::get('paymentmethod','paymentcontroller@paymentmethod')->name('.paymentmethod');
-		
 		Route::get('policonfirm','poliController@policonfirm')->name('.policonfirm');
-		
 		Route::get('cash','paymentcontroller@cash')->name('.cash');
-
 		Route::get('credit','paymentcontroller@credit')->name('.credit');
-		
 		Route::post('poli','poliController@poli')->name('.poli');
-		
 		Route::get('polisuccess','poliController@polisuccess')->name('.polisuccess');
-		
 		Route::get('polifail','poliController@polifail')->name('.polifail');
-		
 		Route::get('policancel','poliController@policancel')->name('.policancel');
-		
 		Route::post('polinudge','poliController@polinudge')->name('.polinudge');
-		
 		Route::post('placeorder','paymentcontroller@placeorder')->name('.placeorder');
-		
 		Route::post('credittaken','paymentcontroller@credittaken')->name('.credittaken');
-		
 	});
 	
 });

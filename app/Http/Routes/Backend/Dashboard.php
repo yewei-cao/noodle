@@ -13,6 +13,9 @@ $router->group(['prefix' => 'manage', 'namespace' => 'Manage'], function () use 
 	
 // 	Route::get('create','OrderController@create')->name('create');
 	
+	
+	resource('coupon','CouponConroller');
+	
 	resource('blacklist','BlacklistController');
 	/*
 	 * example

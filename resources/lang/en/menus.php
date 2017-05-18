@@ -21,6 +21,7 @@ return [
 			'email'=>'Email'
 	],
 	'manage'=>['shop'=>'Shop',
+			'coupon'=>'Coupon',
 			'printer'=>'Printer',
 			'email'=>'Email',
 			'notice'=>'Notification',

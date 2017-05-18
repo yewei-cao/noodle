@@ -52,14 +52,14 @@ Edit
 		</div>
 		
 		<div class="form-group">
-			{!! Form::label('distancefee',trans('menu_backend.manage_edit.level1'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			{!! Form::label('distancefee',trans('menu_backend.manage_edit.distancefee'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
 			<div class="col-sm-9">
 				{!! Form::text('distancefee', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'$$$']) !!}
 			</div>
 		</div>
 		
 		<div class="form-group">
-			{!! Form::label('maxfree',trans('menu_backend.manage_edit.level2'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			{!! Form::label('maxfree',trans('menu_backend.manage_edit.maxfree'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
 			<div class="col-sm-9">
 				{!! Form::text('maxfree', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'$$$']) !!}
 			</div>
@@ -121,6 +121,47 @@ Edit
 			{!! Form::label('poliapi',trans('menu_backend.manage_edit.poliapi'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
 			<div class="col-sm-9">
 				{!! Form::text('poliapi', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'POLi API']) !!}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			{!! Form::label('coupon',trans('menu_backend.manage_edit.coupon'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				<label>
+					{!! Form::checkbox('coupon', '1', true,['class'=>'ace ace-switch ace-switch-2']) !!}
+					<span class="lbl"></span>
+				</label>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			{!! Form::label('email_coupon',trans('menu_backend.manage_edit.email_coupon'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				<label>
+					{!! Form::checkbox('email_coupon', '1', true,['class'=>'ace ace-switch ace-switch-2']) !!}
+					<span class="lbl"></span>
+				</label>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			{!! Form::label('coupon_value',trans('menu_backend.manage_edit.coupon_value'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				{!! Form::text('coupon_value', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'$$$']) !!}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			{!! Form::label('coupon_condition',trans('menu_backend.manage_edit.coupon_condition'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				{!! Form::text('coupon_condition', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'$$$']) !!}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			{!! Form::label('coupon_max','Max coupon amount',['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				{!! Form::text('coupon_max', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'Number']) !!}
 			</div>
 		</div>
 		

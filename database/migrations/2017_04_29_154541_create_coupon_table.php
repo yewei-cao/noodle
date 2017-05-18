@@ -12,25 +12,36 @@ class CreateCouponTable extends Migration
      */
     public function up()
     {
-        Schema::table('coupon', function (Blueprint $table) {
+    	Schema::table('shops', function (Blueprint $table) {
+    		$table->boolean('coupon');
+    		$table->boolean('email_coupon');
+    		$table->float('coupon_value');
+    		$table->float('coupon_condition');
+    		$table->integer('coupon_max')->nullable();
+    	});
+    	
+        Schema::create('coupons', function (Blueprint $table) {
         	$table->increments('id');
-        	$table->string('code');
+        	$table->string('code')->unique();
         	$table->string('title');
         	$table->decimal('value', 10, 2);
+        	$table->string('photo_path')->nullable();
         	$table->string('email');
         	$table->boolean('used');
         	$table->timestamp('used_time')->nullable();
+        	$table->timestamp('expired_time')->nullable();
         	$table->timestamp('created_at')->nullable();
         	$table->timestamp('updated_at')->nullable();
         });
         
-        Schema::create('dishes_material', function (Blueprint $table) {
-        	$table->integer('material_id')->unsigned();
-        	$table->integer('dishes_id')->unsigned();
-        	$table->foreign('dishes_id')->references('id')->on('dishes')->onDelete('cascade');
-        	$table->foreign('material_id')->references('id')->on('materials')->onDelete('cascade');
-        	$table->primary(['material_id','dishes_id']);
+        Schema::create('coupons_orders', function (Blueprint $table) {
+        	$table->integer('coupons_id')->unsigned();
+        	$table->integer('orders_id')->unsigned();
+        	$table->foreign('coupons_id')->references('id')->on('coupons')->onDelete('cascade');
+        	$table->foreign('orders_id')->references('id')->on('orders')->onDelete('cascade');
+        	$table->primary(['coupons_id','orders_id']);
         });
+      
     }
 
     /**
@@ -40,6 +51,14 @@ class CreateCouponTable extends Migration
      */
     public function down()
     {
-    	Schema::drop('ordericoupontems');
+    	Schema::table('shops', function (Blueprint $table) {
+    		//
+    		$table->dropColumn('coupon');
+    		$table->dropColumn('email_coupon');
+    		$table->dropColumn('coupon_value');
+    		$table->dropColumn('coupon_condition');
+    	});
+    	Schema::drop('coupons_orders');
+    	Schema::drop('coupons');
     }
 }
