@@ -41,7 +41,6 @@ class poliController extends Controller
 		];
 	}
    
-
 	public function policonfirm(Request $request){
 		//Cart::inputMessage("hello word");
 		//return Cart::getMessage();
@@ -51,25 +50,33 @@ class poliController extends Controller
 		// 		$request->session()->put('paymentmethod', 1);
 		
 // 		if($request->session()->has('paymentmethod')){
-			$order_route=[
-					'prev'=>route('home.payment.paymentmethod'),
-					'next'=>''
-			];
+		$order_route=[
+				'prev'=>route('home.payment.paymentmethod'),
+				'next'=>''
+		];
+		
+		$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
+		$coupon_value = 0;
+		$coupon = getcoupon($request,$this->shop->coupon_max);
 			
-			$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
-			
-			$ip = $request->ip();
-			return view('frontend.home.payment.policonfirm',compact('time','ip'))
-					->withCart($this->cart)
-					->withTotalprice($this->totalprice+$deliveryfee)
-					->withTotalnumber($this->totalnumber)
-					->withOrderroute($order_route)
-					->withDeliveryfee($deliveryfee)
-					->withActive($this->active);
-// 		}else{
-// 			return redirect()->route('home.payment.paymentmethod');
-// 		}
-	
+		if($coupon){
+			$coupon_value = $coupon->value;
+		}
+		if(Cart::total()<=$coupon_value){
+			$totalprice = Cart::total() + $deliveryfee;
+		}else{
+			$totalprice = Cart::total() + $deliveryfee - $coupon_value;
+		}
+		
+		$ip = $request->ip();
+		return view('frontend.home.payment.policonfirm',compact('time','ip'))
+				->withCart($this->cart)
+				->withTotalprice($totalprice)
+				->withTotalnumber($this->totalnumber)
+				->withOrderroute($order_route)
+				->withDeliveryfee($deliveryfee)
+				->withCoupon($coupon)
+				->withActive($this->active);
 	}
 	
 	/**
@@ -93,10 +100,16 @@ class poliController extends Controller
 			$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
 		}
 		
+		$coupon = getcoupon($request,$this->shop->coupon_max);
+		$coupon_value = 0;
+		if($coupon && $coupon->expired_time>Carbon::now() &&!$coupon->used){
+			$coupon_value = $coupon->value;
+		}
+		
 		$data = [
 				'ordernumber'=> date('Ymd') .random_int(100000, 999999),
 				'total'=>$this->totalprice,
-				'totaldue'=>$this->totalprice+$deliveryfee,
+				'totaldue'=>$this->totalprice+$deliveryfee-$coupon_value,
 				'status'=>'1',
 				'ordertype'=>$request->session()->get('ordertype'),
 				'name'=>$request->session()->get('user_details')['name'],
@@ -174,7 +187,7 @@ class poliController extends Controller
 			// 			$address = Address::create($user_address);
 			$order->address()->save($address);
 		}
-	
+		
 		if(!Auth::guest()){
 			// 			dd($this->user);
 			$this->user->attachorder($order);
@@ -246,8 +259,24 @@ class poliController extends Controller
 		if( intval( $id ) ){
 			$order = orders::findOrFail($id);
 			
+			//coupon function
+			$coupon = getcoupon($request,$this->shop->coupon_max);
+			
+			if($coupon && $coupon->expired_time>Carbon::now() &&!$coupon->used){
+				$coupon->used_time = Carbon::now();
+				$coupon->used = 1;
+				$coupon->save();
+				$order->coupon()->save($coupon);
+				$request->session()->forget('coupon');
+			}
+			
 			if(!$this->feieprinter($order)){
 				//send me a email.
+				$num = orders::where('status','<','2')->count();
+				Mail::queue('emails.order.printfail',compact('num','order'),function ($message)use($order){
+					$message->from(env('MAIL_USERNAME'))->to($order->email)
+					->subject('Noodle Canteen Print Errors');
+				});
 			}
 // 			$order->message = $order->message." token:".$token;
 			$order->save();

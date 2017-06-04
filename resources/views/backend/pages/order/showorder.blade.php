@@ -105,6 +105,11 @@
 						@if($order->address()->count())
 							<p class="red_span">Delivery Fee: ${{$order->address->fee}}</p>
 						@endif
+						
+						@if($order->coupon()->count() )
+							<p class="voucher_field">Voucher Code: {{$order->coupon->code}} Voucher worth: ${{$order->coupon->value}}</p>
+							<p class="voucher_field">used time: {{$order->coupon->used_time}}</p>
+						@endif
 					</div>
 					
 
@@ -152,7 +157,7 @@
 					</div>
 
 					<div class="hr"></div>
-
+					
 					<div class="row">
 						<div class="col-sm-5 pull-right">
 							<h4 class="pull-right">
@@ -160,7 +165,6 @@
 							</h4>
 						</div>
 					</div>
-					
 					
 					<div class="row">
 					<div class="col-sm-7 pull-left">Message</div>

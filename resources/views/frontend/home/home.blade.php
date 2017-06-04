@@ -106,10 +106,10 @@
 
 <div id="myservice-container">
 
-<div class="col-4">
+<div class="service-container">
 <a  href="{{ route('home.quickorder') }}" class="myservice red" >
 <div class="service-icon">
-<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="images/home/home_quickorder.png">
+<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="{{url()}}/images/home/home_quickorder.png">
 </div>
 <div class="service-text">
 
@@ -122,11 +122,11 @@
 </a>
 </div>
 
-<div class="col-4">
+<div class="service-container">
 <a  href="{{ route('home.delivery.info') }}" class="myservice red" >
 
 <div class="service-icon">
-<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="images/home/delivery_food.png">
+<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="{{url()}}/images/home/delivery_food.png">
 </div>
 <div class="service-text">
 <h2>{{ trans('front_home.delivery') }}</h2>
@@ -137,11 +137,11 @@
 </div>
 
 
-<div class="col-4">
+<div class="service-container">
 <a  href="{{ route('home.pickup.info') }}" class="myservice red" >
 
 <div class="service-icon">
-<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="images/home/noodle_pickup.png">
+<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="{{url()}}/images/home/noodle_pickup.png">
 </div>
 <div class="service-text">
 <h2>{{ trans('front_home.pick_up') }}</h2>

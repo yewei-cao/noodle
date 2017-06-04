@@ -1,4 +1,7 @@
 <?php
+use App\Models\Shop\Coupons;
+use Carbon\Carbon;
+
 /*
  * Global Flash functions.
  */
@@ -44,6 +47,30 @@ if (! function_exists('deliveryfee')) {
     	}
     	return $deliveryfee;
     }
+}
+
+/**
+ *
+ * @return unknown
+ */
+if (! function_exists('getcoupon')) {
+	
+	function getcoupon($request,$coupon_max){
+		$coupon_count = Coupons::where('used_time', '>', Carbon::today())
+		->Where('used_time', '<', Carbon::tomorrow())
+		->count();
+		
+		if($coupon_count>=$coupon_max){
+			return false;
+		}
+		if($request->session()->has('coupon')){
+// 			return Coupons::findOrFail(4);
+			return Coupons::where('code',$request->session()->get('coupon'))->first();
+// 			return $request->session()->get('coupon');
+		}
+		return false;
+	}
+	
 }
 
 

@@ -39,7 +39,11 @@
 						@foreach($coupons as $coupon)
 						<tr>
 							<td>{{ $coupon->id }}</td>
-							<td>{{ $coupon->order }}</td>
+							<td>
+							@if($coupon->orders()->count())
+							<a href="/admin/order/show/{{ $coupon->orders->ordernumber }}">{{ $coupon->orders->customernumber() }}</a>
+							@endif
+							</td>
 							<td>{{ $coupon->code }}</td>
 							<td>{{ $coupon->title }}</td>
 							<td>{{ $coupon->value }}</td>

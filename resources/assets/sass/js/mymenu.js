@@ -85,7 +85,9 @@
  					 						});
  							    	 }else{
  							    		 //run css somethings here
- 							    		 
+ 							    		$(".voucher").addClass('hide');
+ 							    		$(".voucheritem").removeClass('hide');
+ 							    		basket(respon.data);
  							    	 }
  					            },
  					            error: function(respon) {
@@ -113,6 +115,28 @@
  		      });
 	});
 	
+	$(document).on("click", ".remove_voucher" , function() {
+		$.ajax({
+			  headers: {  'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+		      url: '/home/menu/removevoucher',
+		      type: 'POST',
+		      data: {'code':'remove'},
+		      success: function(result) {
+	    	  $(".voucher").removeClass('hide');
+	    	  $(".voucheritem").addClass('hide');
+	    	  basket(result);
+		    	  swal({   title: "Success",   
+						text: "Voucher voucher remove success" ,
+						type: "success",
+						confirmButtonText: 'Okay',
+						});
+          },
+          error: function(result) {
+              alert("Voucher remove fail");
+          }
+		 });
+	});
+	
 	$(document).on("click", ".add-to-basket" , function() {
 		var code = $(this).attr("item-code");
 		$.ajax({
@@ -121,7 +145,7 @@
 		      type: 'POST',
 		      data: {'id':code},
 		      success: function(result) {
-				  add_basket(result);
+		    	  basket(result);
             },
             error: function(result) {
                 alert("Data not found");
@@ -139,7 +163,7 @@
  		      type: 'POST',
  		      data: {'id':code},
  		      success: function(result) {
- 				  add_basket(result);
+ 		    	 basket(result);
              },
              error: function(result) {
                  alert("Data not found");
@@ -257,7 +281,7 @@
 	      }
 	  });
 
-	add_basket=function(result){
+	basket=function(result){
 		
 		 var html= "";
 		 var totalqty=0;
@@ -268,7 +292,7 @@
 		 else{
 			 $(".empty-order").hide();
 			  for(var i in result){
-				  if(i != "total"&& i != 'deliveryfee'){
+				  if(i != "total"&& i != 'deliveryfee'&&i != 'coupon'){
 				  totalqty+=result[i]['qty'];
 				  html += '<div class=\"basket-product product\"> '
 		                
@@ -332,10 +356,18 @@
 //		 }else{
 //			 $(".deliveryfee-container").show();
 //		}
-		 var total = result['total'] +result['deliveryfee'];
-		  $('.total-amount').text('$'+total);
-		  $('.number-of-items').text(totalqty);
-		  $(".basket_order").html(html);
+		 if(result['total']<=result['coupon']['value'] || result['coupon']['value'] == null){
+			 var total = result['total'] +result['deliveryfee'];
+		 }else{
+			 var total = result['total'] +result['deliveryfee']-result['coupon']['value'];
+		 }
+		 
+		 $('#voucher_mycode').text(result['coupon']['code']);
+		 $('#voucher_value').text('$'+result['coupon']['value']);
+		 
+		 $('.total-amount').text('$'+total);
+		 $('.number-of-items').text(totalqty);
+		 $(".basket_order").html(html);
 	}
 
 }(jQuery));

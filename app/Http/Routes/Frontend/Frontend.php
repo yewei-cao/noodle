@@ -33,6 +33,7 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 		Route::get('/{types}', 'menuController@types')->name('types');
 		Route::post('voucherapply','menuController@voucherapply');
 		Route::post('usevoucher','menuController@usevoucher');
+		Route::post('removevoucher','menuController@removevoucher');
 		Route::post('removetoorder','menuController@removetoorder');
 	});
 	

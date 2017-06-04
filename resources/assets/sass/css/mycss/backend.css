@@ -516,6 +516,9 @@ div.dataTables_length select {
 	height: 520px;
 	width: 340px;
 }
+.voucher_field{
+	color:#f78f1e;
+}
 
 @media(min-width:480px) {
 .googlemap{	

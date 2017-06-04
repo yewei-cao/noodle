@@ -10280,6 +10280,10 @@ div.dataTables_length select {
   width: 340px;
 }
 
+.voucher_field {
+  color: #f78f1e;
+}
+
 @media (min-width:480px) {
   .googlemap {
     height: 420px;

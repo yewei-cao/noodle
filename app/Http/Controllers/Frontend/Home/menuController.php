@@ -13,6 +13,7 @@ use App\Models\Element\Material;
 use App\Models\Element\Material_type;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Shop\Coupons;
+use Carbon\Carbon;
 
 class menuController extends Controller
 {
@@ -47,6 +48,7 @@ class menuController extends Controller
 		$cart = Cart::all();
 		 
 		$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
+		$coupon = getcoupon($request,$this->shop->coupon_max);
 		 
 		$totalprice = Cart::total() + $deliveryfee;
 		$totalnumber = Cart::count();
@@ -60,8 +62,7 @@ class menuController extends Controller
 			$dishes = Dishes::where('name', 'LIKE', '%' . $nameornumber . '%')->orderBy('ranking', 'asc')->get();
 		}
 		
-		
-		return view('frontend.home.menu_search',compact('dishes','cart','totalprice','totalnumber'))
+		return view('frontend.home.menu_search',compact('dishes','cart','totalprice','totalnumber','coupon'))
 		->withActive($active)
 		->withShop($this->shop)
 		->withOrderroute($order_route)
@@ -109,12 +110,19 @@ class menuController extends Controller
     	$cart = Cart::all();
     	
     	$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
-    	
-    	$coupon = $this->getcoupon();
-    	
-    	$totalprice = Cart::total() + $deliveryfee;
+    	$coupon_value = 0;
+    	$coupon = getcoupon($request,$this->shop->coupon_max);
+    	 
+    	if($coupon){
+    		$coupon_value = $coupon->value;
+    	}
+    	if(Cart::total()<=$coupon_value){
+    		$totalprice = Cart::total() + $deliveryfee;
+    	}else{
+    		$totalprice = Cart::total() + $deliveryfee - $coupon_value;
+    	}
     	$totalnumber = Cart::count();
-    	return view('frontend.home.menu_content',compact('catalogues','cart','totalprice','totalnumber'))
+    	return view('frontend.home.menu_content',compact('catalogues','cart','totalprice','totalnumber','coupon'))
     	->withOrderroute($order_route)
     	->withDeliveryfee($deliveryfee)
     	->withActive($active);
@@ -154,10 +162,11 @@ class menuController extends Controller
     			'payment'=>''];
     	$cart = Cart::all();
     	$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
+    	$coupon = getcoupon($request,$this->shop->coupon_max);
     	$totalprice = Cart::total() + $deliveryfee;
     	$totalnumber = Cart::count();
     	
-    	return view('frontend.home.dish.dish_content',compact('materials','dish','cart','totalprice','totalnumber','veges','meat'))
+    	return view('frontend.home.dish.dish_content',compact('materials','dish','cart','totalprice','totalnumber','veges','meat','coupon'))
     	->withOrderroute($order_route)
     	->withDeliveryfee($deliveryfee)
     	->withActive($active);
@@ -288,14 +297,27 @@ class menuController extends Controller
 	  			];
 	  			break;
 		}
-    	
+		
+// 		return $coupon['code'];
+// 		dd($coupon);
+		
     	$cart = Cart::all();
-    	
     	$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
     	
-    	$totalprice = Cart::total() + $deliveryfee;
+    	$coupon_value = 0;
+    	$coupon = getcoupon($request,$this->shop->coupon_max);
+    	
+    	if($coupon){
+    		$coupon_value = $coupon->value;
+    	}
+    	if(Cart::total()<=$coupon_value){
+    		$totalprice = Cart::total() + $deliveryfee;
+    	}else{
+    		$totalprice = Cart::total() + $deliveryfee - $coupon_value;
+    	}
+    	
     	$totalnumber = Cart::count();
-    	return view('frontend.home.menu_content',compact('catalogues','cart','totalprice','totalnumber'))
+    	return view('frontend.home.menu_content',compact('catalogues','cart','totalprice','totalnumber','coupon'))
     	->withOrderroute($order_route)
     	->withDeliveryfee($deliveryfee)
     	->withActive($active);
@@ -316,6 +338,14 @@ class menuController extends Controller
     				'message'=>'The voucher ' .$request->input('code') .' is not accepted'
     		]);
     	}
+    	
+    	if($coupon->expired_time<=Carbon::now()){
+    		return response()->json([
+    				'type'=>false,
+    				'title'=>"Error",
+    				'message'=>'Your Voucher ' .$request->input('code') .' has been expired.'
+    		]);
+    	}
     	 
     	if($coupon->used){
     		return response()->json([
@@ -325,17 +355,34 @@ class menuController extends Controller
     		]);
     	}
     	
+    	$coupon_count = Coupons::where('used_time', '>', Carbon::today())
+    	->Where('used_time', '<', Carbon::tomorrow())
+    	->count();
+    	 
+    	if($coupon_count>=$this->shop->coupon_max){
+    		return response()->json([
+    				'type'=>false,
+    				'title'=>"Error",
+    				'message'=>'Today Vouchera quota is run out.'
+    		]);
+    	}
+    	
     	// 		$request->session()->forget('ordertype');
-    	$request->session()->put('coupon', $coupon);
+    	$request->session()->put('coupon', $coupon->code);
     	if($request->session()->has('coupon')){
     		return response()->json([
     				'type'=>true,
     				'message'=>'Success',
-    				'coupon'=> $request->session()->get('coupon')
+    				'data'=>$this->shoppingcart($request)
     		]);
     		// 				return redirect()->route('home.menu.index');
     	}
     	
+    }
+    
+    public function removevoucher(Request $request){
+    	$request->session()->forget('coupon');
+    	return $this->shoppingcart($request);
     }
     
     /**
@@ -357,6 +404,14 @@ class menuController extends Controller
     		]);
     	}
     	
+    	if($coupon->expired_time<=Carbon::now()){
+    		return response()->json([
+    				'type'=>false,
+    				'title'=>"Error",
+    				'message'=>'Your Voucher ' .$request->input('code') .' has been expired.'
+    		]);
+    	}
+    	
     	if($coupon->used){
     		return response()->json([
     				'type'=>false,
@@ -364,6 +419,19 @@ class menuController extends Controller
     				'message'=>'Your Voucher ' .$request->input('code') .' has been used.'
     		]);
     	}
+    	
+    	$coupon_count = Coupons::where('used_time', '>', Carbon::today())
+    	->Where('used_time', '<', Carbon::tomorrow())
+    	->count();
+    	
+    	if($coupon_count>=$this->shop->coupon_max){
+    		return response()->json([
+    				'type'=>false,
+    				'title'=>"Error",
+    				'message'=>'Today Vouchera quota is run out.'
+    		]);
+    	}
+    	
     	
     	return response()->json([
     			'type'=>true,
@@ -425,20 +493,11 @@ class menuController extends Controller
     		$request->session()->get('userdelvieryfee');
     	}
     	$cart['deliveryfee'] = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
+    	$cart['coupon'] = getcoupon($request,$this->shop->coupon_max);
+    	
     	return $cart;
     }
     
-    /**
-     * 
-     * @return unknown
-     */
-    protected function getcoupon(){
-    	if($request->session()->has('coupon')){
-    		return $request->session()->get('coupon');
-    		// 				return redirect()->route('home.menu.index');
-    	}
-    	return false;
-    }
     
     
 }

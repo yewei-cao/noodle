@@ -242,9 +242,6 @@
 	})
 	});
 
-
-
-	
 	$("#print").click(function(){
 		
 		$("input[name='chkItem']:checked").each(function () {
@@ -307,7 +304,6 @@
 	           
 		});
 
-
 	$("#finish").click(function(){
 		$("input[name='chkItem']:checked").each(function () {
 			$.ajax({
@@ -339,7 +335,6 @@
         });
            
 	});
-
 	
 	$("#printer").bind("click", function () {
 		if($('#printer').is(':checked')){

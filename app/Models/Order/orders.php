@@ -115,7 +115,7 @@ class Orders extends Model
     public function paymentmethod(){
     	switch($this->paymentmethod_id){
     		case $this->paymentmethod_id ==1 :
-    			return "Cash";
+    			return "Pay in Store";
     			break;
     		case $this->paymentmethod_id ==2 :
     			return "Poli";

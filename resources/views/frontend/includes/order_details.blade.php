@@ -4,10 +4,11 @@
          <div class="basket-top"></div>
             	
          <div class="basket-header">
-         	
-         
-         
-	            <div class="basket-input">
+         	@if($coupon=='')
+	            <div class="basket-input voucher ">
+	            @else
+	             <div class="basket-input voucher hide">
+	        @endif
 	                <div class="row">
 	                    <div class="col-11">
 	                        <label for="voucher_code">Enter voucher code here</label>
@@ -26,6 +27,7 @@
 	                    </div>
 	                </div>
 	            </div>
+	     	 
          </div>
          
     			<div id="basket" class="basket-body">
@@ -96,7 +98,7 @@
 			
 			                <div class="row actions">
 		                        <button class="btn add-product add-to-basket" type="button" item-code="{{ $item->__raw_id }}" >Add one</button>
-		                		<button class="btn btn remove-product remove-to-basket" type="button" item-code="{{ $item->__raw_id }}" class="btn remove-product">Remove</button>
+		                		<button class="btn btn remove-product remove-to-basket" type="button" item-code="{{ $item->__raw_id }}" >Remove</button>
 			                </div>
 			                
 			            	</div>
@@ -111,7 +113,34 @@
 								    <span class="price at-product-price">${{ $deliveryfee }}</span>
 								</div>
 						@endif
-					    
+						
+						
+						@if(!$coupon)
+				            <div class="row  voucheritem hide">
+					            <div class= "voucheritem_list">
+									<div class="voucheritem_text">Voucher code: <span id="voucher_mycode"></span></div>
+								</div>
+								<div class= "voucheritem_list">
+								    <div class="voucheritem_text">worth: <span id="voucher_value"></span></div>
+								</div>    
+							     <div class="row actions">
+			                		<button class="btn btn remove-product remove_voucher" type="button" >Remove Voucher</button>
+				                </div>
+							</div>
+				            
+				         @else
+				             <div class="row  voucheritem">
+					        	<div class= "voucheritem_list">
+									<div class="voucheritem_text">Voucher code: <span id="voucher_mycode">{{ $coupon->code }}</span></div>
+								</div>
+								<div class= "voucheritem_list">
+								    <div class="voucheritem_text">worth: <span id="voucher_value">${{ $coupon->value }}</span></div>
+								</div>    
+							     <div class="row actions">
+			                		<button class="btn btn remove-product remove_voucher" type="button" >Remove Voucher</button>
+				                </div>
+							</div>
+					    @endif
 						<div class="row total-container">
 						    <span class="total">Total</span>
 						    <span class="total-amount">${{ $totalprice }}</span>
@@ -119,7 +148,6 @@
 						
 					</div>
 				</div>
-				
    			
    			<div class="basket-footer">
    			

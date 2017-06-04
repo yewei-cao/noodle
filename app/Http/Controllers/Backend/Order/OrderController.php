@@ -36,7 +36,6 @@ class OrderController extends Controller
 //     		$paginate = $request->input('paginate');
 //     	}
 
-    	
 //     	$orders = orders::where('status','=','2')->paginate($this->paginate);
     	
     	$orders = orders::latest()->paginate($this->paginate);
@@ -88,7 +87,6 @@ class OrderController extends Controller
 //     	return $start;
     	return view('backend.pages.order.data')->withTotal($total);
     }
-    
     
     public function getdata($start, $end){
     	$orders =  orders::where('status',4)
@@ -364,6 +362,8 @@ class OrderController extends Controller
     		 
     		Mapper::map($json['routes'][0]['legs'][0]['end_location']['lat'],$json['routes'][0]['legs'][0]['end_location']['lng'],['zoom' => 16]);
     	}
+    	
+//     	dd($order->coupon->count());
     	
         return view('backend.pages.order.showorder')
         ->withOrder($order)
