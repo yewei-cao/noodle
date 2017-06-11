@@ -77,7 +77,7 @@ class paymentcontroller extends Controller {
 		
 		$deliveryfee = deliveryfee ( $request, $this->shop->freedelivery, $this->shop->maxfree );
 		$coupon_value = 0;
-		$coupon = getcoupon ( $request, $this->shop->coupon_max );
+		$coupon = getcoupon ( $request, $this->shop->coupon_maxamount, $this->shop->coupon_maxvalue,$this->shop->coupon);
 		
 		if ($coupon) {
 			$coupon_value = $coupon->value;
@@ -88,7 +88,8 @@ class paymentcontroller extends Controller {
 			$totalprice = Cart::total () + $deliveryfee - $coupon_value;
 		}
 		
-		return view ( 'frontend.home.payment.paymentmethod' )->withCart ( $this->cart )->withTotalprice ( $totalprice )->withTotalnumber ( $this->totalnumber )->withOrderroute ( $order_route )->withShop ( $this->shop )->withPickupmark ( $pickupmark )->withDeliveryfee ( $deliveryfee )->withCoupon ( $coupon )->withActive ( $this->active );
+		return view ( 'frontend.home.payment.paymentmethod' )->withCart ( $this->cart )->withTotalprice ( $totalprice )
+		->withTotalnumber ( $this->totalnumber )->withOrderroute ( $order_route )->withShop ( $this->shop )->withPickupmark ( $pickupmark )->withDeliveryfee ( $deliveryfee )->withCoupon ( $coupon )->withActive ( $this->active );
 	}
 	public function cash(Request $request) {
 		// return Cart::getMessage();
@@ -104,7 +105,7 @@ class paymentcontroller extends Controller {
 			
 			$deliveryfee = deliveryfee ( $request, $this->shop->freedelivery, $this->shop->maxfree );
 			$coupon_value = 0;
-			$coupon = getcoupon ( $request, $this->shop->coupon_max );
+			$coupon = getcoupon ( $request, $this->shop->coupon_maxamount, $this->shop->coupon_maxvalue,$this->shop->coupon );
 			
 			if ($coupon) {
 				$coupon_value = $coupon->value;
@@ -116,7 +117,14 @@ class paymentcontroller extends Controller {
 			}
 			
 			$ip = $request->ip ();
-			return view ( 'frontend.home.payment.cash', compact ( 'time', 'ip' ) )->withCart ( $this->cart )->withTotalprice ( $totalprice )->withTotalnumber ( $this->totalnumber )->withOrderroute ( $order_route )->withDeliveryfee ( $deliveryfee )->withCoupon ( $coupon )->withActive ( $this->active );
+			return view ( 'frontend.home.payment.cash', compact ( 'time', 'ip' ) )->withCart ( $this->cart )
+			->withTotalprice ( $totalprice )
+			->withTotalnumber ( $this->totalnumber )
+			->withOrderroute ( $order_route )
+			->withDeliveryfee ( $deliveryfee )
+			->withCoupon($coupon)
+			->withShop($this->shop)
+			->withActive ( $this->active );
 		} else {
 			return redirect ()->route ( 'home.payment.paymentmethod' );
 		}
@@ -190,7 +198,7 @@ class paymentcontroller extends Controller {
 			$deliveryfee = deliveryfee ( $request, $this->shop->freedelivery, $this->shop->maxfree );
 		}
 		
-		$coupon = getcoupon ( $request, $this->shop->coupon_max );
+		$coupon = getcoupon ( $request, $this->shop->coupon_maxamount, $this->shop->coupon_maxvalue,$this->shop->coupon );
 		$coupon_value = 0;
 		
 		if ($coupon && $coupon->expired_time > Carbon::now () && ! $coupon->used) {
@@ -299,14 +307,14 @@ class paymentcontroller extends Controller {
 		// $printresult = false;
 		
 		// dd($this->feieprinter($order));
-		// if(!$this->feieprinter($order)){
-		// //send me a email.
-		// $num = orders::where('status','<','2')->count();
-		// Mail::queue('emails.order.printfail',compact('num','order'),function ($message)use($order){
-		// $message->from(env('MAIL_USERNAME'))->to($order->email)
-		// ->subject('Noodle Canteen Print Errors');
-		// });
-		// }
+		if(!$this->feieprinter($order)){
+		//send me a email.
+		$num = orders::where('status','<','2')->count();
+		Mail::queue('emails.order.printfail',compact('num','order'),function ($message)use($order){
+		$message->from(env('MAIL_USERNAME'))->to($order->email)
+		->subject('Noodle Canteen Print Errors');
+		});
+		}
 		
 		// event
 		event ( new OrderReceipt ( $order ) );

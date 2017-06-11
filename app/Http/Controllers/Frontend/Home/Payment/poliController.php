@@ -57,7 +57,7 @@ class poliController extends Controller
 		
 		$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
 		$coupon_value = 0;
-		$coupon = getcoupon($request,$this->shop->coupon_max);
+		$coupon = getcoupon($request,$this->shop->coupon_maxamount, $this->shop->coupon_maxvalue,$this->shop->coupon);
 			
 		if($coupon){
 			$coupon_value = $coupon->value;
@@ -100,7 +100,7 @@ class poliController extends Controller
 			$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
 		}
 		
-		$coupon = getcoupon($request,$this->shop->coupon_max);
+		$coupon = getcoupon($request,$this->shop->coupon_maxamount, $this->shop->coupon_maxvalue,$this->shop->coupon);
 		$coupon_value = 0;
 		if($coupon && $coupon->expired_time>Carbon::now() &&!$coupon->used){
 			$coupon_value = $coupon->value;
@@ -260,7 +260,7 @@ class poliController extends Controller
 			$order = orders::findOrFail($id);
 			
 			//coupon function
-			$coupon = getcoupon($request,$this->shop->coupon_max);
+			$coupon = getcoupon($request,$this->shop->coupon_maxamount, $this->shop->coupon_maxvalue,$this->shop->coupon);
 			
 			if($coupon && $coupon->expired_time>Carbon::now() &&!$coupon->used){
 				$coupon->used_time = Carbon::now();

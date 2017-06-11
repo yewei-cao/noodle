@@ -68,15 +68,17 @@
 												{{$order->paymentmethod()}}</td>
 										</tr>
 
-										@if($order->coupon()->count() )
-										<tr>
-											<td style="padding: 5px 0; color: #dd5a43;">Voucher
-												Code:{{$order->coupon->code}}</td>
-										</tr>
-										<tr>
-											<td style="padding: 5px 0; color: #dd5a43;">used time:
-												{{$order->coupon->used_time}}</td>
-										</tr>
+										@if($order->coupon()->count())
+											<tr>
+												<td style="padding: 5px 0; color: #dd5a43;">Voucher
+													Code:{{$order->coupon->code}}</td>
+											</tr>
+											<tr>
+												<td style="padding: 5px 0; color: #dd5a43;">used time:
+													{{$order->coupon->used_time}}</td>
+											</tr>
+										
+										@endif
 
 										<tr>
 											<td style="padding: 5px 0;">
@@ -126,7 +128,7 @@
 										<tr>
 											<td style="padding: 5px 0;">
 												<table style="width: 100%;" cellpadding="0" cellspacing="0">
-													@endif @if($order->address()->count())
+													@if($order->address()->count())
 													<tr>
 														<td
 															style="border-top: #eee 1px solid; font-weight: 700;"

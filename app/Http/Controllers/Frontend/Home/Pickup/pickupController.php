@@ -43,15 +43,16 @@ class pickupController extends Controller
 
 			$minutes = 15;
 			
-			$ordertime = Carbon::create($dt->year, $dt->month, $dt->day, $this->starttime, $minutes);
+			$ordertime = Carbon::create($dt->year, $dt->month, $dt->day, $this->shop->starttime, $minutes);
 			
 			$time[0][0] = $ordertime->timestamp;
-			$time[0][1] = $ordertime->toDateTimeString();
+			$time[0][1] = $ordertime->format('Y-m-d H:i');
 			
-			$loop = ($this->closetime-$this->starttime-1)*4 +(60-$minutes)/15;
+			$loop = ($this->shop->closetime-$this->shop->starttime-1)*4 +(60-$minutes)/15;
 			for($i=1;$i<=$loop;$i++){
 				$time[$i][0] = $ordertime->copy()->addMinutes($i*15)->timestamp;
-				$time[$i][1] = $ordertime->copy()->addMinutes($i*15)->toDateTimeString();
+				$time[$i][1] = $ordertime->copy()->addMinutes($i*15)->format('Y-m-d H:i');
+				//echo $dt->format('l jS \\of F Y h:i:s A');         // Thursday 25th of December 1975 02:15:16 PM
 // 				$time[$ordertime->copy()->addMinutes($i*15)->timestamp] = $ordertime->copy()->addMinutes($i*15)->toDateTimeString();
 			}
 			

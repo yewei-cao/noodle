@@ -122,7 +122,8 @@ trans('front_title.ordercreated').trans('front_title.title') }}
 							<p>Payment Method: {{$order->paymentmethod()}}</p>
 							@if($order->address()->count())
 							<p class="red_span">Delivery Fee: ${{$order->address->fee}}</p>
-							@endif @if($order->coupon()->count() )
+							@endif 
+							@if($order->coupon()->count() )
 							<p class="red_span">Voucher Code: {{$order->coupon->code}}</p>
 							<p class="red_span">Voucher worth: ${{$order->coupon->value}}</p>
 							@endif

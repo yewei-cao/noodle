@@ -48,7 +48,7 @@ class menuController extends Controller
 		$cart = Cart::all();
 		 
 		$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
-		$coupon = getcoupon($request,$this->shop->coupon_max);
+		$coupon = getcoupon($request,$this->shop->coupon_maxamount, $this->shop->coupon_maxvalue,$this->shop->coupon);
 		 
 		$totalprice = Cart::total() + $deliveryfee;
 		$totalnumber = Cart::count();
@@ -111,7 +111,7 @@ class menuController extends Controller
     	
     	$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
     	$coupon_value = 0;
-    	$coupon = getcoupon($request,$this->shop->coupon_max);
+    	$coupon = getcoupon($request,$this->shop->coupon_maxamount, $this->shop->coupon_maxvalue,$this->shop->coupon);
     	 
     	if($coupon){
     		$coupon_value = $coupon->value;
@@ -125,7 +125,8 @@ class menuController extends Controller
     	return view('frontend.home.menu_content',compact('catalogues','cart','totalprice','totalnumber','coupon'))
     	->withOrderroute($order_route)
     	->withDeliveryfee($deliveryfee)
-    	->withActive($active);
+    	->withActive($active)
+    	->withShop($this->shop);
     }
     
     public function dish($dishname,Request $request){
@@ -162,14 +163,15 @@ class menuController extends Controller
     			'payment'=>''];
     	$cart = Cart::all();
     	$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
-    	$coupon = getcoupon($request,$this->shop->coupon_max);
+    	$coupon = getcoupon($request,$this->shop->coupon_maxamount, $this->shop->coupon_maxvalue,$this->shop->coupon);
     	$totalprice = Cart::total() + $deliveryfee;
     	$totalnumber = Cart::count();
     	
     	return view('frontend.home.dish.dish_content',compact('materials','dish','cart','totalprice','totalnumber','veges','meat','coupon'))
     	->withOrderroute($order_route)
     	->withDeliveryfee($deliveryfee)
-    	->withActive($active);
+    	->withActive($active)
+    	->withShop($this->shop);
     }
     
     public function adddish(Request $request){
@@ -251,7 +253,7 @@ class menuController extends Controller
 				'payment'=>''];
 				$order_route=[
 						'prev'=>'/home/menu/noodles',
-						'next'=>'/home/menu/snack&drinks'
+						'next'=>route('home.payment.paymentmethod')
 				];
 				break;
 			case "snack&drinks":
@@ -298,14 +300,11 @@ class menuController extends Controller
 	  			break;
 		}
 		
-// 		return $coupon['code'];
-// 		dd($coupon);
-		
     	$cart = Cart::all();
     	$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
     	
     	$coupon_value = 0;
-    	$coupon = getcoupon($request,$this->shop->coupon_max);
+    	$coupon = getcoupon($request,$this->shop->coupon_maxamount, $this->shop->coupon_maxvalue,$this->shop->coupon);
     	
     	if($coupon){
     		$coupon_value = $coupon->value;
@@ -320,7 +319,8 @@ class menuController extends Controller
     	return view('frontend.home.menu_content',compact('catalogues','cart','totalprice','totalnumber','coupon'))
     	->withOrderroute($order_route)
     	->withDeliveryfee($deliveryfee)
-    	->withActive($active);
+    	->withActive($active)
+    	->withShop($this->shop);
     	
     }
     
@@ -330,6 +330,12 @@ class menuController extends Controller
     	]);
     	
     	$coupon = Coupons::where('code',$request->input('code'))->first();
+
+//     	return  response()->json([
+//     			'type'=>true,
+//     			'title'=>"Error",
+//     			'coupon'=>$coupon
+//     	]);
     	
     	if(!$coupon){
     		return response()->json([
@@ -357,9 +363,10 @@ class menuController extends Controller
     	
     	$coupon_count = Coupons::where('used_time', '>', Carbon::today())
     	->Where('used_time', '<', Carbon::tomorrow())
+    	->Where('used','=',1)
     	->count();
     	 
-    	if($coupon_count>=$this->shop->coupon_max){
+    	if($coupon_count>=$this->shop->coupon_maxamount){
     		return response()->json([
     				'type'=>false,
     				'title'=>"Error",
@@ -369,6 +376,7 @@ class menuController extends Controller
     	
     	// 		$request->session()->forget('ordertype');
     	$request->session()->put('coupon', $coupon->code);
+    	
     	if($request->session()->has('coupon')){
     		return response()->json([
     				'type'=>true,
@@ -424,7 +432,7 @@ class menuController extends Controller
     	->Where('used_time', '<', Carbon::tomorrow())
     	->count();
     	
-    	if($coupon_count>=$this->shop->coupon_max){
+    	if($coupon_count>=$this->shop->coupon_maxamount){
     		return response()->json([
     				'type'=>false,
     				'title'=>"Error",
@@ -493,7 +501,7 @@ class menuController extends Controller
     		$request->session()->get('userdelvieryfee');
     	}
     	$cart['deliveryfee'] = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
-    	$cart['coupon'] = getcoupon($request,$this->shop->coupon_max);
+    	$cart['coupon'] = getcoupon($request,$this->shop->coupon_maxamount, $this->shop->coupon_maxvalue,$this->shop->coupon);
     	
     	return $cart;
     }

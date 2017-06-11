@@ -4,29 +4,33 @@
          <div class="basket-top"></div>
             	
          <div class="basket-header">
-         	@if($coupon=='')
-	            <div class="basket-input voucher ">
-	            @else
-	             <div class="basket-input voucher hide">
-	        @endif
-	                <div class="row">
-	                    <div class="col-11">
-	                        <label for="voucher_code">Enter voucher code here</label>
-	                    </div>
-	                </div>
-	
-	                <div class="row">
-	                    <div class="col-8">
-	                        <input id="voucher_code" class="form-control" type="text" spellcheck="false" placeholder="Voucher code">
-	                    </div>
-	                    <div class="col-4">
-	                        <button id="apply_voucher" class="btn btn-primary" >Apply</button>
-	                        <span id="loading-indicator" class="loaded">
-	                            <img class="image-loading" src="/images/home/ajax-loader.gif" alt="Please wait while loading">
-	                        </span>
-	                    </div>
-	                </div>
-	            </div>
+         
+        	 @if($shop->coupon)
+	         	@if($coupon=='')
+		            <div class="basket-input voucher ">
+		            @else
+		             <div class="basket-input voucher hide">
+		        @endif
+		                <div class="row">
+		                    <div class="col-11">
+		                        <label for="voucher_code">Enter voucher code here</label>
+		                    </div>
+		                </div>
+		
+		                <div class="row">
+		                    <div class="col-8">
+		                        <input id="voucher_code" class="form-control" type="text" spellcheck="false" placeholder="Voucher code">
+		                    </div>
+		                    <div class="col-4">
+		                        <button id="apply_voucher" class="btn btn-primary" >Apply</button>
+		                        <span id="loading-indicator" class="loaded">
+		                            <img class="image-loading" src="/images/home/ajax-loader.gif" alt="Please wait while loading">
+		                        </span>
+		                    </div>
+		                </div>
+		            </div>
+		            
+		       @endif
 	     	 
          </div>
          
@@ -115,32 +119,37 @@
 						@endif
 						
 						
-						@if(!$coupon)
-				            <div class="row  voucheritem hide">
-					            <div class= "voucheritem_list">
-									<div class="voucheritem_text">Voucher code: <span id="voucher_mycode"></span></div>
+						@if($shop->coupon)
+						
+							@if(!$coupon)
+					            <div class="row  voucheritem hide">
+						            <div class= "voucheritem_list">
+										<div class="voucheritem_text">Voucher code: <span id="voucher_mycode"></span></div>
+									</div>
+									<div class= "voucheritem_list">
+									    <div class="voucheritem_text">worth: <span id="voucher_value"></span></div>
+									</div>    
+								     <div class="row actions">
+				                		<button class="btn btn remove-product remove_voucher" type="button" >Remove Voucher</button>
+					                </div>
 								</div>
-								<div class= "voucheritem_list">
-								    <div class="voucheritem_text">worth: <span id="voucher_value"></span></div>
-								</div>    
-							     <div class="row actions">
-			                		<button class="btn btn remove-product remove_voucher" type="button" >Remove Voucher</button>
-				                </div>
-							</div>
-				            
-				         @else
-				             <div class="row  voucheritem">
-					        	<div class= "voucheritem_list">
-									<div class="voucheritem_text">Voucher code: <span id="voucher_mycode">{{ $coupon->code }}</span></div>
+					            
+					         @else
+					             <div class="row  voucheritem">
+						        	<div class= "voucheritem_list">
+										<div class="voucheritem_text">Voucher code: <span id="voucher_mycode">{{ $coupon->code }}</span></div>
+									</div>
+									<div class= "voucheritem_list">
+									    <div class="voucheritem_text">worth: <span id="voucher_value">${{ $coupon->value }}</span></div>
+									</div>    
+								     <div class="row actions">
+				                		<button class="btn btn remove-product remove_voucher" type="button" >Remove Voucher</button>
+					                </div>
 								</div>
-								<div class= "voucheritem_list">
-								    <div class="voucheritem_text">worth: <span id="voucher_value">${{ $coupon->value }}</span></div>
-								</div>    
-							     <div class="row actions">
-			                		<button class="btn btn remove-product remove_voucher" type="button" >Remove Voucher</button>
-				                </div>
-							</div>
+						    @endif
+					    
 					    @endif
+					    
 						<div class="row total-container">
 						    <span class="total">Total</span>
 						    <span class="total-amount">${{ $totalprice }}</span>

@@ -59,9 +59,9 @@ class CouponConroller extends Controller
 		
 		$coupon = Coupons::create($data);
 		
-		Mail::queue('emails.coupon',compact('coupon'),function ($message)use($coupon){
+		Mail::queue('emails.coupon.coupon',compact('coupon'),function ($message)use($coupon){
 			$message->from(env('MAIL_USERNAME'))->to($coupon->email)
-			->subject('Noodle Canteen Coupon');
+			->subject('Noodle Canteen Taradale Coupon');
 		});
 		
 		return redirect()->route('admin.manage.coupon.index')->withFlashSuccess(trans("menu_backend.menu_coupon_createstring"));
@@ -131,6 +131,9 @@ class CouponConroller extends Controller
 		});
 		
 		$x = 282;
+		if($value<10){
+			$x = 300;
+		}
 		if(preg_match('^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$^',$value)){
 			$x = 268;
 		}

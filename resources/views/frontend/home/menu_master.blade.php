@@ -38,9 +38,6 @@ margin:0;
   <div class="btn-group nav_menu" role="group">
     <a href="/home/menu/rice" class="btn redbtn  {{$active['rice']}}">Rice</a>
   </div>
-  <div class="btn-group nav_menu" role="group">
-    <a href="/home/menu/snack&drinks" class="btn redbtn  {{$active['snack&drinks']}}">Snack&drinks</a>
-  </div>
   
   <div class="btn-group nav_lowmenu" role="group">
     <a href="{{ route('home.payment.paymentmethod') }}" class="btn redbtn {{$active['payment']}}">Payment</a>
@@ -51,8 +48,15 @@ margin:0;
   <div class="btn-group nav_lowmenu" role="group">
     <a href="/home/menu/soups"  class="btn redbtn  {{$active['soups']}}">Soups</a>
   </div>
+  
+  
+  
   <div class="btn-group nav_lowmenu" role="group">
     <a href="/home/menu/chips" class="btn redbtn {{$active['chips']}}">Chips</a>
+  </div>
+  
+  <div class="btn-group nav_lowmenu" role="group">
+    <a href="/home/menu/snack&drinks"  class="btn redbtn  {{$active['snack&drinks']}}">Snack&drinks</a>
   </div>
 </div>
 <!-- end top bar -->

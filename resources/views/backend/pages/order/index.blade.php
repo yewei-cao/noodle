@@ -113,7 +113,11 @@
 							<td>{{ $order->name }}</td>
 							<td>{!! $order->status() !!}</td>
 							
-							<td><button class="btn glyphicon glyphicon-print" value="{{ $order->id }}" type="button"></button></td>
+							<td><button class="btn glyphicon glyphicon-print" value="{{ $order->id }}" type="button"></button>
+							@if($order->coupon()->count() )
+								<p>{{$order->coupon->code}}</p>
+							@endif
+							</td>
 							
 							<td>{{ $order->payment() }}</td>
 							<td>{{ $order->paymentmethod() }}</td>

@@ -17,7 +17,8 @@ class CreateCouponTable extends Migration
     		$table->boolean('email_coupon');
     		$table->float('coupon_value');
     		$table->float('coupon_condition');
-    		$table->integer('coupon_max')->nullable();
+    		$table->integer('coupon_maxamount');
+    		$table->integer('coupon_maxvalue');
     	});
     	
         Schema::create('coupons', function (Blueprint $table) {

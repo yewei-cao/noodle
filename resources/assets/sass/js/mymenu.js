@@ -77,9 +77,9 @@
  							      type: 'POST',
  							      data: {'code':code},
  							      success: function(respon) {
- 							    	 if(!result.type){
- 					 					swal({   title: result.title,   
- 					 						text: result.message,
+ 							    	 if(!respon.type){
+ 					 					swal({   title: respon.title,   
+ 					 						text: respon.message,
  					 						type: "error",
  					 						confirmButtonText: 'Close'
  					 						});

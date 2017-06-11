@@ -159,9 +159,16 @@ Edit
 		</div>
 		
 		<div class="form-group">
-			{!! Form::label('coupon_max','Max coupon amount',['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			{!! Form::label('coupon_maxamount','Max coupon amount',['class'=>'col-sm-3 control-label no-padding-right']) !!}
 			<div class="col-sm-9">
-				{!! Form::text('coupon_max', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'Number']) !!}
+				{!! Form::text('coupon_maxamount', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'Number']) !!}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			{!! Form::label('coupon_maxvalue','Max coupon value',['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				{!! Form::text('coupon_maxvalue', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'Number']) !!}
 			</div>
 		</div>
 		

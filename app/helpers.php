@@ -55,18 +55,26 @@ if (! function_exists('deliveryfee')) {
  */
 if (! function_exists('getcoupon')) {
 	
-	function getcoupon($request,$coupon_max){
+	function getcoupon($request,$coupon_maxamount,$coupon_maxvalue,$allow){
 		$coupon_count = Coupons::where('used_time', '>', Carbon::today())
 		->Where('used_time', '<', Carbon::tomorrow())
+		->Where('used','=',1)
 		->count();
 		
-		if($coupon_count>=$coupon_max){
+		if(!$allow){
 			return false;
 		}
+		if($coupon_count>=$coupon_maxamount){
+			return false;
+		}
+		
 		if($request->session()->has('coupon')){
 // 			return Coupons::findOrFail(4);
-			return Coupons::where('code',$request->session()->get('coupon'))->first();
+			$coupon =  Coupons::where('code',$request->session()->get('coupon'))->first();
 // 			return $request->session()->get('coupon');
+			if($coupon->value<=$coupon_maxvalue){
+				return $coupon;
+			}
 		}
 		return false;
 	}
