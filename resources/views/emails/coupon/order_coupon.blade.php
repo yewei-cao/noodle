@@ -30,6 +30,15 @@
 							</td>
 						</tr>
 						
+						<tr>
+							<td style="padding: 25px 0 5px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+								Usage: Type up the voucher code in order basket panel and apply. Like the image below.
+							</td>
+						</tr>
+						
+						<td align="center" bgcolor="#70bbd9" style="font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
+							<img src="{{url()}}/images/home/coupon_example.PNG" alt="Creating Email Magic" width="327" height="583" style="display: block;" />
+						</td>
 						
 					</table>
 				</td>

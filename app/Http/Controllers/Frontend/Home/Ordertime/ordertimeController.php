@@ -37,7 +37,11 @@ class ordertimeController extends Controller {
 		
 		$time [""] = "--- Select Time ---";
 		
-		
+		if (in_array ( $dt->dayOfWeek, $this->shop->workday () )) {
+			$aspn = true;
+		}else{
+			$aspn = false;
+		}
 		
 		if ($dt->hour < $this->shop->starttime) {
 			
@@ -58,12 +62,7 @@ class ordertimeController extends Controller {
 					$date [$dt->copy ()->addDays ( $i )->timestamp] = $dt->copy ()->addDays ( $i )->formatLocalized ( '%A %d %B %Y' );
 				}
 			}
-		} elseif (($this->shop->starttime <= $dt->hour) && ($dt->hour < $this->shop->closetime)) {
-			if (in_array ( $dt->dayOfWeek, $this->shop->workday () )) {
-				$aspn = true;
-			}else{
-				$aspn = false;
-			}
+		} elseif (($this->shop->starttime <= $dt->hour) && ($dt->hour < $this->shop->closetime)&&in_array ($dt->dayOfWeek,$this->shop->workday())) {
 			
 			switch ($dt->minute) {
 				case $dt->minute < 15 :

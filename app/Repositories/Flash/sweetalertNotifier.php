@@ -158,6 +158,11 @@ class sweetalertNotifier
     public function n_overlay($message,$title,$type='info'){
     	return $this->create($message, $title, $type,'flash_notification_overlay');
     }
+    
+    
+    public function adv($message,$title,$type='success'){
+    	return $this->create($message, $title, $type,'flash_adv');
+    }
 
     /**
      * Add an "important" flash to the session.

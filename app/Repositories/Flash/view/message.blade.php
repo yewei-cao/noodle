@@ -51,26 +51,36 @@
 swal({   title: "Success",   
 	text: "{{  Session::get('flash_success') }}",
 	type: "info",
-	timer: 1500,   
 	showConfirmButton: false 
 	});
 </script>
 
 @endif
 
-@if (Session::has('flash_notification.message'))
+
+
+
+@if(Session::has('flash_notification.message'))
+<script type="text/javascript">
+swal(
+		title: "{{ session('flash_notification.title') }}",   
+		text: "{{ session('flash_notification.message') }}",
+		type: "Success",
+)
+</script>
+@endif
+
+@if (Session::has('flash_adv'))
 <script type="text/javascript">
 
-swal({   title: "{{ session('flash_notification.title') }}",   
-	text: "{{ session('flash_notification.message') }}",
-	type: "{{ session('flash_notification.type') }}",
-	timer: 1500,   
-	showConfirmButton: false 
+swal({   title: "{{ session('flash_adv.title') }}",   
+	text: "{{ session('flash_adv.message') }}",
+	type: "{{ session('flash_adv.type') }}",
+	showConfirmButton: true 
 	});
 </script>
 	
 @endif
-
 
 @if (Session::has('flash_notification_overlay.message'))
 <script type="text/javascript">

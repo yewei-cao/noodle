@@ -59,6 +59,7 @@ class HomeController extends Controller
     {
     	$link = '<a href="'.route("home.delivery.info").'">Click here</a>';
     	sweetalert_message()->top_success(trans("front_home.order_freedelivery").$link);
+//     	sweetalert_message()->adv(trans("front_home.order_freedelivery").$link,'success');
     	
     	Mapper::map("-39.5357013","176.8484829",['zoom' => 16]);
     	
