@@ -245,10 +245,24 @@ class poliController extends Controller
 	}
 	
 	public function polinudge(Request $request){
+<<<<<<< Updated upstream
 		$this->validate($request, [
 				'Token'=>'required',
 		]);
 		$token = $request->input('Token');
+=======
+// 		$this->validate($request, [
+// 				'token'=>'required',
+// 		]);
+		//$this->shop->googleapi = $request->input('token');
+		$token = $request->input('Token');
+		if(is_null($token)) {
+			$token = $request->get('Token');
+		}
+		$this->shop->googleapi = $token;
+
+		$this->shop->save();
+>>>>>>> Stashed changes
 		
 		if(is_null($token)) {
 			$token = $request->get('Token');
