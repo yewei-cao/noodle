@@ -75,7 +75,8 @@ swal(
 
 swal({   title: "{{ session('flash_adv.title') }}",   
 	text: "{{ session('flash_adv.message') }}",
-	type: "{{ session('flash_adv.type') }}",
+	imageUrl: "images/home/delivery_food.png",
+	imageSize:"360x240",
 	showConfirmButton: true 
 	});
 </script>

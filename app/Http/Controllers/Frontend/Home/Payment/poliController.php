@@ -76,7 +76,8 @@ class poliController extends Controller
 				->withOrderroute($order_route)
 				->withDeliveryfee($deliveryfee)
 				->withCoupon($coupon)
-				->withActive($this->active);
+				->withActive($this->active)
+				->withShop($this->shop);
 	}
 	
 	/**
