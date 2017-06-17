@@ -20,6 +20,7 @@ class ordertimeController extends Controller {
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function details(Request $request) {
+// 		dd($request->session ()->get ( 'ordertype' ));
 		// $request->session()->forget('ordertype');
 		
 		// dd($request->session());

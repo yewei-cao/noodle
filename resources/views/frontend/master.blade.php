@@ -42,9 +42,7 @@
 			@yield('content')
 		</div>
 			
-		<div class="flash">
-		</div>
-	
+		
 	</div>
 
 <!-- @include('partials.sweetflash') -->

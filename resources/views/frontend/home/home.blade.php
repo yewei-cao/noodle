@@ -14,6 +14,8 @@
 </style>
 @endsection
 
+
+
 @section('content')
 
 <div class="col-md-12">
@@ -163,5 +165,18 @@
 
 </div>
 
+@endsection
 
+@section('scripts.footer')
+<script type="text/javascript">
+
+swal({   
+	title:"{{ $adv['title'] }}",
+	text: "{{ $adv['text'] }}",
+	imageUrl: "images/home/voucher_adv.jpg",
+	imageSize:"240x240",
+	showConfirmButton: true,
+	confirmButtonColor: '#e41837',
+	});
+</script>
 @endsection

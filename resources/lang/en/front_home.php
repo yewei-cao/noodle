@@ -69,6 +69,7 @@ return [
 		'qorder_text3'=>'For even faster ordering, save your favourite order.',
 		'qorder_intro'=>'Place an order to get set up for Quick Order next time',
 		'order_cancel'=>'If you want to cancel order, please call (06) 8443588',
-		'order_freedelivery'=>'Get a free delivery by order over $50 amount dishes in taradale area.'
+		'order_freedelivery'=>'Get a free delivery by order over $50 amount dishes in taradale area.',
+		'order_adv_voucher'=> "You can get a $5 voucher by consume over 100 dollars of orders. The voucher will be sent to you by email."
 		
 ];

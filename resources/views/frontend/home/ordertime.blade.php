@@ -1,19 +1,12 @@
 @extends('frontend.primary')
 
-
 @section('title')
 {{ trans('front_title.ordertime').trans('front_title.title') }}
 @endsection
 
 @section('css.style')
 <style type="text/css">
-
 </style>
-
-@endsection
-
-@section('jscript')
-
 @endsection
 
 @section('content')

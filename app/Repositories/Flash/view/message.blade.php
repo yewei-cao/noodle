@@ -58,8 +58,6 @@ swal({   title: "Success",
 @endif
 
 
-
-
 @if(Session::has('flash_notification.message'))
 <script type="text/javascript">
 swal(
