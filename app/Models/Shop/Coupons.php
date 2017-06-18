@@ -3,7 +3,7 @@
 namespace App\Models\Shop;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Order\Orders;
+use App\Models\Order\orders;
 use Carbon\Carbon;
 
 class Coupons extends Model

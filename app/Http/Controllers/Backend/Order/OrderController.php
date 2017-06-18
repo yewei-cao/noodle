@@ -325,9 +325,6 @@ class OrderController extends Controller
     		if($this->shop->coupon&&$this->shop->email_coupon){
     			if(!$order->coupon()->count()){//this order not use coupon  Finished status update fail, PLease do that again
     				
-    				
-    				
-    				
     				$coupon = Coupons::where('email', '=', $order->email)->latest()->first();
     				if($coupon){
     					$paymenttime = $coupon->created_at;
