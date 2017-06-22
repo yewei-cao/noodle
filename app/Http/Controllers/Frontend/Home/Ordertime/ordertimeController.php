@@ -32,8 +32,6 @@ class ordertimeController extends Controller {
 		
 		$minutes = 0;
 		
-		$aspn = false;
-		
 		$nowtimestamp = Carbon::now ()->timestamp;
 		
 		$time [""] = "--- Select Time ---";
@@ -45,7 +43,7 @@ class ordertimeController extends Controller {
 		}
 		
 		if ($dt->hour < $this->shop->starttime) {
-			
+			$aspn = false;
 			$minutes = 15;
 			
 			$ordertime = Carbon::create ( $dt->year, $dt->month, $dt->day, $this->shop->starttime, $minutes );
@@ -98,7 +96,7 @@ class ordertimeController extends Controller {
 				}
 			}
 		} else {
-			
+			$aspn = false;
 			$minutes = 15;
 			
 			$ordertime = Carbon::create ( $dt->year, $dt->month, $dt->day + 1, $this->shop->starttime, $minutes );
