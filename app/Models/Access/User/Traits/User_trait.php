@@ -4,7 +4,7 @@ use App\Models\Access\User\Role;
 use App\Models\Menu\Type;
 use App\Models\Menu\Catalogue;
 use App\Models\Material\Material;
-use App\Models\Order\Orders;
+use App\Models\Order\orders;
 
 trait User_trait {
 	
