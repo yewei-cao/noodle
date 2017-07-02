@@ -307,14 +307,14 @@ class paymentcontroller extends Controller {
 		// $printresult = false;
 		
 		// dd($this->feieprinter($order));
-		if(!$this->feieprinter($order)){
-		//send me a email.
-		$num = orders::where('status','<','2')->count();
-		Mail::queue('emails.order.printfail',compact('num','order'),function ($message)use($order){
-		$message->from(env('MAIL_USERNAME'))->to($order->email)
-		->subject('Noodle Canteen Print Errors');
-		});
-		}
+// 		if(!$this->feieprinter($order)){
+// 		//send me a email.
+// 		$num = orders::where('status','<','2')->count();
+// 		Mail::queue('emails.order.printfail',compact('num','order'),function ($message)use($order){
+// 		$message->from(env('MAIL_USERNAME'))->to($order->email)
+// 		->subject('Noodle Canteen Print Errors');
+// 		});
+// 		}
 		
 		// event
 		event ( new OrderReceipt ( $order ) );

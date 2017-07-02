@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Order\orders;
 use Cart;
 use App\Models\Shop\Shops;
+use App\Models\Menu\Dishes;
 
 class quickorderController extends Controller
 {
@@ -59,9 +60,35 @@ class quickorderController extends Controller
     			
     			if($request->session()->has('user_details')){
 //     				return "error";
-					foreach ($order->dishes as $dish){
+					foreach ($order->orderitems as $item){
+						$dish = Dishes::findOrFail($item->dishes_id);
+						$extra_money =0;
+						$attribute =[];
 // 						$dish->pivot->amount
-						Cart::add($dish->number, $dish->name,$dish->pivot->amount, $dish->price);
+						if ($item->takeout) {
+							$i=0;
+							foreach ( $item->takeout as $takeout ) {
+								$attribute['takeout'][$i]['id'] = $takeout->id;
+								$attribute['takeout'][$i]['name'] = $takeout->name;
+								$i++;
+							}
+						}
+							
+						if ($item->extra) {
+							$i=0;
+							foreach ( $item->extra as $extra ) {
+								$attribute['extra'][$i]['id'] = $extra->id;
+								$attribute['extra'][$i]['name'] = $extra->name;
+								$attribute['extra'][$i]['price'] = $extra->price;
+								$extra_money += $extra->price;
+								$i++;
+							}
+						}
+						
+						
+						Cart::add($dish->number, $dish->name,$item->amount, $dish->price+$extra_money,$attribute);
+// 						Cart::add($dish->id, $dish->name,$request->input('num'),$dish->price+$extra_money,$attribute);
+						
 					}
     				return redirect()->route('home.ordertime');
     			}else{

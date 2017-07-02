@@ -148,10 +148,20 @@ trans('front_title.ordercreated').trans('front_title.title') }}
 										<td class="center">{{ $item->dishes->number }}</td>
 
 										<td>{{ $item->dishes->name }}</td>
-										<td class="hidden-xs">@if($item->flavour) {{$item->flavour}} <br>
-											@endif @foreach($item->takeout as $material) no
-											{{$material->name}} @endforeach <br> @foreach($item->extra as
-											$material) extra {{$material->name}} <span class="red_span">${{$material->price}}</span>
+										<td class="hidden-xs">
+										@if($item->flavour) 
+										{{$item->flavour}} 
+										<br>
+											@endif 
+											
+											@foreach($item->takeout as $material) 
+												no {{$material->name}} 
+											@endforeach 
+											
+											<br> 
+											@foreach($item->extra as $material) 
+												extra {{$material->name}} 
+												<span class="red_span">${{$material->price}}</span>
 											@endforeach
 
 										</td>
