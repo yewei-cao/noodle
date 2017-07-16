@@ -171,8 +171,8 @@
 <script type="text/javascript">
 
 swal({   
-	title:"{{ $adv['title'] }}",
-	text: "{{ $adv['text'] }}",
+	title:"",
+	text: "{{ $adv }}",
 	imageUrl: "images/home/voucher_adv.jpg",
 	imageSize:"240x240",
 	showConfirmButton: true,

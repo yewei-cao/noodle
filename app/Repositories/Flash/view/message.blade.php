@@ -50,8 +50,9 @@
 
 swal({   title: "Success",   
 	text: "{{  Session::get('flash_success') }}",
-	type: "info",
-	showConfirmButton: false 
+	type: "success",
+	timer: 2000,
+	showConfirmButton: false
 	});
 </script>
 
