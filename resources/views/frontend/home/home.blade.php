@@ -54,7 +54,7 @@
 		<div class="open_detail">
 			<span class="day-name">Tuesday</span>
 			<span class="day-time">
-				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span>
+				<span class="opentime">day off</span>
 			</span>
 		</div>
 		
@@ -174,7 +174,7 @@ swal({
 	title:"",
 	text: "{{ $adv }}",
 	imageUrl: "images/home/voucher_adv.jpg",
-	imageSize:"240x240",
+	imageSize:"200x200",
 	showConfirmButton: true,
 	confirmButtonColor: '#e41837',
 	});
