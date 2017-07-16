@@ -52,13 +52,13 @@ class Printer{
 		foreach($order->orderitems as $item){
 			$orderInfo .= $item->amount.'X'.$item->dishes->number.' '.$item->dishes->name.'        '.$item->total.'<BR>';
 			if($item->flavour){
-				$orderInfo .= " ".$item->flavour.'<BR>';
+				$orderInfo .= " ******".$item->flavour.'<BR>';
 			}
 			foreach($item->takeout as $material){
-				$orderInfo .= ' no  '.$material->name.'<BR>';
+				$orderInfo .= ' ------no  '.$material->name.'<BR>';
 			}
 			foreach($item->extra as $material){
-				$orderInfo .= ' extra  '.$material->name.'                $'.$material->price.'<BR>';
+				$orderInfo .= ' ++++++extra  '.$material->name.'                $'.$material->price.'<BR>';
 			}
 		}
 		
