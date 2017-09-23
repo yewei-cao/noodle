@@ -22,13 +22,6 @@
 	<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 	<div class="help-block with-errors"></div>
 </div>
-		
-<div class="form-group">
-	<label>
-		{!! Form::checkbox('remember', '1', false,['class'=>'ace ace-switch ace-switch-2']) !!}
-		<span class="lbl">REMEMBER MY PICKUP DETAILS</span>
-	</label>
-</div>
 
 <div class="form-group">
 	<div class="detail-container pager">

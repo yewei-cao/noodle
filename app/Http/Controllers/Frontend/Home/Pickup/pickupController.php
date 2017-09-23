@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Response;
 use App\Http\Requests\Frontend\Home\PickupTimeRequest;
 use Form;
+use Cookie;
 use App\Models\Shop\Shops;
 
 
@@ -22,51 +23,29 @@ class pickupController extends Controller
 	public function index(Request $request){
 // 		$request->session()->forget('user_details');
 		
-		if(!$request->session()->has('user_details')){
+		if(!$request->cookie('user_details_cookie')){
 			return view('frontend.home.pickup.index')
 					->withShop($this->shop);
 		}
 		
-		$pickup = $request->session()->get('user_details');
-
+// 		if($request->cookie('user_details_cookie')){
+		$pickup = $request->cookie('user_details_cookie');
+// 		}else{
+// 			$pickup = $request->session()->get('user_details');
+// 		}
+		
 		return view('frontend.home.pickup.edit')->withPickup($pickup)
 				->withShop($this->shop);
 		
 	}
 	
-	public function ordertime(Request $request){
-		// Getting all post data
-		if($request->ajax()) {
-			$date = $request->input('date');
-			
-			$dt = Carbon::createFromTimestamp($date);
-
-			$minutes = 15;
-			
-			$ordertime = Carbon::create($dt->year, $dt->month, $dt->day, $this->shop->starttime, $minutes);
-			
-			$time[0][0] = $ordertime->timestamp;
-			$time[0][1] = $ordertime->format('Y-m-d H:i');
-			
-			$loop = ($this->shop->closetime-$this->shop->starttime-1)*4 +(60-$minutes)/15;
-			for($i=1;$i<=$loop;$i++){
-				$time[$i][0] = $ordertime->copy()->addMinutes($i*15)->timestamp;
-				$time[$i][1] = $ordertime->copy()->addMinutes($i*15)->format('Y-m-d H:i');
-				//echo $dt->format('l jS \\of F Y h:i:s A');         // Thursday 25th of December 1975 02:15:16 PM
-// 				$time[$ordertime->copy()->addMinutes($i*15)->timestamp] = $ordertime->copy()->addMinutes($i*15)->toDateTimeString();
-			}
-			
-			return $time;
-// 			return response()->json(['date' => $time]);
-		}
-			
-	}
 	
 	/*
 	 * save date and time of pick up detail in session
 	 */
 	
 	public function saveordertime(Request $request){
+// 		return  'order time';
 		if(!$request->input('ordertime')){
 			sweetalert_message()->n_overlay('Please choose a valid time','Invalid Time');
 			return redirect()->route('home.pick.details');
@@ -86,7 +65,12 @@ class pickupController extends Controller
 	
 	public function pickup_details(PickupDetailRequest $request){
 // 		return "test";
+		
 		$datas = $request->all();
+		
+		Cookie::queue('user_details_cookie', $datas, 4500);
+		
+// 		Cookie::forever('user_details_cookie', $datas['email']);
 		
 		$request->session()->put('user_details', $datas);
 		

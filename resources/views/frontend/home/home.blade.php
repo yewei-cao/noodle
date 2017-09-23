@@ -47,7 +47,7 @@
 		<div class="open_detail">
 			<span class="day-name">Monday</span>
 			<span class="day-time">
-				<span class="opentime">day off</span>
+				<span class="opentime">Close</span>
 			</span>
 		</div>
 		

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend\Home\Delivery;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Cookie;
 use App\Http\Controllers\Controller;
 use App\Models\Shop\Shops;
 
@@ -21,12 +22,12 @@ class deliveryController extends Controller
      */
     public function index(Request $request)
     {
-        if(!$request->session()->has('user_details')){
+        if(!$request->cookie('user_details_cookie')){
 			return view('frontend.home.delivery.index')
 					->withShop($this->shop);
 		}
 		
-		$delivery = $request->session()->get('user_details');
+		$delivery = $request->cookie('user_details_cookie');
 
 		return view('frontend.home.delivery.edit')->withdelivery($delivery)
 				->withShop($this->shop);
@@ -40,6 +41,8 @@ class deliveryController extends Controller
     public function delivery_details(Request $request){
     	$datas = $request->all();
     
+    	Cookie::queue('user_details_cookie', $datas, 4500);
+    	
     	$request->session()->put('user_details', $datas);
     
     	if($request->session()->has('user_details')){
@@ -96,9 +99,6 @@ class deliveryController extends Controller
     	return redirect()->route('home.delivery.info');
     }
     
-    public function saveordertime(Request $request){
-    	return 'saveordertime';
-    }
     
     public function diliveryfee($address){
     	$origin= urlencode($this->shop->address);

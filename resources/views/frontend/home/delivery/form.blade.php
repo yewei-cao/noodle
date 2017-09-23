@@ -47,13 +47,6 @@
 </div>
 		
 <div class="form-group">
-	<label>
-		{!! Form::checkbox('remember', '1', false,['class'=>'ace ace-switch ace-switch-2']) !!}
-		<span class="lbl">REMEMBER MY PICKUP DETAILS</span>
-	</label>
-</div>
-
-<div class="form-group">
 
 	<div class="detail-container pager">
 		<button class="redbtn btn-lg longbutton text-center"  type="submit">
