@@ -33,7 +33,7 @@
 		<a href="{{ route('menu.index') }}">
 			<h2 class="text-center">Menu</h2>
 			<hr>
-			<p>You can have your food delivered or avail of our takeaway service from Tuesday to Sundays. An extensive selection of popular noodles will excite your palate. Soups and Fried Rice are also included in the menu.</p>
+			<p>You can have your food delivered or takeaway from Tuesday to Sunday. An extensive selection of popular noodles will excite your palate. Soups and Fried Rice are also included in the menu.</p>
 		</a>
 	</div>
 </div>
