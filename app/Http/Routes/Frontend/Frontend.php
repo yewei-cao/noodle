@@ -55,9 +55,9 @@ $router->group(['prefix' => 'home', 'namespace' => 'Home'], function () use ($ro
 		Route::get('/','deliveryController@index')->name('home.delivery.info');
 		Route::get('delivery_details','deliveryController@delivery_details');
 		/* temporary stop the delivery and quickorder  */
-// 		Route::get('confirm','deliveryController@confirm')->name('home.delivery.confirm');
-// 		Route::get('address','deliveryController@address_confirm')->name('home.delivery.address');
-// 		Route::get('saveordertime','deliveryController@saveordertime');
+		Route::get('confirm','deliveryController@confirm')->name('home.delivery.confirm');
+		Route::get('address','deliveryController@address_confirm')->name('home.delivery.address');
+		Route::get('saveordertime','deliveryController@saveordertime');
 	});
 
 	$router->group(['prefix' => 'ordertime', 'namespace' => 'Ordertime'], function () use ($router)
