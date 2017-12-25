@@ -167,10 +167,11 @@
 <script type="text/javascript">
 
 swal({   
-	title:"",
-	text: "{{ $adv }}",
-	imageUrl: "images/home/voucher_adv.jpg",
-	imageSize:"200x200",
+	title: "{{ $adv['title'] }}",
+// 	title:"",
+	text: "{{ $adv['text'] }}",
+// 	imageUrl: "images/home/voucher_adv.jpg",
+// 	imageSize:"200x200",
 	showConfirmButton: true,
 	confirmButtonColor: '#e41837',
 	});
