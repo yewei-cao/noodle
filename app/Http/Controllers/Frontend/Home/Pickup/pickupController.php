@@ -12,14 +12,13 @@ use App\Http\Requests\Frontend\Home\PickupTimeRequest;
 use Form;
 use Cookie;
 use App\Models\Shop\Shops;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Cache;
 
-
-class pickupController extends Controller
-{
-	public function __construct(){
-		$this->shop = Shops::first();
+class pickupController extends Controller {
+	public function __construct() {
+		$this->shop = Shops::first ();
 	}
-	
 	public function index(Request $request){
 // 		$request->session()->forget('user_details');
 		
@@ -27,18 +26,33 @@ class pickupController extends Controller
 			return view('frontend.home.pickup.index')
 					->withShop($this->shop);
 		}
-		
-// 		if($request->cookie('user_details_cookie')){
-		$pickup = $request->cookie('user_details_cookie');
-// 		}else{
-// 			$pickup = $request->session()->get('user_details');
+
+// 		if(!$request->cookie('user_details_cookie')){
+			
+// 			return view('frontend.home.pickup.index')->withShop($this->shop);
 // 		}
+		
+// 		return Redis::get('USER_DETAILSyeweicao@gmail.com');
+		
+// 		//get user detail from redis
+// 		if(!Cache::has('USER_DETAILS' . $request->session()->get('email'))){
+// 			return view('frontend.home.pickup.index')->withShop($this->shop);
+// 		}
+		
+// 		return Redis::get('USER_DETAILS' . $request->session()->get('email'));
+		
+		if($request->cookie('user_details_cookie')){
+			$pickup = $request->cookie('user_details_cookie');
+		}else{
+			$pickup = $request->session()->get('user_details');
+		}
+		
+// 		$pickup = Redis::get('USER_DETAILS' . $request->session()->get('email'));
 		
 		return view('frontend.home.pickup.edit')->withPickup($pickup)
 				->withShop($this->shop);
 		
 	}
-	
 	
 	/*
 	 * save date and time of pick up detail in session
@@ -64,11 +78,10 @@ class pickupController extends Controller
 	 */
 	
 	public function pickup_details(PickupDetailRequest $request){
-// 		return "test";
 		
 		$datas = $request->all();
 		
-		Cookie::queue('user_details_cookie', $datas, 4500);
+		Cookie::queue('user_details_cookie', $datas, 45000);
 		
 // 		Cookie::forever('user_details_cookie', $datas['email']);
 		

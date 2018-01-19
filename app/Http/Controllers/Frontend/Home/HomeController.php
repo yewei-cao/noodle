@@ -64,15 +64,15 @@ class HomeController extends Controller
     	
     	Mapper::map("-39.5357013","176.8484829",['zoom' => 16]);
     	
-    	$adv=[];
-    	$adv['title']="Notification";
-    	$adv['text']="We are close on Monday to Thursday(1th to 4th) in this holiday.";
+//     	$adv=[];
+//     	$adv['title']="Notification";
+//     	$adv['text']="We are close on Monday to Thursday(1th to 4th) in this holiday.";
 //     	$adv['text']=trans("front_home.order_adv_voucher");
 //     	$adv = trans("front_home.order_adv_voucher");
 //     	$adv['message']="success";
     	
-        return view('frontend.home.home')->withShop($this->shop)
-        		->withAdv($adv);
+        return view('frontend.home.home')->withShop($this->shop);
+//         		->withAdv($adv);
     }
     
     public function policy()

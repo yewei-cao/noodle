@@ -41,7 +41,7 @@ class deliveryController extends Controller
     public function delivery_details(Request $request){
     	$datas = $request->all();
     
-    	Cookie::queue('user_details_cookie', $datas, 4500);
+    	Cookie::queue('user_details_cookie', $datas, 45000);
     	
     	$request->session()->put('user_details', $datas);
     

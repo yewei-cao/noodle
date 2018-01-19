@@ -19,6 +19,8 @@ use App\Repositories\Prints\Printer;
 use App\Models\Order\Orderitems;
 use Stripe\Coupon;
 use App\Models\Shop\Coupons;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Cache;
 
 class paymentcontroller extends Controller {
 	protected $cart;
@@ -287,7 +289,15 @@ class paymentcontroller extends Controller {
 			
 			// $address = Address::create($user_address);
 			$order->address ()->save ( $address );
+			
+// 			Redis::set('DELIVERY_TYPE' . $request->session ()->get ( 'user_details' ) ['email'], $request->session ());
 		}
+		
+// 		Redis::set('USER_DETAILS' . $request->session ()->get ( 'user_details' ) ['email'], $order->id);
+// 		Cookie::queue('user_details_cookie', $request->session ()->get ( 'user_details' ) ['email'], 45000);
+// 		$request->session()->put('email',$request->session ()->get ( 'user_details' ) ['email']);
+// 		Cache::add('email', $request->session ()->get ( 'user_details' ) ['email'], 34560);
+			
 		// dd($coupon['id']);
 		if ($coupon && $coupon->expired_time > Carbon::now () && ! $coupon->used) {
 			$coupon->used_time = Carbon::now ();
