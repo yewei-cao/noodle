@@ -19,7 +19,7 @@ use App\Repositories\Prints\Printer;
 use App\Models\Order\Orderitems;
 use Stripe\Coupon;
 use App\Models\Shop\Coupons;
-use Illuminate\Support\Facades\Redis;
+// use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Cache;
 
 class paymentcontroller extends Controller {

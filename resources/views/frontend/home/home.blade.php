@@ -23,7 +23,7 @@
 	<div class="home_detail">
 		<h2 class="text-center">About Us</h2>
 		<hr>
-		<p>Located at 269 Gloucester St, Noodle Canteen 鈥� Taradale serves an appetizing mix of Asian Cuisine. Everything is prepared fresh by our Asian chefs and include choice dishes, such as Seafood Mee Goreng, Nasi Goreng, Chicken Fried Rice and many more.</p>
+		<p>Located at 269 Gloucester St, Noodle Canteen Taradale serves an appetizing mix of Asian Cuisine. Everything is prepared fresh by our Asian chefs and include choice dishes, such as Seafood Mee Goreng, Nasi Goreng, Chicken Fried Rice and many more.</p>
 	</div>
 </div>
 
