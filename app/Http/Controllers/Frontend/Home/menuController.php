@@ -490,16 +490,16 @@ class menuController extends Controller
     	$cart = Cart::alldetails();
     	$user_details = $request->session()->get('user_details');
 //     	return $user_details;
-    	if(($cart['total'] >= $this->shop->freedelivery) && ($user_details['deliveryfee']<=$this->shop->maxfree))
-    	{
-    		//storing the delivery to a constant session 
-    		$user_details['deliveryfee'] = 0;
-    		$request->session()->put('user_details', $user_details);
-    	}else {
+//     	if(($cart['total'] >= $this->shop->freedelivery) && ($user_details['deliveryfee']<=$this->shop->maxfree))
+//     	{
+//     		//storing the delivery to a constant session 
+//     		$user_details['deliveryfee'] = 0;
+//     		$request->session()->put('user_details', $user_details);
+//     	}else {
     		$user_details['deliveryfee'] = $request->session()->get('userdelvieryfee');
     		$request->session()->put('user_details', $user_details);
     		$request->session()->get('userdelvieryfee');
-    	}
+//     	}
     	$cart['deliveryfee'] = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
     	$cart['coupon'] = getcoupon($request,$this->shop->coupon_maxamount, $this->shop->coupon_maxvalue,$this->shop->coupon);
     	

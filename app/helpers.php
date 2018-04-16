@@ -41,9 +41,9 @@ if (! function_exists('deliveryfee')) {
     	
     	if(!empty($request->session()->get('user_details')['deliveryfee'])){
     		$cart = Cart::alldetails();
-    		if(($cart['total'] < $freedelivery)|| ($request->session()->get('user_details')['deliveryfee']>$maxfree)){
+//     		if(($cart['total'] < $freedelivery)|| ($request->session()->get('user_details')['deliveryfee']>$maxfree)){
     			$deliveryfee = $request->session()->get('user_details')['deliveryfee'];
-    		}
+//     		}
     	}
     	return $deliveryfee;
     }
