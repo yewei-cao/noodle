@@ -8,7 +8,7 @@ use App\Models\Element\Material;
 
 class Orderitems extends Model
 {
-	protected $fillable = ['dishes_id','flavour','amount','price','total'];
+	protected $fillable = ['dishes_id','flavour','selectspecial','amount','price','total'];
 			
 	public function orders()
 	{

@@ -73,6 +73,17 @@
 				                </div>
 			                @endif
 			                
+			                 @if($item->selectspecial)
+			                	<div class="row">
+				                	 <div class="col-9">
+				                	 	<span class="description">
+				                	 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$item->selectspecial}}
+				                	 	</span>
+				                	 </div>
+				                
+				                </div>
+			                @endif
+			                
 		                	@if($item->takeout)
 		                		@foreach($item->takeout as $material)
 				                <div class="row">

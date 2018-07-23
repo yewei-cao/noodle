@@ -55,7 +55,7 @@
 					<table border="0" cellpadding="0" cellspacing="0" width="100%">
 						<tr>
 							<td style="text-align: center;">
-								Copyright © Noodle Canteen Taradale Enterprises Ltd 2016.
+								Copyright Noodle Canteen Taradale Enterprises Ltd 2016.
 							</td>
 						</tr>
 						
@@ -68,7 +68,7 @@
 						<tr>
 							<td style="text-align: center;">
 									<a href="#">Our website</a>
-									<span> &nbsp; • &nbsp; </span>
+									<span> &nbsp; &nbsp; </span>
 									<a href="#">Facebook</a>
 								</td>
 							</tr>

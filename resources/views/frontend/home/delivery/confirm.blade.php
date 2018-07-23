@@ -24,7 +24,7 @@
 			<h2>{{ trans('front_home.address_confirm_title') }} {{ $address }}</h2>
 			<h2>{{ trans('front_home.address_deliveryfee') }}  <span style="color: red;">${{ $deliveryfee }}</span></h2>
 			
-			<h2>{{ trans('front_home.address_freedilivery') }}</h2>
+<!-- 			<h2>{{ trans('front_home.address_freedilivery') }}</h2> -->
 			<h4>{{ trans('front_home.address_confirm') }}</h4>
 			
 		</div>

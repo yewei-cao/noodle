@@ -37,7 +37,7 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        $materials = Material::latest()->paginate(5);
+        $materials = Material::latest()->paginate(40);
     	return view('backend.pages.element.material.index',compact('materials'));
     }
 

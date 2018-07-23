@@ -14,6 +14,7 @@ use App\Models\Element\Material_type;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Shop\Coupons;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Input;
 
 class menuController extends Controller
 {
@@ -78,17 +79,6 @@ class menuController extends Controller
      */
     public function index(Request $request)
     {
-//     	$request->session()->flush();
-    	
-    	/* if session expired, then route to home page. */
-//     	if((!$request->session()->has('ordertype'))||(!$request->session()->has('ordertime'))){
-//     		sweetalert_message()->n_overlay(trans("menus.session.expire"),'Session Expire');
-//     		return redirect()->route('home');
-//     	}
-
-//     	dd($request->session()->get('ordertime'));
-//     	$dish = Dishes::where('number','9')->first();
-//     	dd($dish->name);
 
     	$order_route=[
     			'prev'=>'',
@@ -140,11 +130,31 @@ class menuController extends Controller
     		$materials[$i]['name']=$material->name;
     		$i++;
     	}
+    	$special =[];
     	foreach ($dish->materials as $material){
-    		$materials[$i]['id']=$material->id;
-    		$materials[$i]['name']=$material->name;
-    		$i++;
+    		
+    		/* check and find out the special ingredient. like noodles or rice */
+    		if(Catalogue::where('name',Material_type::findOrFail($material->material_type_id)->name)->first()){
+    			$special = $material;
+    		}else {
+    			$materials[$i]['id']=$material->id;
+    			$materials[$i]['name']=$material->name;
+    			$i++;
+    		}
     	}
+    	
+    	$special_group = [];
+    	/* special ingredients like noodle, only in some dishes. */
+    	if($special !=null) {
+    		$special_group= Material_type::where('name', $dish->catalogue->last()->name)->first();
+//     		return $special_group;
+    	}
+    	
+//     	return $special_group;
+    	
+//     	$special = $dish->catalogue->last()->name;
+    	
+//     	dd($special);
     	
     	$veges = Material_type::where('name', 'Veges')->first();
     	$meat = Material_type::where('name', 'Meat')->first();
@@ -153,6 +163,7 @@ class menuController extends Controller
     			'prev'=>'',
     			'next'=>route('home.payment.paymentmethod')
     	];
+    	
     	$active = [
     			'menu'=>'active',
     			'noodles'=>'',
@@ -167,7 +178,7 @@ class menuController extends Controller
     	$totalprice = Cart::total() + $deliveryfee;
     	$totalnumber = Cart::count();
     	
-    	return view('frontend.home.dish.dish_content',compact('materials','dish','cart','totalprice','totalnumber','veges','meat','coupon'))
+    	return view('frontend.home.dish.dish_content',compact('materials','dish','cart','totalprice','totalnumber','veges','meat','coupon','special','special_group'))
     	->withOrderroute($order_route)
     	->withDeliveryfee($deliveryfee)
     	->withActive($active)
@@ -190,6 +201,20 @@ class menuController extends Controller
     	if($request->get('flavour')!= 'Normal'){
     		$attribute['flavour'] = $request->get('flavour');
     	}
+
+    	$dish = Dishes::where('number',$request->input('dish_num'))->first();
+    	
+    	//select the noodle or rice.
+//     	if($request->get('selectspecial')!= 'Normal'){
+    		
+//     		$attribute['selectspecial'] = Material::findOrFail($request->get('selectspecial'))->name;
+//     		foreach ($dish->materials as $material){
+//     			if($request->get('selectspecial') == $material->id){
+//     				$attribute['selectspecial'] = [];
+//     			}
+//     		}
+//     	}
+    	
     	if($request->input('takeout')!=''){
     		$takeout = substr($request->input('takeout'),0,strlen($request->input('takeout'))-1);
     		$materials = explode(",",$takeout);
@@ -216,7 +241,7 @@ class menuController extends Controller
     		}
     	}
     	
-    	$dish = Dishes::where('number',$request->input('dish_num'))->first();
+    	
     	 
     	Cart::add($dish->id, $dish->name,$request->input('num'),$dish->price+$extra_money,$attribute);
     	
@@ -331,12 +356,6 @@ class menuController extends Controller
     	
     	$coupon = Coupons::where('code',$request->input('code'))->first();
 
-//     	return  response()->json([
-//     			'type'=>true,
-//     			'title'=>"Error",
-//     			'coupon'=>$coupon
-//     	]);
-    	
     	if(!$coupon){
     		return response()->json([
     				'type'=>false,

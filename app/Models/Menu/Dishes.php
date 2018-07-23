@@ -11,7 +11,6 @@ class Dishes extends Model
 {
 	protected $fillable = ['mgroup_id','name','price','number','ranking','description','consumptionpoint','photo_name','photo_path','photo_thumbnail_path','valid'];
 	
-	
 	public function catalogue(){
 		return $this->belongsToMany(Catalogue::class);
 	}

@@ -54,12 +54,29 @@
 				  <option>Medium</option>
 				  <option>Hot</option>
 				</select>
-	            
-				<h4>Dish Materials</h4>
 				
+				@if($special)
+					<div class="material-container">
+						<div class="material-message">
+				            <h4 class="current-material-text">Noodles or Rice</h4>
+				        </div>
+				        
+				        <div class="current-material-container">
+				        
+					        <select class="form-control" name="selectspecial" id="selectspecial">
+					        	<option>Normal</option>
+					        	@foreach($special_group->material as $material)
+								  <option value="{{ $material['id'] }}">{{ $material['name'] }}</option>
+							  @endforeach
+							</select>
+						        
+				        </div>
+					</div>
+				@endif
+	            
 				<div class="material-container">
 					<div class="material-message">
-			            <h4 class="current-material-text">Current Dish Materials</h4>
+			            <h4 class="current-material-text">Current Dish Ingredients</h4>
 			            <span  class="remove-material-text" >(Click to remove)</span>
 			        </div>
 			        
@@ -118,7 +135,7 @@
 		
 		@if($materials)
 		<div class="col-md-12 float-left">
-			<h4>Extra Vegetable in Meal</h4>
+			<h4>Extra Vegetables in Meal</h4>
 			<span  class="remove-material-text" >(Click to Add)</span>
 			<hr/>
 			

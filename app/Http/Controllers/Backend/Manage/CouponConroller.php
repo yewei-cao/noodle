@@ -130,14 +130,14 @@ class CouponConroller extends Controller
 			$font->color('#e1e1e1');
 		});
 		
-		$x = 282;
+		$x = 276;//below 10 is 300 over is 268
 		if($value<10){
-			$x = 300;
+			$x = 288;
 		}
 		if(preg_match('^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$^',$value)){
 			$x = 268;
 		}
-		$img->text($value, $x, 135, function($font){
+		$img->text('$'.$value, $x, 135, function($font){
 			$font->file(public_path('css/fonts/Roboto-Bold.ttf'));
 			$font->size(42);
 			$font->color('#e0191c');

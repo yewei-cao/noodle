@@ -23,13 +23,13 @@
 <h2>{{ trans('front_home.when_to_order') }}</h2>
 
 @if($aspn)
-<h4>{{ trans('front_home.currently_close') }}</h4>
-
 <button class="redbtn next btn-lg aspn" id="asap" type="button">
 {{ trans('front_home.asap') }}
 </button>
-
 <h2>OR</h2>
+
+@else
+<h4>{{ trans('front_home.currently_close') }}</h4>
 
 @endif
 

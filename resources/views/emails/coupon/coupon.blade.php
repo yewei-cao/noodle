@@ -32,7 +32,12 @@
 						
 						<tr>
 							<td style="padding: 25px 0 5px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-								Usage: Type up the voucher code in order basket panel and apply. Like the image below.
+								Usage: Click the button
+								<a href="{{url()}}/" style="background-color:#EB7035;border:1px solid #EB7035;border-radius:3px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">Use Coupon &rarr;</a>
+							</td>
+							
+							<td style="padding: 25px 0 5px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+								Or Type up the voucher code in order basket panel and apply. Like the image below.
 							</td>
 						</tr>
 						
@@ -55,7 +60,7 @@
 					<table border="0" cellpadding="0" cellspacing="0" width="100%">
 						<tr>
 							<td style="text-align: center;">
-								Copyright © Noodle Canteen Taradale Enterprises Ltd 2016.
+								Copyright Noodle Canteen Taradale Enterprises Ltd 2016.
 							</td>
 						</tr>
 						
@@ -68,7 +73,7 @@
 						<tr>
 							<td style="text-align: center;">
 									<a href="#">Our website</a>
-									<span> &nbsp; • &nbsp; </span>
+									<span> &nbsp; &nbsp; </span>
 									<a href="#">Facebook</a>
 								</td>
 							</tr>

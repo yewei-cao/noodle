@@ -244,9 +244,13 @@ class paymentcontroller extends Controller {
 			if (! $item->flavour) {
 				$item->flavour = '';
 			}
+			if (! $item->selectspecial) {
+				$item->selectspecial= '';
+			}
 			$orderitem = new Orderitems ( [ 
 					'dishes_id' => $item->id,
 					'flavour' => $item->flavour,
+					'selectspecial'=> $item->selectspecial,
 					'amount' => $item->qty,
 					'price' => $item->price,
 					'total' => $item->price * $item->qty 
