@@ -21,6 +21,7 @@ use Stripe\Coupon;
 use App\Models\Shop\Coupons;
 // use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Cache;
+use App\Models\Element\Material;
 
 class paymentcontroller extends Controller {
 	protected $cart;
@@ -246,7 +247,11 @@ class paymentcontroller extends Controller {
 			}
 			if (! $item->selectspecial) {
 				$item->selectspecial= '';
+			}else{
+				//get the material id by name
+				$item->selectspecial = Material::where('name', $item->selectspecial)->first()->id;
 			}
+// 			$item->selectspecial= '38';
 			$orderitem = new Orderitems ( [ 
 					'dishes_id' => $item->id,
 					'flavour' => $item->flavour,

@@ -46,15 +46,22 @@
 	            </div>
 	            
 	            @if($materials)
+	            
+	            
+	            <div class="material-container">
+						<div class="material-message">
+				            <h4 class="current-material-text">Flavour</h4>
+				        </div>
+				        <div class="current-material-container">
+					        <select class="form-control" name="flavour" >
+					          <option>Normal</option>
+							  <option>Mild</option>
+							  <option>Medium</option>
+							  <option>Hot</option>
+							</select>
+				        </div>
+					</div>
 	            	
-	            <h4>Flavour</h4>
-	            <select  name="flavour">
-				  <option>Normal</option>
-				  <option>Mild</option>
-				  <option>Medium</option>
-				  <option>Hot</option>
-				</select>
-				
 				@if($special)
 					<div class="material-container">
 						<div class="material-message">

@@ -150,9 +150,14 @@ trans('front_title.ordercreated').trans('front_title.title') }}
 										<td>{{ $item->dishes->name }}</td>
 										<td class="hidden-xs">
 										@if($item->flavour) 
-										{{$item->flavour}} 
-										<br>
-											@endif 
+											{{$item->flavour}} 
+											<br>
+										@endif 
+											
+										@if($item->selectspecial) 
+											{{$item->selectedname() }} 
+											<br>
+										@endif 	
 											
 											@foreach($item->takeout as $material) 
 												no {{$material->name}} 

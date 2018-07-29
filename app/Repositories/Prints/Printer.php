@@ -54,6 +54,10 @@ class Printer{
 			if($item->flavour){
 				$orderInfo .= " ******".$item->flavour.'<BR>';
 			}
+			
+			if($item->selectspecial){
+				$orderInfo .= " ******".$item->selectedname().'<BR>';
+			}
 			foreach($item->takeout as $material){
 				$orderInfo .= ' ------no  '.$material->name.'<BR>';
 			}
@@ -101,9 +105,9 @@ class Printer{
 	}
 	
 	/*
-	 *  方法1
-	 拼凑订单内容时可参考如下格式
-	 根据打印纸张的宽度，自行调整内容的格式，可参考下面的样例格式
+	 *  鏂规硶1
+	 鎷煎噾璁㈠崟鍐呭鏃跺彲鍙傝�冨涓嬫牸寮�
+	 鏍规嵁鎵撳嵃绾稿紶鐨勫搴︼紝鑷璋冩暣鍐呭鐨勬牸寮忥紝鍙弬鑰冧笅闈㈢殑鏍蜂緥鏍煎紡
 	 */
 	public function wp_print($orderInfo){
 	
@@ -115,7 +119,7 @@ class Printer{
 	
 				'sn'=>$this->printer_sn,
 				'content'=>$orderInfo,
-				'times'=>1//打印次数
+				'times'=>1//鎵撳嵃娆℃暟
 		);
 	
 		$client = new HttpClient($this->ip,$this->port);
@@ -129,8 +133,8 @@ class Printer{
 	}
 	
 	/*
-	 *  方法2
-	 根据订单索引,去查询订单是否打印成功,订单索引由方法1返回
+	 *  鏂规硶2
+	 鏍规嵁璁㈠崟绱㈠紩,鍘绘煡璇㈣鍗曟槸鍚︽墦鍗版垚鍔�,璁㈠崟绱㈠紩鐢辨柟娉�1杩斿洖
 	 */
 	public function queryOrderState($index){
 		$msgInfo = array(
@@ -154,8 +158,8 @@ class Printer{
 	
 	
 	/*
-	 *  方法4
-	 查询打印机的状态
+	 *  鏂规硶4
+	 鏌ヨ鎵撳嵃鏈虹殑鐘舵��
 	 */
 	public function queryPrinterStatus(){
 	

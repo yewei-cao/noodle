@@ -137,6 +137,12 @@
 											{{$item->flavour}}
 											<br>
 										@endif
+										
+										@if($item->selectspecial)
+											{{$item->selectedname()}}
+											<br>
+										@endif
+										
 										@foreach($item->takeout as $material)
 											no {{$material->name}}
 										@endforeach

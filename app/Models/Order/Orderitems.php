@@ -22,6 +22,11 @@ class Orderitems extends Model
     public function materials(){
     	return $this->belongsToMany(Material::class);
     }
+    //get selected special material name.
+    public function selectedname(){
+    	return Material::findOrFail($this->selectspecial)->name;
+//     	return $this->selectspecial;
+    }
     
     public function takeout(){
     	return $this->materials()->wherePivot('type', 'takeout');

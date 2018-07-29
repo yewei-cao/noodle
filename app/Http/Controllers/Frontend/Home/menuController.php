@@ -205,15 +205,19 @@ class menuController extends Controller
     	$dish = Dishes::where('number',$request->input('dish_num'))->first();
     	
     	//select the noodle or rice.
-//     	if($request->get('selectspecial')!= 'Normal'){
-    		
-//     		$attribute['selectspecial'] = Material::findOrFail($request->get('selectspecial'))->name;
-//     		foreach ($dish->materials as $material){
-//     			if($request->get('selectspecial') == $material->id){
-//     				$attribute['selectspecial'] = [];
-//     			}
-//     		}
-//     	}
+    	if($request->get('selectspecial')&&$request->get('selectspecial')!= 'Normal'){
+    		//get the material name by id
+    		$attribute['selectspecial'] = Material::findOrFail($request->get('selectspecial'))->name;
+    		foreach ($dish->materials as $material){
+    			if($request->get('selectspecial') == $material->id){
+    				$attribute['selectspecial'] = [];
+    			}
+    		}
+    	}else{
+    		$attribute['selectspecial'] = [];
+    	}
+    	
+//     	return Material::where('name', $attribute['selectspecial'])->first()->id;
     	
     	if($request->input('takeout')!=''){
     		$takeout = substr($request->input('takeout'),0,strlen($request->input('takeout'))-1);
@@ -241,8 +245,6 @@ class menuController extends Controller
     		}
     	}
     	
-    	
-    	 
     	Cart::add($dish->id, $dish->name,$request->input('num'),$dish->price+$extra_money,$attribute);
     	
     	return redirect()->route('home.menu.types', $dish->catalogue->last()->name);
