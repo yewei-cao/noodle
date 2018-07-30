@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Frontend\Home\Payment;
-
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -22,7 +20,6 @@ use App\Models\Shop\Coupons;
 // use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Element\Material;
-
 class paymentcontroller extends Controller {
 	protected $cart;
 	protected $totalprice;
@@ -120,14 +117,33 @@ class paymentcontroller extends Controller {
 			}
 			
 			$ip = $request->ip ();
-			return view ( 'frontend.home.payment.cash', compact ( 'time', 'ip' ) )->withCart ( $this->cart )
-			->withTotalprice ( $totalprice )
-			->withTotalnumber ( $this->totalnumber )
-			->withOrderroute ( $order_route )
-			->withDeliveryfee ( $deliveryfee )
-			->withCoupon($coupon)
-			->withShop($this->shop)
-			->withActive ( $this->active );
+			
+			if ($request->session ()->get ( 'ordertype' ) == 'delivery') {
+// 				$totalprice = 111.1;
+				$change = '$'.$this->change($totalprice);
+				
+				return view ( 'frontend.home.payment.cash', compact ( 'time', 'ip' ) )->withCart ( $this->cart )
+				->withTotalprice ( $totalprice )
+				->withTotalnumber ( $this->totalnumber )
+				->withOrderroute ( $order_route )
+				->withDeliveryfee ( $deliveryfee )
+				->withCoupon($coupon)
+				->withShop($this->shop)
+				->withActive ( $this->active)
+				->withChange($change);
+			}else{
+				return view ( 'frontend.home.payment.payinshop', compact ( 'time', 'ip' ) )->withCart ( $this->cart )
+				->withTotalprice ( $totalprice )
+				->withTotalnumber ( $this->totalnumber )
+				->withOrderroute ( $order_route )
+				->withDeliveryfee ( $deliveryfee )
+				->withCoupon($coupon)
+				->withShop($this->shop)
+				->withActive ( $this->active );
+			}
+			
+			
+			
 		} else {
 			return redirect ()->route ( 'home.payment.paymentmethod' );
 		}
@@ -363,5 +379,27 @@ class paymentcontroller extends Controller {
 			return $dt->format ( 'h:i A l jS F Y' );
 		}
 		return $timestamp;
+	}
+	
+	protected function change($n){
+		$money = ceil($n);
+		
+		if($money>100){
+			$number = $money%10;
+			$money=(int)($money/10);
+			$decade = $money%10;
+			$hundred = (int)($money/10);
+			return $hundred*100+(++$decade)*10-$n;
+		}else{
+			$decade= (int)($money/10);
+			return (++$decade)*10-$n;
+// 			$number = $money%10;
+// 			if($number<=5){
+// 				return $decade*10+5;
+// 			}else{
+// 				return ($decade++)*10;
+// 			}
+		}
+		
 	}
 }

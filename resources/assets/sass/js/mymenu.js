@@ -369,5 +369,9 @@
 		 $('.number-of-items').text(totalqty);
 		 $(".basket_order").html(html);
 	}
+	
+	$(".addtext").click(function(){
+        $('#message').append($(this).text()+', ');
+    });
 
 }(jQuery));

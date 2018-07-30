@@ -122,7 +122,7 @@
 					   
 					   </div> 
 					   
-						@if(!is_null($deliveryfee))
+						@if(!is_null($deliveryfee)&&$deliveryfee>0)
 								<div class="row deliveryfee-container">
 									<span class="deliveryfee">Delivery Fee</span>
 								    <span class="price at-product-price">${{ $deliveryfee }}</span>

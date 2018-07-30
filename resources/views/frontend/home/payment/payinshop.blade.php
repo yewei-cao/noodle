@@ -52,19 +52,9 @@
 			
 			<div class="row">
 				{!! Form::open(['method'=>'POST','action'=>'Frontend\Home\Payment\paymentcontroller@placeorder'])!!}
-	                
 	                {!! Form::label('message','Message:') !!}
-	                
-	                <button type="button" class="addtext redbtn btn btn-outline-primary">Take {{$change}} Change</button>
-	                <button type="button" class="addtext redbtn btn btn-outline-primary">Extra Charge </button>
-	                <button type="button" class="addtext redbtn btn  btn-outline-primary">Beep Horn on Arrival </button>
-	                
-	                <hr>
-	                 
 	                {!! Form::textarea('message', null,['size' => '30x5','class'=>'form-control']) !!} 
-	                
 	                <hr>
-	                
 	                <button type="submit" class="redbtn next btn-lg aspn">{{ trans('front_home.place_order') }}</button>
 	                 
 	            {!! Form::close() !!}

@@ -129,34 +129,27 @@ class poliController extends Controller
 	
 		$order = orders::create($data);
 		foreach ($this->cart as $item) {
-	// 			$order->dishes()->attach($item->id,
-	// 					array(	'amount'=>$item->qty,
-	// 							'price'=>$item->price,
-	// 							'total'=>$item->price*$item->qty
-	// 					)
-	// 					);
+			
 				if(!$item->flavour){
 					$item->flavour='';
 				}
+				if (! $item->selectspecial) {
+					$item->selectspecial= '';
+				}else{
+					//get the material id by name
+					$item->selectspecial = Material::where('name', $item->selectspecial)->first()->id;
+				}
+				
 				$orderitem = new Orderitems([
 						'dishes_id'=>$item->id,
 						'flavour'=>'',
+						'selectspecial'=> $item->selectspecial,
 						'amount'=>$item->qty,
 						'price'=>$item->price,
 						'total'=>$item->price*$item->qty
 				]);
 				$order->orderitems()->save($orderitem);
 				
-				
-				
-	// 			$order->orderitems()->attach($item->id,
-	// 					array(	'amount'=>$item->qty,
-	// 							'price'=>$item->price,
-	// 							'total'=>$item->price*$item->qty
-	// 					)
-	// 					);
-	
-	// 			dd($item->takeout);
 				if($item->takeout){
 					foreach ($item->takeout as $takeout){
 						$orderitem->materials()->attach($takeout['id'],
