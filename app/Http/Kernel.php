@@ -44,4 +44,24 @@ class Kernel extends HttpKernel
     	'IPMiddleware'=>\App\Http\Middleware\Shopping\IPMiddleware::class,
     		
     ];
+    /**
+     * Define the application's command schedule.
+     *
+     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @return void
+     */
+    protected function schedule(Schedule $schedule)
+    {
+    	$schedule->call(function () {
+    		$orders = Orders::where('status','2')->get();
+    		
+    		foreach($orders as $order){
+    			$order->update(['status'=>'3']);
+    		}
+    		
+    	})->everyMinute()
+    	->appendOutputTo('cook.txt')
+    	->emailOutputTo('yeweicao@gmail.com');
+    }
+    
 }

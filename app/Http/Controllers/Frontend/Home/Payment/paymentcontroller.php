@@ -341,7 +341,7 @@ class paymentcontroller extends Controller {
 		
 		// $printresult = false;
 		
-		// dd($this->feieprinter($order));
+// 		dd($this->feieprinter($order));
 		if(!$this->feieprinter($order)){
 		//send me a email.
 		$num = orders::where('status','<','2')->count();

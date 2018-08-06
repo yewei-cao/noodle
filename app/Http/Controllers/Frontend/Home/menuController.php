@@ -208,6 +208,7 @@ class menuController extends Controller
     	if($request->get('selectspecial')&&$request->get('selectspecial')!= 'Normal'){
     		//get the material name by id
     		$attribute['selectspecial'] = Material::findOrFail($request->get('selectspecial'))->name;
+    		//if customers chose the normal matarial, set it to normal.
     		foreach ($dish->materials as $material){
     			if($request->get('selectspecial') == $material->id){
     				$attribute['selectspecial'] = [];

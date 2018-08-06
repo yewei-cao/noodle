@@ -50,7 +50,18 @@ class Printer{
 		$orderInfo .= 'Dishes:                    Total<BR>';
 		
 		foreach($order->orderitems as $item){
-			$orderInfo .= $item->amount.'X'.$item->dishes->number.' '.$item->dishes->name.'        '.$item->total.'<BR>';
+			$itemstring = $item->amount.'X'.$item->dishes->number.' '.$item->dishes->name;
+			$orderInfo .= $itemstring;
+			if(strlen($itemstring)>24){
+				$orderInfo .= '<BR><RIGHT>'.$item->total.'</RIGHT><BR>';
+			}else{
+				$length_itemstring = 31-strlen($itemstring)-strlen($item->total);
+				for($i=0;$i<$length_itemstring;$i++){
+					$orderInfo .=' ';
+				}
+				$orderInfo .=$item->total.'<BR>';
+			}
+// 			$orderInfo .= $item->amount.'X'.$item->dishes->number.' '.$item->dishes->name.'        '.$item->total.'<BR>';
 			if($item->flavour){
 				$orderInfo .= " ******".$item->flavour.'<BR>';
 			}
@@ -68,7 +79,6 @@ class Printer{
 		
 		if($order->address()->count()){
 			$orderInfo .= '--------------------------------<BR>';
-			
 			$orderInfo .= 'Delivery Fee:     $'.$order->address->fee.'<BR>';
 		}
 		$orderInfo .= '--------------------------------<BR>';
@@ -82,7 +92,7 @@ class Printer{
 		$orderInfo .= '--------------------------------<BR>';
 		if($order->address()->count()){
 			$orderInfo .= 'Address: <BR>';
-			$orderInfo .= '   '.$order->address->address.' '.$order->address->suburb.' '.$order->address->city.'<BR>';
+			$orderInfo .= ' <B>'.$order->address->address.' '.$order->address->suburb.' '.$order->address->city.'</B><BR>';
 		}
 		
 		$orderInfo .='Thank you for choosing Noodle <BR>';
