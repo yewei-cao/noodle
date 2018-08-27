@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
-use App\Models\Order\Orders;
+use App\Models\Order\orders;
 use Carbon\Carbon;
 use App\Models\Shop\Shops;
 use App\Models\Shop\Coupons;
