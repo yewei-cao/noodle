@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
                  ->hourly();
         
         $schedule->command('handle:order')
-        ->weekly()->mondays()->at('13:25');
+        ->weekly()->mondays()->at('13:34');
 
     }
 }
