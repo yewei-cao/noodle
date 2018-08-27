@@ -36,16 +36,16 @@ class Printer{
 		$orderInfo .= '--------------------------------<BR>';
 		$orderInfo .= 'Order Details <BR>';
 		$orderInfo .= 'Name:               '.$order->name.'<BR>';
-		$orderInfo .= 'Phone number: '.$order->phonenumber.'<BR>';
+		$orderInfo .= 'Phone number:<B>'.$order->phonenumber.'</B><BR>';
 		
 		if($order->paymentflag==2){
 			$orderInfo .= 'Due Time:  '.$order->paymenttime().'<BR>';
 		}
 		
 		$orderInfo .= 'Order Type:           '.$order->ordertype.'<BR>';
-		$orderInfo .= 'Order Payment:         '.$order->payment().'<BR>';
+		$orderInfo .= 'Order Payment:  <B>'.$order->payment().'</B><BR>';
 		$orderInfo .= 'Pay by:                '.$order->paymentmethod().'<BR>';
-		$orderInfo .= 'Shipping Time:  '.$order->shiptimeformat().'<BR>';
+		$orderInfo .= 'Shipping Time:<B>'.$order->shiptimeformat().'</B><BR>';
 		$orderInfo .= '--------------------------------<BR>';
 		$orderInfo .= 'Dishes:                    Total<BR>';
 		
@@ -73,7 +73,7 @@ class Printer{
 				$orderInfo .= ' ------no  '.$material->name.'<BR>';
 			}
 			foreach($item->extra as $material){
-				$orderInfo .= ' ++++++extra  '.$material->name.'                $'.$material->price.'<BR>';
+				$orderInfo .= ' ++++++extra  '.$material->name.'   $'.$material->price.'<BR>';
 			}
 		}
 		
