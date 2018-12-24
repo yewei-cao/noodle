@@ -71,6 +71,7 @@ return [
 		'order_cancel'=>'If you want to cancel order, please call (06) 8443588',
 		'order_freedelivery'=>'Get a free delivery by order over $50 amount dishes in taradale area.',
 		'delivery_cancel'=>'Sorry, Staffs is not enough at the moment. Delivery is not available temporarily',
-		'order_adv_voucher'=> "You can get a $5 voucher by consume over $100 of orders. The voucher will be sent to you by email."
+		'order_adv_voucher'=> "You can get a $5 voucher by consume over $100 of orders. The voucher will be sent to you by email.",
+		'holiday'=>'Merry Christmas and Happy New Year, We Close on Monday, Tuesday and Wednesday'
 		
 ];
