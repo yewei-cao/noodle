@@ -108,9 +108,12 @@ class deliveryController extends Controller
     	
 //     	return ceil($json['routes'][0]['legs'][0]['distance']['value']/1000)*$this->shop->distancefee;
     	//distance less than 5km or 20km
-    	if($json['routes'][0]['legs'][0]['distance']['value']<3000){
+    	if($json['routes'][0]['legs'][0]['distance']['value']<2200){
     		return $this->shop->distancefee;
-    	}elseif ($json['routes'][0]['legs'][0]['distance']['value']<10000){
+    	}if($json['routes'][0]['legs'][0]['distance']['value']<3000){
+    		return $this->shop->distancefee+$this->shop->maxfree;
+    	}
+    	elseif ($json['routes'][0]['legs'][0]['distance']['value']<10000){
     		return ceil($json['routes'][0]['legs'][0]['distance']['value']/1000)*$this->shop->distancefee;
     	}else{
     		return false;

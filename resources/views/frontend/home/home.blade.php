@@ -53,14 +53,14 @@
 		<div class="open_detail">
 			<span class="day-name">Tuesday</span>
 			<span class="day-time">
-				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span>
+				<span class="opentime">Close</span>
 			</span>
 		</div>
 		
 		<div class="open_detail">
 			<span class="day-name">Wednesday</span>
 			<span class="day-time">
-				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span>
+				<span class="opentime">Close</span>
 			</span>
 		</div>
 		
@@ -81,7 +81,7 @@
 		<div class="open_detail">
 			<span class="day-name">Saturday</span>
 			<span class="day-time">
-				<span class="opentime">11:30 AM</span> to <span class="opentime">9 PM</span>
+				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span>
 			</span>
 		</div>
 			
