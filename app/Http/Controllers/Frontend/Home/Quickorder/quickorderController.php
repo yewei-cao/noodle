@@ -102,10 +102,15 @@ class quickorderController extends Controller
     					'suburb'=>$order->address->suburb,
     					'city'=>$order->address->city
     			];
+    			$deliveryfee = $this->diliveryfee($order->address);
+    			$datas += [
+    					'deliveryfee' => $deliveryfee
+    			];
+    			
     			$request->session()->put('user_details', $datas);
     			$request->session()->put('ordertype', "delivery");
     			
-    			dd($order->dishes); //error
+//     			dd($order->dishes); //error
     			if($request->session()->has('ordertype')){
     				foreach ($order->orderitems as $item){
     					$dish = Dishes::findOrFail($item->dishes_id);
@@ -164,6 +169,26 @@ class quickorderController extends Controller
     	dd($this->user);
     	if(!Auth::guest()){
     		$this->user->attachorder($order);
+    	}
+    }
+    
+    public function diliveryfee($address){
+    	$origin= urlencode($this->shop->address);
+    	$destination= urlencode($address);
+    	$url = "https://maps.googleapis.com/maps/api/directions/json?origin=".$origin."&destination=".$destination."&key=".$this->shop->googleapi;
+    	$json = json_decode(file_get_contents($url), true);
+    	
+    	//     	return ceil($json['routes'][0]['legs'][0]['distance']['value']/1000)*$this->shop->distancefee;
+    	//distance less than 5km or 20km
+    	if($json['routes'][0]['legs'][0]['distance']['value']<2200){
+    		return $this->shop->distancefee;
+    	}if($json['routes'][0]['legs'][0]['distance']['value']<3000){
+    		return $this->shop->distancefee+$this->shop->maxfree;
+    	}
+    	elseif ($json['routes'][0]['legs'][0]['distance']['value']<10000){
+    		return ceil($json['routes'][0]['legs'][0]['distance']['value']/1000)*$this->shop->distancefee;
+    	}else{
+    		return false;
     	}
     }
 

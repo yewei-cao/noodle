@@ -62,6 +62,7 @@ class HomeController extends Controller
 //     	sweetalert_message()->top_success(trans("front_home.order_freedelivery").$link);
 //     	sweetalert_message()->adv(trans("front_home.order_freedelivery").$link,'success');
     	sweetalert_message()->adv(trans("front_home.holiday"),'info');
+    	//images/home/delivery_food.png
     	
     	Mapper::map("-39.5357013","176.8484829",['zoom' => 16]);
     	
