@@ -75,7 +75,7 @@ swal(
 swal({   title: "{{ session('flash_adv.title') }}",   
 	text: "{{ session('flash_adv.message') }}",
 // 	imageUrl: "images/home/delivery_food.png",
-	imageUrl: "images/home/chrimas.jpg",
+	imageUrl: "images/home/2019.jpg",
 	imageSize:"360x240",
 	showConfirmButton: true 
 	});
