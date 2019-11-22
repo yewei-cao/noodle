@@ -352,8 +352,8 @@ class paymentcontroller extends Controller {
 		}
 		
 		// event
-		event ( new OrderReceipt ( $order ) );
-		event ( new OrderPrinter ( $order ) );
+// 		event ( new OrderReceipt ( $order ) );
+// 		event ( new OrderPrinter ( $order ) );
 		event ( new DashboardOrder () );
 		
 		/* clear shopping cart */

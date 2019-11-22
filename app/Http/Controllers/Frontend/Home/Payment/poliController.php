@@ -221,8 +221,8 @@ class poliController extends Controller
 		
 		$order = orders::findOrFail($id);
 		if($order->paymentflag ==2){
-			event(new OrderReceipt($order));
-			event(new OrderPrinter($order));
+// 			event(new OrderReceipt($order));
+// 			event(new OrderPrinter($order));
 			event(new DashboardOrder());
 			
 			sweetalert_message()->top_message(trans("front_home.order_cancel"));

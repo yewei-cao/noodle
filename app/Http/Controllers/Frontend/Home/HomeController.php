@@ -68,7 +68,7 @@ class HomeController extends Controller
     	
 //     	$adv=[];
 //     	$adv['title']="Notification";
-//     	$adv['text']="We are close on Monday to Thursday(1th to 4th) in this holiday.";
+//     	$adv['text']="We are close on Sunday Monday and Tuesday(24th to 26th) in this holiday.";
 //     	$adv['text']=trans("front_home.order_adv_voucher");
 //     	$adv = trans("front_home.order_adv_voucher");
 //     	$adv['message']="success";

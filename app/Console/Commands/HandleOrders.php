@@ -26,7 +26,7 @@ class HandleOrders extends Command
      *
      * @var string
      */
-    protected $description = 'Manage orders to finishi, send coupons';
+    protected $description = 'Manage orders to finish, send coupons';
 
     /**
      * Create a new command instance.

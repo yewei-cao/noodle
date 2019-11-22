@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\Inspire::class,
     	\App\Console\Commands\HandleOrders::class,
+    	\App\Console\Commands\PrintOrders::class,// to print the missing order
     ];
 
     /**
@@ -31,6 +32,9 @@ class Kernel extends ConsoleKernel
         
         $schedule->command('handle:order')
         ->weekly()->sundays()->at('23:55');
+        
+        $schedule->command('print:orders')
+        		->everyTenMinutes();
 
     }
 }
