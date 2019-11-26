@@ -53,7 +53,7 @@
 		<div class="open_detail">
 			<span class="day-name">Tuesday</span>
 			<span class="day-time">
-				<span class="opentime">Close</span>
+				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span>
 			</span>
 		</div>
 		
@@ -88,7 +88,7 @@
 		<div class="open_detail">
 			<span class="day-name">Sunday</span>
 			<span class="day-time">
-				<span class="opentime">Close</span>
+				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span>
 			</span>
 		</div>
 		
@@ -100,12 +100,12 @@
 </div>
 
 
-<div class="starter text-center">
-<h1>We are close on Sunday Monday and Tuesday(24th to 26th).</h1>
-</div>
+<!-- <div class="starter text-center"> -->
+<!-- <h1>We are close on Sunday Monday and Tuesday(24th to 26th).</h1> -->
+<!-- </div> -->
 
 <div class="starter text-center">
-<h2>{{ trans('front_home.home_to_start_order') }}</h2>
+<h1>{{ trans('front_home.home_to_start_order') }}</h1>
 </div>
 
 
@@ -170,14 +170,14 @@
 @section('scripts.footer')
 <script type="text/javascript">
 
-swal({   
-	title:"",
-// 	text: " $adv['text'] ",
-	text: "We are close on Sunday Monday and Tuesday(24th to 26th).",
-// 	imageUrl: "images/home/voucher_adv.jpg",
-// 	imageSize:"200x200",
-	showConfirmButton: true,
-	confirmButtonColor: '#e41837',
-	});
+// swal({   
+// 	title:"",
+// // 	text: " $adv['text'] ",
+// 	text: "We are close on Sunday Monday and Tuesday(24th to 26th).",
+// // 	imageUrl: "images/home/voucher_adv.jpg",
+// // 	imageSize:"200x200",
+// 	showConfirmButton: true,
+// 	confirmButtonColor: '#e41837',
+// 	});
 </script>
 @endsection
