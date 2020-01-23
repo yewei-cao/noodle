@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\Inspire::class,
     	\App\Console\Commands\HandleOrders::class,
-    	\App\Console\Commands\PrintOrders::class,// to print the missing order
+//     	\App\Console\Commands\PrintOrders::class,// to print the missing order
     ];
 
     /**

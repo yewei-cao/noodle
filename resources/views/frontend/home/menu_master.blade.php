@@ -99,5 +99,4 @@ margin:0;
 
 @section('scripts.footer')
 <script src="/js/mymenu.js"></script>
-
 @endsection

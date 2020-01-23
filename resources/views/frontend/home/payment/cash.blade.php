@@ -51,8 +51,10 @@
 			</div>
 			
 			<div class="row">
-				{!! Form::open(['method'=>'POST','action'=>'Frontend\Home\Payment\paymentcontroller@placeorder'])!!}
+				{!! Form::open(['method'=>'POST','action'=>'Frontend\Home\Payment\paymentcontroller@placeorder','id'=>'pay_submit'])!!}
 	                
+	                <input type="hidden" name="token" value="{{ $token }}" />
+	                 
 	                {!! Form::label('message','Message:') !!}
 	                
 	                <button type="button" class="addtext redbtn btn btn-outline-primary">Take {{$change}} Change</button>
@@ -65,7 +67,7 @@
 	                
 	                <hr>
 	                
-	                <button type="submit" class="redbtn next btn-lg aspn">{{ trans('front_home.place_order') }}</button>
+	                <button type="submit" class="redbtn next btn-lg aspn" id="submit_order">{{ trans('front_home.place_order') }}</button>
 	                 
 	            {!! Form::close() !!}
             </div>
@@ -76,4 +78,16 @@
 	
 </div>
 
+@endsection
+
+@section('scripts.footer')
+<script>
+// set up 3 seconds of submit disable time for ordering.
+$(document).on("click", "#submit_order" , function() {
+	var submitId=document.getElementById('submit_order');
+	 submitId.disabled=true;
+	 $("#pay_submit").submit();
+	 setTimeout("submitId.disabled=false;",3000); //Set up 3 seconds.
+});
+</script>
 @endsection

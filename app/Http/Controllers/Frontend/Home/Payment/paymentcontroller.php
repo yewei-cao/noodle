@@ -92,6 +92,10 @@ class paymentcontroller extends Controller {
 		->withTotalnumber ( $this->totalnumber )->withOrderroute ( $order_route )->withShop ( $this->shop )->withPickupmark ( $pickupmark )->withDeliveryfee ( $deliveryfee )->withCoupon ( $coupon )->withActive ( $this->active );
 	}
 	public function cash(Request $request) {
+		//set up token
+		$token = md5(time());
+		//
+		
 		// return Cart::getMessage();
 		$time = $this->get_time ( $request->session ()->get ( 'ordertime' ) );
 		// cash payment method, paymentmethod:1
@@ -123,6 +127,7 @@ class paymentcontroller extends Controller {
 				$change = '$'.$this->change($totalprice);
 				
 				return view ( 'frontend.home.payment.cash', compact ( 'time', 'ip' ) )->withCart ( $this->cart )
+				->withToken($token)//set up token
 				->withTotalprice ( $totalprice )
 				->withTotalnumber ( $this->totalnumber )
 				->withOrderroute ( $order_route )
@@ -204,6 +209,17 @@ class paymentcontroller extends Controller {
 	 * create an order to user
 	 */
 	public function placeorder(Request $request) {
+		
+		//check the token repeat or not 
+		
+		//set up notice of repeat orders
+// 		$token = $request->input('token');
+// 		if(empty($request->session()->get($token))) {
+			
+// 			return response('Please Do not repeat order', 403);
+// 		}
+		//
+		
 		if ($request->session ()->get ( 'ordertime' ) != "ASAP") {
 			$shiptime = Carbon::createFromTimestamp ( $request->session ()->get ( 'ordertime' ) )->toDateTimeString ();
 		} else {
@@ -342,6 +358,7 @@ class paymentcontroller extends Controller {
 		// $printresult = false;
 		
 // 		dd($this->feieprinter($order));
+		//print order
 		if(!$this->feieprinter($order)){
 		//send me a email.
 		$num = orders::where('status','<','2')->count();
