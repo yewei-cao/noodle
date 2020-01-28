@@ -359,19 +359,19 @@ class paymentcontroller extends Controller {
 		
 // 		dd($this->feieprinter($order));
 		//print order
-		if(!$this->feieprinter($order)){
-		//send me a email.
-		$num = orders::where('status','<','2')->count();
-		Mail::queue('emails.order.printfail',compact('num','order'),function ($message)use($order){
-		$message->from(env('MAIL_USERNAME'))->to($order->email)
-		->subject('Noodle Canteen Print Errors');
-		});
-		}
+// 		if(!$this->feieprinter($order)){
+// 		//send me a email.
+// 		$num = orders::where('status','<','2')->count();
+// 		Mail::queue('emails.order.printfail',compact('num','order'),function ($message)use($order){
+// 		$message->from(env('MAIL_USERNAME'))->to($order->email)
+// 		->subject('Noodle Canteen Print Errors');
+// 		});
+// 		}
 		
 		// event
 // 		event ( new OrderReceipt ( $order ) );
 // 		event ( new OrderPrinter ( $order ) );
-		event ( new DashboardOrder () );
+// 		event ( new DashboardOrder () );
 		
 		/* clear shopping cart */
 		Cart::clean ();
@@ -379,7 +379,7 @@ class paymentcontroller extends Controller {
 		sweetalert_message ()->top_message ( trans ( "front_home.order_cancel" ) );
 		
 		Mail::queue ( 'emails.order.receipt', compact ( 'order' ), function ($message) use ($order) {
-			$message->from ( env ( 'MAIL_USERNAME' ) )->to ( $order->email )->subject ( 'Noodle Canteen Receipt' );
+			$message->from ( env ( 'MAIL_FROM' ) )->to ( $order->email )->subject ( 'Noodle Canteen Receipt' );
 		} );
 		
 		return view ( 'frontend.home.payment.ordercreated' )->withOrder ( $order )->withShop ( $this->shop );

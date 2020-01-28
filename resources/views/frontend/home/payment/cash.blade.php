@@ -79,15 +79,3 @@
 </div>
 
 @endsection
-
-@section('scripts.footer')
-<script>
-// set up 3 seconds of submit disable time for ordering.
-$(document).on("click", "#submit_order" , function() {
-	var submitId=document.getElementById('submit_order');
-	 submitId.disabled=true;
-	 $("#pay_submit").submit();
-	 setTimeout("submitId.disabled=false;",3000); //Set up 3 seconds.
-});
-</script>
-@endsection
