@@ -340,15 +340,15 @@ class paymentcontroller extends Controller {
 // 		Cache::add('email', $request->session ()->get ( 'user_details' ) ['email'], 34560);
 			
 		// dd($coupon['id']);
-// 		if ($coupon && $coupon->expired_time > Carbon::now () && ! $coupon->used) {
-// 			$coupon->used_time = Carbon::now ();
-// 			$coupon->used = 1;
-// 			$coupon->save ();
-// 			$order->coupon ()->save ( $coupon );
-// 			$request->session ()->forget ( 'coupon' );
-// 		}
+		if ($coupon && $coupon->expired_time > Carbon::now () && ! $coupon->used) {
+			$coupon->used_time = Carbon::now ();
+			$coupon->used = 1;
+			$coupon->save ();
+			$order->coupon ()->save ( $coupon );
+			$request->session ()->forget ( 'coupon' );
+		}
 		
-// 		// dd($coupon);
+		// dd($coupon);
 		
 // 		if (! Auth::guest ()) {
 // 			// dd($this->user);
@@ -378,9 +378,9 @@ class paymentcontroller extends Controller {
 		
 		sweetalert_message ()->top_message ( trans ( "front_home.order_cancel" ) );
 		
-// 		Mail::queue ( 'emails.order.receipt', compact ( 'order' ), function ($message) use ($order) {
-// 			$message->from ( env ( 'MAIL_FROM' ) )->to ( $order->email )->subject ( 'Noodle Canteen Receipt' );
-// 		} );
+		Mail::queue ( 'emails.order.receipt', compact ( 'order' ), function ($message) use ($order) {
+			$message->from ( env ( 'MAIL_FROM' ) )->to ( $order->email )->subject ( 'Noodle Canteen Receipt' );
+		} );
 		
 		return view ( 'frontend.home.payment.ordercreated' )->withOrder ( $order )->withShop ( $this->shop );
 	}
