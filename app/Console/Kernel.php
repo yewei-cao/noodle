@@ -34,8 +34,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('handle:order')
         ->weekly()->sundays()->at('23:55');
         
-        $schedule->command('send:emails')
-        ->everyFiveMinutes();
+//         $schedule->command('send:emails')
+//         ->everyFiveMinutes();
         
 //         $schedule->command('print:orders')
 //         		->everyTenMinutes();
