@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Models\Order\orders;
 use Illuminate\Support\Facades\Mail;
+use App\Repositories\Prints\Printer;
 
 class PrintOrders extends Command
 {

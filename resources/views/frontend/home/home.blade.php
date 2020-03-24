@@ -42,57 +42,68 @@
 		<h2 class="text-center">Opening Hours</h2>
 		<hr>
 		
+		
+		
 		<div class="text-center">
-		<div class="open_detail">
-			<span class="day-name">Monday</span>
-			<span class="day-time">
-				<span class="opentime">Close</span>
-			</span>
+			<div class="open_detail">
+				<span class="day-time">
+					Sorry, We are Close
+				</span>
+			</div>
 		</div>
 		
-		<div class="open_detail">
-			<span class="day-name">Tuesday</span>
-			<span class="day-time">
-				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span>
-			</span>
-		</div>
 		
-		<div class="open_detail">
-			<span class="day-name">Wednesday</span>
-			<span class="day-time">
-				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span>
-			</span>
-		</div>
+<!-- 		<div class="text-center"> -->
+<!-- 		<div class="open_detail"> -->
+<!-- 			<span class="day-name">Monday</span> -->
+<!-- 			<span class="day-time"> -->
+<!-- 				<span class="opentime">Close</span> -->
+<!-- 			</span> -->
+<!-- 		</div> -->
 		
-		<div class="open_detail">	
-			<span class="day-name">Thursday</span>
-			<span class="day-time">
-				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span>
-			</span>
-		</div>
+<!-- 		<div class="open_detail"> -->
+<!-- 			<span class="day-name">Tuesday</span> -->
+<!-- 			<span class="day-time"> -->
+<!-- 				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span> -->
+<!-- 			</span> -->
+<!-- 		</div> -->
 		
-		<div class="open_detail">
-			<span class="day-name">Friday</span>
-			<span class="day-time">
-				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span>
-			</span>
-		</div>	
+<!-- 		<div class="open_detail"> -->
+<!-- 			<span class="day-name">Wednesday</span> -->
+<!-- 			<span class="day-time"> -->
+<!-- 				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span> -->
+<!-- 			</span> -->
+<!-- 		</div> -->
+		
+<!-- 		<div class="open_detail">	 -->
+<!-- 			<span class="day-name">Thursday</span> -->
+<!-- 			<span class="day-time"> -->
+<!-- 				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span> -->
+<!-- 			</span> -->
+<!-- 		</div> -->
+		
+<!-- 		<div class="open_detail"> -->
+<!-- 			<span class="day-name">Friday</span> -->
+<!-- 			<span class="day-time"> -->
+<!-- 				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span> -->
+<!-- 			</span> -->
+<!-- 		</div>	 -->
 			
-		<div class="open_detail">
-			<span class="day-name">Saturday</span>
-			<span class="day-time">
-				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span>
-			</span>
-		</div>
+<!-- 		<div class="open_detail"> -->
+<!-- 			<span class="day-name">Saturday</span> -->
+<!-- 			<span class="day-time"> -->
+<!-- 				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span> -->
+<!-- 			</span> -->
+<!-- 		</div> -->
 			
-		<div class="open_detail">
-			<span class="day-name">Sunday</span>
-			<span class="day-time">
-				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span>
-			</span>
-		</div>
+<!-- 		<div class="open_detail"> -->
+<!-- 			<span class="day-name">Sunday</span> -->
+<!-- 			<span class="day-time"> -->
+<!-- 				<span class="opentime">11 AM</span> to <span class="opentime">9 PM</span> -->
+<!-- 			</span> -->
+<!-- 		</div> -->
 		
-		</div>
+<!-- 		</div> -->
 			
 	</div>
 </div>
@@ -167,16 +178,17 @@
 @endsection
 
 @section('scripts.footer')
-<!-- <script type="text/javascript"> -->
+ <script type="text/javascript"> 
 
-// swal({   
-// 	title:"",
+ swal({   
+ 	title:"",
 // // 	text: " $adv['text'] ",
-// 	text: "We are close on Wednesday and thursday and Tuesday(25th, 26th).",
+	text:"Sorry, We are close during the high alert level. Stay safe everyone",
+//  	text: "We are close on Wednesday and thursday and Tuesday(25th, 26th).",
 // // 	imageUrl: "images/home/voucher_adv.jpg",
 // // 	imageSize:"200x200",
-// 	showConfirmButton: true,
-// 	confirmButtonColor: '#e41837',
-// 	});
-<!-- </script> -->
+	showConfirmButton: true,
+	confirmButtonColor: '#e41837',
+ 	});
+ </script>
 @endsection
