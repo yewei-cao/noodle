@@ -110,60 +110,60 @@
 
 </div>
 
+<div class="starter text-center">
+<h3>Following the government’s announcement regarding Level 4 Lockdown, Noodle Canteen will be closed from Tuesday, 24 March until further notice..</h3>
+</div>
+
 <!-- <div class="starter text-center"> -->
-<!-- <h1>We are close on Wednesday and thursday and Tuesday(25th, 26th).</h1> -->
+<!-- <h1>{{ trans('front_home.home_to_start_order') }}</h1> -->
 <!-- </div> -->
 
-<div class="starter text-center">
-<h1>{{ trans('front_home.home_to_start_order') }}</h1>
-</div>
+
+<!-- <div id="myservice-container"> -->
+
+<!-- <div class="service-container"> -->
+<!-- <a  href="{{ route('home.quickorder') }}" class="myservice red" > -->
+<!-- <div class="service-icon"> -->
+<!-- <img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="{{url()}}/images/home/home_quickorder.png"> -->
+<!-- </div> -->
+<!-- <div class="service-text"> -->
+
+<!-- <h2>{{ trans('front_home.quick_order') }}</h2> -->
+<!-- <p>{{ trans('front_home.quick_order_ext') }}</p> -->
+<!-- </div> -->
+<!-- </a> -->
+<!-- </div> -->
+
+<!-- <div class="service-container"> -->
+<!-- <a  href="{{ route('home.delivery.info') }}" class="myservice red" > -->
+
+<!-- <div class="service-icon"> -->
+<!-- <img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="{{url()}}/images/home/delivery_food.png"> -->
+<!-- </div> -->
+<!-- <div class="service-text"> -->
+<!-- <h2>{{ trans('front_home.delivery') }}</h2> -->
+<!-- <p>{{ trans('front_home.delivery_ext') }}</p> -->
+
+<!-- </div> -->
+<!-- </a> -->
+<!-- </div> -->
 
 
-<div id="myservice-container">
+<!-- <div class="service-container"> -->
+<!-- 	<a  href="{{ route('home.pickup.info') }}" class="myservice red" > -->
 
-<div class="service-container">
-<a  href="{{ route('home.quickorder') }}" class="myservice red" >
-<div class="service-icon">
-<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="{{url()}}/images/home/home_quickorder.png">
-</div>
-<div class="service-text">
-
-<h2>{{ trans('front_home.quick_order') }}</h2>
-<p>{{ trans('front_home.quick_order_ext') }}</p>
-</div>
-</a>
-</div>
-
-<div class="service-container">
-<a  href="{{ route('home.delivery.info') }}" class="myservice red" >
-
-<div class="service-icon">
-<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="{{url()}}/images/home/delivery_food.png">
-</div>
-<div class="service-text">
-<h2>{{ trans('front_home.delivery') }}</h2>
-<p>{{ trans('front_home.delivery_ext') }}</p>
-
-</div>
-</a>
-</div>
+<!-- 	<div class="service-icon"> -->
+<!-- 	<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="{{url()}}/images/home/noodle_pickup.png"> -->
+<!-- 	</div> -->
+<!-- 	<div class="service-text"> -->
+<!-- 	<h2>{{ trans('front_home.pick_up') }}</h2> -->
+<!-- 	<p>{{ trans('front_home.pick_up_ext') }}</p> -->
+<!-- 	</div> -->
+<!-- </a> -->
+<!-- </div> -->
 
 
-<div class="service-container">
-<a  href="{{ route('home.pickup.info') }}" class="myservice red" >
-
-<div class="service-icon">
-<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="{{url()}}/images/home/noodle_pickup.png">
-</div>
-<div class="service-text">
-<h2>{{ trans('front_home.pick_up') }}</h2>
-<p>{{ trans('front_home.pick_up_ext') }}</p>
-</div>
-</a>
-</div>
-
-
-</div>
+<!-- </div> -->
 
 <div class="col-md-12">
 <h2>Our Location</h2>
@@ -183,7 +183,7 @@
  swal({   
  	title:"",
 // // 	text: " $adv['text'] ",
-	text:"Sorry, We are close during the high alert level. Stay safe everyone",
+	text:"Following the government’s announcement regarding Level 4 Lockdown, Noodle Canteen will be closed from Tuesday, 24 March until further notice.",
 //  	text: "We are close on Wednesday and thursday and Tuesday(25th, 26th).",
 // // 	imageUrl: "images/home/voucher_adv.jpg",
 // // 	imageSize:"200x200",
