@@ -265,7 +265,7 @@ class poliController extends Controller
 				$request->session()->forget('coupon');
 			}
 			
-			if(!$this->feieprinter($order)){
+			if(!feieprinter($order,$this->shop)){
 				//send me a email.
 				$num = orders::where('status','<','2')->count();
 				Mail::queue('emails.order.printfail',compact('num','order'),function ($message)use($order){
@@ -318,12 +318,12 @@ class poliController extends Controller
 		return $order->id;
 	}
 	
-	protected function feieprinter(orders $order){
+// 	protected function feieprinter(orders $order){
 	
-		$printer = new Printer;
+// 		$printer = new Printer;
 	
-		return $printer->print_order($order,$this->shop);
-	}
+// 		return $printer->print_order($order,$this->shop);
+// 	}
 	
 	/**
 	 *

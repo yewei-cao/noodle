@@ -104,10 +104,10 @@ class HandleOrders extends Command
     							'photo_path'=>$photo_path
     					]);
     					
-    					Mail::queue('emails.coupon.order_coupon',compact('coupon','order'),function ($message)use($coupon){
-    						$message->from(env('MAIL_USERNAME'))->to($coupon->email)
-    						->subject('Noodle Canteen Taradale Coupon');
-    					});
+//     					Mail::queue('emails.coupon.order_coupon',compact('coupon','order'),function ($message)use($coupon){
+//     						$message->from(env('MAIL_USERNAME'))->to($coupon->email)
+//     						->subject('Noodle Canteen Taradale Coupon');
+//     					});
     				}
     				
     			}

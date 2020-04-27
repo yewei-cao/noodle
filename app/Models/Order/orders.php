@@ -9,7 +9,7 @@ use App\Models\Shop\Coupons;
 
 class Orders extends Model
 {
-    protected $fillable = ['ordernumber','total','totaldue','status','ordertype','name','email','phonenumber','token','paymentflag','staff_id','paymentmethod_id','paymenttime','shiptime','shipmethod','userip','comment','message'];
+    protected $fillable = ['ordernumber','total','totaldue','status','ordertype','name','email','phonenumber','token','paymentflag','staff_id','paymentmethod_id','paymenttime','shiptime','shipmethod','userip','comment','message','sendemail'];
 	
     public function coupon(){
     	return $this->hasOne(Coupons::class);

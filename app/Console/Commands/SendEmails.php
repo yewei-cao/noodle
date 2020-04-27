@@ -31,30 +31,30 @@ class SendEmails extends Command
      */
     public function handle()
     {
-//     	$orders = orders::where('email','=','yeweicao@gmail.com')
-//     	    	->Where('paymenttime', '>', '2016-01-01 00:00:00')
-//     	    	->Where('status', '=', '4')->get();
-    	
+    	//find out the email which of receipt have not sent to customer
     	$orders = Orders::where('sendemail','0')
     				->where('created_at', '>',Carbon::today())
     				->orderBy('id')->get();
     	
-    				
-//     	$coupon_count = Coupons::where('used_time', '>', Carbon::today())
-// 	    		->Where('used_time', '<', Carbon::tomorrow())
-// 	    		->Where('used','=',1)
-// 	    		->count();
     	foreach($orders as $order){
     		
-    		Mail::queue ( 'emails.order.receipt', compact ( 'order' ), function ($message) use ($order) {
-    						$message->from ( env ( 'MAIL_FROM' ) )->to ( $order->email )->subject ( 'Noodle Canteen Receipt' );
-    					} );
-    		$order->update(['sendemail'=>'1']);
+    		//send receipt to customer
+    		Mail::queue ( 'emails.order.receipt', compact ( 'order' ), function ($message) use ($order) 
+    		{
+    			$message->from ( env ( 'MAIL_FROM' ) )->to ( $order->email )->subject ( 'Noodle Canteen Receipt' );
+    		});
+    		
+    		//check email is send or not
+    		if(count(Mail::failures()) > 0){
+    			Log::info('Email:'.$order->email.' is fail to send');
+    		}else{
+    			$order->update(['sendemail'=>'1']);
+    			Log::info(\Carbon\Carbon::now().' email: '.$order->email.' Nub: '.$order->ordernumber.' is sent. ');
+    		}
+
     	}
     	
-    	//     	$i=1;
-//     	Log::info(\Carbon\Carbon::now().' orders ammount: '.$i.' is cook, '.$j.' is finish. Total orders is '.$total['orders'].', Total deal is $'.$total['deal'].', Total melas is '.$total['meals'].', Total Delivery is '.$total['delivery'].', Total Delivery Fee is $'.$total['deliveryfee'].', Total Pick up is '.$total['pickup']);
-    	Log::info(\Carbon\Carbon::now().' email:'.$order->email.' is sent. ');
+    	
     
     }
     

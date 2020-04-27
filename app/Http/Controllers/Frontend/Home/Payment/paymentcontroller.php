@@ -262,7 +262,8 @@ class paymentcontroller extends Controller {
 				'shiptime' => $shiptime,
 				'userip' => $request->ip (),
 				'shipmethod' => 'take away',
-				'message' => $request->input ( 'message' ) 
+				'message' => $request->input ( 'message' ) ,
+				'sendemail'=>'0',
 		];
 		
 		$order = orders::create ( $data );
@@ -359,7 +360,7 @@ class paymentcontroller extends Controller {
 		
 // 		dd($this->feieprinter($order));
 		//print order
-		if(!$this->feieprinter($order)){
+		if(!feieprinter($order,$this->shop)){
 		//send me a email.
 		$num = orders::where('status','<','2')->count();
 		Mail::queue('emails.order.printfail',compact('num','order'),function ($message)use($order){
@@ -383,10 +384,6 @@ class paymentcontroller extends Controller {
 // 		} );
 		
 		return view ( 'frontend.home.payment.ordercreated' )->withOrder ( $order )->withShop ( $this->shop );
-	}
-	protected function feieprinter(orders $order) {
-		$printer = new Printer ();
-		return $printer->print_order ( $order, $this->shop );
 	}
 	
 	/* get the display time to user */

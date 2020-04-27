@@ -48,6 +48,18 @@ class ManageController extends Controller
 //     			'dayoff' => 'required',
     	]);
     	
+    	if(empty($request->input('popup'))){
+    		$data['popup']=0;
+    	}else{
+    		$data['popup']=1;
+    	}
+    	
+    	if(empty($request->input('printer'))){
+    		$data['printer']=0;
+    	}else{
+    		$data['printer']=1;
+    	}
+    	
     	if(empty($request->input('cash'))){
     		$data['cash']=0;
     	}else{

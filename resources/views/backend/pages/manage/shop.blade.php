@@ -88,6 +88,48 @@ Edit
 		</div>
 		
 		<div class="form-group">
+			{!! Form::label('openhours', trans('menu_backend.manage_edit.openhours'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				{!! Form::textarea('openhours', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'Open Hours']) !!}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			{!! Form::label('showtext', trans('menu_backend.manage_edit.showtext'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				{!! Form::textarea('showtext', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'Head Text']) !!}
+			</div>
+		</div>
+		
+		
+		<div class="form-group">
+			{!! Form::label('popup',trans('menu_backend.manage_edit.popup'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				<label>
+					{!! Form::checkbox('popup', '1', true,['class'=>'ace ace-switch ace-switch-2']) !!}
+					<span class="lbl"></span>
+				</label>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			{!! Form::label('popuptext', trans('menu_backend.manage_edit.popuptext'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				{!! Form::textarea('popuptext', null,['class'=>'col-xs-10 col-sm-5','placeholder'=>'Popup Text']) !!}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			{!! Form::label('printer',trans('menu_backend.manage_edit.printer'),['class'=>'col-sm-3 control-label no-padding-right']) !!}
+			<div class="col-sm-9">
+				<label>
+					{!! Form::checkbox('printer', '1', true,['class'=>'ace ace-switch ace-switch-2']) !!}
+					<span class="lbl"></span>
+				</label>
+			</div>
+		</div>
+		
+		<div class="form-group">
 			{!! Form::label('cash','Cash Valid',['class'=>'col-sm-3 control-label no-padding-right']) !!}
 			<div class="col-sm-9">
 				<label>

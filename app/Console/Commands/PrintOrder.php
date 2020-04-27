@@ -34,6 +34,7 @@ class PrintOrders extends Command
     	$orders = Orders::where('status','1')
     				->where()->orderBy('id')->get();
     	
+    	//feieprinter missing $shop 
     	if(!$this->feieprinter($order)){
     		//send me a email.
     		$num = orders::where('status','<','2')->count();
@@ -45,10 +46,5 @@ class PrintOrders extends Command
     	
         //$this->comment(PHP_EOL.Inspiring::quote().PHP_EOL);
     }
-    
-    
-    protected function feieprinter(orders $order) {
-    	$printer = new Printer ();
-    	return $printer->print_order ( $order, $this->shop );
-    }
+
 }

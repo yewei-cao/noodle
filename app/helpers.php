@@ -1,6 +1,9 @@
 <?php
 use App\Models\Shop\Coupons;
 use Carbon\Carbon;
+use App\Models\Order\Orders;
+use App\Repositories\Prints\Printer;
+use App\Models\Shop\Shops;
 
 /*
  * Global Flash functions.
@@ -79,6 +82,13 @@ if (! function_exists('getcoupon')) {
 		return false;
 	}
 	
+}
+
+if(!function_exists('feieprinter')){
+	function feieprinter(orders $order,Shops $shop) {
+		$printer = new Printer ();
+		return $printer->print_order ( $order, $shop);
+	}
 }
 
 

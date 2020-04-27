@@ -27,6 +27,9 @@ class Printer{
 	}
 	
 	public function print_order(Orders $order,Shops $shop){
+		if(!$shop->printer){
+			return false;
+		}
 		$orderInfo = '';
 		$orderInfo .= 'Welcome to Noodle Canteen Taradale<BR>';
 		$orderInfo .= '<C>GST: No# 104-299-733</C><BR>';
