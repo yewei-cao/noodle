@@ -15,25 +15,23 @@
 			<h3 class="header lighter smaller text-center">{{ trans('front_home.payment_text') }}</h3>
 			
 			<ul class="horizon-list">
-			@if($shop->cash)
 			
-				@if(!$pickupmark)
-					<li>
-					<a class="btn-yellow btn-primary btn-lg aspn" href="{{ route('home.payment.cash') }}"  type="button">
-					{{ trans('front_home.paymentmethod.cash') }}
-					</a>
-					</li>
-				@else
-				
-					<li>
+			@if($pickupmark)
+				<li>
 					<a class="btn-yellow btn-primary btn-lg aspn" href="{{ route('home.payment.cash') }}"  type="button">
 						{{ trans('front_home.paymentmethod.payinstore') }}
 					</a>
-					</li>
+				</li>
 				
-				@endif
-			
+			@elseif($shop->cash)
+				<li>
+					<a class="btn-yellow btn-primary btn-lg aspn" href="{{ route('home.payment.cash') }}"  type="button">
+					{{ trans('front_home.paymentmethod.cash') }}
+					</a>
+				</li>
+				
 			@endif
+			
 			
 			@if($shop->poli)
 			<li>
