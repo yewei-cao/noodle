@@ -178,18 +178,24 @@ class quickorderController extends Controller
     	$url = "https://maps.googleapis.com/maps/api/directions/json?origin=".$origin."&destination=".$destination."&key=".$this->shop->googleapi;
     	$json = json_decode(file_get_contents($url), true);
     	
+    	//return distance/1000 * distance charge fee.
+    	if($json['routes'][0]['legs'][0]['distance']['value']<3000){
+    		return ceil($json['routes'][0]['legs'][0]['distance']['value']/1000)*$this->shop->distancefee;
+    	}
+    	
     	//     	return ceil($json['routes'][0]['legs'][0]['distance']['value']/1000)*$this->shop->distancefee;
     	//distance less than 5km or 20km
-    	if($json['routes'][0]['legs'][0]['distance']['value']<2200){
-    		return $this->shop->distancefee;
-    	}if($json['routes'][0]['legs'][0]['distance']['value']<3000){
-    		return $this->shop->distancefee+$this->shop->maxfree;
-    	}
-    	elseif ($json['routes'][0]['legs'][0]['distance']['value']<10000){
-    		return ceil($json['routes'][0]['legs'][0]['distance']['value']/1000)*$this->shop->distancefee;
-    	}else{
-    		return false;
-    	}
+    	//     	if($json['routes'][0]['legs'][0]['distance']['value']<2200){
+    	//     		return $this->shop->distancefee;
+    	//     	}if($json['routes'][0]['legs'][0]['distance']['value']<3000){
+    	//     		return $this->shop->distancefee+$this->shop->maxfree;
+    	//     	}
+    		elseif ($json['routes'][0]['legs'][0]['distance']['value']<10000){
+    			return ceil($json['routes'][0]['legs'][0]['distance']['value']/1000)+$this->shop->maxfree;
+    			//     		return ceil($json['routes'][0]['legs'][0]['distance']['value']/1000)*$this->shop->maxfree;
+    		}else{
+    			return false;
+    		}
     }
 
 }
