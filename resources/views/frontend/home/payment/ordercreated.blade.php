@@ -17,6 +17,10 @@ trans('front_title.ordercreated').trans('front_title.title') }}
 		<div class="col-sm-10 col-sm-offset-1">
 			<div class="widget-box transparent">
 				<div class="widget-header widget-header-large">
+				
+				
+				
+				
 					<h3 class="widget-title grey lighter">Customer Invoice</h3>
 
 					<div class="widget-toolbar no-border invoice-info">
@@ -27,14 +31,23 @@ trans('front_title.ordercreated').trans('front_title.title') }}
 					</div>
 
 					<div class="widget-toolbar hidden-480">
-						<a href="#"> <span class="glyphicon glyphicon-print"
-							aria-hidden="true"></span>
+						<a href="#"> <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
 						</a>
 					</div>
 				</div>
 
 				<div class="widget-body">
 					<div class="widget-main padding-24">
+					
+						<div class="row">
+							<div class="col-sm-5 pull-right">
+								<h4 class="pull-right">
+									Total Amount : <span class="red_span">${{ $order->totaldue }}</span>
+								</h4>
+							</div>
+						</div>
+						
+						
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="row">
@@ -185,7 +198,7 @@ trans('front_title.ordercreated').trans('front_title.title') }}
 						<div class="row">
 							<div class="col-sm-5 pull-right">
 								<h4 class="pull-right">
-									Total amount : <span class="red_span">${{ $order->totaldue }}</span>
+									Total Amount : <span class="red_span">${{ $order->totaldue }}</span>
 								</h4>
 							</div>
 						</div>
