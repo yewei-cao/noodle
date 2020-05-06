@@ -119,8 +119,8 @@ class deliveryController extends Controller
 //     		return $this->shop->distancefee+$this->shop->maxfree;
 //     	}
     	elseif ($json['routes'][0]['legs'][0]['distance']['value']<10000){
-    		return ceil($json['routes'][0]['legs'][0]['distance']['value']/1000)+$this->shop->maxfree;
-//     		return ceil($json['routes'][0]['legs'][0]['distance']['value']/1000)*$this->shop->maxfree;
+//     		return ceil($json['routes'][0]['legs'][0]['distance']['value']/1000)+$this->shop->maxfree;
+    		return ceil($json['routes'][0]['legs'][0]['distance']['value']/1000)*$this->shop->maxfree;
     	}else{
     		return false;
     	}
