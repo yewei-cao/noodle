@@ -30,7 +30,7 @@ class paymentcontroller extends Controller {
 	 */
 	public function __construct() {
 		$this->middleware ( 'ordertypeMiddleware' );
-		$this->middleware ( 'cartMiddleware' );
+		$this->middleware ( 'CartMiddleware' );
 		$this->middleware ( 'IPMiddleware' );
 		$this->shop = Shops::first ();
 		$this->user = Auth::user ();
@@ -218,8 +218,6 @@ class paymentcontroller extends Controller {
 			
 // 			return response('Please Do not repeat order', 403);
 // 		}
-		//
-		
 		if ($request->session ()->get ( 'ordertime' ) != "ASAP") {
 			$shiptime = Carbon::createFromTimestamp ( $request->session ()->get ( 'ordertime' ) )->toDateTimeString ();
 		} else {

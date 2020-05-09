@@ -25,6 +25,9 @@ class poliController extends Controller
 	protected $cart;
 	
 	public function __construct(){
+		$this->middleware ( 'ordertypeMiddleware' );
+		$this->middleware ( 'CartMiddleware' );
+		$this->middleware ( 'IPMiddleware' );
 		$this->shop = Shops::first();
 		$this->user = Auth::user();
 		$this->cart= Cart::all();
@@ -104,8 +107,15 @@ class poliController extends Controller
 		
 		$coupon = getcoupon($request,$this->shop->coupon_maxamount, $this->shop->coupon_maxvalue,$this->shop->coupon);
 		$coupon_value = 0;
-		if($coupon && $coupon->expired_time>Carbon::now() &&!$coupon->used){
+		
+		if ($coupon && $coupon->expired_time > Carbon::now () && ! $coupon->used) {
 			$coupon_value = $coupon->value;
+		}
+		
+		if (Cart::total () <= $coupon_value) {
+			$totalprice = $this->totalprice + $deliveryfee;
+		} else {
+			$totalprice = $this->totalprice + $deliveryfee - $coupon_value;
 		}
 		
 		$data = [
@@ -188,10 +198,9 @@ class poliController extends Controller
 			$this->user->attachorder($order);
 		}
 	
+		$this->politransaction($order);
 		/* clear shopping cart		 */
 		Cart::clean();
-	
-		$this->politransaction($order);
 	
 	}
 	
