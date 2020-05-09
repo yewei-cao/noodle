@@ -200,7 +200,7 @@ class poliController extends Controller
 	
 		$this->politransaction($order);
 		/* clear shopping cart		 */
-		Cart::clean();
+		//Cart::clean();
 	
 	}
 	
@@ -229,17 +229,20 @@ class poliController extends Controller
 		}
 		
 		$order = orders::findOrFail($id);
+		
 		if($order->paymentflag ==2){
 // 			event(new OrderReceipt($order));
 // 			event(new OrderPrinter($order));
 			event(new DashboardOrder());
 			
+			/* clear shopping cart		 */
+			Cart::clean();
 			sweetalert_message()->top_message(trans("front_home.order_cancel"));
 			
-			Mail::queue('emails.order.receipt',compact('order'),function ($message)use($order){
-				$message->from(env('MAIL_USERNAME'))->to($order->email)
-				->subject('Noodle Canteen Receipt');
-			});
+// 			Mail::queue('emails.order.receipt',compact('order'),function ($message)use($order){
+// 				$message->from(env('MAIL_USERNAME'))->to($order->email)
+// 				->subject('Noodle Canteen Receipt');
+// 			});
 			
 			return view('frontend.home.payment.ordercreated')
 			->withOrder($order)
@@ -326,13 +329,6 @@ class poliController extends Controller
 		
 		return $order->id;
 	}
-	
-// 	protected function feieprinter(orders $order){
-	
-// 		$printer = new Printer;
-	
-// 		return $printer->print_order($order,$this->shop);
-// 	}
 	
 	/**
 	 *

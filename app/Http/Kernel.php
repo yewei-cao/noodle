@@ -40,7 +40,7 @@ class Kernel extends HttpKernel
     	 * check the session has user details
     	 */
     	'ordertypeMiddleware'=>\App\Http\Middleware\Shopping\OrderTypeSession::class,
-    	'cartMiddleware'=>\App\Http\Middleware\Shopping\CartMiddleware::class,
+    	'CartMiddleware'=>\App\Http\Middleware\Shopping\CartMiddleware::class,
     	'IPMiddleware'=>\App\Http\Middleware\Shopping\IPMiddleware::class,
     		
     ];

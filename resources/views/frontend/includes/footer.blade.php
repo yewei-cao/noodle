@@ -8,11 +8,11 @@
 			</p>
 			
 			<p class="footercall">
-				<span class="footercallbigger">Email: yeweicao@gmail.com</span>
+				<span class="footercallbigger">Email: tonyhuang8@live.com</span>
 			</p>
 			
 			<p class="footercall">
-				<span class="footercallbigger">Address： 269 Gloucester St, Taradale Napier</span>
+				<span class="footercallbigger">Address锛� 269 Gloucester St, Taradale Napier</span>
 			</p>
 		    
 		    <ul>
