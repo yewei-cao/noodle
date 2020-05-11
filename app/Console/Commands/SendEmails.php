@@ -37,9 +37,9 @@ class SendEmails extends Command
     				->orderBy('id')->get();
     	
     	foreach($orders as $order){
-    		
+//     		$url = url();
     		//send receipt to customer
-    		Mail::queue ( 'emails.order.receipt', compact ( 'order' ), function ($message) use ($order) 
+    		Mail::queue ( 'emails.order.receipt', compact ( 'order',''), function ($message) use ($order) 
     		{
     			$message->from ( env ( 'MAIL_FROM' ) )->to ( $order->email )->subject ( 'Noodle Canteen Receipt' );
     		});

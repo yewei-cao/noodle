@@ -7,7 +7,7 @@
 				<tr>
 					<td align="center" bgcolor="#70bbd9"
 						style="font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
-						<img src="{{Request::url()}}/images/logo/noodle_head.jpg"
+						<img src="http://www.noodletaradale.co.nz/images/logo/noodle_head.jpg"
 						alt="Creating Email Magic" width="600" height="100"
 						style="display: block;" />
 					</td>
@@ -221,7 +221,7 @@
 							</tr>
 
 							<tr>
-								<td style="text-align: center;"><a href="{{Request::url()}}">Our website</a>
+								<td style="text-align: center;"><a href="http://www.noodletaradale.co.nz">Our website</a>
 									<span> &nbsp; 鈥� &nbsp; </span> <a href="#">Facebook</a></td>
 							</tr>
 						</table>
