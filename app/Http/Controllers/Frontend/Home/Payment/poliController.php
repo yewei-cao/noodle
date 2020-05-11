@@ -25,9 +25,9 @@ class poliController extends Controller
 	protected $cart;
 	
 	public function __construct(){
-		$this->middleware ( 'ordertypeMiddleware' );
-		$this->middleware ( 'CartMiddleware' );
-		$this->middleware ( 'IPMiddleware' );
+// 		$this->middleware ( 'ordertypeMiddleware' );
+// 		$this->middleware ( 'CartMiddleware' );
+// 		$this->middleware ( 'IPMiddleware' );
 		$this->shop = Shops::first();
 		$this->user = Auth::user();
 		$this->cart= Cart::all();
@@ -98,7 +98,7 @@ class poliController extends Controller
 			$shiptime = Carbon::now();
 		}
 			
-		$paymentflat = 1;
+		$paymentflag = 1;
 		
 		$deliveryfee= 0;
 		if($request->session()->get('ordertype')=='delivery'){
@@ -128,7 +128,7 @@ class poliController extends Controller
 				'email'=>$request->session()->get('user_details')['email'],
 				'phonenumber'=>$request->session()->get('user_details')['phone'],
 				'token'=>$token,
-				'paymentflag'=>$paymentflat,
+				'paymentflag'=>$paymentflag,
 				'staff_id'=>1,
 				'paymentmethod_id'=>2,
 				'paymenttime'=>Carbon::now(),

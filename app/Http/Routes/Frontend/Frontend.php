@@ -117,7 +117,7 @@ $router->group([
         Route::get('policonfirm', 'poliController@policonfirm')->name('.policonfirm');
         Route::get('cash', 'paymentcontroller@cash')->name('.cash');
         Route::get('credit', 'paymentcontroller@credit')->name('.credit');
-        Route::post('poli', 'poliController@poli')->name('.poli');
+        Route::post('poli', 'poliController@poli')->name('.poli')->middleware(['CartMiddleware']);
         Route::get('polisuccess', 'poliController@polisuccess')->name('.polisuccess');
         Route::get('polifail', 'poliController@polifail')->name('.polifail');
         Route::get('policancel', 'poliController@policancel')->name('.policancel');
