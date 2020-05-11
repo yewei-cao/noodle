@@ -7,7 +7,7 @@
 				<tr>
 					<td align="center" bgcolor="#70bbd9"
 						style="font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
-						<img src="{{url()}}/images/logo/noodle_head.jpg"
+						<img src="{{Request::url()}}/images/logo/noodle_head.jpg"
 						alt="Creating Email Magic" width="600" height="100"
 						style="display: block;" />
 					</td>
@@ -208,7 +208,7 @@
 					<td bgcolor="#ee4c50" style="padding: 30px 30px 30px 30px;">
 						<table border="0" cellpadding="0" cellspacing="0" width="100%">
 							<tr>
-								<td style="text-align: center;">Copyright © Noodle Canteen
+								<td style="text-align: center;">Copyright 漏 Noodle Canteen
 									Enterprises Ltd 2016.</td>
 							</tr>
 
@@ -221,8 +221,8 @@
 							</tr>
 
 							<tr>
-								<td style="text-align: center;"><a href="{{url()}}">Our website</a>
-									<span> &nbsp; • &nbsp; </span> <a href="#">Facebook</a></td>
+								<td style="text-align: center;"><a href="{{Request::url()}}">Our website</a>
+									<span> &nbsp; 鈥� &nbsp; </span> <a href="#">Facebook</a></td>
 							</tr>
 						</table>
 					</td>
