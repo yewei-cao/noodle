@@ -208,7 +208,7 @@
 					<td bgcolor="#ee4c50" style="padding: 30px 30px 30px 30px;">
 						<table border="0" cellpadding="0" cellspacing="0" width="100%">
 							<tr>
-								<td style="text-align: center;">Copyright 漏 Noodle Canteen
+								<td style="text-align: center;">Copyright @ Noodle Canteen
 									Enterprises Ltd 2016.</td>
 							</tr>
 
@@ -222,7 +222,7 @@
 
 							<tr>
 								<td style="text-align: center;"><a href="http://www.noodletaradale.co.nz">Our website</a>
-									<span> &nbsp; 鈥� &nbsp; </span> <a href="#">Facebook</a></td>
+									<span> &nbsp;  &nbsp; </span> <a href="#">Facebook</a></td>
 							</tr>
 						</table>
 					</td>
