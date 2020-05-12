@@ -8,7 +8,7 @@
 					<td align="center" bgcolor="#70bbd9"
 						style="font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
 						<img src="http://www.noodletaradale.co.nz/images/logo/noodle_head.jpg"
-						alt="Creating Email Magic" width="600" height="100"
+						alt="Noodle Taradale Receipt" width="600" height="100"
 						style="display: block;" />
 					</td>
 				</tr>
