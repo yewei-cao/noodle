@@ -1,1 +1,387 @@
-!function(e){e.extend({StandardPost:function(t,a){var n,o=e("<form method='post'><input type='hidden' name='_token' value='"+e('meta[name="_token"]').attr("content")+"'></form>");o.attr({action:t}),e.each(a,function(t,a){n=e("<input type='hidden'>"),n.attr({name:t}),n.val(a),o.append(n)}),o.submit()}}),e(window).setBreakpoints({distinct:!0,breakpoints:[0,414,768,992,1200,1480]}),e(window).on({"enterBreakpoint768 enterBreakpoint992 enterBreakpoint1200 enterBreakpoint1480":function(){e("#basket-panel").stick_in_parent({parent:".main-container",offset_top:10,recalc_every:50})},"enterBreakpoint0 enterBreakpoint414":function(){e("#basket-panel").trigger("sticky_kit:detach")}}),e("#open-basket, .mobile-close-button, .basket-shadow").on("click",function(t){e("#open-basket, .basket").toggleClass("open"),e(".container").toggleClass("basket-open")}),e(document).on("click","#apply_voucher",function(){e("#apply_voucher").addClass("hide"),e("#loading-indicator").removeClass("loaded");var t=e("#voucher_code").val();e.ajax({headers:{"X-CSRF-Token":e('meta[name="_token"]').attr("content")},url:"/home/menu/voucherapply",type:"POST",data:{code:t},success:function(a){e("#apply_voucher").removeClass("hide"),e("#loading-indicator").addClass("loaded"),a.type?swal({title:a.title,text:a.message,type:"success",showCancelButton:!0,closeOnConfirm:!1,showLoaderOnConfirm:!0},function(){e.ajax({headers:{"X-CSRF-Token":e('meta[name="_token"]').attr("content")},url:"/home/menu/usevoucher",type:"POST",data:{code:t},success:function(t){t.type?(e(".voucher").addClass("hide"),e(".voucheritem").removeClass("hide"),basket(t.data)):swal({title:t.title,text:t.message,type:"error",confirmButtonText:"Close"})},error:function(e){alert("Data not found")}}),setTimeout(function(){swal({title:"Success",text:"Voucher worth $"+a.price+" is used",type:"success",confirmButtonText:"Okay"})},0)}):swal({title:a.title,text:a.message,type:"error",confirmButtonText:"Close"})},error:function(e){alert("Data not found")}})}),e(document).on("click",".remove_voucher",function(){e.ajax({headers:{"X-CSRF-Token":e('meta[name="_token"]').attr("content")},url:"/home/menu/removevoucher",type:"POST",data:{code:"remove"},success:function(t){e(".voucher").removeClass("hide"),e(".voucheritem").addClass("hide"),basket(t),swal({title:"Success",text:"Voucher voucher remove success",type:"success",confirmButtonText:"Okay"})},error:function(e){alert("Voucher remove fail")}})}),e(document).on("click",".add-to-basket",function(){var t=e(this).attr("item-code");e.ajax({headers:{"X-CSRF-Token":e('meta[name="_token"]').attr("content")},url:"/home/menu/addtoorder",type:"POST",data:{id:t},success:function(e){basket(e)},error:function(e){alert("Data not found")}})}),e(document).on("click",".remove-to-basket",function(){var t=e(this).attr("item-code");e.ajax({headers:{"X-CSRF-Token":e('meta[name="_token"]').attr("content")},url:"/home/menu/removetoorder",type:"POST",data:{id:t},success:function(e){basket(e)},error:function(e){alert("Data not found")}})}),e(document).on("click",".material_rm",function(){var t=e(this).attr("item-code"),a=e("*[name='takeout']").val();e(this).hasClass("choicebtn")?(a=a+t+",",e("*[name='takeout']").val(a),e(this).removeClass("choicebtn"),e(this).addClass("unchoicebtn")):(a=a.replace(t+",",""),e("*[name='takeout']").val(a),e(this).removeClass("unchoicebtn"),e(this).addClass("choicebtn"))}),e(document).on("click",".material_ad",function(){var t=e(this).attr("item-code"),a=e("*[name='extra']").val();if(e(this).hasClass("unchoicebtn")){a=a+t+",",e("*[name='extra']").val(a);var n=parseFloat(e("#dish_price").html())+parseFloat(e(this).attr("price"));e("#dish_price").html(n),e(this).removeClass("unchoicebtn"),e(this).addClass("choicebtn")}else{a=a.replace(t+",",""),e("*[name='extra']").val(a);var n=parseFloat(e("#dish_price").html())-parseFloat(e(this).attr("price"));e("#dish_price").html(n),e(this).removeClass("choicebtn"),e(this).addClass("unchoicebtn")}}),e(".btn-number").click(function(t){t.preventDefault(),fieldName=e(this).attr("data-field"),type=e(this).attr("data-type");var a=e("input[name='"+fieldName+"']"),n=parseInt(a.val());isNaN(n)?a.val(0):"minus"==type?(n>a.attr("min")&&a.val(n-1).change(),parseInt(a.val())==a.attr("min")&&e(this).attr("disabled",!0)):"plus"==type&&(n<a.attr("max")&&a.val(n+1).change(),parseInt(a.val())==a.attr("max")&&e(this).attr("disabled",!0))}),e(".input-number").focusin(function(){e(this).data("oldValue",e(this).val())}),e(".input-number").change(function(){minValue=parseInt(e(this).attr("min")),maxValue=parseInt(e(this).attr("max")),valueCurrent=parseInt(e(this).val()),name=e(this).attr("name"),valueCurrent>=minValue?e(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr("disabled"):(alert("Sorry, the minimum value was reached"),e(this).val(e(this).data("oldValue"))),valueCurrent<=maxValue?e(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr("disabled"):(alert("Sorry, the maximum value was reached"),e(this).val(e(this).data("oldValue")))}),e(".input-number").keydown(function(t){e.inArray(t.keyCode,[46,8,9,27,13,190])!==-1||65==t.keyCode&&t.ctrlKey===!0||t.keyCode>=35&&t.keyCode<=39||(t.shiftKey||t.keyCode<48||t.keyCode>57)&&(t.keyCode<96||t.keyCode>105)&&t.preventDefault()}),basket=function(t){var a="",n=0;if(1==Object.keys(t).length)e(".empty-order").show();else{e(".empty-order").hide();for(var o in t)if("total"!=o&&"deliveryfee"!=o&&"coupon"!=o){if(n+=t[o].qty,a+='<div class="basket-product product">  <div class="row">    <div class="col-9">      <span class="description">'+t[o].qty+" x "+t[o].name+'      </span>    </div>       <div class="col-3"><span class="price at-product-price">$'+t[o].price+"</span></div> </div>",e.isEmptyObject(t[o].flavour)||(a+=' <div class="row">    <div class="col-9">      <span class="description">&nbsp;&nbsp;&nbsp;&nbsp;'+t[o].flavour+"      </span>    </div> </div>"),!e.isEmptyObject(t[o].takeout))for(var s in t[o].takeout)a+=' <div class="row">    <div class="col-9">      <span class="description">&nbsp;&nbsp;&nbsp;&nbsp;no '+t[o].takeout[s].name+"      </span>    </div> </div>";if(!e.isEmptyObject(t[o].extra))for(var r in t[o].extra)a+=' <div class="row">    <div class="col-9">      <span class="description">&nbsp;&nbsp;&nbsp;&nbsp;extra '+t[o].extra[r].name+" $"+t[o].extra[r].price+"      </span>    </div> </div>";a+='   <div class="row actions">       <button class="btn add-product add-to-basket" item-code="'+t[o].__raw_id+'">Add one</button>           <button class="btn remove-product remove-to-basket" item-code="'+t[o].__raw_id+'">Remove</button>  </div>  </div>'}}if(e(".at-product-price").text("$"+t.deliveryfee),t.total<=t.coupon.value||null==t.coupon.value)var i=t.total+t.deliveryfee;else var i=t.total+t.deliveryfee-t.coupon.value;e("#voucher_mycode").text(t.coupon.code),e("#voucher_value").text("$"+t.coupon.value),e(".total-amount").text("$"+i),e(".number-of-items").text(n),e(".basket_order").html(a)},e(document).on("click","#submit_order",function(){var t=document.getElementById("submit_order");t.disabled=!0,e("#pay_submit").submit(),setTimeout("submitId.disabled=false;",3e3)}),e(".addtext").click(function(){e("#message").append(e(this).text()+", ")})}(jQuery);
+/**
+ * mymenu js
+ */
+(function($) {
+	
+	$.extend({
+	    StandardPost:function(url,args){
+	        var form = $("<form method='post'><input type='hidden' name='_token' value='"+$('meta[name="_token"]').attr('content')+"'></form>"),
+	            input;
+	        form.attr({"action":url});
+	        $.each(args,function(key,value){
+	            input = $("<input type='hidden'>");
+	            input.attr({"name":key});
+	            input.val(value);
+	            form.append(input);
+	        });
+	        form.submit();
+	    }
+	});
+
+	
+	$(window).setBreakpoints({
+		distinct:!0,breakpoints:[0,414,768,992,1200,1480]
+	});
+
+	$(window).on({"enterBreakpoint768 enterBreakpoint992 enterBreakpoint1200 enterBreakpoint1480":function(){
+		$("#basket-panel").stick_in_parent({
+			parent:".main-container",offset_top: 10,recalc_every:50
+		});
+	},"enterBreakpoint0 enterBreakpoint414":function(){
+		$("#basket-panel").trigger("sticky_kit:detach")
+		}
+	});
+
+
+	$('#open-basket, .mobile-close-button, .basket-shadow').on('click',function(e){
+		$( "#open-basket, .basket" ).toggleClass( "open");
+// 		$( ".basket" ).toggleClass( "open");
+		$( ".container" ).toggleClass( "basket-open");
+	});
+	
+	$(document).on("click", "#apply_voucher" , function() {
+		
+		$("#apply_voucher").addClass('hide');
+		$("#loading-indicator").removeClass('loaded');
+		var code = $("#voucher_code").val();
+//		$.post('/home/menu/removetoorder',{id:code});
+ 		$.ajax({
+ 			headers: {  'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+ 		      url: '/home/menu/voucherapply',
+ 		      type: 'POST',
+ 		      data: {'code':code},
+ 		      success: function(result) {
+ 		    	$("#apply_voucher").removeClass('hide');
+ 				$("#loading-indicator").addClass('loaded');
+// 				alert(result);
+ 				if(!result.type){
+ 					swal({   title: result.title,   
+ 						text: result.message,
+ 						type: "error",
+ 						confirmButtonText: 'Close'
+ 						});
+ 				}else{
+ 					swal({
+						title: result.title,
+						text: result.message,
+						type: "success",
+						showCancelButton: true,
+						closeOnConfirm: false,
+						showLoaderOnConfirm: true,
+ 						},
+ 						function(){
+ 							
+ 							$.ajax({
+ 								  headers: {  'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+ 								  url: '/home/menu/usevoucher',
+ 							      type: 'POST',
+ 							      data: {'code':code},
+ 							      success: function(respon) {
+ 							    	 if(!respon.type){
+ 					 					swal({   title: respon.title,   
+ 					 						text: respon.message,
+ 					 						type: "error",
+ 					 						confirmButtonText: 'Close'
+ 					 						});
+ 							    	 }else{
+ 							    		 //run css somethings here
+ 							    		$(".voucher").addClass('hide');
+ 							    		$(".voucheritem").removeClass('hide');
+ 							    		basket(respon.data);
+ 							    	 }
+ 					            },
+ 					            error: function(respon) {
+ 					                alert("Data not found");
+ 					            }
+ 							 });
+ 							
+ 						  setTimeout(function(){
+ 							  
+ 							 swal({   title: "Success",   
+ 		 						text: "Voucher worth $"+ result.price +" is used" ,
+ 		 						type: "success",
+ 		 						confirmButtonText: 'Okay',
+ 		 						});
+ 						  }, 0);
+ 					});
+ 					
+ 				}
+ 				
+ 				
+             },
+             error: function(result) {
+                 alert("Data not found");
+             }
+ 		      });
+	});
+	
+	$(document).on("click", ".remove_voucher" , function() {
+		$.ajax({
+			  headers: {  'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+		      url: '/home/menu/removevoucher',
+		      type: 'POST',
+		      data: {'code':'remove'},
+		      success: function(result) {
+	    	  $(".voucher").removeClass('hide');
+	    	  $(".voucheritem").addClass('hide');
+	    	  basket(result);
+		    	  swal({   title: "Success",   
+						text: "Voucher voucher remove success" ,
+						type: "success",
+						confirmButtonText: 'Okay',
+						});
+          },
+          error: function(result) {
+              alert("Voucher remove fail");
+          }
+		 });
+	});
+	
+	$(document).on("click", ".add-to-basket" , function() {
+		var code = $(this).attr("item-code");
+		$.ajax({
+			  headers: {  'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+		      url: '/home/menu/addtoorder',
+		      type: 'POST',
+		      data: {'id':code},
+		      success: function(result) {
+		    	  basket(result);
+            },
+            error: function(result) {
+                alert("Data not found");
+            }
+		 });
+		
+	});
+
+	$(document).on("click", ".remove-to-basket" , function() {
+		var code = $(this).attr("item-code");
+//		$.post('/home/menu/removetoorder',{id:code});
+ 		$.ajax({
+ 			headers: {  'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+ 		      url: '/home/menu/removetoorder',
+ 		      type: 'POST',
+ 		      data: {'id':code},
+ 		      success: function(result) {
+ 		    	 basket(result);
+             },
+             error: function(result) {
+                 alert("Data not found");
+             }
+ 		      });
+	});
+	
+	$(document).on("click", ".material_rm" , function() {
+		var code = $(this).attr("item-code");
+		var takeout = $("*[name='takeout']").val();
+		if($(this).hasClass('choicebtn')){
+			takeout = takeout +code+ ',';
+			$("*[name='takeout']").val(takeout);
+			$(this).removeClass('choicebtn');
+			$(this).addClass('unchoicebtn');
+		}else{
+			takeout = takeout.replace(code+',','');
+			$("*[name='takeout']").val(takeout);
+			$(this).removeClass('unchoicebtn');
+			$(this).addClass('choicebtn');
+		}
+	});
+
+	$(document).on("click", ".material_ad" , function() {
+		var code = $(this).attr("item-code");
+		var extra = $("*[name='extra']").val();
+		if($(this).hasClass('unchoicebtn')){
+			extra = extra +code+ ',';
+			$("*[name='extra']").val(extra);
+			var price = parseFloat($("#dish_price").html()) + parseFloat($(this).attr("price"));
+			$("#dish_price").html(price);
+			$(this).removeClass('unchoicebtn');
+			$(this).addClass('choicebtn');
+		}else{
+			extra = extra.replace(code+',','');
+			$("*[name='extra']").val(extra);
+			var price = parseFloat($("#dish_price").html()) - parseFloat($(this).attr("price"));
+			$("#dish_price").html(price);
+			$(this).removeClass('choicebtn');
+			$(this).addClass('unchoicebtn');
+		}
+			
+	});
+	
+	//plugin bootstrap minus and plus
+	//http://jsfiddle.net/laelitenetwork/puJ6G/
+	$('.btn-number').click(function(e){
+	  e.preventDefault();
+	  
+	  fieldName = $(this).attr('data-field');
+	  type      = $(this).attr('data-type');
+	  var input = $("input[name='"+fieldName+"']");
+	  var currentVal = parseInt(input.val());
+	  if (!isNaN(currentVal)) {
+	      if(type == 'minus') {
+	          
+	          if(currentVal > input.attr('min')) {
+	              input.val(currentVal - 1).change();
+	          } 
+	          if(parseInt(input.val()) == input.attr('min')) {
+	              $(this).attr('disabled', true);
+	          }
+
+	      } else if(type == 'plus') {
+
+	          if(currentVal < input.attr('max')) {
+	              input.val(currentVal + 1).change();
+	          }
+	          if(parseInt(input.val()) == input.attr('max')) {
+	              $(this).attr('disabled', true);
+	          }
+
+	      }
+	  } else {
+	      input.val(0);
+	  }
+	});
+	$('.input-number').focusin(function(){
+	 $(this).data('oldValue', $(this).val());
+	});
+	$('.input-number').change(function() {
+	  
+	  minValue =  parseInt($(this).attr('min'));
+	  maxValue =  parseInt($(this).attr('max'));
+	  valueCurrent = parseInt($(this).val());
+	  
+	  name = $(this).attr('name');
+	  if(valueCurrent >= minValue) {
+	      $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
+	  } else {
+	      alert('Sorry, the minimum value was reached');
+	      $(this).val($(this).data('oldValue'));
+	  }
+	  if(valueCurrent <= maxValue) {
+	      $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled')
+	  } else {
+	      alert('Sorry, the maximum value was reached');
+	      $(this).val($(this).data('oldValue'));
+	  }
+	  
+	});
+	$(".input-number").keydown(function (e) {
+	      // Allow: backspace, delete, tab, escape, enter and .
+	      if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
+	           // Allow: Ctrl+A
+	          (e.keyCode == 65 && e.ctrlKey === true) || 
+	           // Allow: home, end, left, right
+	          (e.keyCode >= 35 && e.keyCode <= 39)) {
+	               // let it happen, don't do anything
+	               return;
+	      }
+	      // Ensure that it is a number and stop the keypress
+	      if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+	          e.preventDefault();
+	      }
+	  });
+
+	basket=function(result){
+		
+		 var html= "";
+		 var totalqty=0;
+
+		 if(Object.keys(result).length == 1){
+			 $(".empty-order").show();
+		 }
+		 else{
+			 $(".empty-order").hide();
+			  for(var i in result){
+				  if(i != "total"&& i != 'deliveryfee'&&i != 'coupon'){
+				  totalqty+=result[i]['qty'];
+				  html += '<div class=\"basket-product product\"> '
+		                
+		                +' <div class=\"row\">'
+		                +'    <div class=\"col-9\">'
+		                +'      <span class=\"description\">'
+		                + result[i]['qty'] +' x '+ result[i]['name']
+		                +'      </span>'
+		                +'    </div>'
+		                +'       <div class="col-3"><span class="price at-product-price">$'+ result[i]['price'] +'</span></div>'
+		                +' </div>';
+		                
+				 if(!$.isEmptyObject(result[i]['flavour'])){
+						 html +=' <div class=\"row\">'
+			                +'    <div class=\"col-9\">'
+			                +'      <span class=\"description\">'
+			                +'&nbsp;&nbsp;&nbsp;&nbsp;'+result[i]['flavour']
+			                +'      </span>'
+			                +'    </div>'
+			                +' </div>';
+				 }
+				 
+				 if(!$.isEmptyObject(result[i]['takeout'])){
+					 for(var j in result[i]['takeout']){
+						 
+						 html +=' <div class=\"row\">'
+			                +'    <div class=\"col-9\">'
+			                +'      <span class=\"description\">'
+			                +'&nbsp;&nbsp;&nbsp;&nbsp;no '+result[i]['takeout'][j]['name']
+			                +'      </span>'
+			                +'    </div>'
+			                +' </div>';
+					 }
+				 }
+				 
+				 if(!$.isEmptyObject(result[i]['extra'])){
+					 for(var k in result[i]['extra']){
+						 
+						 html +=' <div class=\"row\">'
+			                +'    <div class=\"col-9\">'
+			                +'      <span class=\"description\">'
+			                +'&nbsp;&nbsp;&nbsp;&nbsp;extra '+result[i]['extra'][k]['name']+' $'+result[i]['extra'][k]['price']
+			                +'      </span>'
+			                +'    </div>'
+			                +' </div>';
+					 }
+				 }
+		                
+				  html +='   <div class="row actions">'
+		                +'       <button class="btn add-product add-to-basket" item-code="'+ result[i]['__raw_id'] +'">Add one</button>'
+		                +'           <button class="btn remove-product remove-to-basket" item-code="'+ result[i]['__raw_id'] +'">Remove</button>'
+		                +'  </div> '
+		                +' </div>';
+			  }
+			  }
+		 }
+		 
+		 $('.at-product-price').text('$'+ result['deliveryfee']);
+//		 if(result['deliveryfee'] == 0){
+//			 $(".deliveryfee-container").hide();
+//		 }else{
+//			 $(".deliveryfee-container").show();
+//		}
+		 if(result['total']<=result['coupon']['value'] || result['coupon']['value'] == null){
+			 var total = result['total'] +result['deliveryfee'];
+		 }else{
+			 var total = result['total'] +result['deliveryfee']-result['coupon']['value'];
+		 }
+		 
+		 $('#voucher_mycode').text(result['coupon']['code']);
+		 $('#voucher_value').text('$'+result['coupon']['value']);
+		 
+		 $('.total-amount').text('$'+total);
+		 $('.number-of-items').text(totalqty);
+		 $(".basket_order").html(html);
+	}
+	
+	// set up 3 seconds of submit disable time for ordering.
+	$(document).on("click", "#submit_order" , function() {
+		var submitId=document.getElementById('submit_order');
+		 submitId.disabled=true;
+		 $("#pay_submit").submit();
+		 setTimeout("submitId.disabled=false;",3000); //Set up 3 seconds.
+	});
+	
+	$(".addtext").click(function(){
+        $('#message').append($(this).text()+', ');
+    });
+
+}(jQuery));
+
+//# sourceMappingURL=mymenu.js.map

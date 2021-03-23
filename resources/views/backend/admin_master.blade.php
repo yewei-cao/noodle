@@ -6,6 +6,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <html>
   <head>
     <meta charset="UTF-8">
+    @yield('meta')
     <title>AdminLTE 2 | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -16,7 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!--  Font and icons -->
     <link href="/lte/extend/font-icons.css" rel="stylesheet" type= "text/css" />
     
-    <link href="/lte/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/admin-master.css" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
@@ -37,11 +38,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="/js/app.js" type="text/javascript"></script>
     
     <!-- AdminLTE App -->
-    <script src="/lte/dist/js/app.min.js" type="text/javascript"></script>
+    <script src="/lte/dist/js/app.js" type="text/javascript"></script>
     
     <!-- Extend of Css -->
     @yield('backend.css')
-     @yield('backend.js')
+    @yield('backend.js')
     
   </head>
   <!--

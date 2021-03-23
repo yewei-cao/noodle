@@ -555,9 +555,9 @@ function _init() {
     collapse: function (element) {
       var _this = this;
       //Find the box parent
-      var box = element.parents(".box").first();
+      var box = element.parents(".box-triger").first();
       //Find the body and the footer
-      var box_content = box.find("> .box-body, > .box-footer, > form  >.box-body, > form > .box-footer");
+      var box_content = box.find("> .box-collapse");
       if (!box.hasClass("collapsed-box")) {
         //Convert minus into plus
         element.children(":first")
@@ -728,3 +728,34 @@ function _init() {
     });
   };
 }(jQuery));
+
+
+
+(function($) {
+	$(document).on("click", ".order_process" , function() {
+		var code = $(this).attr("order_code");
+//		$.post('/home/menu/removetoorder',{id:code});
+ 		$.ajax({
+ 			headers: {  'X-CSRF-Token': $('meta[name="_token"]').attr('content')},
+ 		      url: '/admin/order/orderprocess',
+ 		      type: 'POST',
+ 		      data: {'id':code},
+ 		      success: function(result) {
+ 		    	  var i= 1;
+// 		    	 order_boardcasting(result);
+// 		    	 basket(result);
+             },
+             error: function(result) {
+                 alert("Data not found");
+             }
+ 		      });
+	});
+	
+//	order_boardcasting=function(result){
+//		
+//	}
+	
+}(jQuery));
+	
+	
+

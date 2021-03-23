@@ -1,6 +1,10 @@
 <?php
 
-get('dashboard', ['as' => 'backend.dashboard', 'uses' => 'DashboardController@index']);
+// get('dashboard', ['as' => 'backend.dashboard', 'uses' => 'DashboardController@index']);
+
+Route::get('dashboard','DashboardController@index')->name('backend.dashboard');
+
+Route::post('orderprocess','DashboardController@orderprocess');
 
 $router->group(['prefix' => 'manage', 'namespace' => 'Manage'], function () use ($router)
 {

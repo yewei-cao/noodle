@@ -7,16 +7,12 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Models\Order\Orders;
 
-class DashboardOrder extends Event implements ShouldBroadcast
+class Order_Process extends Event implements ShouldBroadcast
 {
 
 	use SerializesModels;
 
-	public $created;
     public $printed;
-    public $cooked;
-    public $finished;
-    public $orders;
     
 	/**
 	 * Create a new event instance.
@@ -25,11 +21,11 @@ class DashboardOrder extends Event implements ShouldBroadcast
 	 */
 	public function __construct()
 	{
-		
-		$this->created = Orders::where('status','=','1')->count();
-	    $this->printed = Orders::where('status','=','2')->count();
-	    $this->cooked = Orders::where('status','=','3')->count();
-	    $this->finished = Orders::where('status','=','4')->count();
+		$this->printed= orders::where('status','=','2')->get();
+// 		$this->created = Orders::where('status','=','1')->count();
+// 	    $this->printed = Orders::where('status','=','2')->count();
+// 	    $this->cooked = Orders::where('status','=','3')->count();
+// 	    $this->finished = Orders::where('status','=','4')->count();
 	}
 	
 	/**
@@ -39,7 +35,7 @@ class DashboardOrder extends Event implements ShouldBroadcast
 	 */
 	public function broadcastOn()
 	{
-		return ['dashboard_order-channel'];
+		return ['order_process-channel'];
 	}
 }
 

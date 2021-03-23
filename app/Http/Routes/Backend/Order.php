@@ -2,11 +2,15 @@
 
 $router->group(['prefix' => 'order','as'=>'admin.order.', 'namespace' => 'Order'], function () use ($router)
 {
-	
+
 	Route::get('/','OrderController@index')->name('index');
 	
 	Route::get('data','OrderController@data')->name('data');
 // 	Route::get('test','OrderController@test')->name('test');
+
+	Route::get('process','OrderController@process')->name('process');
+	
+	Route::post('orderprocess','OrderController@orderprocess');
 
 	Route::get('data/{choice}','OrderController@datachoice');
 	

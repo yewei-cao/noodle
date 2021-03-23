@@ -17,6 +17,7 @@ return [
     'change_password' => 'Change Password',
     'administration' => 'Administration',
     'dashboard' => 'Dashboard',
+	'process'=>'Process',
     'home' => 'Home',
     'login' => 'Login',
     'logout' => 'Logout',

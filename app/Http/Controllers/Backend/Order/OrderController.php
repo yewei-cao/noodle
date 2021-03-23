@@ -17,6 +17,7 @@ use App\Repositories\Prints\Printer;
 use App\Models\Shop\Coupons;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Mail;
+use App\Events\OrdersProcess;
 
 class OrderController extends Controller
 {
@@ -60,6 +61,9 @@ class OrderController extends Controller
     }
     
     public function data(){
+    	
+    	event ( new DashboardOrder() );
+    	
     	$today = Carbon::today();
     	$tomorrow = Carbon::tomorrow();
     	$total = $this->getdata($today, $tomorrow);
@@ -67,9 +71,39 @@ class OrderController extends Controller
 // 		return $total;
     	return view('backend.pages.order.data')->withTotal($total);
     }
+    /*
+     * process index page
+     */
+    public function process(){
+    	
+    	event ( new OrdersProcess() );
+    	
+//     	return view ('backend.pages.order.process');
+    	
+    	$printed_orders = orders::where('status','=','2')->get();
+    	return view('backend.pages.order.processtest')
+//     	->withCreated(Orders::where('status','=','1')->count())
+//     	->withPrinted(Orders::where('status','=','2')->count())
+//     	->withCooked(Orders::where('status','=','3')->count())
+//     	->withFinished(Orders::where('status','=','4')->count())
+    	->withPrinted_orders($printed_orders);
+    }
+    
+    /*
+     * order process post
+     */
+    public function orderprocess(Request $request){
+    	$this->validate($request, [
+    			'id' => 'required',
+    	]);
+    	$result = ['d','e'];
+    	return $result;
+    }
     
     public function datachoice($choice){
-    	 
+    	event ( new OrdersProcess() );
+    	
+    	
     	switch ($choice)	{
     		case $choice =="today":
     			$start = Carbon::today();

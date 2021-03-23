@@ -33,61 +33,58 @@
 			</div>
 		</div>
 		<div class="box">
-			
+
 			<div class="box-header form-inline">
-			<div class="col-sm-9">
-			<a class="btn btn-default all" href="/admin/order">{{ trans('backend_order.order_list_tab.all') }}</a>
-			<a class="btn btn-default paid" href="/admin/order/paid">{{ trans('backend_order.order_list_tab.paid') }}</a>
-			<a class="btn btn-default cash" href="/admin/order/cash">{{ trans('backend_order.order_list_tab.cash') }}</a>
-			<a class="btn btn-default created" href="/admin/order/created">{{ trans('backend_order.order_list_tab.created') }}</a>
-			<a class="btn btn-default printed" href="/admin/order/printed">{{ trans('backend_order.order_list_tab.printed') }}</a>
-			<a class="btn btn-default cooked" href="/admin/order/cooked">{{ trans('backend_order.order_list_tab.cooked') }}</a>
-			<a class="btn btn-default finished" href="/admin/order/finished">{{ trans('backend_order.order_list_tab.finished') }}</a>
-			<a class="btn btn-default cancel" href="/admin/order/cancel">{{ trans('backend_order.order_list_tab.cancel') }}</a>
-			</div>
-<!-- 				<div class="col-sm-6"> -->
-<!-- 					<div class="dataTables_length" > -->
-<!--						<form style="display: table;" name="" method="GET" action="{{ route('admin.order.index') }}"> -->
-<!-- 							<label>Show  -->
-<!-- 								<select id="paginate" name="paginate" class="form-control input-sm" onchange="document.all.item('submit');"> -->
-<!-- 								<option value="10" >10</option> -->
-<!-- 								<option value="25">25</option> -->
-<!-- 								<option value="50">50</option> -->
-<!-- 								<option value="100">100</option> -->
-<!-- 								</select> entries -->
-<!-- 								</label> -->
-<!-- 								{{ csrf_field() }} -->
-<!-- 							</form> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-			<div class="col-sm-3">
+				<div class="col-sm-9">
+					<a class="btn btn-default all" href="/admin/order">{{
+						trans('backend_order.order_list_tab.all') }}</a> <a
+						class="btn btn-default paid" href="/admin/order/paid">{{
+						trans('backend_order.order_list_tab.paid') }}</a> <a
+						class="btn btn-default cash" href="/admin/order/cash">{{
+						trans('backend_order.order_list_tab.cash') }}</a> <a
+						class="btn btn-default created" href="/admin/order/created">{{
+						trans('backend_order.order_list_tab.created') }}</a> <a
+						class="btn btn-default printed" href="/admin/order/printed">{{
+						trans('backend_order.order_list_tab.printed') }}</a> <a
+						class="btn btn-default cooked" href="/admin/order/cooked">{{
+						trans('backend_order.order_list_tab.cooked') }}</a> <a
+						class="btn btn-default finished" href="/admin/order/finished">{{
+						trans('backend_order.order_list_tab.finished') }}</a> <a
+						class="btn btn-default cancel" href="/admin/order/cancel">{{
+						trans('backend_order.order_list_tab.cancel') }}</a>
+				</div>
+				<div class="col-sm-3">
 					<div class="search_tool">
 						<div class="input-group" style="width: 200px;">
-						
-						<form style="display: table;" name="search" method="POST" action="{{ route('admin.order.search') }}">
-							<input class="form-control input-sm pull-right" type="text" placeholder="Search" name="table_search">
-							<div class="input-group-btn">
+
+							<form style="display: table;" name="search" method="POST"
+								action="{{ route('admin.order.search') }}">
+								<input class="form-control input-sm pull-right" type="text"
+									placeholder="Search" name="table_search">
+								<div class="input-group-btn">
 									<button class="btn btn-sm btn-default">
-									<i class="fa fa-search"></i>
+										<i class="fa fa-search"></i>
 									</button>
 								</div>
-							{{ csrf_field() }}
-						</form>
-						
+								{{ csrf_field() }}
+							</form>
+
 						</div>
 					</div>
+				</div>
 			</div>
-			</div>
-			
+
 			<div class="box-body table-responsive no-padding">
 				<table class="table table-hover">
 					<tbody>
 						<tr>
-							<th class="center sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label=" " style="width: 20px;">
-								<label>		<input id="allclick" type="checkbox" class="ace"><span class="lbl"></span>	</label>
-							</th>
+							<th class="center sorting_disabled" role="columnheader"
+								rowspan="1" colspan="1" aria-label=" " style="width: 20px;"><label>
+									<input id="allclick" type="checkbox" class="ace"><span
+									class="lbl"></span>
+							</label></th>
 							<th>{{ trans('backend_order.order.id') }}</th>
-							<th>{{ trans('backend_order.order.ordernumber') }}</th>				
+							<th>{{ trans('backend_order.order.ordernumber') }}</th>
 							<th>{{ trans('backend_order.order.name') }}</th>
 							<th>{{ trans('backend_order.order.status') }}</th>
 							<th>{{ trans('backend_order.order.print') }}</th>
@@ -101,24 +98,23 @@
 							<th>{{ trans('backend_order.order.created') }}</th>
 							<th>{{ trans('backend_order.order.paymenttime') }}</th>
 							<th>{{ trans('menus.action') }}</th>
-							
+
 						</tr>
 						@foreach($orders as $order)
 						<tr>
-							<td class="center  sorting_1">
-								<label><input name="chkItem" type="checkbox" class="ace" value="{{ $order->id }}"><span class="lbl"></span></label>
-							</td>
+							<td class="center  sorting_1"><label><input name="chkItem" type="checkbox" class="ace" value="{{ $order->id }}"><span class="lbl"></span></label></td>
 							<td>{{ $order->id }}</td>
-							<td><a href="/admin/order/show/{{ $order->ordernumber }}">{{ $order->customernumber() }}</a></td>
+							<td><a href="/admin/order/show/{{ $order->ordernumber }}">{{
+									$order->customernumber() }}</a>
+							</td>
 							<td>{{ $order->name }}</td>
 							<td>{!! $order->status() !!}</td>
-							
-							<td><button class="btn glyphicon glyphicon-print" value="{{ $order->id }}" type="button"></button>
-							@if($order->coupon()->count() )
-								<p>{{$order->coupon->code}}</p>
-							@endif
-							</td>
-							
+
+							<td><button class="btn glyphicon glyphicon-print"
+									value="{{ $order->id }}" type="button"></button>
+								@if($order->coupon()->count() )
+								<p>{{$order->coupon->code}}</p> @endif</td>
+
 							<td>{{ $order->payment() }}</td>
 							<td>{{ $order->paymentmethod() }}</td>
 							<td>{{ $order->totaldue }}</td>
@@ -128,79 +124,65 @@
 							<td>{{ $order->message }}</td>
 							<td>{!! $order->created_at->diffForHumans() !!}</td>
 							<td>{!! $order->paymenttime !!}</td>
-							<td>
-								<a class="btn btn-xs btn-primary" href="{{ route('admin.order.edit', $order->id) }}"><i class="fa fa-pencil" title="" data-placement="top" data-toggle="tooltip" data-original-title="Edit"></i></a>
-								<a class="btn btn-xs btn-danger" data-method="delete" style="cursor:pointer;" onclick="$(this).find('form').submit();">
-								
-								<i class="fa fa-trash" title="" data-placement="top" data-toggle="tooltip" data-original-title="Delete"></i>
-									<form style="display:none" name="delete_item" method="POST" action="{{ route('admin.order.destroy', $order->id) }}">
-									<input type="hidden" value="delete" name="_method">
-									{{ csrf_field() }}
-									</form>
-									
-							</td>
-							
-							
-							
-							
-							
+							<td><a class="btn btn-xs btn-primary"
+								href="{{ route('admin.order.edit', $order->id) }}"><i
+									class="fa fa-pencil" title="" data-placement="top"
+									data-toggle="tooltip" data-original-title="Edit"></i></a> <a
+								class="btn btn-xs btn-danger" data-method="delete"
+								style="cursor: pointer;"
+								onclick="$(this).find('form').submit();"> <i class="fa fa-trash"
+									title="" data-placement="top" data-toggle="tooltip"
+									data-original-title="Delete"></i>
+									<form style="display: none" name="delete_item" method="POST"
+										action="{{ route('admin.order.destroy', $order->id) }}">
+										<input type="hidden" value="delete" name="_method"> {{
+										csrf_field() }}
+									</form></td>
+
+
+
+
+
 						</tr>
-							@foreach($order->orderitems as $item)
-								<tr>
-									<td></td>
-									<td></td>
-									<td>Dish Name:</td>
-									<td>{{ $item->dishes->name }}</td>
-									<td>Description</td>
-									<td>
-										@if($item->flavour)
-											{{$item->flavour}}
-											<br>
-										@endif
-										
-										@foreach($item->takeout as $material)
-											no {{$material->name}}
-										@endforeach
-										
-										<br>
-										@foreach($item->extra as $material)
-											extra {{$material->name}} <span class="red_span">${{$material->price}}</span>
-										@endforeach
-										
-									</td>
-									<td>Qty</td>
-									<td>{{ $item->amount }}</td>
-									<td>Total</td>
-									<td>{{ $item->total }}</td>
-								</tr>
-							@endforeach
-							
+						@foreach($order->orderitems as $item)
+						<tr>
+							<td></td>
+							<td></td>
+							<td>Dish Name:</td>
+							<td>{{ $item->dishes->name }}</td>
+							<td>Description</td>
+							<td>@if($item->flavour) {{$item->flavour}} <br> @endif
+
+								@foreach($item->takeout as $material) no {{$material->name}}
+								@endforeach <br> @foreach($item->extra as $material) extra
+								{{$material->name}} <span class="red_span">${{$material->price}}</span>
+								@endforeach
+
+							</td>
+							<td>Qty</td>
+							<td>{{ $item->amount }}</td>
+							<td>Total</td>
+							<td>{{ $item->total }}</td>
+						</tr>
+						@endforeach 
 							@if($order->address()->count())
 								<tr>
-								<td></td>
-								<td></td>
-								
-								<td><span class="label label-sm label-primary">Address:</span></td>
-								<td>
-								{{ $order->address->address }} 
-								</td>
-								<td>
-								{{ $order->address->suburb }} 
-								</td>
-								<td>
-								{{ $order->address->city }}
-								</td>
+									<td></td>
+									<td></td>
+									<td><span class="label label-sm label-primary">Address:</span></td>
+									<td>{{ $order->address->address }}</td>
+									<td>{{ $order->address->suburb }}</td>
+									<td>{{ $order->address->city }}</td>
 								</tr>
-										
+
 							@endif
-						
 						@endforeach
-						
+
 					</tbody>
 				</table>
 			</div>
-			
-			
+
+
 			<div class="box-footer clearfix">
 			
 			<div class="col-sm-9">
@@ -396,7 +378,7 @@
 
 		if(data.order.ordertype =="delivery"){
 			devery = '<div class="order_content"> '
-			+ '<h3>Address：</h3> '
+			+ '<h3>Address锛�</h3> '
 			+ '<p class="text-right">' + data.address.address +' '+ data.address.suburb +' '+ data.address.city +'</p>'
 			+ '</div>'
 		}
@@ -466,7 +448,7 @@
 			+ '</div>'
 
 			+ '<div class="order_content"> '
-			+ '<h3>Message：</h3> '
+			+ '<h3>Message锛�</h3> '
 			+ '<p class="text-right">' + data.order.message +' </p>'
 			+ '</div>'
 

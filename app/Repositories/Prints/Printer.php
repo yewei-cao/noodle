@@ -55,16 +55,18 @@ class Printer{
 		foreach($order->orderitems as $item){
 			$itemstring = $item->amount.'X'.$item->dishes->number.' '.$item->dishes->name;
 			$orderInfo .= $itemstring;
-			if(strlen($itemstring)>24){
-				$orderInfo .= '<BR><RIGHT>'.$item->total.'</RIGHT><BR>';
-			}else{
-				$length_itemstring = 31-strlen($itemstring)-strlen($item->total);
-				for($i=0;$i<$length_itemstring;$i++){
-					$orderInfo .=' ';
-				}
-				$orderInfo .=$item->total.'<BR>';
-			}
-// 			$orderInfo .= $item->amount.'X'.$item->dishes->number.' '.$item->dishes->name.'        '.$item->total.'<BR>';
+// 			if(strlen($itemstring)>24){
+// 				$orderInfo .= '<BR><RIGHT>'.$item->total.'</RIGHT><BR>';
+// 			}else{
+// 				$length_itemstring = 31-strlen($itemstring)-strlen($item->total);
+// 				for($i=0;$i<$length_itemstring;$i++){
+// 					$orderInfo .=' ';
+// 				}
+// 				$orderInfo .=$item->total.'<BR>';
+// 			}
+			$orderInfo .= '<B>'.$item->amount.'X'.$item->dishes->number.' '.$item->dishes->name.'</B><BR>';
+			$orderInfo .= '<BR><RIGHT>'.$item->total.'</RIGHT><BR>';
+			
 			if($item->flavour){
 				$orderInfo .= " ******".$item->flavour.'<BR>';
 			}

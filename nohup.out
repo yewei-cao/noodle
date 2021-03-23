@@ -1,0 +1,6 @@
+dashboard_order-channel { event: 'App\\Events\\DashboardOrder',
+  data: { created: 9, printed: 0, cooked: 0, finished: 2348 } }
+dashboard_order-channel { event: 'App\\Events\\DashboardOrder',
+  data: { created: 10, printed: 0, cooked: 0, finished: 2348 } }
+dashboard_order-channel { event: 'App\\Events\\DashboardOrder',
+  data: { created: 12, printed: 0, cooked: 0, finished: 2348 } }

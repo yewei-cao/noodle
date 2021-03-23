@@ -12,6 +12,8 @@ redis.subscribe('order_receipt-channel');
 
 redis.subscribe('dashboard_order-channel');
 
+redis.subscribe('order_process-channel');
+
 redis.on('message', function(channel, message) {
 
 	message = JSON.parse(message);

@@ -38,6 +38,13 @@
               </a>
             </li>
             
+            
+            <li class="active treeview">
+            	<a href="{{ route('admin.order.process') }}">
+            	 <i class="fa fa-bell-o"></i> <span>{{ trans('navs.process') }}</span> </i>
+            	</a>
+            </li>
+            
              <li class="active treeview">
               <a href="#">
                 <i class="glyphicon glyphicon-cog"></i> <span>{{ trans('menus.managetitle') }}</span> 
