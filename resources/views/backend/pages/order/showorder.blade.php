@@ -102,6 +102,7 @@
 						<p>Pickup or Delivery Time: {{$order->shiptime()}}</p>
 						<p>Payment Type: {{$order->payment()}}</p>
 						<p>Payment Method: {{$order->paymentmethod()}}</p>
+						<p>IP Address: {{$order->userip}}</p>
 						@if($order->address()->count())
 							<p class="red_span">Delivery Fee: ${{$order->address->fee}}</p>
 						@endif
