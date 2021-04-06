@@ -53,8 +53,8 @@ class Printer{
 		$orderInfo .= 'Dishes:                    Total<BR>';
 		
 		foreach($order->orderitems as $item){
-			$itemstring = $item->amount.'X'.$item->dishes->number.' '.$item->dishes->name;
-			$orderInfo .= $itemstring;
+// 			$itemstring = $item->amount.'X'.$item->dishes->number.' '.$item->dishes->name;
+// 			$orderInfo .= $itemstring;
 // 			if(strlen($itemstring)>24){
 // 				$orderInfo .= '<BR><RIGHT>'.$item->total.'</RIGHT><BR>';
 // 			}else{
@@ -72,13 +72,13 @@ class Printer{
 			}
 			
 			if($item->selectspecial){
-				$orderInfo .= " ******".$item->selectedname().'<BR>';
+				$orderInfo .= "<B>**".$item->selectedname().'</B><BR>';
 			}
 			foreach($item->takeout as $material){
-				$orderInfo .= ' ------no  '.$material->name.'<BR>';
+				$orderInfo .= '<B>--no  '.$material->name.'</B><BR>';
 			}
 			foreach($item->extra as $material){
-				$orderInfo .= ' ++++++extra  '.$material->name.'   $'.$material->price.'<BR>';
+				$orderInfo .= '<B>++extra  '.$material->name.'   $'.$material->price.'</B><BR>';
 			}
 		}
 		
