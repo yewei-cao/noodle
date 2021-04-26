@@ -56,35 +56,36 @@
 
 <div id="myservice-container">
 
-<div class="service-container">
-<a  href="{{ route('home.quickorder') }}" class="myservice red" >
-<div class="service-icon">
-<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="{{url()}}/images/home/home_quickorder.png">
-</div>
-<div class="service-text">
 
-<h2>{{ trans('front_home.quick_order') }}</h2>
-<p>{{ trans('front_home.quick_order_ext') }}</p>
-</div>
-</a>
-</div>
+<!-- <div class="service-container"> -->
+<!-- <a  href="{{ route('home.quickorder') }}" class="myservice red" > -->
+<!-- <div class="service-icon"> -->
+<!-- <img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="{{url()}}/images/home/home_quickorder.png"> -->
+<!-- </div> -->
+<!-- <div class="service-text"> -->
 
-<div class="service-container">
-<a  href="{{ route('home.delivery.info') }}" class="myservice red" >
+<!-- <h2>{{ trans('front_home.quick_order') }}</h2> -->
+<!-- <p>{{ trans('front_home.quick_order_ext') }}</p> -->
+<!-- </div> -->
+<!-- </a> -->
+<!-- </div> -->
 
-<div class="service-icon">
-<img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="{{url()}}/images/home/delivery_food.png">
-</div>
-<div class="service-text">
-<h2>{{ trans('front_home.delivery') }}</h2>
-<p>{{ trans('front_home.delivery_ext') }}</p>
+<!-- <div class="service-container"> -->
+<!-- <a  href="{{ route('home.delivery.info') }}" class="myservice red" > -->
 
-</div>
-</a>
-</div>
+<!-- <div class="service-icon"> -->
+<!-- <img class="img-circle" width="140" height="140" alt="Generic placeholder image" src="{{url()}}/images/home/delivery_food.png"> -->
+<!-- </div> -->
+<!-- <div class="service-text"> -->
+<!-- <h2>{{ trans('front_home.delivery') }}</h2> -->
+<!-- <p>{{ trans('front_home.delivery_ext') }}</p> -->
+
+<!-- </div> -->
+<!-- </a> -->
+<!-- </div> -->
 
 
-<div class="service-container">
+<div class=" col-md-12">
 	<a  href="{{ route('home.pickup.info') }}" class="myservice red" >
 
 	<div class="service-icon">
