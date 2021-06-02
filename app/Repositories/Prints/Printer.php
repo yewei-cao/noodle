@@ -88,7 +88,7 @@ class Printer{
 		}
 		$orderInfo .= '--------------------------------<BR>';
 		
-		$orderInfo .= '<RIGHT>Total amount :$'.$order->totaldue.'</RIGHT><BR>';
+		$orderInfo .= '<RIGHT>Total amount :<B>$'.$order->totaldue.'</B></RIGHT><BR>';
 		
 		$orderInfo .= '--------------------------------<BR>';
 		$orderInfo .= 'Message: <BR>';
