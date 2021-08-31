@@ -185,6 +185,126 @@ class menuController extends Controller
     	->withShop($this->shop);
     }
     
+    
+    /**
+     * Display the menu, includes all catalogues.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function goods(Request $request)
+    {
+    	
+    	$order_route=[
+    			'prev'=>'',
+    			'next'=>route('home.payment.paymentmethod')
+    	];
+    	
+    	$catalogues = Catalogue::orderBy('ranking', 'asc')->get();
+    	$active = [
+    			'menu'=>'active',
+    			'noodles'=>'',
+    			'rice'=>'',
+    			'snack&drinks'=>'',
+    			'soups'=>'',
+    			'chips'=>'',
+    			'payment'=>''];
+    	
+    	//     	dd($catalogues);
+    	
+    	$cart = Cart::all();
+    	
+    	$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
+    	$coupon_value = 0;
+    	$coupon = getcoupon($request,$this->shop->coupon_maxamount, $this->shop->coupon_maxvalue,$this->shop->coupon);
+    	
+    	if($coupon){
+    		$coupon_value = $coupon->value;
+    	}
+    	if(Cart::total()<=$coupon_value){
+    		$totalprice = Cart::total() + $deliveryfee;
+    	}else{
+    		$totalprice = Cart::total() + $deliveryfee - $coupon_value;
+    	}
+    	$totalnumber = Cart::count();
+    	return view('frontend.home.good.goods',compact('catalogues','cart','totalprice','totalnumber','coupon'))
+    	->withOrderroute($order_route)
+    	->withDeliveryfee($deliveryfee)
+    	->withActive($active)
+    	->withShop($this->shop);
+    }
+    
+    /**
+     * Display good page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    
+    public function good($dishname,Request $request){
+    	//     	$dish = Dishes::findOrFail($dish);
+    	$dishname = str_replace('-', ' ', $dishname);
+    	$dish = Dishes::where('name', $dishname)->firstOrFail();
+    	$materials = [];
+    	$i = 0;
+    	foreach ($dish->mgroup->material as $material){
+    		$materials[$i]['id']=$material->id;
+    		$materials[$i]['name']=$material->name;
+    		$i++;
+    	}
+    	$special =[];
+    	foreach ($dish->materials as $material){
+    		
+    		/* check and find out the special ingredient. like noodles or rice */
+    		if(Catalogue::where('name',Material_type::findOrFail($material->material_type_id)->name)->first()){
+    			$special = $material;
+    		}else {
+    			$materials[$i]['id']=$material->id;
+    			$materials[$i]['name']=$material->name;
+    			$i++;
+    		}
+    	}
+    	
+    	$special_group = [];
+    	/* special ingredients like noodle, only in some dishes. */
+    	if($special !=null) {
+    		$special_group= Material_type::where('name', $dish->catalogue->last()->name)->first();
+    		//     		return $special_group;
+    	}
+    	
+    	//     	return $special_group;
+    	
+    	//     	$special = $dish->catalogue->last()->name;
+    	
+    	//     	dd($special);
+    	
+    	$veges = Material_type::where('name', 'Veges')->first();
+    	$meat = Material_type::where('name', 'Meat')->first();
+    	
+    	$order_route=[
+    			'prev'=>'',
+    			'next'=>route('home.payment.paymentmethod')
+    	];
+    	
+    	$active = [
+    			'menu'=>'active',
+    			'noodles'=>'',
+    			'rice'=>'',
+    			'snack&drinks'=>'',
+    			'soups'=>'',
+    			'chips'=>'',
+    			'payment'=>''];
+    	$cart = Cart::all();
+    	$deliveryfee = deliveryfee($request,$this->shop->freedelivery,$this->shop->maxfree);
+    	$coupon = getcoupon($request,$this->shop->coupon_maxamount, $this->shop->coupon_maxvalue,$this->shop->coupon);
+    	$totalprice = Cart::total() + $deliveryfee;
+    	$totalnumber = Cart::count();
+    	
+    	return view('frontend.home.dish.dish_content',compact('materials','dish','cart','totalprice','totalnumber','veges','meat','coupon','special','special_group'))
+    	->withOrderroute($order_route)
+    	->withDeliveryfee($deliveryfee)
+    	->withActive($active)
+    	->withShop($this->shop);
+    }
+    
     public function adddish(Request $request){
 //     	dd($request->input('dish_num'));  
 //     	"takeout" => "3,"
