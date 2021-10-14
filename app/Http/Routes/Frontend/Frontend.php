@@ -54,27 +54,27 @@ $router->group([
         Route::post('adddish', 'menuController@adddish')->name('adddish');
     });
     
-    $router->group([
-        'prefix' => 'quickorder',
-        'namespace' => 'Quickorder',
-        'middleware' => 'auth'
-    ], function () use ($router) {
-        Route::get('/', 'quickorderController@index')->name('home.quickorder');
-        Route::get('create', 'quickorderController@create')->name('home.quickorder.create');
-        Route::get('cloneorder', 'quickorderController@cloneorder')->name('home.quickorder.cloneorder');
-    });
+//     $router->group([
+//         'prefix' => 'quickorder',
+//         'namespace' => 'Quickorder',
+//         'middleware' => 'auth'
+//     ], function () use ($router) {
+//         Route::get('/', 'quickorderController@index')->name('home.quickorder');
+//         Route::get('create', 'quickorderController@create')->name('home.quickorder.create');
+//         Route::get('cloneorder', 'quickorderController@cloneorder')->name('home.quickorder.cloneorder');
+//     });
     
-    $router->group([
-        'prefix' => 'delivery',
-        'namespace' => 'Delivery'
-    ], function () use ($router) {
-        Route::get('/', 'deliveryController@index')->name('home.delivery.info');
-        Route::get('delivery_details', 'deliveryController@delivery_details');
-        /* temporary stop the delivery and quickorder */
-        Route::get('confirm', 'deliveryController@confirm')->name('home.delivery.confirm');
-        Route::get('address', 'deliveryController@address_confirm')->name('home.delivery.address');
-        Route::get('saveordertime', 'deliveryController@saveordertime');
-    });
+//     $router->group([
+//         'prefix' => 'delivery',
+//         'namespace' => 'Delivery'
+//     ], function () use ($router) {
+//         Route::get('/', 'deliveryController@index')->name('home.delivery.info');
+//         Route::get('delivery_details', 'deliveryController@delivery_details');
+//         /* temporary stop the delivery and quickorder */
+//         Route::get('confirm', 'deliveryController@confirm')->name('home.delivery.confirm');
+//         Route::get('address', 'deliveryController@address_confirm')->name('home.delivery.address');
+//         Route::get('saveordertime', 'deliveryController@saveordertime');
+//     });
     
     $router->group([
         'prefix' => 'ordertime',
