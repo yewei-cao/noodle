@@ -65,21 +65,22 @@ class Printer{
 // 				$orderInfo .=$item->total.'<BR>';
 // 			}
 			$orderInfo .= '<B>'.$item->amount.'X'.$item->dishes->number.' '.$item->dishes->name.'</B><BR>';
-			$orderInfo .= '<BR><RIGHT>'.$item->total.'</RIGHT><BR>';
 			
 			if($item->flavour){
-				$orderInfo .= " ******".$item->flavour.'<BR>';
+				$orderInfo .= " *******".$item->flavour.'<BR>';
 			}
 			
 			if($item->selectspecial){
-				$orderInfo .= "<B>**".$item->selectedname().'</B><BR>';
+				$orderInfo .= "<B>******".$item->selectedname().'</B><BR>';
 			}
 			foreach($item->takeout as $material){
-				$orderInfo .= '<B>--no  '.$material->name.'</B><BR>';
+				$orderInfo .= '<B>------no  '.$material->name.'</B><BR>';
 			}
 			foreach($item->extra as $material){
-				$orderInfo .= '<B>++extra  '.$material->name.'   $'.$material->price.'</B><BR>';
+				$orderInfo .= '<B>++++++extra  '.$material->name.'   $'.$material->price.'</B><BR>';
 			}
+			
+			$orderInfo .= '<BR><RIGHT>'.$item->total.'</RIGHT><BR>';
 		}
 		
 		if($order->address()->count()){
