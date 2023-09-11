@@ -40,7 +40,7 @@ class PrintOrders extends Command
     		$num = orders::where('status','<','2')->count();
     		Mail::queue('emails.order.printfail',compact('num','order'),function ($message)use($order){
     			$message->from(env('MAIL_USERNAME'))->to($order->email)
-    			->subject('Noodle Canteen Print Errors');
+    			->subject('Noodle Print Errors');
     		});
     	}
     	

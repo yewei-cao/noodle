@@ -9,7 +9,7 @@
 							<span class="icon-bar"></span>
 						</button>
 						<a class="navbar-redbrand" href="/">
-							<img alt="Noodle Canteen@Taradale" src="{{url()}}/images/home/home_nav.jpg" >
+							<img alt="Noodle @Taradale" src="{{url()}}/images/home/home_nav.jpg" >
 						</a>
 					</div>
 		

@@ -46,7 +46,7 @@ return [
 		'delivery_ext'=>'Have your order delivered directly to you',
 		
 		'pick_up'=>'Pick Up',
-		'pick_up_ext'=>'Pick up your order at a Noodle Canteen Taradale',
+		'pick_up_ext'=>'Pick up your order at a Noodle Taradale',
 
 		'type_list'=>'Type List',
 		'type'=>['id'=>'ID','name'=>'Name','description'=>'Description','created'=>'Created','lastupdated'=>'Last Updated'],

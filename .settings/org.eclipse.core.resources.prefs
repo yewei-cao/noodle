@@ -1,7 +1,12 @@
 eclipse.preferences.version=1
 encoding//app/Repositories/Prints/Printer.php=UTF-8
+encoding//resources/lang/en/front_foot.php=UTF-8
 encoding//resources/views/backend/pages/order/index.blade.php=UTF-8
+encoding//resources/views/emails/order/printfail.blade.php=UTF-8
 encoding//resources/views/emails/order/receipt.blade.php=UTF-8
+encoding//resources/views/emails/password.blade.php=UTF-8
+encoding//resources/views/emails/welcome.blade.php=UTF-8
 encoding//resources/views/frontend/home/home.blade.php=UTF-8
 encoding//resources/views/frontend/home/payment/payinshop.blade.php=UTF-8
+encoding//resources/views/frontend/home/policy.blade.php=UTF-8
 encoding//resources/views/frontend/includes/footer.blade.php=UTF-8

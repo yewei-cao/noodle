@@ -31,7 +31,7 @@ class Printer{
 			return false;
 		}
 		$orderInfo = '';
-		$orderInfo .= 'Welcome to Noodle Canteen Taradale<BR>';
+		$orderInfo .= 'Welcome to Noodle Taradale<BR>';
 		$orderInfo .= '<C>GST: No# 104-299-733</C><BR>';
 		$orderInfo .= '<C>Tax Invoice</C><BR>';
 		$orderInfo .= '<CB>Your Order Numbers is '.$order->id.'</CB><BR>';

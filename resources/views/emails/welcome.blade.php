@@ -22,7 +22,7 @@
 								</tr>
 								<tr>
 									<td style="padding: 5px 0 5px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-										The best thing about Noodle Canteen (besides our delicious variety of dishes) is that we only use fresh and natural ingredients. No MSG is used in our food.
+										The best thing about Noodle (besides our delicious variety of dishes) is that we only use fresh and natural ingredients. No MSG is used in our food.
 
 									</td>
 								</tr>
@@ -38,12 +38,12 @@
 								
 								<tr>
 									<td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
-										<b>Noodle Canteen now offers group catering!</b>
+										<b>Noodle now offers group catering!</b>
 									</td>
 								</tr>
 								<tr>
 									<td style="padding: 25px 0 25px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-										Does your next office do or social event need a fast tasty buffet that everyone can enjoy? Want to satisfy the troops and keep it cost effective? Your local Noodle Canteen is now offering custom made menus including finger foods for lunch and dinner.
+										Does your next office do or social event need a fast tasty buffet that everyone can enjoy? Want to satisfy the troops and keep it cost effective? Your local Noodle is now offering custom made menus including finger foods for lunch and dinner.
 									</td>
 								</tr>
 								
@@ -55,7 +55,7 @@
 							<table border="0" cellpadding="0" cellspacing="0" width="100%">
 								<tr>
 									<td style="text-align: center;">
-										Copyright © Noodle Canteen Taradale Enterprises Ltd 2016.
+										Copyright © Noodle Taradale Enterprises Ltd 2017
 									</td>
 								</tr>
 								
@@ -68,7 +68,7 @@
 								<tr>
 									<td style="text-align: center;">
 										<a href="#">Our website</a>
-										<span> &nbsp; • &nbsp; </span>
+										<span> &nbsp; 鈥� &nbsp; </span>
 										<a href="#">Facebook</a>
 									</td>
 								</tr>

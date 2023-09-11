@@ -23,7 +23,7 @@
 	<div class="home_detail">
 		<h2 class="text-center">About Us</h2>
 		<hr>
-		<p>Located at 269 Gloucester St, Noodle Canteen Taradale serves an appetizing mix of Asian Cuisine. Everything is prepared fresh by our Asian chefs and include choice dishes, such as Seafood Mee Goreng, Nasi Goreng, Chicken Fried Rice and many more.</p>
+		<p>Located at 269 Gloucester St, Noodle Taradale serves an appetizing mix of Asian Cuisine. Everything is prepared fresh by our Asian chefs and include choice dishes, such as Seafood Mee Goreng, Nasi Goreng, Chicken Fried Rice and many more.</p>
 	</div>
 </div>
 
@@ -46,7 +46,7 @@
 </div>
 
 <!-- <div class="starter text-center"> -->
-<!-- <h3>Following the government’s announcement regarding Level 4 Lockdown, Noodle Canteen will be closed from Tuesday, 24 March until further notice..</h3> -->
+<!-- <h3>Following the government’s announcement regarding Level 4 Lockdown, Noodle Taradle will be closed from Tuesday, 24 March until further notice..</h3> -->
 <!-- </div> -->
 
 <div class="starter text-center">
@@ -78,7 +78,7 @@
 <div class="col-md-12">
 <h2>Our Location</h2>
 <hr>
-<p>269 Gloucester St, Noodle Canteen – Taradale Ph: (06) 844 3588</p>
+<p>269 Gloucester St, Noodle Taradale Ph: (06) 844 3588</p>
 	<div class="googlemap">
 		{!! Mapper::render() !!}
 	</div>

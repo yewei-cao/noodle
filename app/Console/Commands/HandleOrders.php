@@ -95,7 +95,7 @@ class HandleOrders extends Command
     					$photo_path = $this->makecode($this->path,$code,$expired_time,$this->shop->coupon_value);
     					
     					$coupon = Coupons::create([
-    							'title' => 'Noodle Canteen Taradale Coupon',
+    							'title' => 'Noodle Taradale Coupon',
     							'email'=>$order->email,
     							'value'=>$this->shop->coupon_value,
     							'used'=>0,
@@ -106,7 +106,7 @@ class HandleOrders extends Command
     					
 //     					Mail::queue('emails.coupon.order_coupon',compact('coupon','order'),function ($message)use($coupon){
 //     						$message->from(env('MAIL_USERNAME'))->to($coupon->email)
-//     						->subject('Noodle Canteen Taradale Coupon');
+//     						->subject('Noodle Taradale Coupon');
 //     					});
     				}
     				

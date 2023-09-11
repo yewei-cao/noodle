@@ -208,7 +208,7 @@
 					<td bgcolor="#ee4c50" style="padding: 30px 30px 30px 30px;">
 						<table border="0" cellpadding="0" cellspacing="0" width="100%">
 							<tr>
-								<td style="text-align: center;">Copyright @ Noodle Canteen
+								<td style="text-align: center;">Copyright @ Noodle
 									Enterprises Ltd 2016.</td>
 							</tr>
 

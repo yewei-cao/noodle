@@ -9,6 +9,6 @@ return [
 | The following language lines are used in foot throughout the system.
 |
 */
-	'copyright'=>'Copyright © Noodle Canteen Taradale Enterprises Ltd 2017.',
+	'copyright'=>'Copyright © Noodle Taradale Enterprises Ltd 2017.',
 
 ];
